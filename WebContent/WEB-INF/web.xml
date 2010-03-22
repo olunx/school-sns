@@ -26,7 +26,7 @@
 
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>classpath*:applicationContext.xml</param-value>
+		<param-value>/WEB-INF/conf/spring/applicationContext.xml</param-value>
 	</context-param>
 
 	<!--配置OpenSessionInView，为了避免Hibernate的延迟加载产生问题-->

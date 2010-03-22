@@ -14,13 +14,13 @@
 	default-lazy-init="false"		
 	>
 
-	<import resource="spring-bean/beans-olunx.xml" />
-	<import resource="spring-bean/beans-fatkun.xml" />
-	<import resource="spring-bean/beans-fuchal.xml" />
+	<import resource="beans-olunx.xml" />
+	<import resource="beans-fatkun.xml" />
+	<import resource="beans-fuchal.xml" />
 	
 	<!-- 装载属性配置文件 -->
 	<bean id="propertyConfig" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-		<property name="locations" value="classpath:jdbc.properties"></property>
+		<property name="locations" value="/WEB-INF/conf/hibernate/jdbc.properties"></property>
 	</bean>
 
 	<!-- 配置数据源 -->
@@ -34,7 +34,7 @@
 	<!-- 配置SessionFactory -->
 	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
 		<property name="dataSource" ref="dataSource"></property>
-		<property name="configLocation" value="classpath:hibernate.cfg.xml"></property>
+		<property name="configLocation" value="/WEB-INF/conf/hibernate/hibernate.cfg.xml"></property>
 	</bean>
 
 	<!-- 配置事务管理器-->
@@ -57,10 +57,12 @@
 	</tx:advice>
 
 	<aop:config>
+	<!-- 
 		<aop:pointcut id="allMethod" expression="execution(* cn.gdpu.dao.impl.*.*(..))" />
 		<aop:pointcut id="allServiceMethod" expression="execution(* cn.gdpu.service.impl.*.*(..))" />
 		<aop:advisor pointcut-ref="allMethod" advice-ref="txAdvice" />
 		<aop:advisor pointcut-ref="allServiceMethod" advice-ref="txAdvice" />
+	-->
 	</aop:config>
 
 </beans>

@@ -3,5 +3,5 @@
 	PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
 	"http://struts.apache.org/dtds/struts-2.1.dtd" >
 <struts>
-	<include file="struts-config/struts-*.xml"/>
+	<include file="/WEB-INF/conf/struts/struts-*.xml"/>
 </struts>    
