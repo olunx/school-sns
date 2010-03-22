@@ -26,7 +26,7 @@
 
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>/WEB-INF/conf/spring/applicationContext.xml</param-value>
+		<param-value>classpath:conf/spring/applicationContext.xml</param-value>
 	</context-param>
 
 	<!--配置OpenSessionInView，为了避免Hibernate的延迟加载产生问题-->
@@ -46,6 +46,13 @@
 	<filter>
 		<filter-name>struts2</filter-name>
 		<filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</filter-class>
+  		<init-param>
+			<param-name>config</param-name>
+			<param-value>struts-default.xml,
+			struts-plugin.xml,
+			conf/struts/struts.xml,
+			</param-value>
+        </init-param>
 	</filter>
 
 	<filter-mapping>
