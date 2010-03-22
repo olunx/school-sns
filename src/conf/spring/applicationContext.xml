@@ -20,7 +20,7 @@
 	
 	<!-- 装载属性配置文件 -->
 	<bean id="propertyConfig" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-		<property name="locations" value="/WEB-INF/conf/hibernate/jdbc.properties"></property>
+		<property name="locations" value="classpath:conf/hibernate/jdbc.properties"></property>
 	</bean>
 
 	<!-- 配置数据源 -->
@@ -34,7 +34,7 @@
 	<!-- 配置SessionFactory -->
 	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
 		<property name="dataSource" ref="dataSource"></property>
-		<property name="configLocation" value="/WEB-INF/conf/hibernate/hibernate.cfg.xml"></property>
+		<property name="configLocation" value="classpath:conf/hibernate/hibernate.cfg.xml"></property>
 	</bean>
 
 	<!-- 配置事务管理器-->
