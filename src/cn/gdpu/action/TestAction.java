@@ -2,11 +2,16 @@ package cn.gdpu.action;
 
 @SuppressWarnings("serial")
 public class TestAction extends BaseAction {
+	private String val;
 
 	public String test() throws Exception {
-		String val = (String) this.getRequest().get("val");
-		System.out.println(val);
+		this.getRequest().put("name", val);
+		System.out.println(this.getRequest());
 		return SUCCESS;
+	}
+
+	public void setVal(String val) {
+		this.val = val;
 	}
 
 }
