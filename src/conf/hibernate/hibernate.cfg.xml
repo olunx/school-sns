@@ -9,7 +9,5 @@
 		<property name="dialect">org.hibernate.dialect.MySQLDialect</property>
 		<property name="connection.useUnicode">true</property>
 		<property name="connection.characterEncoding">UTF-8</property>
-		
-		<mapping resource="cn/gdpu/vo/A.hbm.xml" />
 	</session-factory>
 </hibernate-configuration>
