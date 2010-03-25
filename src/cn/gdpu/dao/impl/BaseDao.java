@@ -15,7 +15,6 @@ import org.hibernate.HibernateException;
 import org.hibernate.LockMode;
 import org.hibernate.Query;
 import org.hibernate.criterion.DetachedCriteria;
-import org.hibernate.criterion.Projections;
 import org.hibernate.Session;
 
 import cn.gdpu.dao.IBaseDao;
@@ -121,6 +120,7 @@ public class BaseDao<T, ID extends Serializable> extends HibernateDaoSupport imp
 		return getHibernateTemplate().findByNamedQuery(queryName, values);
 	}
 
+	@SuppressWarnings("deprecation")
 	public List<T> findPageByCriteria(final DetachedCriteria detachedCriteria, final int offset, final int length) {
 		return (List<T>) getHibernateTemplate().execute(new HibernateCallback() {
 			public Object doInHibernate(org.hibernate.Session session) throws HibernateException {
@@ -132,6 +132,7 @@ public class BaseDao<T, ID extends Serializable> extends HibernateDaoSupport imp
 		}, true);
 	}
 
+	@SuppressWarnings("deprecation")
 	public List<T> findPageByQuery(final String hql, final int offset, final int length) {
 		return (List<T>) getHibernateTemplate().execute(new HibernateCallback() {
 			public Object doInHibernate(Session session) throws HibernateException, SQLException {
