@@ -13,7 +13,7 @@ import cn.gdpu.util.PageBean;
  * @version 1.0  
  * @since 1.0  
  */  
-public interface IBaseService<T,ID extends Serializable> {   
+public interface BaseService<T,ID extends Serializable> {   
        
         /**  
          * 添加实体类  

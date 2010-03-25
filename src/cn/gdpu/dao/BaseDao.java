@@ -1,19 +1,7 @@
 package cn.gdpu.dao;
 
 import java.io.Serializable;
-import java.sql.SQLException;
-import java.util.Collection;
 import java.util.List;
-
-import org.hibernate.Criteria;
-import org.hibernate.HibernateException;
-import org.hibernate.LockMode;
-import org.hibernate.Query;
-import org.hibernate.Session;
-import org.hibernate.criterion.DetachedCriteria;
-import org.hibernate.criterion.Projections;
-import org.springframework.dao.DataAccessException;
-import org.springframework.orm.hibernate3.HibernateCallback;
 
 /**  
  *  Dao层基接口，数据访问逻辑.这里只提供基本的操作增、删、查、改和分页的方法.  
@@ -23,7 +11,7 @@ import org.springframework.orm.hibernate3.HibernateCallback;
  * @version 1.0  
  * @since 1.0  
  */  
-public interface IBaseDao<T, ID extends Serializable> {
+public interface BaseDao<T, ID extends Serializable> {
 	
 	/**  
      * 增加持久化对象
