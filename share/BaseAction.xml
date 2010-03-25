@@ -1,9 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE struts 
-	PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
-	"http://struts.apache.org/dtds/struts-2.1.dtd" >
-<struts>
-	<!-- 测试的Action -->
+
 	<package name="test" extends="struts-default" namespace="/">
 		<global-results>
 			<result name="index">/WEB-INF/model/test/index.jsp</result>
@@ -12,4 +7,12 @@
 		</global-results>
 		<action name="*Test" class="cn.gdpu.action.TestAction" method="{1}"></action>
 	</package>
-</struts>    
+
+<!-- 
+首页：listTest		返回：index
+添加：goAddTest		返回：addPage
+	添加确定：addTest		返回：index
+修改：goModifyTest		返回：modifyPage
+	修改确定：modifyTest		返回：index
+删除：deleteTest		返回：index
+ -->
