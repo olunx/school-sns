@@ -3,14 +3,22 @@ package cn.gdpu.service.impl;
 import java.io.Serializable;
 import java.util.List;
 
-import cn.gdpu.dao.impl.BaseDao;
-import cn.gdpu.service.IBaseService;
+import cn.gdpu.dao.impl.BaseDaoImpl;
+import cn.gdpu.service.BaseService;
 import cn.gdpu.util.PageBean;
 
-public abstract class BaseService <T,ID extends Serializable,GeneralDAO extends BaseDao<T, ID>> implements IBaseService<T, ID>{
+public abstract class BaseServiceImpl <T,ID extends Serializable,GeneralDAO extends BaseDaoImpl<T, ID>> implements BaseService<T, ID>{
 
 	private GeneralDAO baseDao;
 	
+	public GeneralDAO getBaseDao() {
+		return baseDao;
+	}
+
+	public void setBaseDao(GeneralDAO baseDao) {
+		this.baseDao = baseDao;
+	}
+
 	@Override
 	public void addEntity(T entity) {
 		baseDao.insert(entity);
