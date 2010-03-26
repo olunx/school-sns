@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Set;
 
 public class Group {
+	private int id;
 	private String name;
 	private String intro;
 	private String pic;
@@ -75,5 +76,13 @@ public class Group {
 
 	public void setPeople(Set<People> people) {
 		this.people = people;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 }

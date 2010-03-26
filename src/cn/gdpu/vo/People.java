@@ -1,6 +1,7 @@
 package cn.gdpu.vo;
 
 public class People {
+	private int id;
 	private String username;
 	private String password;
 	private String name;
@@ -81,5 +82,13 @@ public class People {
 
 	public void setQq(int qq) {
 		this.qq = qq;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 }

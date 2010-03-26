@@ -1,10 +1,13 @@
 package cn.gdpu.vo;
 
+import java.util.Set;
+
 public class Teacher extends People {
+	private int id;
 	private School school;
 	private String division;
 	private Duty duty;
-	private String excel;
+	private Set<Excel> excel;
 
 	public School getSchool() {
 		return school;
@@ -30,11 +33,19 @@ public class Teacher extends People {
 		this.duty = duty;
 	}
 
-	public String getExcel() {
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public Set<Excel> getExcel() {
 		return excel;
 	}
 
-	public void setExcel(String excel) {
+	public void setExcel(Set<Excel> excel) {
 		this.excel = excel;
 	}
 }
