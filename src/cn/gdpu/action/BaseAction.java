@@ -7,28 +7,32 @@ import com.opensymphony.xwork2.ActionSupport;
 @SuppressWarnings("serial")
 public abstract class BaseAction extends ActionSupport implements RequestAware {
 
-	private final String INDEX = "index";
-	private final String ADD_PAGE = "addPage";
-	private final String MODIFY_PAGE = "modifyPage";
-	
+	public final String INDEX = "index";
+	public final String SUCCESS = "success";
+	public final String ADD_PAGE = "addPage";
+	public final String MODIFY_PAGE = "modifyPage";
+
 	/**
 	 * 列出所有记录
+	 * 
 	 * @return
 	 */
 	public String list() {
 		return INDEX;
 	}
-	
+
 	/**
 	 * 跳转到添加页面
+	 * 
 	 * @return
 	 */
 	public String goAdd() {
 		return ADD_PAGE;
 	}
-	
+
 	/**
 	 * 添加数据，返回首页。
+	 * 
 	 * @return
 	 */
 	public String add() {
@@ -37,6 +41,7 @@ public abstract class BaseAction extends ActionSupport implements RequestAware {
 
 	/**
 	 * 跳转到修改页面
+	 * 
 	 * @return
 	 */
 	public String goModify() {
@@ -45,6 +50,7 @@ public abstract class BaseAction extends ActionSupport implements RequestAware {
 
 	/**
 	 * 提交修改，返回首页。
+	 * 
 	 * @return
 	 */
 	public String modify() {
@@ -53,6 +59,7 @@ public abstract class BaseAction extends ActionSupport implements RequestAware {
 
 	/**
 	 * 删除一条数据，返回首页。
+	 * 
 	 * @return
 	 */
 	public String delete() {
@@ -61,6 +68,7 @@ public abstract class BaseAction extends ActionSupport implements RequestAware {
 
 	/**
 	 * 删除多条数据，返回首页。
+	 * 
 	 * @return
 	 */
 	public String deleteMany() {
@@ -68,4 +76,3 @@ public abstract class BaseAction extends ActionSupport implements RequestAware {
 	}
 
 }
-
