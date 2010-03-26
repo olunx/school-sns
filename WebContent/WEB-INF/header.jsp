@@ -12,7 +12,18 @@
 <link type="text/css" rel="stylesheet" href="<%=path%>/content/images/header.css" />
 <link type="text/css" rel="stylesheet" href="<%=path%>/content/images/login.css" />
 <link type="text/css" rel="stylesheet" href="<%=path%>/content/images/footer.css" />
-</head>
+<link type="text/css" rel="stylesheet" href="<%=path%>/content/images/colorbox.css" />
+<link type="text/css" rel="stylesheet" href="<%=path%>/content/images/validationEngine.jquery.css" />
+<script type="text/javascript" src="<%=path%>/content/js/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="<%=path%>/content/js/jquery.colorbox-min.js"></script>
+<script type="text/javascript" src="<%=path%>/content/js/jquery.validationEngine-cn.js" ></script>
+<script type="text/javascript" src="<%=path%>/content/js/jquery.validationEngine.js" ></script>
+<script type="text/javascript">
+			$(document).ready(function(){
+				$("a[rel='login']").colorbox();
+				$("form[rel='loginform']").validationEngine();
+			});
+</script>
 <body background="<%=path%>/content/images/bg.jpg">
 <div class="header_k">
   <div id="header">
@@ -20,13 +31,13 @@
       <div class="logo"><a href="">LOGO</a></div>
       <div class="menuk">
         <ul class="menu">
-          <li><a href="<%=path %>/login.jsp">首页</a></li>
+          <li><a href="<%=path%>/login.jsp">首页</a></li>
           <li><a href="#">学校</a></li>
           <li><a href="#">群组</a></li>
           <li><a href="#">消息</a></li>
           <li><a href="#">博客</a></li>
         </ul>
-        <div class="nav_account"><span class="loginName">欢迎</span> <a href="">登录</a> | <a href="">注册</a> </div>
+        <div class="nav_account"><span class="loginName">欢迎</span> <a rel="login" href="#">登录</a> | <a href="">注册</a></div>
       </div>
     </div>
   </div>
