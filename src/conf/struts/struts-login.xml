@@ -3,7 +3,11 @@
 	PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
 	"http://struts.apache.org/dtds/struts-2.1.dtd" >
 <struts>
-	<!-- 登陆 -->
-	<package name="login" extends="struts-default">
+	<!-- 登录 -->
+	<package name="login" extends="struts-default" namespace="/">
+		<global-results>
+			<result name="success">/WEB-INF/index.jsp</result>
+		</global-results>
+		<action name="*Login" class="cn.gdpu.action.LoginAction" method="{1}"></action>
 	</package>
 </struts>    

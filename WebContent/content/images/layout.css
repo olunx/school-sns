@@ -4,22 +4,29 @@
 	width:960px;
 	position:relative;
 	padding-top:15px;
+	min-height:580px;
 }
 #submenu {
-	width:100px;
-	background: #ddd;
-	position:absolute;
-	left:0;
-	top:0;
+	width:155px;
+	float:left;
+	margin-right:10px;
+	background: #FFF;
+}
+#main {
+	width:790px;
+	float:left;
+	background: #FFF;
 }
 #content {
-	margin:0 160px 0 110px;
-	background: #f2f2f2;
+	width:625px;
+	float:left;
+	min-height:580px;
+	margin-right:10px;
+	background:#6C0;
 }
 #sidebar {
 	width:150px;
+	float:left;
 	background: #ddd;
-	position:absolute;
-	right:0;
-	top:0;
 }
+

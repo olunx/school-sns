@@ -13,14 +13,14 @@
 <link type="text/css" rel="stylesheet" href="<%=path%>/content/images/login.css" />
 <link type="text/css" rel="stylesheet" href="<%=path%>/content/images/footer.css" />
 </head>
-<body>
+<body background="<%=path%>/content/images/bg.jpg">
 <div class="header_k">
   <div id="header">
     <div class="headerwarp">
       <div class="logo"><a href="">LOGO</a></div>
       <div class="menuk">
         <ul class="menu">
-          <li><a href="index.jsp">首页</a></li>
+          <li><a href="<%=path %>/login.jsp">首页</a></li>
           <li><a href="#">学校</a></li>
           <li><a href="#">群组</a></li>
           <li><a href="#">消息</a></li>

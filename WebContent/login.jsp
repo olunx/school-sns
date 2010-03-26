@@ -5,7 +5,7 @@
       <div id="loginbox">
         <h3 id="logintitle">请登录：</h3>
         <div id="login">
-          <form name="loginform" action="" method="post">
+          <form name="loginform" action="login/authLogin" method="post">
             <p>
               <label for="username">用户名</label>
               <input type="text" name="username" id="username" class="t_input" value="" />
