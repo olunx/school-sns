@@ -7,6 +7,13 @@
 			http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd"
 	default-lazy-init="false"
 	>
-	<!-- 注释 -->
-
+	
+	<!-- 测试BaseDao和BaseService -->
+	<bean name="studentDaoImpl" class="cn.gdpu.dao.impl.StudentDaoImpl" scope="prototype">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<bean name="studentService" class="cn.gdpu.service.impl.StudentServiceImpl" scope="prototype">
+		<property name="baseDao" ref="studentDaoImpl" />
+	</bean>
 </beans>

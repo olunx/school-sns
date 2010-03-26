@@ -32,6 +32,7 @@
 			private Set<Hobby> hobby;
 			private Set<Group> group;
 			private Set<Achievement> achievement;
+			private Set<Student> friends;
 		 -->
 		<joined-subclass name="Student" table="t_student"> 
             <key column="id" /> 
@@ -61,6 +62,10 @@
 			<set name="achievement" lazy="true">
 				<key column="achievementId"/>
 				<one-to-many class="Achievement" />
+			</set>
+			<set name="friends" lazy="true">
+				<key column="friendsId"/>
+				<one-to-many class="Student" />
 			</set>
 		 </joined-subclass> 
 		 <!-- 

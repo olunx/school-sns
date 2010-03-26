@@ -1,16 +1,21 @@
 package cn.gdpu.action;
 
+import java.util.Map;
+
 import org.apache.struts2.interceptor.RequestAware;
+import org.apache.struts2.interceptor.SessionAware;
 
 import com.opensymphony.xwork2.ActionSupport;
 
 @SuppressWarnings("serial")
-public abstract class BaseAction extends ActionSupport implements RequestAware {
+public abstract class BaseAction extends ActionSupport implements RequestAware,SessionAware {
 
 	public final String INDEX = "index";
 	public final String SUCCESS = "success";
 	public final String ADD_PAGE = "addPage";
 	public final String MODIFY_PAGE = "modifyPage";
+	private Map<String, Object> request;
+	private Map<String, Object> session;
 
 	/**
 	 * 列出所有记录
@@ -73,6 +78,24 @@ public abstract class BaseAction extends ActionSupport implements RequestAware {
 	 */
 	public String deleteMany() {
 		return INDEX;
+	}
+
+	@Override
+	public void setRequest(Map<String, Object> request) {
+		this.request = request;
+	}
+
+	public Map<String, Object> getRequest() {
+		return request;
+	}
+
+	@Override
+	public void setSession(Map<String, Object> session) {
+		this.session = session;
+	}
+
+	public Map<String, Object> getSession() {
+		return session;
 	}
 
 }

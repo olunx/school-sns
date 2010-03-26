@@ -3,11 +3,11 @@ package cn.gdpu.service.impl;
 import java.io.Serializable;
 import java.util.List;
 
-import cn.gdpu.dao.impl.BaseDaoImpl;
+import cn.gdpu.dao.BaseDao;
 import cn.gdpu.service.BaseService;
 import cn.gdpu.util.PageBean;
 
-public abstract class BaseServiceImpl <T,ID extends Serializable,GeneralDAO extends BaseDaoImpl<T, ID>> implements BaseService<T, ID>{
+public abstract class BaseServiceImpl <T,ID extends Serializable,GeneralDAO extends BaseDao<T, ID>> implements BaseService<T, ID>{
 
 	private GeneralDAO baseDao;
 	
