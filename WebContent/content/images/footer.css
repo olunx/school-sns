@@ -1,0 +1,13 @@
+@charset "utf-8";
+/* CSS Document */
+
+#footer {
+	width:960px;
+	margin:0 auto;
+	margin-bottom:10px;
+	border-bottom: 8px solid #E41448;
+	background: #FFF;
+	color: #333;
+	padding: 10px 0 10px 0;
+	text-align: center;
+}
