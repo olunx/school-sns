@@ -5,14 +5,14 @@
       <div id="loginbox">
         <h3 id="logintitle">请登录：</h3>
         <div id="login">
-          <form name="loginform" action="login/authLogin" method="post">
+          <form rel="loginform" action="login/authLogin" method="post">
             <p>
               <label for="username">用户名</label>
-              <input type="text" name="username" id="username" class="t_input" value="" />
+              <input type="text" name="username" id="username" class="t_input validate[required]" value="" />
             </p>
             <p>
               <label for="password">密　码</label>
-              <input type="password" name="password" id="password" class="t_input" value="" />
+              <input type="password" name="password" id="password" class="t_input validate[required]" value="" />
             </p>
             <p class="submitrow">
               <input type="submit" name="loginsubmit" class="submit" value="登录" />
