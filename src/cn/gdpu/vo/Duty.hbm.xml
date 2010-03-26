@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="cn.gdpu.vo">
+<!-- 
+	private int id;
+	private Set<People> people;
+	private String job;
+ -->
+	<class name="Duty" table="t_duty">
+		<id name="id" column="id">
+			<generator class="native" />
+		</id>
+		<set name="people" lazy="true">
+			<key column="peopleId"/>
+			<one-to-many class="People" />
+		</set>
+		<property name="job" />
+	</class>
+</hibernate-mapping>

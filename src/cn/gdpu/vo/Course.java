@@ -1,6 +1,7 @@
 package cn.gdpu.vo;
 
 public class Course {
+	private int id;
 	private String name;
 	private int startLesson;
 	private int endLesson;
@@ -54,5 +55,13 @@ public class Course {
 
 	public void setTerm(int term) {
 		this.term = term;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 }

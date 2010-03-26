@@ -3,6 +3,7 @@ package cn.gdpu.vo;
 import java.util.Date;
 
 public class Post {
+	private int id;
 	private String title;
 	private String content;
 	private Date time;
@@ -38,5 +39,13 @@ public class Post {
 
 	public void setAuthor(People author) {
 		this.author = author;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 }

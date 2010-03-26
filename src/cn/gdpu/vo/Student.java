@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.Set;
 
 public class Student extends People {
+	private int id;
 	private School school;
 	private Institute institute;
 	private Classes classes;
@@ -138,5 +139,13 @@ public class Student extends People {
 
 	public void setAchievement(Set<Achievement> achievement) {
 		this.achievement = achievement;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 }

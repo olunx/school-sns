@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Set;
 
 public class Classes {
+	private int id;
 	private String name;
 	private Set<Student> student;
 	private List<Course> course;
@@ -66,5 +67,13 @@ public class Classes {
 
 	public void setSchool(School school) {
 		this.school = school;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 }
