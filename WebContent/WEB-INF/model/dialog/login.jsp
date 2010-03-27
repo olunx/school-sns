@@ -1,11 +1,20 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<jsp:include page="/WEB-INF/header.jsp"></jsp:include>
-    <div id="mbox">
-      <div id="adbox"></div>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%
+	String path = request.getContextPath();
+%>
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>登录</title>
+</head>
+<body>
       <div id="loginbox">
         <h3 id="logintitle">请登录：</h3>
         <div id="login">
-          <form rel="validate" action="login/authLogin" method="post">
+          <form rel="validate" action="<%=path%>/login/authLogin" method="post">
             <p>
               <label for="username">用户名</label>
               <input type="text" name="username" id="username" class="t_input validate[required]" value="" />
@@ -22,6 +31,5 @@
         <!-- end fof login -->
       </div>
       <!-- end fof loginbox -->
-    </div>
-    <!-- end fof mbox -->
-  <jsp:include page="/WEB-INF/footer.jsp"></jsp:include>
+</body>
+</html>

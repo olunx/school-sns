@@ -7,6 +7,7 @@
 	<package name="login" extends="struts-default" namespace="/">
 		<global-results>
 			<result name="success">/WEB-INF/index.jsp</result>
+			<result name="goLogin">/WEB-INF/model/dialog/login.jsp</result>
 		</global-results>
 		<action name="*Login" class="cn.gdpu.action.LoginAction" method="{1}"></action>
 	</package>
