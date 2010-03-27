@@ -5,19 +5,17 @@
 <!-- 
 	private int id;
 	private String title;
-	private List<Post> post;
+	private String content;
 	private Date time;
+	private People author;
  -->
-	<class name="Topic" table="t_topic">
+	<class name="Post" table="t_post">
 		<id name="id" column="id">
 			<generator class="native" />
 		</id>
 		<property name="title" />
+		<property name="content" />
 		<property name="time" />
-		<list name="post">
-			<key column="postid"/>
-			<index column="listid" />
-			<one-to-many class="Post"/>
-		</list>
+		<many-to-one name="author"/>
 	</class>
 </hibernate-mapping>
