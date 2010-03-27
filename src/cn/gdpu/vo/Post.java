@@ -2,7 +2,7 @@ package cn.gdpu.vo;
 
 import java.util.Date;
 
-public class Post {
+public abstract class Post {
 	private int id;
 	private String title;
 	private String content;
