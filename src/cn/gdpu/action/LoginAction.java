@@ -9,6 +9,10 @@ public class LoginAction extends BaseAction {
 		return super.SUCCESS;
 	}
 
+	public String go() {
+		return "goLogin";
+	}
+	
 	@Override
 	public void setRequest(Map<String, Object> arg0) {
 		// TODO Auto-generated method stub

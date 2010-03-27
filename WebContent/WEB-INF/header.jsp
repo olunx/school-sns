@@ -10,20 +10,43 @@
 <link type="text/css" rel="stylesheet" href="<%=path%>/content/images/reset.css" />
 <link type="text/css" rel="stylesheet" href="<%=path%>/content/images/layout.css" />
 <link type="text/css" rel="stylesheet" href="<%=path%>/content/images/header.css" />
-<link type="text/css" rel="stylesheet" href="<%=path%>/content/images/login.css" />
 <link type="text/css" rel="stylesheet" href="<%=path%>/content/images/footer.css" />
-<link type="text/css" rel="stylesheet" href="<%=path%>/content/images/colorbox.css" />
-<link type="text/css" rel="stylesheet" href="<%=path%>/content/images/validationEngine.jquery.css" />
+<!-- 登录页专用件 -->
+<link type="text/css" rel="stylesheet" href="<%=path%>/content/images/login.css" />
+<!-- JQuery库 -->
 <script type="text/javascript" src="<%=path%>/content/js/jquery-1.4.2.min.js"></script>
-<script type="text/javascript" src="<%=path%>/content/js/jquery.colorbox-min.js"></script>
+<!-- 验证插件 -->
+<link type="text/css" rel="stylesheet" href="<%=path%>/content/images/validationEngine.jquery.css" />
 <script type="text/javascript" src="<%=path%>/content/js/jquery.validationEngine-cn.js" ></script>
 <script type="text/javascript" src="<%=path%>/content/js/jquery.validationEngine.js" ></script>
+<!-- JQuery UI 插件 -->
+<link type="text/css" rel="stylesheet" href="<%=path%>/content/images/jq-ui-theme/jquery-ui-1.8.custom.css" />	
+<script type="text/javascript" src="<%=path%>/content/js/jquery-ui-1.8.custom.min.js"></script>
+        
 <script type="text/javascript">
 			$(document).ready(function(){
-				$("a[rel='login']").colorbox();
-				$("form[rel='loginform']").validationEngine();
+				$("form[rel='validate']").validationEngine();
+				
+				// Dialog			
+				$('#dialog').dialog({
+					autoOpen: false,
+					width: 250,
+					show: 'slide',
+					hide: 'slide',
+					resizable: false,
+					buttons: { "Ok": function() { $(this).dialog("close"); } }
+				});
+				
+				// Dialog Link
+				$("a[rel='dialog']").click(function(){
+					$('#dialog').load($(this).attr('href'));
+					$('#dialog').dialog('open');
+					return false;
+				});
+				
 			});
 </script>
+</head>
 <body background="<%=path%>/content/images/bg.jpg">
 <div class="header_k">
   <div id="header">
@@ -37,7 +60,10 @@
           <li><a href="#">消息</a></li>
           <li><a href="#">博客</a></li>
         </ul>
-        <div class="nav_account"><span class="loginName">欢迎</span> <a rel="login" href="#">登录</a> | <a href="">注册</a></div>
+        <div class="nav_account"><span class="loginName">欢迎</span> 
+        <a rel="dialog" href="<%=path%>/login/goLogin">登录</a> | 
+        <a href="">注册</a></div>
+        <div id="dialog" />
       </div>
     </div>
   </div>
