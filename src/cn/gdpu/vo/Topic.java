@@ -6,6 +6,8 @@ import java.util.List;
 public class Topic {
 	private int id;
 	private String title;
+	private String content;
+	private People author;
 	private List<Post> post;
 	private Date time;
 
@@ -39,5 +41,21 @@ public class Topic {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
+	}
+
+	public People getAuthor() {
+		return author;
+	}
+
+	public void setAuthor(People author) {
+		this.author = author;
 	}
 }
