@@ -12,4 +12,14 @@
 		</global-results>
 		<action name="*Test" class="cn.gdpu.action.TestAction" method="{1}"></action>
 	</package>
+	
+	<!-- 公告的Action -->
+	<package name="notice" extends="struts-default" namespace="/notice">
+		<global-results>
+			<result name="index">/WEB-INF/model/notice/noticeList.jsp</result>
+			<result name="addPage">/WEB-INF/model/notice/noticeAdd.jsp</result>
+			<result name="modifyPage">/WEB-INF/model/notice/noticeModify.jsp</result>
+		</global-results>
+		<action name="*Notice" class="cn.gdpu.action.NoticeAction" method="{1}"></action>
+	</package>	
 </struts>    
