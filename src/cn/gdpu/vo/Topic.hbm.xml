@@ -14,14 +14,18 @@
 		<id name="id" column="id">
 			<generator class="native" />
 		</id>
+		<discriminator column="mytype" type="string"/>
 		<property name="title" />
 		<property name="time" />
 		<property name="content" />
 		<many-to-one name="author"/>
-		<list name="post">
-			<key column="postid"/>
-			<index column="listid" />
-			<one-to-many class="Post"/>
-		</list>
+		
+		<subclass name="Notice" discriminator-value="Notice">
+			<list name="post">
+				<key column="postid"/>
+				<index column="listid" />
+				<one-to-many class="Post"/>
+			</list>
+		</subclass>
 	</class>
 </hibernate-mapping>

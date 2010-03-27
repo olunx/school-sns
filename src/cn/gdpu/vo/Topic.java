@@ -3,12 +3,12 @@ package cn.gdpu.vo;
 import java.util.Date;
 import java.util.List;
 
-public class Topic {
+public abstract class Topic<T> {
 	private int id;
 	private String title;
 	private String content;
 	private People author;
-	private List<Post> post;
+	private List<T> post;
 	private Date time;
 
 	public String getTitle() {
@@ -19,11 +19,11 @@ public class Topic {
 		this.title = title;
 	}
 
-	public List<Post> getPost() {
+	public List<T> getPost() {
 		return post;
 	}
 
-	public void setPost(List<Post> post) {
+	public void setPost(List<T> post) {
 		this.post = post;
 	}
 

@@ -13,9 +13,13 @@
 		<id name="id" column="id">
 			<generator class="native" />
 		</id>
+		<discriminator column="type"></discriminator>
 		<property name="title" />
 		<property name="content" />
 		<property name="time" />
 		<many-to-one name="author"/>
+		<subclass name="NoticePost" discriminator-value="NoticePost">
+		
+		</subclass>
 	</class>
 </hibernate-mapping>
