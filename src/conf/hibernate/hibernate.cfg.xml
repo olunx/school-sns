@@ -27,5 +27,7 @@
 
 		<mapping resource="cn/gdpu/vo/Post.hbm.xml" />
 		<mapping resource="cn/gdpu/vo/Topic.hbm.xml" />
+		
+		<mapping resource="cn/gdpu/vo/ClassFee.hbm.xml"/> 
 	</session-factory>
 </hibernate-configuration>

@@ -11,6 +11,7 @@
 	private Teacher assistant;
 	private Institute institute;
 	private School school;
+	private List<ClassFee> classfees;
  -->
 	<class name="Classes" table="t_classes">
 		<id name="id" column="id">
@@ -33,5 +34,11 @@
 		 <many-to-one name="assistant" column="assistantId"/>
 		 <many-to-one name="institute" column="instituteId"></many-to-one>
 		 <many-to-one name="school" column="schoolId"></many-to-one>
+		 
+		 <list name="classfees">
+			<key column="feeid"/>
+			<index column="listid" />
+			<one-to-many class="ClassFee"/>
+		</list>
 	</class>
 </hibernate-mapping>

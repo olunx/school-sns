@@ -16,6 +16,7 @@ public abstract class BaseAction extends ActionSupport implements RequestAware,S
 	public final String SUCCESS = "success";
 	public final String ADD_PAGE = "addPage";
 	public final String MODIFY_PAGE = "modifyPage";
+	public final String LIST = "list";
 	private Map<String, Object> request;
 	private Map<String, Object> session;
 
@@ -43,7 +44,7 @@ public abstract class BaseAction extends ActionSupport implements RequestAware,S
 	 * @return
 	 */
 	public String add() {
-		return INDEX;
+		return LIST;
 	}
 
 	/**
@@ -61,7 +62,7 @@ public abstract class BaseAction extends ActionSupport implements RequestAware,S
 	 * @return
 	 */
 	public String modify() {
-		return INDEX;
+		return LIST;
 	}
 
 	/**
@@ -70,7 +71,7 @@ public abstract class BaseAction extends ActionSupport implements RequestAware,S
 	 * @return
 	 */
 	public String delete() {
-		return INDEX;
+		return LIST;
 	}
 
 	/**
