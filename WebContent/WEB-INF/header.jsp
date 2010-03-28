@@ -45,20 +45,45 @@
 				}
 			});
 
-			// Dialog Link
+			// Dialog
 			$("a[rel='dialog']").click(function() {
 				$('#dialog').load($(this).attr('href'));
 				$('#dialog').dialog('open');
 				return false;
 			});
 
-			$("a[rel='ajax']").click( function() {
-				$('#content').load($(this).attr('href'));
+			//注册事件
+			$("a[target='content']").click(function() {
+				$('#content').load($(this).attr('href'), ajax);
 				return false;
 			});
 
 		});
 
+	//注册二级事件
+	function ajax() {
+		$("#content a[target='content']").click(function() {
+			$('#content').load($(this).attr('href'), ajax);
+			return false;
+		});
+	};
+
+	//提交表单数据
+	function post(obj) {
+		var urlStr = $(obj).attr('action');
+		var dataStr = decodeURIComponent($(obj).serialize());
+		//alert(jQuery.post(url, data, ajax));
+		$.ajax( {
+			url : urlStr,
+			data : dataStr,
+			type : 'POST',
+			success : function(result) {
+				$('#content').html(result);
+				ajax();
+			}
+		});
+
+	}
 </script>
 </head>
 <body background="<%=path%>/content/images/bg.jpg">
@@ -76,6 +101,7 @@
 </ul>
 <div class="nav_account"><span class="loginName">欢迎</span> <a rel="dialog" href="<%=path%>/login/goLogin">登录</a> | <a href="">注册</a></div>
 <div id="dialog" /></div>
+</div>
 </div>
 </div>
 </div>
