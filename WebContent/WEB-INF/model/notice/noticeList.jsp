@@ -6,20 +6,23 @@
 <%
 	String path = request.getContextPath();
 %>
-
+<jsp:include page="/WEB-INF/header.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/submenu.jsp"></jsp:include>
+<div id="main">
+	<div id="content">
 		<c:choose>
 			<c:when test="${pageBean.list==null}">
 					还没有公告呢！
 			</c:when>
 			<c:otherwise>
-				<form method="post" onSubmit="post(this);return false;" action="<%=path %>/notice/deleteManyNotice">
+				<form method="post" action="deleteManyNotice">
 				<table class="table">
 				<tr><th><a rel="checkall">全选</a></th><th>标题</th><th>发布人</th><th>内容</th><th>时间</th><th>编辑</th><th>删除</th></tr>
 						<s:iterator value="pageBean.list" var="notice">  
 						<tr>
 							<td><input type="checkbox" name="nids" value="${notice.id}"/></td>
 							<td>
-								<a target="content" href="<%=path %>/notice/viewNotice?id=${notice.id}&page=${page}">${notice.title}</a>
+								<a href="viewNotice?id=${notice.id}&page=${page}">${notice.title}</a>
 							</td>
 							<td>
 								${notice.author.name} 
@@ -31,10 +34,10 @@
 								<fmt:formatDate value="${notice.time}" pattern="yyyy-MM-dd HH:mm"/>
 							</td>
 							<td>
-								<a target="content" href="<%=path %>/notice/goModifyNotice?id=${notice.id }&page=${page}" class="btn_edit">编辑</a>
+								<a href="goModifyNotice?id=${notice.id }&page=${page}" class="btn_edit">编辑</a>
 							</td>
 							<td>
-								<a target="content" href="<%=path %>/notice/deleteNotice?id=${notice.id }&page=${page}" class="btn_del">删除</a>
+								<a href="deleteNotice?id=${notice.id }&page=${page}" class="btn_del">删除</a>
 							</td>
 						</tr>
 					</s:iterator>
@@ -51,12 +54,12 @@
 					 <a><span>上一页</span></a>
 					 </s:if>  
 					 <s:else>  
-					     <a target="content" href="<%=path %>/notice/listNotice?page=1"><span>首页</span></a>
-					     <a target="content" href="<%=path %>/notice/listNotice?page=<s:property value="%{pageBean.currentPage-1}"/>"><span>上一页</span></a>
+					     <a href="<%=path %>/notice/listNotice?page=1"><span>首页</span></a>
+					     <a href="<%=path %>/notice/listNotice?page=<s:property value="%{pageBean.currentPage-1}"/>"><span>上一页</span></a>
 					 </s:else>  
 					 <s:if test="%{pageBean.currentPage != pageBean.totalPage}">  
-					     <a target="content" href="<%=path %>/notice/listNotice?page=<s:property value="%{pageBean.currentPage+1}"/>"><span>下一页</span></a>
-					     <a target="content" href="<%=path %>/notice/listNotice?page=<s:property value="pageBean.totalPage"/>"><span>尾页</span></a>
+					     <a href="<%=path %>/notice/listNotice?page=<s:property value="%{pageBean.currentPage+1}"/>"><span>下一页</span></a>
+					     <a href="<%=path %>/notice/listNotice?page=<s:property value="pageBean.totalPage"/>"><span>尾页</span></a>
 					 </s:if>  
 					 <s:else>
 					 <a><span>下一页</span></a>
@@ -74,4 +77,7 @@
 				</form>
 			</c:otherwise>
 		</c:choose>
-
+	</div>
+	<jsp:include page="/WEB-INF/sidebar.jsp"></jsp:include>
+</div>
+<jsp:include page="/WEB-INF/footer.jsp"></jsp:include>

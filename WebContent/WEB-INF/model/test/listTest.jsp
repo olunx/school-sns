@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%
-	String path = request.getContextPath();
-%>
-测试主页  <a rel="ajax" href="<%=path %>/test/goModifyTest">修改</a>
+<jsp:include page="/WEB-INF/header.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/submenu.jsp"></jsp:include>
+<div id="main">
+	<div id="content">测试主页  <a href="test/goModifyTest">修改</a></div>
+	<jsp:include page="/WEB-INF/sidebar.jsp"></jsp:include>
+</div>
+<jsp:include page="/WEB-INF/footer.jsp"></jsp:include>
