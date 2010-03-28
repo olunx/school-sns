@@ -41,7 +41,8 @@ public abstract class BaseServiceImpl <T,ID extends Serializable,GeneralDAO exte
 
 	@Override
 	public PageBean queryForPage(Class<T> entityClass, int pageSize, int page) {
-		final String hql = "from" + entityClass + ""; // 查询语句
+		final String hql = "from " + entityClass.getName() + ""; // 查询语句
+		System.out.println("hql--------"+hql);
 		int allRow = baseDao.getAllRowCount(hql); // 总记录数
 		int totalPage = PageBean.countTotalPage(pageSize, allRow); // 总页数
 		final int offset = PageBean.countOffset(pageSize, page); // 当前页开始记录

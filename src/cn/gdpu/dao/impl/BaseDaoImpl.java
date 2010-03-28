@@ -47,7 +47,7 @@ public abstract  class BaseDaoImpl<T, ID extends Serializable> extends Hibernate
 
 	@Override
 	public List<T> queryAll(Class<T> entityClass) {
-		return this.getHibernateTemplate().find("from " + entityClass + "n order by n.nid desc");
+		return this.getHibernateTemplate().find("from " + entityClass.getName() + "");
 	}
 
 	@Override
@@ -57,6 +57,7 @@ public abstract  class BaseDaoImpl<T, ID extends Serializable> extends Hibernate
 
 	@SuppressWarnings("deprecation")
 	public List<T> queryForPage(final String hql, final int offset, final int length) {
+		
 		return (List<T>) getHibernateTemplate().execute(new HibernateCallback() {
 			public Object doInHibernate(Session session) throws HibernateException, SQLException {
 				Query query = session.createQuery(hql);
