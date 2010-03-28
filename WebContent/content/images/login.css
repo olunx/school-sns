@@ -1,0 +1,54 @@
+@charset "utf-8";
+/* CSS Document */
+#mbox {
+	width: 960px;
+	position: relative;
+	margin: 0 0 10px;
+	overflow: hidden;
+}
+#adbox {
+	float: left;
+	margin: 0 10px 0 0;
+	padding: 0;
+	width:720px;
+	height: 200px;
+	border: 1px solid #EEE;
+	overflow: hidden;
+}
+#loginbox {
+	float: left;
+	width:220px;
+	background: #fff;
+	border: 3px solid #EEE;
+}
+#loginbox form {
+	padding: 10px;
+	height: 145px;
+}
+#loginbox p {
+	padding: 6px 0;
+}
+#loginbox p.submitrow {
+	padding: 10px 0 5px 3.5em;
+	line-height: 26px;
+}
+#loginbox .t_input {
+	width: 150px;
+}
+.submit {
+	padding: 0 5px;
+	height: 24px;
+	border: none;
+	background: #E41448;
+	color: #FFF;
+	line-height: 20px;
+	letter-spacing: 1px;
+	cursor: pointer;
+}
+#logintitle {
+	padding: 0 10px;
+	height: 32px;
+	line-height: 32px;
+	color: #333;
+	font-weight:bold;
+}
