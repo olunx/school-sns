@@ -60,9 +60,9 @@
 
 	<aop:config proxy-target-class="true">
 		<aop:pointcut id="allMethod" expression="execution(* cn.gdpu.dao.impl.*.*(..))" />
-		<aop:pointcut id="allServiceMethod" expression="execution(* cn.gdpu.service.impl.*.*(..))" />
+		<aop:pointcut id="allServiceMethod" expression="execution(* cn.gdpu.service.impl.*.*(..))" />	
 		<aop:advisor pointcut-ref="allMethod" advice-ref="txAdvice" />
-		<aop:advisor pointcut-ref="allServiceMethod" advice-ref="txAdvice" />
+		<aop:advisor pointcut-ref="allServiceMethod" advice-ref="txAdvice" /> 
 	</aop:config>
 
 </beans>

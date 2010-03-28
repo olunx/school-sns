@@ -29,6 +29,7 @@ public class StudentServiceTest{
 
 	@Test
 	public void add() {
+
 		Student stu1 = new Student();
 		stu1.setName("测试1");
 		studentService.addEntity(stu1);
@@ -42,5 +43,7 @@ public class StudentServiceTest{
 		set.add(stu2);
 		stu3.setFriends(set);
 		studentService.addEntity(stu3);
+		
+		studentService.queryForPage(Student.class, 10, 1);
 	}
 }
