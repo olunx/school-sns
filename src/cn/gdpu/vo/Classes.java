@@ -12,6 +12,17 @@ public class Classes {
 	private Teacher assistant;
 	private Institute institute;
 	private School school;
+	private List<ClassFee> classfees;
+
+	
+
+	public List<ClassFee> getClassfees() {
+		return classfees;
+	}
+
+	public void setClassfees(List<ClassFee> classfees) {
+		this.classfees = classfees;
+	}
 
 	public String getName() {
 		return name;
