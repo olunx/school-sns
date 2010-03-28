@@ -17,7 +17,7 @@
 	<s:debug></s:debug>
 	<h2 class="caption">
 			<div class="float_right">
-				<a class="btn btn_add" href="<%=path %>/model/classfee/goAddClassFee">添加</a>
+				<a class="btn btn_add" href="<%=path %>/classfee/goAddClassFee">添加</a>
 			</div>
 			<c:choose>
 			

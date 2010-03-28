@@ -45,6 +45,7 @@ public abstract class BaseServiceImpl <T,ID extends Serializable,GeneralDAO exte
 		System.out.println("hql--------"+hql);
 		int allRow = baseDao.getAllRowCount(hql); // 总记录数
 		int totalPage = PageBean.countTotalPage(pageSize, allRow); // 总页数
+		page = page > totalPage? totalPage: page;					//防止删除最后一条记录，不能向上一页返回
 		final int offset = PageBean.countOffset(pageSize, page); // 当前页开始记录
 		final int length = pageSize; // 每页记录数
 		final int currentPage = PageBean.countCurrentPage(page);
