@@ -67,10 +67,6 @@ public class ClassFeeAction extends BaseAction {
 	@SkipValidation
 	public String list() {
 		this.pageBean = classfeeService.queryForPage(ClassFee.class, 5, page);
-		if(pageBean.getList().isEmpty() && page != 0){
-			page--;
-			this.pageBean = classfeeService.queryForPage(ClassFee.class, 5, page);
-		}
         if(pageBean.getList().isEmpty())
     		pageBean.setList(null);
         getRequest().put("total", classfeeService.getTotalMoney());
