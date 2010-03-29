@@ -8,6 +8,7 @@ public class Course {
 	private int whatDay;
 	private int year;
 	private int term;
+	private Classes classes;
 
 	public String getName() {
 		return name;
@@ -63,5 +64,19 @@ public class Course {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public Classes getClasses() {
+		return classes;
+	}
+
+	public void setClasses(Classes classes) {
+		this.classes = classes;
+	}
+
+	@Override
+	public String toString() {
+		return "name:" + name + " startLesson:" + startLesson + " endLesson:" + endLesson + " whatDay:" + whatDay + " year:" + year
+				+ " term:" + term;
 	}
 }

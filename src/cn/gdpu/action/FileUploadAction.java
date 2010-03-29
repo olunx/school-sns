@@ -8,10 +8,13 @@ import java.util.List;
 import javax.servlet.ServletContext;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.apache.struts2.ServletActionContext;
 
 @SuppressWarnings("serial")
 public class FileUploadAction extends BaseAction{
+	private Log logger = LogFactory.getLog(this.getClass());
 	
 	//页面中配置，文件对象
 	private List<File> files;
@@ -26,7 +29,13 @@ public class FileUploadAction extends BaseAction{
 	
 	//上传注册文件
 	public String reg() {
-		return this.upload("xls");
+		return this.upload(".xls");
+	}
+	
+	//上传课程表文件
+	public String course() {
+		logger.info("--------上传 ");
+		return this.upload(".xls");
 	}
 	
 	private String upload(String allowedType) {
@@ -43,7 +52,8 @@ public class FileUploadAction extends BaseAction{
 		int n = files.size();
 		for (int i = 0; i < n; i++) {
 			
-			if(!filesContentType.get(i).contains(allowedType)) {
+			String fileExt = extraFileExt(filesFileName.get(i));
+			if(!fileExt.equals(allowedType)) {
 				this.addFieldError("fileTypeAlert", "不能上传非 " +allowedType +" 类型的文件");
 				return super.INDEX;
 			}
@@ -57,20 +67,23 @@ public class FileUploadAction extends BaseAction{
 				e.printStackTrace();
 			}
 			
-			targetsFilePath.add(targetDirectory + "/" + targetFileName);
+			targetsFilePath.add(targetDirectory + "\\" + targetFileName);
 		}
 		
-		context.setAttribute("targetsFilePath", targetsFilePath);
+		this.getRequest().put("targetsFilePath", targetsFilePath);
 		
 		return super.SUCCESS;
 	}	
 	
+	//得到扩展名
+	private String extraFileExt(String filename){
+		return filename.substring(filename.lastIndexOf("."));
+	}
+	
 	//产生唯一的文件名  
     private synchronized String generateFileName(String filename)  
     {  
-        int position=filename.lastIndexOf(".");  
-        String ext=filename.substring(position);  
-          
+        String ext=extraFileExt(filename);  
         return System.nanoTime()+ext;  
     }
 
