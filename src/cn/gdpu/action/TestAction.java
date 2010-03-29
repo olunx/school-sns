@@ -1,14 +1,7 @@
 package cn.gdpu.action;
 
-import java.util.Map;
-
 @SuppressWarnings("serial")
 public class TestAction extends BaseAction {
-
-	@Override
-	public void setRequest(Map<String, Object> arg0) {
-		
-	}
 
 	@Override
 	public String add() {

@@ -5,14 +5,13 @@
 			http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
 			http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
 			http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd"
-	default-lazy-init="false"
+	default-lazy-init="true"
 	>
 	
 	<!-- 测试BaseDao和BaseService -->
 	<bean name="studentDaoImpl" class="cn.gdpu.dao.impl.StudentDaoImpl" scope="prototype">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
-	
 	<bean name="studentService" class="cn.gdpu.service.impl.StudentServiceImpl" scope="prototype">
 		<property name="baseDao" ref="studentDaoImpl" />
 	</bean>
@@ -86,6 +85,21 @@
 	</bean>
 	<bean name="groupService" class="cn.gdpu.service.impl.GroupServiceImpl" scope="prototype">
 		<property name="baseDao" ref="groupDaoImpl" />
+	</bean>
+	
+	<bean name="courseDaoImpl" class="cn.gdpu.dao.impl.CourseDaoImpl" scope="prototype">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean name="courseService" class="cn.gdpu.service.impl.CourseServiceImpl" scope="prototype">
+		<property name="baseDao" ref="courseDaoImpl" />
+	</bean>
+	
+	
+	<bean name="attendanceDaoImpl" class="cn.gdpu.dao.impl.AttendanceDaoImpl" scope="prototype">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean name="attendanceService" class="cn.gdpu.service.impl.AttendanceServiceImpl" scope="prototype">
+		<property name="baseDao" ref="attendanceDaoImpl" />
 	</bean>
 
 </beans>

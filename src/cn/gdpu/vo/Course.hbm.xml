@@ -20,5 +20,6 @@
 		<property name="whatDay" />
 		<property name="year" />
 		<property name="term" />
+		<one-to-one name="classes"></one-to-one>
 	</class>
 </hibernate-mapping>

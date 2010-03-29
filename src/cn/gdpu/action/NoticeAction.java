@@ -29,14 +29,14 @@ public class NoticeAction extends BaseAction {
 		notice.setAuthor((Student) this.getSession().get("student"));
 		notice.setTime(new Date());
 		noticeService.addEntity(notice);
-		return "list";
+		return super.add();
 	}
 
 	@Override
 	public String delete() {
 		noticeService.deleteEntity(Notice.class, id);
 		logger.info("-------page"+page);
-		return "list";
+		return super.delete();
 	}
 
 	@Override
@@ -85,7 +85,7 @@ public class NoticeAction extends BaseAction {
 		notice.setAuthor((Student) this.getSession().get("student"));
 		notice.setTime(new Date());
 		noticeService.updateEntity(notice);
-		return "list";
+		return super.modify();
 	}
 	
 	public String view(){
