@@ -12,12 +12,12 @@
 <body>
 	<h2 class="caption">
 			<div class="float_right">
-					<a class="btn" href="<%=path %>/classfee/listClassFee">返回列表</a>
+					<a class="btn" href="<%=path %>/classfee/listClassfee">返回列表</a>
 			</div>
 			新建班费
 		</h2>
 		
-		<form class="form" action="<%=path %>/classfee/modifyClassFee" method="post">
+		<form onSubmit="post(this);return false;" class="form" action="<%=path %>/classfee/modifyClassfee" method="post">
 			<input name="id" type="hidden" value="${classfee.id }" />
 			<p><label>班费费用：</label><s:fielderror><s:param>fee</s:param></s:fielderror>
 			<input type="text" name="fee" value="${classfee.fee }"/> （例如：支出5元,填写"-5"；收入10元，填写"10"）</p>

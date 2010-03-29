@@ -1,0 +1,20 @@
+1、
+$(obj).serialize()
+自动组装表单数据，并返回。结果经过encodeURIComponent编码。obj为form表单对象。
+
+decodeURIComponent($(obj).serialize());
+对encodeURIComponent过的数据进行解码
+		
+2、
+用$('xx').load()方法，提交的数据经过编码的。
+
+推荐使用$.ajax()方法，不经过编码。
+	$.ajax( {
+		url : urlStr,
+		data : dataStr,
+		type : 'POST',
+		success : function(result) {
+			$('#content').html(result);
+			ajax();
+		}
+	});

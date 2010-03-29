@@ -4,6 +4,7 @@ import java.util.Date;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.struts2.ServletActionContext;
 
 import cn.gdpu.service.*;
 import cn.gdpu.util.PageBean;
@@ -72,6 +73,11 @@ public class NoticeAction extends BaseAction {
 		this.pageBean = noticeService.queryForPage(Notice.class, 5, page);  
         if(pageBean.getList().isEmpty())
     		pageBean.setList(null);
+        
+        //方便freemarker调用
+        this.getRequest().put("path", ServletActionContext.getServletContext().getContextPath());
+        this.getRequest().put("model","notice");
+        
 		return super.list();
 	}
 

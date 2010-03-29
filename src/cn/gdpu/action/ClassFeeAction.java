@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Map;
 
+import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.validation.SkipValidation;
 
 import cn.gdpu.service.ClassFeeService;
@@ -70,6 +71,11 @@ public class ClassFeeAction extends BaseAction {
         if(pageBean.getList().isEmpty())
     		pageBean.setList(null);
         getRequest().put("total", classfeeService.getTotalMoney());
+        
+        //方便freemarker调用
+        this.getRequest().put("path", ServletActionContext.getServletContext().getContextPath());
+        this.getRequest().put("model","classfee");
+        
 		return super.list();
 	}
 	
