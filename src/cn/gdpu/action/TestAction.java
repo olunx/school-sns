@@ -9,6 +9,11 @@ public class TestAction extends BaseAction {
 		return super.add();
 	}
 
+	public String upload() {
+		
+		return "upload";
+	}
+	
 	@Override
 	public String goAdd() {
 		// TODO Auto-generated method stub

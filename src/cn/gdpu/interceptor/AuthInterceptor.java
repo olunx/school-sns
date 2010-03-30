@@ -9,9 +9,14 @@ import com.opensymphony.xwork2.interceptor.AbstractInterceptor;
 @SuppressWarnings("serial")
 public class AuthInterceptor extends AbstractInterceptor {
 
+	Map<String, Object> session;
+	
 	@Override
 	public String intercept(ActionInvocation invocation) throws Exception {
-		Map<String, Object> session = invocation.getInvocationContext().getSession();
+		if(session == null) {
+			session = invocation.getInvocationContext().getSession();
+		}
+		
 		System.out.println("session: " + session.get("username"));
 		
 		if(session.get("username") != null) {
