@@ -2,6 +2,8 @@ package cn.gdpu.service;
 
 import java.io.Serializable;
 
-public interface StudentService<T, ID extends Serializable> extends BaseService<T, ID> {
+import cn.gdpu.vo.Student;
 
+public interface StudentService<T, ID extends Serializable> extends BaseService<T, ID> {
+	public abstract Student getStudentByNo(final String sno);  
 }
