@@ -14,6 +14,7 @@
 <link type="text/css" rel="stylesheet" href="<%=path%>/content/images/reset.css" />
 <link type="text/css" rel="stylesheet" href="<%=path%>/content/images/layout.css" />
 <link type="text/css" rel="stylesheet" href="<%=path%>/content/images/header.css" />
+<link type="text/css" rel="stylesheet" href="<%=path%>/content/images/content.css" />
 <link type="text/css" rel="stylesheet" href="<%=path%>/content/images/footer.css" />
 <!-- 登录页专用件 -->
 <link type="text/css" rel="stylesheet" href="<%=path%>/content/images/login.css" />

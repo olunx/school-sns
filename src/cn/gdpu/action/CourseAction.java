@@ -14,6 +14,7 @@ import cn.gdpu.vo.Notice;
 @SuppressWarnings("serial")
 public class CourseAction extends BaseAction {
 	private Log logger = LogFactory.getLog(this.getClass());
+	private int id;
 	private CourseService<Course, Integer> courseService;
 
 	@Override
@@ -25,7 +26,7 @@ public class CourseAction extends BaseAction {
 			courseList = StudentExcel.getStudentExcel().getCourseData(filelist.get(0));
 		}
 		for (Course c:courseList){
-			c.setClasses(null);
+			c.setClasses(null);//设置课程表的班级
 			courseService.addEntity(c);
 		}
 		return super.add();
@@ -38,7 +39,7 @@ public class CourseAction extends BaseAction {
 
 	@Override
 	public String delete() {
-		// TODO Auto-generated method stub
+		this.courseService.deleteEntity(Course.class, id);
 		return super.delete();
 	}
 
@@ -50,7 +51,8 @@ public class CourseAction extends BaseAction {
 
 	@Override
 	public String list() {
-		// TODO Auto-generated method stub
+		List<Course> courseList = courseService.getAllEntity(Course.class);
+		getRequest().put("courseList", courseList);
 		return super.list();
 	}
 
@@ -72,6 +74,14 @@ public class CourseAction extends BaseAction {
 
 	public void setCourseService(CourseService courseService) {
 		this.courseService = courseService;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 }
