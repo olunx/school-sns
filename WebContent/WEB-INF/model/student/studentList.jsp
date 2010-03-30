@@ -11,22 +11,22 @@
 					没有数据！
 			</c:when>
 	<c:otherwise>
-		<form method="post" onSubmit="post(this);return false;" action="<%=path%>/notice/deleteManyNotice">
+		<form method="post" onSubmit="post(this);return false;" action="<%=path%>/student/deleteManyStudent">
 		<table class="table">
 			<tr>
 				<th><a rel="checkall">全选</a></th>
-				<th>姓名</th>
-				<th>学校</th>
+				<th>用户名</th>
+				<th>昵称</th>
 				<th>性别</th>
 				<th>状态</th>
 				<th>编辑</th>
 				<th>删除</th>
 			</tr>
-			<c:forEach items="${pageBean.list}" var="notice">
+			<c:forEach items="${pageBean.list}" var="student">
 				<tr>
-					<td><input type="checkbox" name="nids" value="${notice.id}" /></td>
-					<td><a target="content" href="<%=path%>/student/viewStudent?id=${student.id}&page=${page}">${student.name}</a></td>
-					<td>${studen.school}</td>
+					<td><input type="checkbox" name="ids" value="${student.id}" /></td>
+					<td><a target="content" href="<%=path%>/student/viewStudent?id=${student.id}&page=${page}">${student.username}</a></td>
+					<td>${student.nickname}</td>
 					<td>${student.sex}</td>
 					<td>${student.status}</td>
 					<td><a target="content" href="<%=path%>/student/goModifyStudent?id=${student.id }&page=${page}" class="btn_edit">编辑</a></td>

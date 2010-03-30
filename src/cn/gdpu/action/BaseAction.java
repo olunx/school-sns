@@ -10,12 +10,13 @@ import org.apache.struts2.interceptor.SessionAware;
 import com.opensymphony.xwork2.ActionSupport;
 
 @SuppressWarnings("serial")
-public abstract class BaseAction extends ActionSupport implements RequestAware,SessionAware {
+public abstract class BaseAction extends ActionSupport implements RequestAware, SessionAware {
 
 	public final String INDEX = "index";
 	public final String SUCCESS = "success";
 	public final String ADD_PAGE = "addPage";
 	public final String MODIFY_PAGE = "modifyPage";
+	public final String VIEW_PAGE = "viewPage";
 	public final String LIST = "list";
 	private Map<String, Object> request;
 	private Map<String, Object> session;
@@ -80,7 +81,16 @@ public abstract class BaseAction extends ActionSupport implements RequestAware,S
 	 * @return
 	 */
 	public String deleteMany() {
-		return INDEX;
+		return LIST;
+	}
+
+	/**
+	 * 跳转到查看页面
+	 * 
+	 * @return
+	 */
+	public String view() {
+		return VIEW_PAGE;
 	}
 
 	@Override
