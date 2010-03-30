@@ -22,4 +22,12 @@
 	<bean name="classfeeService" class="cn.gdpu.service.impl.ClassFeeServiceImpl" scope="prototype">
 		<property name="baseDao" ref="classfeeDaoImpl" />
 	</bean>
+	
+	<!-- Score Bean 成绩管理 -->
+	<bean name="scoreDaoImpl" class="cn.gdpu.dao.impl.ScoreDaoImpl" scope="prototype">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean name="scoreService" class="cn.gdpu.service.impl.ScoreServiceImpl" scope="prototype">
+		<property name="baseDao" ref="scoreDaoImpl" />
+	</bean>
 </beans>

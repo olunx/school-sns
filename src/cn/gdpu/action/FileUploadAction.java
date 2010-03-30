@@ -39,9 +39,16 @@ public class FileUploadAction extends BaseAction{
 		return this.upload(".xls");
 	}
 	
+	//上传成绩表文件
+	public String score() {
+		logger.info("--------成绩表上传 ");
+		return this.upload(".xls");
+	}
+	
 	private String upload(String allowedType) {
 		
 		if (files == null) {
+			System.out.println("files is null");
 			return super.INDEX;
 		}
 		
@@ -72,7 +79,7 @@ public class FileUploadAction extends BaseAction{
 		}
 		
 		this.getRequest().put("targetsFilePath", targetsFilePath);
-		
+		System.out.println("-----------------上传成功");
 		return super.SUCCESS;
 	}	
 	

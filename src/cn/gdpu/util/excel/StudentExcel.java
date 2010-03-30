@@ -9,6 +9,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import cn.gdpu.vo.Course;
+import cn.gdpu.vo.Score;
 import cn.gdpu.vo.Student;
 
 public class StudentExcel extends ReadExcel {
@@ -119,7 +120,7 @@ public class StudentExcel extends ReadExcel {
 	 * @param filePath
 	 * @return
 	 */
-	public Map<String, Object> getScoreData(String filePath) {
+	public List<Score> getScoreData(String filePath) {
 
 		// 获取原始数据
 		List<String> result = super.readExcel(filePath);
@@ -127,8 +128,8 @@ public class StudentExcel extends ReadExcel {
 		if (result != null) {
 
 			// 用于保存返回的数据
-			// List<String> resultData = new ArrayList<String>();
-			Map<String, Object> map = new HashMap<String, Object>();
+			List<Score> resultScore = new ArrayList<Score>();
+//			Map<String, Object> map = new HashMap<String, Object>();
 
 			int resultLength = result.size();
 			// 获取保存的属性列数
@@ -150,25 +151,30 @@ public class StudentExcel extends ReadExcel {
 
 			// 链接每行字符串
 			int lastLoop = resultLength - columns;
-			StringBuffer eachOne;
 			String thisSno = null;// 记录学号字符串
 			for (int i = columns; i < lastLoop; i++) {
-				eachOne = new StringBuffer();
+				Student stu = new Student();
 				for (int j = 0; j < columns; j++) {
-					eachOne.append(columnName[j] + ":" + result.get(i) + "\n");
-					if (snoColumn == j)
+//					eachOne.append(columnName[j] + ":" + result.get(i) + "\n");
+					if (snoColumn == j){
 						thisSno = result.get(i);
+						stu.setSno(thisSno);
+					}
+					if(j > 1){							//根据成绩表的格式，第一列是学号，第二列是名字，第三列开始是成绩
+						Score score = new Score();
+						score.setStudent(stu);
+						System.out.println("columnName[j] " + columnName[j]);
+						score.setSubject(columnName[j]);
+						System.out.println("result.get(j) " + result.get(i));
+						score.setMarks(Integer.parseInt(result.get(i)));
+						resultScore.add(score);
+					}
 					i++;
 				}
 				i--;
-				// resultData.add(eachOne.toString());
-				map.put(thisSno, eachOne.toString());
-				// System.out.println(eachOne.toString());
-				// System.out.println(map.toString());
 			}
-
 			// return resultData;
-			return map;
+			return resultScore;
 		}
 
 		return null;
