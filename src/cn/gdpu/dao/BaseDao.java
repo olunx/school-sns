@@ -48,6 +48,14 @@ public interface BaseDao<T, ID extends Serializable> {
 	public abstract T queryById(Class<T> entityClass, ID id);
 	
 	/**
+	 * 根据Hql返回数据
+	 * @param entityClass
+	 * @param hql
+	 * @return
+	 */
+	public abstract List<T> queryByHql(Class<T> entityClass, String hql);
+	
+	/**
 	 * 查找全部持久化对象
 	 * 
 	 * @param 无
