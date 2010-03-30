@@ -33,6 +33,7 @@
 	<package name="test" extends="default" namespace="/test">
 		<global-results>
 			<result name="index">/WEB-INF/model/test/listTest.jsp</result>
+			<result name="upload">/WEB-INF/model/student/upload.jsp</result>
 			<result name="addPage">/WEB-INF/model/test/addTest.jsp</result>
 			<result name="modifyPage">/WEB-INF/model/test/modifyTest.jsp</result>
 		</global-results>

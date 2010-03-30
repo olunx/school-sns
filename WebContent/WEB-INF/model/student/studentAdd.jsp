@@ -18,8 +18,41 @@
 <p><label> 邮箱： </label> <input type="text" name="student.mail" /></p>
 <p class="paddingmin"><input type="submit" value="提交" /> <input type="reset" value="重置" /></p>
 </form>
+
+<link type="text/css" rel="stylesheet" href="<%=path%>/content/images/uploadify.css" />
+<script type="text/javascript" src="<%=path%>/content/js/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="<%=path%>/content/js/swfobject.js"></script>
+<script type="text/javascript" src="<%=path%>/content/js/jquery.uploadify.v2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+	$("#uploadify").uploadify({
+		'uploader'		: '<%=path%>/content/images/uploadify.swf',
+		'script'		: '<%=path%>/student/studentUpload',
+		'cancelImg'		: '<%=path%>/content/images/cancel.png',
+		'fileDataName'	: 'files',
+		'mothod'		: 'POST',
+		'queueID'		: 'fileQueue',
+		'buttonText'	: 'OPEN',
+		'auto'			: false,
+		'multi'			: false
+	});
+});
+</script>
+<style type="text/css">
+#fileQueue {
+	width: 380px;
+	height: 70px;
+	overflow: auto;
+	border: 1px solid #E5E5E5;
+	margin-bottom: 10px;
+}
+</style>
+
+<br/>
+<br/>
 <h2 class="caption">批量注册：</h2>
-<form action="<%=path%>/student/studentUpload" method="post" enctype="multipart/form-data">学生数据Excel文件：<input type="file"
-	name="files" /> <input type="submit" value="提交" /> <s:fielderror>
-	<s:param>fileTypeAlert</s:param>
-</s:fielderror></form>
+<div id="fileQueue"></div>
+<input id="uploadify" type="file" name="files"/><br/>
+<a href="javascript:$('#uploadify').uploadifyUpload();"">开始上传</a>
+<p><a href="javascript:$('#uploadify').uploadifyClearQueue()">取消</a></p>
+

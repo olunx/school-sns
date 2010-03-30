@@ -4,3 +4,4 @@
 %>
 <br />
 <a rel="ajax" href="<%=path %>/test/addTest">确定</a>
+<a href="<%=path%>/test/uploadTest">测试上传组件</a>
