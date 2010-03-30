@@ -90,10 +90,11 @@ public class NoticeAction extends BaseAction {
 		return super.modify();
 	}
 	
+	@Override
 	public String view(){
 		Notice notice = noticeService.getEntity(Notice.class, id);
 		this.getRequest().put("notice", notice);
-		return "view";
+		return super.view();
 	}
 
 	public NoticeService<Notice, Integer> getNoticeService() {

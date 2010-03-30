@@ -17,7 +17,7 @@
 	<s:debug></s:debug>
 	<h2 class="caption">
 			<div class="float_right">
-				<a class="btn btn_add" href="<%=path %>/classfee/goAddClassFee">添加</a>
+				<a class="btn btn_add" href="<%=path %>/classfee/goAddClassfee">添加</a>
 			</div>
 			<c:choose>
 			
@@ -47,7 +47,7 @@
 								<input type="checkbox" name="id" value="${classfee.id }"/>
 							</td>
 							<td>
-								<a href="<%=path %>/classfee/queryClassFee?id=${classfee.id }">${classfee.id }</a>
+								<a href="<%=path %>/classfee/queryClassfee?id=${classfee.id }">${classfee.id }</a>
 							</td>
 							<td>
 								${classfee.fee<0?"支出":"收入" }
