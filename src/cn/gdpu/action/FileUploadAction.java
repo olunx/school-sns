@@ -27,8 +27,9 @@ public class FileUploadAction extends BaseAction{
 
 	private ServletContext context = ServletActionContext.getServletContext();
 	
-	//上传注册文件
-	public String reg() {
+	//上传学生信息文件
+	public String student() {
+		logger.info("--------上传 ");
 		return this.upload(".xls");
 	}
 	

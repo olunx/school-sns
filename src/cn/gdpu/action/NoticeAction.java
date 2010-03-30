@@ -74,10 +74,6 @@ public class NoticeAction extends BaseAction {
         if(pageBean.getList().isEmpty())
     		pageBean.setList(null);
         
-        //方便freemarker调用
-        this.getRequest().put("path", ServletActionContext.getServletContext().getContextPath());
-        this.getRequest().put("model","notice");
-        
 		return super.list();
 	}
 

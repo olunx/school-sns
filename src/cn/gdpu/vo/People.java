@@ -8,9 +8,17 @@ public class People {
 	private String sex;
 	private int permission;
 	private String avatar;
-	private int phoneNo;
+	private String phoneNo;
 	private String email;
-	private int qq;
+	private String qq;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 
 	public String getUsername() {
 		return username;
@@ -60,11 +68,11 @@ public class People {
 		this.avatar = avatar;
 	}
 
-	public int getPhoneNo() {
+	public String getPhoneNo() {
 		return phoneNo;
 	}
 
-	public void setPhoneNo(int phoneNo) {
+	public void setPhoneNo(String phoneNo) {
 		this.phoneNo = phoneNo;
 	}
 
@@ -76,19 +84,12 @@ public class People {
 		this.email = email;
 	}
 
-	public int getQq() {
+	public String getQq() {
 		return qq;
 	}
 
-	public void setQq(int qq) {
+	public void setQq(String qq) {
 		this.qq = qq;
 	}
 
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
 }

@@ -72,10 +72,6 @@ public class ClassFeeAction extends BaseAction {
     		pageBean.setList(null);
         getRequest().put("total", classfeeService.getTotalMoney());
         
-        //方便freemarker调用
-        this.getRequest().put("path", ServletActionContext.getServletContext().getContextPath());
-        this.getRequest().put("model","classfee");
-        
 		return super.list();
 	}
 	

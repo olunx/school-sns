@@ -29,7 +29,7 @@ public class StudentExcel extends ReadExcel {
 	 * @param filePath
 	 * @return
 	 */
-	public List<Student> getRegData(String filePath) {
+	public List<Student> getStudentData(String filePath) {
 
 		// 获取原始数据
 		List<String> result = super.readExcel(filePath);
@@ -88,12 +88,12 @@ public class StudentExcel extends ReadExcel {
 					stu.setDorm(result.get(index + dormOffset));
 				if (qqOffset != -1) {
 					temp = result.get(index + qqOffset);
-					stu.setQq(Integer.parseInt(temp));
+					stu.setQq(temp);
 					stu.setEmail(temp + "@qq.com");
 				}
 
 				if (phoneOffset != -1)
-					stu.setPhoneNo(Integer.parseInt(result.get(index + phoneOffset)));
+					stu.setPhoneNo(result.get(index + phoneOffset));
 				if (snoOffset != -1) {
 					temp = result.get(index + snoOffset);
 					stu.setSno(temp);
