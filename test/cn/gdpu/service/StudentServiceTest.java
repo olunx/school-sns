@@ -46,4 +46,10 @@ public class StudentServiceTest{
 		
 		studentService.queryForPage(Student.class, 10, 1);
 	}
+	
+	@Test
+	public void getAllStu() {
+		studentService.getAllEntity(Student.class);
+		studentService.getEntity(Student.class, "from Student");
+	}
 }
