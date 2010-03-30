@@ -77,6 +77,11 @@ public abstract  class BaseDaoImpl<T, ID extends Serializable> extends Hibernate
 	@Override
 	public void update(T entity) {
 		this.getHibernateTemplate().update(entity);
+	}
+
+	@Override
+	public List<T> queryByHql(Class<T> entityClass, String hql) {
+		return this.getHibernateTemplate().find(hql);
 	}  
 
 	/*public void saveOrUpdate(T t) throws DataAccessException {
