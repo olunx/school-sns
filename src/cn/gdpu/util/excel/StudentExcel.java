@@ -179,7 +179,11 @@ public class StudentExcel extends ReadExcel {
 
 		return null;
 	}
-
+	/**
+	 * 获取课程表
+	 * @param filePath
+	 * @return
+	 */
 	public List<Course> getCourseData(String filePath) {
 
 		// 获取原始数据

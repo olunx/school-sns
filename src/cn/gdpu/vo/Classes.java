@@ -8,6 +8,7 @@ public class Classes {
 	private String name;
 	private Set<Student> student;
 	private List<Course> course;
+	private int entryYear;
 	private String intro;
 	private Teacher assistant;
 	private Institute institute;
@@ -87,4 +88,13 @@ public class Classes {
 	public void setId(int id) {
 		this.id = id;
 	}
+
+	public int getEntryYear() {
+		return entryYear;
+	}
+
+	public void setEntryYear(int entryYear) {
+		this.entryYear = entryYear;
+	}
+
 }
