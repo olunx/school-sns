@@ -1,0 +1,36 @@
+<link type="text/css" rel="stylesheet" href="<%=path%>/content/images/reset.css" />
+<link type="text/css" rel="stylesheet" href="<%=path%>/content/images/layout.css" />
+<link type="text/css" rel="stylesheet" href="<%=path%>/content/images/header.css" />
+<link type="text/css" rel="stylesheet" href="<%=path%>/content/images/login.css" />
+<link type="text/css" rel="stylesheet" href="<%=path%>/content/images/footer.css" />
+
+<script type="text/javascript" src="<%=path%>/content/js/jquery-1.4.2.min.js"></script>
+
+
+使用帮助
+http://colorpowered.com/colorbox/
+
+<link type="text/css" rel="stylesheet" href="<%=path%>/content/images/colorbox.css" />
+<script type="text/javascript" src="<%=path%>/content/js/jquery.colorbox-min.js"></script>
+
+
+验证框架
+
+使用帮助
+http://www.position-relative.net/creation/formValidator/
+
+<link type="text/css" rel="stylesheet" href="<%=path%>/content/images/validationEngine.jquery.css" />
+<script type="text/javascript" src="<%=path%>/content/js/jquery.validationEngine-cn.js" ></script>
+<script type="text/javascript" src="<%=path%>/content/js/jquery.validationEngine.js" ></script>
+
+
+图表引用文件
+
+使用帮助
+http://www.highcharts.com/documentation/how-to-use
+
+<script type="text/javascript" src="<%=path%>/content/js/highcharts.js"></script>
+<script type="text/javascript" src="<%=path%>/content/js/highcharts-gridtheme.js"></script>
+<!--[if IE]> 
+		<script type="text/javascript" src="<%=path%>/content/js/highcharts-ie.js"></script> 
+<![endif]-->

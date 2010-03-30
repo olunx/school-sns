@@ -1,0 +1,40 @@
+ <!-- 最外层标签用于处理空值报错 -->
+ <#escape x as x!"">
+ <#if pageBean.list ?exists>
+ 
+ 	<#assign up_model = model?cap_first>
+	<form method="post" onSubmit="post(this);return false;" action="${path}/${model}/deleteMany${up_model}">
+	
+	<!-- 引入table页面 -->
+	<#assign include_page = "*/" + model + ".table.html" >
+	<#include  include_page>
+	
+	<#assign listpath = path + "/" + model + "/list" + up_model>
+	
+	<div id="pagecount">
+		<p>共 ${pageBean.allRow} 条记录 共 ${pageBean.totalPage} 页 当前第 ${pageBean.currentPage}页	</p>
+		<#if pageBean.currentPage == 1>
+			<a><span>首页</span></a>
+			<a><span>上一页</span></a>
+		<#else>
+			<a target="content" href="${listpath}?page=1"><span>首页</span></a>
+			<a target="content" href="${listpath}?page=${pageBean.currentPage - 1}"><span>上一页</span></a>
+		</#if>
+		<#if pageBean.currentPage != pageBean.totalPage>
+			<a target="content" href="${listpath}?page=${pageBean.currentPage + 1}"><span>下一页</span></a>
+			<a target="content" href="${listpath}?page=${pageBean.totalPage}"><span>尾页</span></a>
+		<#else>
+			<span>下一页</span></a>
+			<a><span>尾页</span></a>
+		</#if>
+	</div>
+	
+	<select name="cmd">
+		<option value="0" selected="selected">批量操作，请选择</option>
+		<option value="1">删除</option>
+	</select> <input type="submit" value="确定" />
+	</form>
+<#else>
+	<a>没有数据</a>
+</#if>
+</#escape>
