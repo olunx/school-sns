@@ -13,7 +13,10 @@ $(document).ready(function() {
 		'queueID'		: 'fileQueue',
 		'buttonText'	: 'OPEN',
 		'auto'			: false,
-		'multi'			: false
+		'multi'			: false,
+		'onComplete'	: function() {
+			$('#content').load('<%=path%>/student/listStudent', ajax);
+		}
 	});
 });
 </script>

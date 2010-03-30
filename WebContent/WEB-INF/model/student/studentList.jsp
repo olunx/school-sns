@@ -16,8 +16,8 @@
 			<tr>
 				<th><a rel="checkall">全选</a></th>
 				<th>用户名</th>
-				<th>昵称</th>
-				<th>性别</th>
+				<th>姓名</th>
+				<th>宿舍</th>
 				<th>状态</th>
 				<th>编辑</th>
 				<th>删除</th>
@@ -26,8 +26,8 @@
 				<tr>
 					<td><input type="checkbox" name="ids" value="${student.id}" /></td>
 					<td><a target="content" href="<%=path%>/student/viewStudent?id=${student.id}&page=${page}">${student.username}</a></td>
-					<td>${student.nickname}</td>
-					<td>${student.sex}</td>
+					<td>${student.name}</td>
+					<td>${student.dorm}</td>
 					<td>${student.status}</td>
 					<td><a target="content" href="<%=path%>/student/goModifyStudent?id=${student.id }&page=${page}" class="btn_edit">编辑</a></td>
 					<td><a target="content" href="<%=path%>/student/deleteStudent?id=${student.id }&page=${page}" class="btn_del">删除</a></td>
