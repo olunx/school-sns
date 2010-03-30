@@ -1,0 +1,18 @@
+
+	<package name="test" extends="struts-default" namespace="/">
+		<global-results>
+			<result name="index">/WEB-INF/model/test/index.jsp</result>
+			<result name="addPage">/WEB-INF/model/test/add.jsp</result>
+			<result name="modifyPage">/WEB-INF/model/test/modify.jsp</result>
+		</global-results>
+		<action name="*Test" class="cn.gdpu.action.TestAction" method="{1}"></action>
+	</package>
+
+<!-- 
+首页：listTest		返回：index
+添加：goAddTest		返回：addPage
+	添加确定：addTest		返回：index
+修改：goModifyTest		返回：modifyPage
+	修改确定：modifyTest		返回：index
+删除：deleteTest		返回：index
+ -->

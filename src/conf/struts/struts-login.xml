@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts 
+	PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.1.dtd" >
+<struts>
+	<!-- 全局权限验证拦截器 -->
+	<package name="default" extends="struts-default">
+		<interceptors>
+			<interceptor-stack name="customInterceptor">
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+				<interceptor-ref name="authInterceptor"></interceptor-ref>
+			</interceptor-stack>
+			<interceptor name="authInterceptor" class="cn.gdpu.interceptor.AuthInterceptor"></interceptor>
+		</interceptors>
+		<default-interceptor-ref name="customInterceptor"></default-interceptor-ref>
+		<global-results>
+			<result name="login" type="redirect">/login.jsp</result>
+		</global-results>
+	</package>
+	
+	<!-- 登录 -->
+	<package name="login" extends="struts-default" namespace="/">
+		<global-results>
+			<result name="success">/WEB-INF/index.jsp</result>
+			<result name="goLogin">/WEB-INF/model/dialog/login.jsp</result>
+		</global-results>
+		<action name="*Login" class="cn.gdpu.action.LoginAction" method="{1}">
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+	</package>
+	
+		<!-- 测试的Action -->
+	<package name="test" extends="default" namespace="/test">
+		<global-results>
+			<result name="index">/WEB-INF/model/test/listTest.jsp</result>
+			<result name="upload">/WEB-INF/model/student/upload.jsp</result>
+			<result name="addPage">/WEB-INF/model/test/addTest.jsp</result>
+			<result name="modifyPage">/WEB-INF/model/test/modifyTest.jsp</result>
+		</global-results>
+		<action name="*Test" class="cn.gdpu.action.TestAction" method="{1}"></action>
+		
+	</package>
+</struts>    
