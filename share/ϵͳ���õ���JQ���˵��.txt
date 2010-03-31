@@ -34,3 +34,7 @@ http://www.highcharts.com/documentation/how-to-use
 <!--[if IE]> 
 		<script type="text/javascript" src="<%=path%>/content/js/highcharts-ie.js"></script> 
 <![endif]-->
+
+
+上传插件
+http://www.uploadify.com/documentation/
