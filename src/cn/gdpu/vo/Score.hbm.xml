@@ -5,6 +5,7 @@
 <!-- 
 	private int id;
 	private Student student;
+	private Classes classes;
 	private String subject;
 	private Date time;
 	private int marks;
@@ -13,7 +14,8 @@
 		<id name="id" column="id">
 			<generator class="native" />
 		</id>
-		<many-to-one name="student" column="student" />
+		<many-to-one name="student" column="scoreid" cascade="save-update"/>
+		<one-to-one name="classes" />
 		<property name="subject" />
 		<property name="time" />
 		<property name="marks" />

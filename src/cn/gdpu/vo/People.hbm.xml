@@ -33,6 +33,7 @@
 			private Set<Group> group;
 			private Set<Achievement> achievement;
 			private Set<Student> friends;
+			private Set<Score> scores;
 		 -->
 		<joined-subclass name="Student" table="t_student"> 
             <key column="id" /> 
@@ -67,6 +68,13 @@
 				<key column="friendsId"/>
 				<one-to-many class="Student" />
 			</set>
+			
+			<set name="scores" inverse="true" cascade="all" lazy="true" order-by="id asc">
+				<key column="scoreId"/>
+				<one-to-many class="Score" />
+			</set>
+			
+			
 		 </joined-subclass> 
 		 <!-- 
 		 	教师
