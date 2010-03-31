@@ -25,14 +25,10 @@ public class PeopleDaoImpl extends BaseDaoImpl<People, Integer> implements Peopl
 	public People queryByUsernameAndPwd(String username, String password) {
 		People people = null;
 		List<People> list = this.getHibernateTemplate().find("from People p where p.username = '" + username + "' and p.password = '" + password + "'");
-//		Log.init(getClass()).info(list.get(0));
 		if (list != null && list.size() > 0) {
-			Log.init(getClass()).info("进入循环");
 			people =  list.get(0);
 		}
 		Log.init(getClass()).info("返回数据");
-		Log.init(getClass()).info(people);
-		Log.init(getClass()).info("返回完成");
 		return people;
 	}
 
