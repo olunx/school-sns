@@ -23,6 +23,7 @@
 			<result name="index">/WEB-INF/model/score/scoreList.jsp</result>
 			<result name="success" type="chain">addScore</result>
 			<result name="addPage">/WEB-INF/model/score/scoreAdd.jsp</result>
+			<result name="listall">/WEB-INF/model/score/scoreListAll.jsp</result>
 		</global-results>
 		<action name="*Score" class="cn.gdpu.action.ScoreAction" method="{1}"></action>
 		<action name="scoreUpload" class="cn.gdpu.action.FileUploadAction" method="score">
