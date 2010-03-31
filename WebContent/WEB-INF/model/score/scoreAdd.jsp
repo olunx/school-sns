@@ -2,16 +2,15 @@
 <%
 	String path = request.getContextPath();
 %>
-<link type="text/css" rel="stylesheet" href="<%=path%>/content/images/uploadify.css" />
-<script type="text/javascript" src="<%=path%>/content/js/jquery-1.4.2.min.js"></script>
-<script type="text/javascript" src="<%=path%>/content/js/swfobject.js"></script>
-<script type="text/javascript" src="<%=path%>/content/js/jquery.uploadify.v2.1.0.min.js"></script>
+<link type="text/css" rel="stylesheet" href="<%=path%>/content/jq-uploadify/uploadify.css" />
+<script type="text/javascript" src="<%=path%>/content/jq-uploadify/jquery.uploadify.v2.1.0.min.js"></script>
+<script type="text/javascript" src="<%=path%>/content/jq-uploadify/swfobject.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
 	$("#uploadify").uploadify({
-		'uploader'		: '<%=path%>/content/images/uploadify.swf',
+		'uploader'		: '<%=path%>/content/jq-uploadify/uploadify.swf',
 		'script'		: '<%=path%>/score/scoreUpload',
-		'cancelImg'		: '<%=path%>/content/images/cancel.png',
+		'cancelImg'		: '<%=path%>/content/jq-uploadify/cancel.png',
 		'fileDataName'	: 'files',
 		'mothod'		: 'POST',
 		'queueID'		: 'fileQueue',
