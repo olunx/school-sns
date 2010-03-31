@@ -21,12 +21,12 @@
 <!-- JQuery库 -->
 <script type="text/javascript" src="<%=path%>/content/js/jquery-1.4.2.min.js"></script>
 <!-- 验证插件 -->
-<link type="text/css" rel="stylesheet" href="<%=path%>/content/images/validationEngine.jquery.css" />
-<script type="text/javascript" src="<%=path%>/content/js/jquery.validationEngine-cn.js"></script>
-<script type="text/javascript" src="<%=path%>/content/js/jquery.validationEngine.js"></script>
+<link type="text/css" rel="stylesheet" href="<%=path%>/content/jq-validate/jquery.validationEngine.css" />
+<script type="text/javascript" src="<%=path%>/content/jq-validate/jquery.validationEngine-cn.js"></script>
+<script type="text/javascript" src="<%=path%>/content/jq-validate/jquery.validationEngine.js"></script>
 <!-- JQuery UI 插件 -->
-<link type="text/css" rel="stylesheet" href="<%=path%>/content/images/jq-ui-theme/jquery-ui-1.8.custom.css" />
-<script type="text/javascript" src="<%=path%>/content/js/jquery-ui-1.8.custom.min.js"></script>
+<link type="text/css" rel="stylesheet" href="<%=path%>/content/jq-ui/jquery-ui-1.8.custom.css" />
+<script type="text/javascript" src="<%=path%>/content/jq-ui/jquery-ui-1.8.custom.min.js"></script>
 
 <script type="text/javascript">
 	$(document).ready(function() {
