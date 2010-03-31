@@ -18,4 +18,15 @@ public class StudentDaoImpl extends BaseDaoImpl<Student, Integer> implements cn.
 		return stu;
 	}
 
+	@Override
+	public Student queryByUsername(String username) {
+		Student stu = null;
+		List list = this.getHibernateTemplate().find("from Student s where s.username = '" + username + "'");
+		System.out.println(list.get(0));
+		if (list != null && list.size() > 0) {
+			stu = (Student) list.get(0);
+		}
+		return stu;
+	}
+
 }
