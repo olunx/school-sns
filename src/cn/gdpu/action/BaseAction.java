@@ -2,8 +2,6 @@ package cn.gdpu.action;
 
 import java.util.Map;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.apache.struts2.interceptor.RequestAware;
 import org.apache.struts2.interceptor.SessionAware;
 
