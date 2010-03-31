@@ -9,6 +9,13 @@
 	>
 	
 	<!-- 测试BaseDao和BaseService -->
+	<bean name="peopleDaoImpl" class="cn.gdpu.dao.impl.PeopleDaoImpl" scope="prototype">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean name="peopleService" class="cn.gdpu.service.impl.PeopleServiceImpl" scope="prototype">
+		<property name="baseDao" ref="peopleDaoImpl" />
+	</bean>
+	
 	<bean name="studentDaoImpl" class="cn.gdpu.dao.impl.StudentDaoImpl" scope="prototype">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>

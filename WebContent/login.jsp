@@ -8,11 +8,11 @@
           <form rel="validate" action="login/authLogin" method="post">
             <p>
               <label for="username">用户名</label>
-              <input type="text" name="username" id="username" class="t_input validate[required]" value="3c" />
+              <input type="text" name="username" id="username" class="t_input validate[required]" value="0707501131" />
             </p>
             <p>
               <label for="password">密　码</label>
-              <input type="password" name="password" id="password" class="t_input validate[required]" value="3c" />
+              <input type="password" name="password" id="password" class="t_input validate[required]" value="0707501131" />
             </p>
             <p class="submitrow">
               <input type="submit" name="loginsubmit" class="submit" value="登录" />

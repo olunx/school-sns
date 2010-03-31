@@ -20,6 +20,7 @@ public class FileUploadAction extends BaseAction{
 	private List<File> files;
 	//系统默认注入
 	private List<String> filesFileName;
+	@SuppressWarnings("unused")
 	private List<String> filesContentType;
 	
 	//struts配置文件中设置
