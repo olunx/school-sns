@@ -1,0 +1,19 @@
+<#escape x as x!"">
+<table class="table">
+	<tr>
+		<th><a rel="checkall">全选</a></th>
+		<th>标题</th><th>发布人</th><th>内容</th><th>时间</th><th>编辑</th><th>删除</th>
+	</tr>
+	<#list pageBean.list as notice>
+	<tr>
+		<td><input type="checkbox" name="nids" value="${notice.id}" /></td>
+		<td><a target="content" href="${path}/${model}/view${up_model}?id=${notice.id}&page=${page}">${notice.title}</a></td>
+		<td>${(notice.author.name)!}</td><!-- 双层空值都需要判断 -->
+		<td><#if notice.content?length lt 30>${notice.content}<#else>${notice.content[0..15]}</#if></td><!-- 截取字符串 -->
+		<td>${notice.time?string("yyyy-MM-dd")}</td>
+		<td><a target="content" href="${path}/${model}/goModify${up_model}?id=${notice.id }&page=${page}" class="btn_edit">编辑</a></td>
+		<td><a target="content" href="${path}/${model}/delete${up_model}?id=${notice.id }&page=${page}" class="btn_del">删除</a></td>
+	</tr>
+	</#list>
+</table>
+</#escape>
