@@ -21,6 +21,8 @@ public class Student extends People {
 	private Set<Group> group;
 	private Set<Achievement> achievement;
 	private Set<Student> friends;
+	private Set<Score> scores;
+
 
 	public School getSchool() {
 		return school;
@@ -156,5 +158,13 @@ public class Student extends People {
 
 	public void setFriends(Set<Student> friends) {
 		this.friends = friends;
+	}
+	
+	public Set<Score> getScores() {
+		return scores;
+	}
+
+	public void setScores(Set<Score> scores) {
+		this.scores = scores;
 	}
 }

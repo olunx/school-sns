@@ -4,8 +4,11 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
-import org.apache.commons.logging.Log;
+import cn.gdpu.util.Log;
+import cn.gdpu.util.PageBean;
+
 import org.apache.commons.logging.LogFactory;
 import org.apache.struts2.ServletActionContext;
 
@@ -30,17 +33,36 @@ public class ScoreAction extends BaseAction {
 	private FetionService fetionService;
 	private ScoreService scoreService;
 	private StudentService studentService;
-	
+	private PageBean pageBean;
+	private int page;
 
-	private Log logger = LogFactory.getLog(this.getClass());
-	
-	
+
 	/**
-	 * 列出所有记录
+	 * 列出当前班级的所有学生的成绩记录
 	 * 
 	 * @return
 	 */
 	public String list() {
+		this.pageBean = this.scoreService.queryForPage(Score.class, 30, page);
+		if(pageBean.getList().isEmpty())
+    		pageBean.setList(null);
+		return "listall";
+	}
+	
+	/**
+	 * 列出当前学生的所有记录
+	 * 
+	 * @return
+	 */
+	public String query() {
+		String sno = (String) getSession().get("username");
+//		String sno = "SDFSDF"; 
+		Student stu = studentService.getStudentByNo(sno);
+		System.out.println("sadfsdfsdfsdfsdfsdf" + stu);
+		Set<Score> scores = stu.getScores();
+		if(scores.size() == 0)
+			scores = null;			
+		getRequest().put("scores", scores);
 		return INDEX;
 	}
 
@@ -58,10 +80,9 @@ public class ScoreAction extends BaseAction {
 	 * 
 	 * @return
 	 */
+	@SuppressWarnings("unchecked")
 	public String add() {
-		logger.info(this.getRequest().get("targetsFilePath"));
 		List<String> filelist = (List<String>) this.getRequest().get("targetsFilePath");
-		System.out.println("------------filelist= " + filelist);
 
 		List<Score> scoreList = new ArrayList<Score>();
 		if (filelist.size() > 0) {
@@ -76,8 +97,8 @@ public class ScoreAction extends BaseAction {
 			s.setClasses(stu.getClasses());
 			s.setTime(new Date());
 			scoreService.addEntity(s);
-			System.out.println("test: "+s.getSubject());
 		}
+		Log.init(getClass()).info("成绩导入成功");
 		return super.add();
 	}
 
@@ -185,5 +206,20 @@ public class ScoreAction extends BaseAction {
 	public void setStudentService(StudentService studentService) {
 		this.studentService = studentService;
 	}
+	
+	public PageBean getPageBean() {
+		return pageBean;
+	}
 
+	public void setPageBean(PageBean pageBean) {
+		this.pageBean = pageBean;
+	}
+	
+	public int getPage() {
+		return page;
+	}
+
+	public void setPage(int page) {
+		this.page = page;
+	}
 }
