@@ -21,7 +21,7 @@
 	<!-- 登录 -->
 	<package name="login" extends="struts-default" namespace="/">
 		<global-results>
-			<result name="success">/WEB-INF/index.jsp</result>
+			<result name="success" type="dispatcher">/WEB-INF/index.jsp</result>
 			<result name="index">/login.jsp</result>
 			<result name="goLogin">/WEB-INF/model/dialog/login.jsp</result>
 		</global-results>

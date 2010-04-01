@@ -1,8 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@	taglib uri="/struts-tags" prefix="s"%>
 <%
 	String path = request.getContextPath();
 %>
@@ -16,46 +12,21 @@
 <link type="text/css" rel="stylesheet" href="<%=path%>/content/images/header.css" />
 <link type="text/css" rel="stylesheet" href="<%=path%>/content/images/content.css" />
 <link type="text/css" rel="stylesheet" href="<%=path%>/content/images/footer.css" />
-<!-- 登录页专用件 -->
-<link type="text/css" rel="stylesheet" href="<%=path%>/content/images/login.css" />
 <!-- JQuery库 -->
 <script type="text/javascript" src="<%=path%>/content/js/jquery-1.4.2.min.js"></script>
-<!-- 验证插件 -->
-<link type="text/css" rel="stylesheet" href="<%=path%>/content/jq-validate/jquery.validationEngine.css" />
-<script type="text/javascript" src="<%=path%>/content/jq-validate/jquery.validationEngine-cn.js"></script>
-<script type="text/javascript" src="<%=path%>/content/jq-validate/jquery.validationEngine.js"></script>
-<!-- JQuery UI 插件 -->
-<link type="text/css" rel="stylesheet" href="<%=path%>/content/jq-ui/jquery-ui-1.8.custom.css" />
-<script type="text/javascript" src="<%=path%>/content/jq-ui/jquery-ui-1.8.custom.min.js"></script>
+<!-- colorbox -->
+<link type="text/css" rel="stylesheet" href="<%=path%>/content/jq-colorbox/colorbox.css" />
+<script type="text/javascript" src="<%=path%>/content/jq-colorbox/jquery.colorbox-min.js"></script>
 
 <script type="text/javascript">
 	$(document).ready(function() {
-		$("form[rel='validate']").validationEngine();
 
-		// Dialog			
-			$('#dialog').dialog( {
-				autoOpen : false,
-				width : 250,
-				show : 'slide',
-				hide : 'slide',
-				resizable : false,
-				buttons : {
-					"Ok" : function() {
-						$(this).dialog("close");
-					}
-				}
-			});
-
-			// Dialog
-			$("a[rel='dialog']").click(function() {
-				$('#dialog').load($(this).attr('href'));
-				$('#dialog').dialog('open');
-				return false;
-			});
-
-			//注册事件
+		$("a[rel='dialog']").colorbox();
+		
+		//注册事件
 			$("a[target='content']").click(function() {
-				$('#content').load($(this).attr('href'), ajax);
+				var href = $(this).attr('href');
+				loadContent(href);
 				return false;
 			});
 
@@ -64,26 +35,52 @@
 	//注册二级事件
 	function ajax() {
 		$("#content a[target='content']").click(function() {
-			$('#content').load($(this).attr('href'), ajax);
+			var href = $(this).attr('href');
+			loadContent(href);
 			return false;
 		});
 	};
 
+	//加载数据
+	function loadContent(href) {
+		var content = $('#content');
+		content.fadeOut('fast', function() {
+			onLoading();//打开loading
+			content.load(href, function() {
+				offLoading();//关闭loading
+				content.fadeIn('normal', ajax);
+			});
+		});
+	}
+
+	//打开loading
+	function onLoading() {
+		$('#main').append('<span id="loading"><img src="<%=path%>/content/jq-colorbox/images/loading.gif" />加载中...</span>');
+		$('#loading').fadeIn('fast');
+	}
+	//关闭loading
+	function offLoading() {
+		$('#loading').remove();
+	}
+	
 	//提交表单数据
 	function post(obj) {
+		var content = $('#content');
 		var urlStr = $(obj).attr('action');
 		var dataStr = decodeURIComponent($(obj).serialize());
-		//alert(jQuery.post(url, data, ajax));
-		$.ajax( {
-			url : urlStr,
-			data : dataStr,
-			type : 'POST',
-			success : function(result) {
-				$('#content').html(result);
-				ajax();
-			}
+		content.fadeOut('fast', function() {
+			onLoading();//打开loading
+			$.ajax( {
+				url : urlStr,
+				data : dataStr,
+				type : 'POST',
+				success : function(result) {
+					content.html(result);
+					offLoading();//关闭loading
+					content.fadeIn('normal', ajax);
+				}
+			});
 		});
-
 	}
 </script>
 </head>
