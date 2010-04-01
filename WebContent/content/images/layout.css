@@ -2,9 +2,8 @@
 #container {
 	margin:0 auto;
 	width:960px;
-	position:relative;
-	padding-top:15px;
-	min-height:580px;
+	padding-top:10px;
+	min-height:480px;
 }
 #submenu {
 	width:155px;
@@ -13,15 +12,16 @@
 	background: #FFF;
 }
 #main {
-	width:790px;
+	width:620px;
 	float:left;
+	min-height:480px;
+	margin-right:10px;
 	background: #FFF;
 }
 #content {
-	width:625px;
+	width:600px;
 	float:left;
-	min-height:580px;
-	margin-right:10px;
+	margin:10px;
 	background:#6C0;
 }
 #sidebar {

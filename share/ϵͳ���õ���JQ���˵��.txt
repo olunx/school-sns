@@ -9,7 +9,7 @@
 类似lightbox的东西
 使用帮助
 http://colorpowered.com/colorbox/
-
+<!-- colorbox -->
 <link type="text/css" rel="stylesheet" href="<%=path%>/content/jq-colorbox/colorbox.css" />
 <script type="text/javascript" src="<%=path%>/content/jq-colorbox/jquery.colorbox-min.js"></script>
 
@@ -39,7 +39,6 @@ JQ UI
 <!-- JQuery UI 插件 -->
 <link type="text/css" rel="stylesheet" href="<%=path%>/content/jq-ui/jquery-ui-1.8.custom.css" />
 <script type="text/javascript" src="<%=path%>/content/jq-ui/jquery-ui-1.8.custom.min.js"></script>
-
 
 上传插件
 http://www.uploadify.com/documentation/

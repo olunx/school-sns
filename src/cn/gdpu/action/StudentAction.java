@@ -57,7 +57,7 @@ public class StudentAction extends BaseAction {
 
 	@Override
 	public String list() {
-		this.pageBean = this.studentService.queryForPage(Student.class, 30, page);
+		this.pageBean = this.studentService.queryForPage(Student.class, 10, page);
 		if(pageBean.getList().isEmpty())
     		pageBean.setList(null);
 		
