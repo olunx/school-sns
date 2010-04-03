@@ -27,7 +27,7 @@ public class PeopleDaoImpl extends BaseDaoImpl<People, Integer> implements Peopl
 		List<People> list = this.getHibernateTemplate().find("from People p where p.username = '" + username + "' and p.password = '" + password + "'");
 		if (list != null && list.size() > 0) {
 			people =  list.get(0);
-		}
+		}  
 		Log.init(getClass()).info("返回数据");
 		return people;
 	}
