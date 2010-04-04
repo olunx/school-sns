@@ -9,4 +9,11 @@
 	>
 	<!-- 注释 -->
 
+	<!-- 主题 -->
+	<bean name="topicDaoImpl" class="cn.gdpu.dao.impl.TopicDaoImpl" scope="prototype">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean name="topicService" class="cn.gdpu.service.impl.TopicServiceImpl" scope="prototype">
+		<property name="baseDao" ref="topicDaoImpl" />
+	</bean>
 </beans>

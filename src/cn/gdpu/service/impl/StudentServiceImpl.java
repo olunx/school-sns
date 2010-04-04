@@ -8,7 +8,7 @@ public class StudentServiceImpl extends BaseServiceImpl<Student, Integer, Studen
 
 	@Override
 	public Student getStudentByNo(String sno) {
-		return getBaseDao().queryByNo(sno);
+		return getBaseDao().queryBySno(sno);
 	}
 
 	@Override

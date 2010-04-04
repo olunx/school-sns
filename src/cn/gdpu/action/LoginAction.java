@@ -35,9 +35,9 @@ public class LoginAction extends BaseAction {
 		}
 
 		// 绕过验证
-		// this.getSession().put("isAccess", "true");
-		// return super.SUCCESS;
-		return super.INDEX;
+		 this.getSession().put("isAccess", "true");
+		 return super.SUCCESS;
+		//return super.INDEX;
 	}
 
 	public String go() {

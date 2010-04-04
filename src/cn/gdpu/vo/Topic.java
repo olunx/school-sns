@@ -3,7 +3,7 @@ package cn.gdpu.vo;
 import java.util.Date;
 import java.util.List;
 
-public abstract class Topic {
+public class Topic {
 	private int id;
 	private String title;
 	private String content;

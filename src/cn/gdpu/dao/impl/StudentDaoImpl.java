@@ -7,7 +7,8 @@ import cn.gdpu.vo.*;
 
 public class StudentDaoImpl extends BaseDaoImpl<Student, Integer> implements cn.gdpu.dao.StudentDao<Student, Integer> {
 
-	public Student queryByNo(String sno) {
+	@SuppressWarnings("unchecked")
+	public Student queryBySno(String sno) {
 		Student stu = null;
 		List list = this.getHibernateTemplate().find("from Student s where s.sno = '" + sno + "'");
 		System.out.println(list.get(0));
@@ -17,6 +18,7 @@ public class StudentDaoImpl extends BaseDaoImpl<Student, Integer> implements cn.
 		return stu;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public Student queryByUsername(String username) {
 		Student stu = null;

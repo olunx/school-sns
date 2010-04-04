@@ -18,5 +18,14 @@
 			<!-- Action中的savePath属性的值 -->
 			<param name="savePath">/upload</param>
 		</action>
+	</package>
+	
+	<!-- 微博-->
+	<package name="topic" extends="default" namespace="/topic">
+		<global-results>
+			<result name="list" type="redirect">listTopic?page=${page}</result>
+			<result name="index">/WEB-INF/model/topic/topicList.jsp</result>
+		</global-results>
+		<action name="*Topic" class="cn.gdpu.action.TopicAction" method="{1}"></action>
 	</package>	
 </struts>    

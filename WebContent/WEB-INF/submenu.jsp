@@ -5,6 +5,7 @@
 <div id="submenu">
 <ul>
 	<li><a target="content" href="<%=path%>/test/listTest">测试</a> <a target="content" href="<%=path%>/test/goAddTest">添加</a></li>
+	<li><a target="content" href="<%=path%>/topic/listTopic">微博</a></li>
 	<li><a target="content" href="<%=path%>/student/listStudent">学生</a> <a target="content" href="<%=path%>/student/goAddStudent">添加</a></li>
 	<li><a target="content" href="<%=path%>/classfee/listClassfee">班费</a> <a target="content" href="<%=path%>/classfee/goAddClassfee">添加</a></li>
 	<li><a target="content" href="<%=path%>/course/listCourse">课程</a> <a target="content" href="<%=path%>/course/goAddCourse">添加</a></li>
