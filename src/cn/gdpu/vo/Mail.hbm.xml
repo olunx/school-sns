@@ -19,7 +19,7 @@
 		<property name="istopic" />
 		<list name="reply">
 			<key column="mailId" />
-			<index column="id" />
+			<index column="indexId" />
 			<one-to-many class="Mail" />
 		</list>
 	</class>

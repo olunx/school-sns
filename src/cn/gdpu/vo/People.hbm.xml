@@ -49,28 +49,28 @@
 			<property name="lastlogin"/>
 			<property name="point"/>
 			<set name="duty" lazy="true">
-				<key column="dutyId"/>
+				<key column="studentId"/>
 				<one-to-many class="Duty" />
 			</set>
 			<set name="hobby" lazy="true">
-				<key column="hobbyId"/>
+				<key column="studentId"/>
 				<one-to-many class="Hobby" />
 			</set>
 			<set name="group" lazy="true">
-				<key column="groupId"/>
+				<key column="studentId"/>
 				<one-to-many class="Group" />
 			</set>
 			<set name="achievement" lazy="true">
-				<key column="achievementId"/>
+				<key column="studentId"/>
 				<one-to-many class="Achievement" />
 			</set>
 			<set name="friends" lazy="true">
-				<key column="friendsId"/>
+				<key column="studentId"/>
 				<one-to-many class="Student" />
 			</set>
 			
 			<set name="scores" inverse="true" cascade="all" lazy="true" order-by="id asc">
-				<key column="scoresId"/>
+				<key column="studentId"/>
 				<one-to-many class="Score" />
 			</set>
 			
@@ -90,7 +90,7 @@
 		 	<many-to-one name="duty" column="dutyId"></many-to-one>
 		 	
 			<set name="excel" lazy="true">
-				<key column="excelId"/>
+				<key column="teacherId"/>
 				<one-to-many class="Excel" />
 			</set>
 		 </joined-subclass>

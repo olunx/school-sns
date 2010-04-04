@@ -27,7 +27,7 @@
 		
 		<list name="course">
 			<key column="classId"/>
-			<index column="id" />
+			<index column="indexId" />
 			<one-to-many class="Course"/>
 		</list>
 
@@ -37,7 +37,7 @@
 		 
 		 <list name="classfees">
 			<key column="classId"/>
-			<index column="id" />
+			<index column="indexId" />
 			<one-to-many class="ClassFee"/>
 		</list>
 	</class>
