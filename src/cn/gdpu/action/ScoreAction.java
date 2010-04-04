@@ -9,7 +9,6 @@ import java.util.Set;
 import cn.gdpu.util.Log;
 import cn.gdpu.util.PageBean;
 
-import org.apache.commons.logging.LogFactory;
 import org.apache.struts2.ServletActionContext;
 
 import cn.gdpu.service.FetionService;
@@ -31,8 +30,8 @@ public class ScoreAction extends BaseAction {
 	private String pwd;
 	private Map<String, Object> request;
 	private FetionService fetionService;
-	private ScoreService scoreService;
-	private StudentService studentService;
+	private ScoreService<Score, Integer> scoreService;
+	private StudentService<Student, Integer> studentService;
 	private PageBean pageBean;
 	private int page;
 
@@ -191,19 +190,19 @@ public class ScoreAction extends BaseAction {
 		this.fetionService = fetionService;
 	}
 	
-	public ScoreService getScoreService() {
+	public ScoreService<Score, Integer> getScoreService() {
 		return scoreService;
 	}
 
-	public void setScoreService(ScoreService scoreService) {
+	public void setScoreService(ScoreService<Score, Integer> scoreService) {
 		this.scoreService = scoreService;
 	}
 
-	public StudentService getStudentService() {
+	public StudentService<Student, Integer> getStudentService() {
 		return studentService;
 	}
 
-	public void setStudentService(StudentService studentService) {
+	public void setStudentService(StudentService<Student, Integer> studentService) {
 		this.studentService = studentService;
 	}
 	

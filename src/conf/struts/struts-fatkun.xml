@@ -3,18 +3,6 @@
 	PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
 	"http://struts.apache.org/dtds/struts-2.1.dtd" >
 <struts>
-	<!-- 公告的Action -->
-	<package name="notice" extends="default" namespace="/notice">
-		<global-results>
-			<result name="list" type="redirect">listNotice?page=${page}</result>
-			<result name="index">/WEB-INF/model/notice/noticeList.jsp</result> 
-			<result name="addPage">/WEB-INF/model/notice/noticeAdd.jsp</result>
-			<result name="modifyPage">/WEB-INF/model/notice/noticeModify.jsp</result>
-			<result name="viewPage">/WEB-INF/model/notice/noticeView.jsp</result>
-		</global-results>
-		<action name="*Notice" class="cn.gdpu.action.NoticeAction" method="{1}"></action>
-	</package>
-		
 	<!-- 课程的Action -->
 	<package name="course" extends="default" namespace="/course">
 		<global-results>

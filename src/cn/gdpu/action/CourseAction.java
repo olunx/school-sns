@@ -9,7 +9,6 @@ import org.apache.commons.logging.LogFactory;
 import cn.gdpu.service.CourseService;
 import cn.gdpu.util.excel.StudentExcel;
 import cn.gdpu.vo.Course;
-import cn.gdpu.vo.Notice;
 
 @SuppressWarnings("serial")
 public class CourseAction extends BaseAction {
@@ -17,6 +16,7 @@ public class CourseAction extends BaseAction {
 	private int id;
 	private CourseService<Course, Integer> courseService;
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public String add() {
 		logger.info(this.getRequest().get("targetsFilePath"));
@@ -68,11 +68,11 @@ public class CourseAction extends BaseAction {
 		return super.goModify();
 	}
 
-	public CourseService getCourseService() {
+	public CourseService<Course, Integer> getCourseService() {
 		return courseService;
 	}
 
-	public void setCourseService(CourseService courseService) {
+	public void setCourseService(CourseService<Course, Integer> courseService) {
 		this.courseService = courseService;
 	}
 

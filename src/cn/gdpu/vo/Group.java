@@ -11,8 +11,16 @@ public class Group {
 	private String works;
 	private String type;
 	private People admin;
-	private List<Post> post;
+	private List<Topic> post;
 	private Set<People> people;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 
 	public String getName() {
 		return name;
@@ -62,11 +70,11 @@ public class Group {
 		this.admin = admin;
 	}
 
-	public List<Post> getPost() {
+	public List<Topic> getPost() {
 		return post;
 	}
 
-	public void setPost(List<Post> post) {
+	public void setPost(List<Topic> post) {
 		this.post = post;
 	}
 
@@ -78,11 +86,4 @@ public class Group {
 		this.people = people;
 	}
 
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
 }

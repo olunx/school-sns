@@ -6,7 +6,6 @@ import java.util.List;
 import cn.gdpu.dao.BaseDao;
 import cn.gdpu.service.BaseService;
 import cn.gdpu.util.PageBean;
-import cn.gdpu.vo.Notice;
 
 public abstract class BaseServiceImpl<T, ID extends Serializable, GeneralDAO extends BaseDao<T, ID>> implements BaseService<T, ID> {
 

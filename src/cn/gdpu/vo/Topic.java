@@ -3,37 +3,14 @@ package cn.gdpu.vo;
 import java.util.Date;
 import java.util.List;
 
-public abstract class Topic<T> {
+public abstract class Topic {
 	private int id;
 	private String title;
 	private String content;
 	private People author;
-	private List<T> post;
 	private Date time;
-
-	public String getTitle() {
-		return title;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
-	public List<T> getPost() {
-		return post;
-	}
-
-	public void setPost(List<T> post) {
-		this.post = post;
-	}
-
-	public Date getTime() {
-		return time;
-	}
-
-	public void setTime(Date time) {
-		this.time = time;
-	}
+	private boolean istopic;
+	private List<Topic> post;
 
 	public int getId() {
 		return id;
@@ -41,6 +18,14 @@ public abstract class Topic<T> {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 	public String getContent() {
@@ -58,4 +43,29 @@ public abstract class Topic<T> {
 	public void setAuthor(People author) {
 		this.author = author;
 	}
+
+	public Date getTime() {
+		return time;
+	}
+
+	public void setTime(Date time) {
+		this.time = time;
+	}
+
+	public boolean isIstopic() {
+		return istopic;
+	}
+
+	public void setIstopic(boolean istopic) {
+		this.istopic = istopic;
+	}
+
+	public List<Topic> getPost() {
+		return post;
+	}
+
+	public void setPost(List<Topic> post) {
+		this.post = post;
+	}
+
 }

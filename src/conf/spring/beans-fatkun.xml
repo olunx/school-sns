@@ -23,22 +23,6 @@
 		<property name="baseDao" ref="studentDaoImpl" />
 	</bean>
 	
-	<bean name="noticeDaoImpl" class="cn.gdpu.dao.impl.NoticeDaoImpl" scope="prototype">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
-	<bean name="noticeService" class="cn.gdpu.service.impl.NoticeServiceImpl" scope="prototype">
-		<property name="baseDao" ref="noticeDaoImpl" />
-	</bean>
-	
-	
-	<bean name="noticePostDaoImpl" class="cn.gdpu.dao.impl.NoticePostDaoImpl" scope="prototype">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
-	<bean name="noticePostService" class="cn.gdpu.service.impl.NoticePostServiceImpl" scope="prototype">
-		<property name="baseDao" ref="noticePostDaoImpl" />
-	</bean>
-	
-	
 	<bean name="adminDaoImpl" class="cn.gdpu.dao.impl.AdminDaoImpl" scope="prototype">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
