@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts 
+	PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.1.dtd" >
+<struts>
+	<!-- 单个/批量上传 -->
+	<!-- 
+		file对应的input必须有name属性,name的值必须和action中的变量对应 
+		<form action="fileUpload" method="post" enctype="multipart/form-data">
+			学生数据Excel文件：<input type="file" name="files" />					
+			<input type="submit" value="提交" />
+			<s:fielderror><s:param>fileTypeAlert</s:param></s:fielderror>
+		</form>
+	 -->
+	<package name="upload" extends="struts-default" namespace="/upload">
+		<action name="*FileUpload" class="cn.gdpu.action.FileUploadAction">
+			<interceptor-ref name="fileUpload">
+				<param name="allowedTypes">application/vnd.ms-excel,application/msword,application/octet-stream</param>
+				<param name="maximumSize">4096000</param>
+			</interceptor-ref>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<!-- Action中的savePath属性的值 -->
+			<param name="savePath">/upload</param>
+			<result name="index">/WEB-INF/model/{1}/{1}Upload.jsp</result>
+			<result name="success"></result>
+		</action>
+	</package>
+</struts>    

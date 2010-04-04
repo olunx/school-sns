@@ -1,0 +1,84 @@
+<link type="text/css" rel="stylesheet" href="<%=path%>/content/images/reset.css" />
+<link type="text/css" rel="stylesheet" href="<%=path%>/content/images/layout.css" />
+<link type="text/css" rel="stylesheet" href="<%=path%>/content/images/header.css" />
+<link type="text/css" rel="stylesheet" href="<%=path%>/content/images/login.css" />
+<link type="text/css" rel="stylesheet" href="<%=path%>/content/images/footer.css" />
+
+<script type="text/javascript" src="<%=path%>/content/js/jquery-1.4.2.min.js"></script>
+
+类似lightbox的东西
+使用帮助
+http://colorpowered.com/colorbox/
+<!-- colorbox -->
+<link type="text/css" rel="stylesheet" href="<%=path%>/content/jq-colorbox/colorbox.css" />
+<script type="text/javascript" src="<%=path%>/content/jq-colorbox/jquery.colorbox-min.js"></script>
+
+
+验证框架
+
+使用帮助
+http://www.position-relative.net/creation/formValidator/
+<!-- 验证插件 -->
+<link type="text/css" rel="stylesheet" href="<%=path%>/content/jq-validate/jquery.validationEngine.css" />
+<script type="text/javascript" src="<%=path%>/content/jq-validate/jquery.validationEngine-cn.js"></script>
+<script type="text/javascript" src="<%=path%>/content/jq-validate/jquery.validationEngine.js"></script>
+
+
+图表引用文件
+
+使用帮助
+http://www.highcharts.com/documentation/how-to-use
+
+<script type="text/javascript" src="<%=path%>/content/js/highcharts.js"></script>
+<script type="text/javascript" src="<%=path%>/content/js/highcharts-gridtheme.js"></script>
+<!--[if IE]> 
+		<script type="text/javascript" src="<%=path%>/content/js/highcharts-ie.js"></script> 
+<![endif]-->
+
+JQ UI
+<!-- JQuery UI 插件 -->
+<link type="text/css" rel="stylesheet" href="<%=path%>/content/jq-ui/jquery-ui-1.8.custom.css" />
+<script type="text/javascript" src="<%=path%>/content/jq-ui/jquery-ui-1.8.custom.min.js"></script>
+
+上传插件
+http://www.uploadify.com/documentation/
+
+<link type="text/css" rel="stylesheet" href="<%=path%>/content/images/uploadify.css" />
+<script type="text/javascript" src="<%=path%>/content/js/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="<%=path%>/content/js/swfobject.js"></script>
+<script type="text/javascript" src="<%=path%>/content/js/jquery.uploadify.v2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+	$("#uploadify").uploadify({
+		'uploader'		: '<%=path%>/content/images/uploadify.swf',
+		'script'		: '<%=path%>/student/studentUpload',
+		'cancelImg'		: '<%=path%>/content/images/cancel.png',
+		'fileDataName'	: 'files',
+		'mothod'		: 'POST',
+		'queueID'		: 'fileQueue',
+		'buttonText'	: 'OPEN',
+		'auto'			: false,
+		'multi'			: false,
+		'onComplete'	: function() {
+			$('#content').load('<%=path%>/student/listStudent', ajax);
+		}
+	});
+});
+</script>
+<style type="text/css">
+#fileQueue {
+	width: 380px;
+	height: 70px;
+	overflow: auto;
+	border: 1px solid #E5E5E5;
+	margin-bottom: 10px;
+}
+</style>
+
+<br/>
+<br/>
+<h2 class="caption">批量注册：</h2>
+<div id="fileQueue"></div>
+<input id="uploadify" type="file" name="files"/><br/>
+<a href="javascript:$('#uploadify').uploadifyUpload();"">开始上传</a>
+<p><a href="javascript:$('#uploadify').uploadifyClearQueue()">取消</a></p>

@@ -1,0 +1,32 @@
+@charset "utf-8";
+#container {
+	margin:0 auto;
+	width:960px;
+	padding-top:10px;
+	min-height:480px;
+}
+#submenu {
+	width:155px;
+	float:left;
+	margin-right:10px;
+	background: #FFF;
+}
+#main {
+	width:620px;
+	float:left;
+	min-height:480px;
+	margin-right:10px;
+	background: #FFF;
+}
+#content {
+	width:600px;
+	float:left;
+	margin:10px;
+	background:#6C0;
+}
+#sidebar {
+	width:150px;
+	float:left;
+	background: #ddd;
+}
+
