@@ -15,5 +15,10 @@
 		<property name="content" />
 		<many-to-one name="author" />
 		<property name="istopic" />
+		<list name="post">
+			<key column="topicId" />
+			<index column="indexId" />
+			<one-to-many class="Topic" />
+		</list>
 	</class>
 </hibernate-mapping>

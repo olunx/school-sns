@@ -40,8 +40,14 @@ public abstract class BaseServiceImpl<T, ID extends Serializable, GeneralDAO ext
 	}
 
 	@Override
-	public PageBean queryForPage(Class<T> entityClass, int pageSize, int page) {
+	public PageBean queryForPage(Class<T> entityClass, int pageSize, int currentPage) {
 		final String hql = "from " + entityClass.getName() + ""; // 查询语句
+		
+		return this.queryForPage(hql, pageSize, currentPage);
+	}
+
+	@Override
+	public PageBean queryForPage(String hql, int pageSize, int page) {
 		System.out.println("hql--------" + hql);
 		int allRow = baseDao.getAllRowCount(hql); // 总记录数
 		int totalPage = PageBean.countTotalPage(pageSize, allRow); // 总页数
@@ -59,9 +65,10 @@ public abstract class BaseServiceImpl<T, ID extends Serializable, GeneralDAO ext
 		pageBean.setTotalPage(totalPage);
 		pageBean.setList(list);
 		pageBean.init();
+		
 		return pageBean;
 	}
-
+	
 	@Override
 	public void updateEntity(T entity) {
 		baseDao.update(entity);

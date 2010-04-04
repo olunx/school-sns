@@ -79,4 +79,13 @@ public interface BaseService<T,ID extends Serializable> {
 		 * @return
 		 */
 	public abstract PageBean queryForPage(final Class<T> entityClass, final int pageSize, final int currentPage);
+
+	/**
+	 * 根据hql语句来查询数据并分页
+	 * @param hql
+	 * @param pageSize
+	 * @param currentPage
+	 * @return
+	 */
+	public abstract PageBean queryForPage(final String hql, final int pageSize, final int currentPage);
 }  
