@@ -127,14 +127,11 @@ public class StudentExcel extends ReadExcel {
 
 			// 用于保存返回的数据
 			List<Score> resultScore = new ArrayList<Score>();
-//			Map<String, Object> map = new HashMap<String, Object>();
 
 			int resultLength = result.size();
 			// 获取保存的属性列数
 			int columns = Integer.parseInt(result.get(resultLength - 1).toString());
 
-			// System.out.println("columns  " + columns);
-			// System.out.println("result  " + result);
 
 			// 保存属性名称
 			String[] columnName;
@@ -153,7 +150,6 @@ public class StudentExcel extends ReadExcel {
 			for (int i = columns; i < lastLoop; i++) {
 				Student stu = new Student();
 				for (int j = 0; j < columns; j++) {
-//					eachOne.append(columnName[j] + ":" + result.get(i) + "\n");
 					if (snoColumn == j){
 						thisSno = result.get(i);
 						stu.setSno(thisSno);
@@ -161,9 +157,7 @@ public class StudentExcel extends ReadExcel {
 					if(j > 1){							//根据成绩表的格式，第一列是学号，第二列是名字，第三列开始是成绩
 						Score score = new Score();
 						score.setStudent(stu);
-						System.out.println("columnName[j] " + columnName[j]);
 						score.setSubject(columnName[j]);
-						System.out.println("result.get(j) " + result.get(i));
 						score.setMarks(Integer.parseInt(result.get(i)));
 						resultScore.add(score);
 					}
@@ -171,7 +165,6 @@ public class StudentExcel extends ReadExcel {
 				}
 				i--;
 			}
-			// return resultData;
 			return resultScore;
 		}
 

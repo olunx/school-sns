@@ -54,10 +54,9 @@ public class ScoreAction extends BaseAction {
 	 * @return
 	 */
 	public String query() {
-		String sno = (String) getSession().get("username");
-//		String sno = "SDFSDF"; 
+		Student student = (Student) getSession().get("student");
+		String sno = student.getSno();
 		Student stu = studentService.getStudentByNo(sno);
-		System.out.println("sadfsdfsdfsdfsdfsdf" + stu);
 		Set<Score> scores = stu.getScores();
 		if(scores.size() == 0)
 			scores = null;			
@@ -89,9 +88,7 @@ public class ScoreAction extends BaseAction {
 		}
 		for (Score s: scoreList){
 			String sno = s.getStudent().getSno();
-			System.out.println("s.sno " + s.getStudent().getSno());
 			Student stu = studentService.getStudentByNo(sno);
-			System.out.println("test        sdfs" +stu.getName());
 			s.setStudent(stu);
 			s.setClasses(stu.getClasses());
 			s.setTime(new Date());
