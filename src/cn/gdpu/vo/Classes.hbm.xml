@@ -26,8 +26,8 @@
 		</set>
 		
 		<list name="course">
-			<key column="courseid"/>
-			<index column="listid" />
+			<key column="classId"/>
+			<index column="id" />
 			<one-to-many class="Course"/>
 		</list>
 
@@ -36,8 +36,8 @@
 		 <many-to-one name="school" column="schoolId"></many-to-one>
 		 
 		 <list name="classfees">
-			<key column="feeid"/>
-			<index column="listid" />
+			<key column="classId"/>
+			<index column="id" />
 			<one-to-many class="ClassFee"/>
 		</list>
 	</class>

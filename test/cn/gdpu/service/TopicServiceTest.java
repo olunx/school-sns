@@ -66,7 +66,7 @@ public class TopicServiceTest {
 		Topic t = topicService.getEntity(Topic.class, 3);
 		System.out.println(t.getTitle());
 		
-		List<Topic> ts = topicService.getAllTopic();
+		List<Topic> ts = topicService.getAllEntity(Topic.class);
 		for (Topic t2 : ts)
 			System.out.println(t2.getTitle());
 	}

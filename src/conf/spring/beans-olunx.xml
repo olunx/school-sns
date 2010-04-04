@@ -16,4 +16,13 @@
 	<bean name="topicService" class="cn.gdpu.service.impl.TopicServiceImpl" scope="prototype">
 		<property name="baseDao" ref="topicDaoImpl" />
 	</bean>
+	
+	<!-- 邮件 -->
+	<bean name="mailDaoImpl" class="cn.gdpu.dao.impl.MailDaoImpl" scope="prototype">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean name="mailService" class="cn.gdpu.service.impl.MailServiceImpl" scope="prototype">
+		<property name="baseDao" ref="mailDaoImpl" />
+	</bean>
+	
 </beans>
