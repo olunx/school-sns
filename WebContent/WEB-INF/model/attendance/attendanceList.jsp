@@ -8,33 +8,38 @@
 
 <c:choose>
 	<c:when test="${pageBean.list==null}">
-					还没有公告呢！
+			没有数据	
 	</c:when>
 	<c:otherwise>
-		<form method="post" onSubmit="post(this);return false;" action="<%=path%>/notice/deleteManyNotice">
+		<form onSubmit="post(this);return false;" action="<%=path%>/attendance/deleteManyAttendance" method="post">
 		<table class="table">
-			<tr>
-				<th><a rel="checkall">全选</a></th>
-				<th>标题</th>
-				<th>发布人</th>
-				<th>内容</th>
-				<th>时间</th>
-				<th>编辑</th>
-				<th>删除</th>
-			</tr>
-			<c:forEach items="${pageBean.list}" var="notice">
+			<thead>
 				<tr>
-					<td><input type="checkbox" name="nids" value="${notice.id}" /></td>
-					<td><a target="content" href="<%=path%>/notice/viewNotice?id=${notice.id}&page=${page}">${notice.title}</a></td>
-					<td>${notice.author.name}</td>
-					<td>${fn:substring(fn:replace(notice.content,"<","&lt;"),0,30)}...</td>
-					<td><fmt:formatDate value="${notice.time}" pattern="yyyy-MM-dd HH:mm" /></td>
-					<td><a target="content" href="<%=path%>/notice/goModifyNotice?id=${notice.id }&page=${page}" class="btn_edit">编辑</a></td>
-					<td><a target="content" href="<%=path%>/notice/deleteNotice?id=${notice.id }&page=${page}" class="btn_del">删除</a></td>
+					<th><a rel="checkall">全选</a></th>
+					<th>ID</th>
+					<th>周次</th>
+					<th>星期</th>
+					<th>课程</th>
+					<th>逃课人员</th>
+					<th>记录者</th>
+					<th>时间</th>
+					<th>删除</th>
+				</tr>
+			</thead>
+			<c:forEach items="${pageBean.list}" var="attendance">
+				<tr>
+					<td><input type="checkbox" name="ids" value="${attendance.id}" /></td>
+					<td>${attendance.id}</td>
+					<td>${attendance.week}</td>
+					<td>${attendance.day}</td>
+					<td><c:forEach items="${attendance.course}" var="l">周${l.whatDay} - ${l.name}, </c:forEach></td>
+					<td><c:forEach items="${attendance.students}" var="s">${s.name},</c:forEach></td>
+					<td>${attendance.clerk.name}</td>
+					<td>${attendance.time}</td>
+					<td><a target="content" href="<%=path%>/attendance/deleteAttendance?id=${attendance.id}" class="btn_del">删除</a></td>
 				</tr>
 			</c:forEach>
 		</table>
-
 		<div id="pagecount">
 		<p>共 ${pageBean.allRow} 条记录 共 ${pageBean.totalPage} 页 当前第 ${pageBean.currentPage}页</p>
 		<c:choose>
@@ -43,13 +48,13 @@
 				<a><span>上一页</span></a>
 			</c:when>
 			<c:otherwise>
-				<a target="content" href="<%=path%>/notice/listNotice?page=1"><span>首页</span></a>
-				<a target="content" href="<%=path%>/notice/listNotice?page=${pageBean.currentPage-1}"><span>上一页</span></a>
+				<a target="content" href="<%=path%>/attendance/listAttendance?page=1"><span>首页</span></a>
+				<a target="content" href="<%=path%>/attendance/listAttendance?page=${pageBean.currentPage-1}"><span>上一页</span></a>
 			</c:otherwise>
 		</c:choose> <c:choose>
 			<c:when test="${pageBean.currentPage != pageBean.totalPage}">
-				<a target="content" href="<%=path%>/notice/listNotice?page=${pageBean.currentPage+1}"><span>下一页</span></a>
-				<a target="content" href="<%=path%>/notice/listNotice?page=${pageBean.totalPage}"><span>尾页</span></a>
+				<a target="content" href="<%=path%>/attendance/listAttendance?page=${pageBean.currentPage+1}"><span>下一页</span></a>
+				<a target="content" href="<%=path%>/attendance/listAttendance?page=${pageBean.totalPage}"><span>尾页</span></a>
 			</c:when>
 			<c:otherwise>
 				<a><span>下一页</span></a>
@@ -63,4 +68,5 @@
 		</select> <input type="submit" value="确定" /></form>
 	</c:otherwise>
 </c:choose>
+
 

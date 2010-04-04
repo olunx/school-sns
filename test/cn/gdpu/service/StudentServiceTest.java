@@ -1,6 +1,7 @@
 package cn.gdpu.service;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.junit.BeforeClass;
@@ -31,25 +32,19 @@ public class StudentServiceTest{
 	public void add() {
 
 		Student stu1 = new Student();
+		stu1.setSno("1");
+		stu1.setUsername("1");
+		stu1.setPassword("1");
 		stu1.setName("测试1");
 		studentService.addEntity(stu1);
-		Student stu2 = new Student();
-		stu2.setName("测试2");
-		studentService.addEntity(stu2);
-		Student stu3 = new Student();
-		stu3.setName("测试3");
-		Set<Student> set = new HashSet<Student>();
-		set.add(stu1);
-		set.add(stu2);
-		stu3.setFriends(set);
-		studentService.addEntity(stu3);
 		
-		studentService.queryForPage(Student.class, 10, 1);
 	}
 	
 	@Test
 	public void getAllStu() {
-		studentService.getAllEntity(Student.class);
+		List<Student> students = studentService.getAllEntity(Student.class);
+		for(Student s:students)
+		System.out.println(s.getSno());
 		studentService.getEntity(Student.class, "from Student");
 	}
 }
