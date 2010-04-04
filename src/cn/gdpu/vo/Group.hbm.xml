@@ -24,7 +24,7 @@
 		<many-to-one name="admin"/>
 		<list name="post">
 			<key column="groupId"/>
-			<index column="id" />
+			<index column="indexId" />
 			<one-to-many class="Topic"/>
 		</list>
 		<set name="people" lazy="true">

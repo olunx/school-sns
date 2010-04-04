@@ -9,7 +9,7 @@
 		<id name="id" column="id">
 			<generator class="native" />
 		</id>
-		<discriminator column="mytype" type="string" />
+		<!-- <discriminator column="mytype" type="string" /> -->
 		<property name="title" />
 		<property name="time" />
 		<property name="content" />
@@ -17,7 +17,7 @@
 		<property name="istopic" />
 		<list name="post">
 			<key column="topicId" />
-			<index column="id" />
+			<index column="indexId" />
 			<one-to-many class="Topic" />
 		</list>
 	</class>
