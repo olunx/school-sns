@@ -22,15 +22,13 @@
 		<property name="works" />
 		<property name="type" />
 		<many-to-one name="admin"/>
-		
 		<list name="post">
-			<key column="id"/>
-			<index column="listId" />
+			<key column="groupId"/>
+			<index column="id" />
 			<one-to-many class="Topic"/>
 		</list>
-		
 		<set name="people" lazy="true">
-			<key column="id"/>
+			<key column="groupId"/>
 			<one-to-many class="People" />
 		</set>
 		

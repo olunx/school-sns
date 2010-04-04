@@ -26,6 +26,7 @@
 		<mapping resource="cn/gdpu/vo/Hobby.hbm.xml" />
 
 		<mapping resource="cn/gdpu/vo/Topic.hbm.xml" />
+		<mapping resource="cn/gdpu/vo/Mail.hbm.xml" />
 		
 		<mapping resource="cn/gdpu/vo/ClassFee.hbm.xml"/> 
 		<mapping resource="cn/gdpu/vo/Score.hbm.xml"/>

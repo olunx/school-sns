@@ -70,7 +70,7 @@
 			</set>
 			
 			<set name="scores" inverse="true" cascade="all" lazy="true" order-by="id asc">
-				<key column="scoreId"/>
+				<key column="scoresId"/>
 				<one-to-many class="Score" />
 			</set>
 			
