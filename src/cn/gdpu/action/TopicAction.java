@@ -13,6 +13,7 @@ public class TopicAction extends BaseAction {
 
 	private int id;
 	private String ids;
+	private int otherId;
 	private Topic topic;
 	private TopicService<Topic, Integer> topicService;
 	private PageBean pageBean;
@@ -23,12 +24,15 @@ public class TopicAction extends BaseAction {
 		Object author = this.getSession().get("user");
 		if (author != null) {
 			if (author instanceof People) {
-				topic.setAuthor((People) author);
+				People people = (People) author;
+				Log.init(getClass()).info("people name " + people.getName());
+				topic.setAuthor(people);
 			}
 			topic.setTime(new Date());
 			topicService.addEntity(topic);
 		}
-
+		Log.init(getClass()).info("add finish ");
+		
 		return super.add();
 	}
 
@@ -63,7 +67,7 @@ public class TopicAction extends BaseAction {
 			if (author instanceof People) {
 				People people = (People) author;
 				this.pageBean = this.topicService.queryForPage(
-						"from Topic t where t.istopic = '1' and author = '" + people.getName() + "'", 10, page);
+						"from Topic t where t.istopic = '1' and t.author = '" + people.getId() + "'", 10, page);
 				if (pageBean.getList().isEmpty()) {
 					pageBean.setList(null);
 				}
@@ -71,6 +75,19 @@ public class TopicAction extends BaseAction {
 		}
 
 		Log.init(getClass()).info("listMy finish");
+		
+		return super.list();
+	}
+
+	public String listOther() {
+		Log.init(getClass()).info("listOther");
+		this.pageBean = this.topicService.queryForPage("from Topic t where t.istopic = '1' and t.author = '" + otherId + "'", 10,
+				page);
+		if (pageBean.getList().isEmpty()) {
+			pageBean.setList(null);
+		}
+
+		Log.init(getClass()).info("listOther finish");
 		return super.list();
 	}
 
@@ -120,6 +137,14 @@ public class TopicAction extends BaseAction {
 
 	public void setPage(int page) {
 		this.page = page;
+	}
+
+	public int getOtherId() {
+		return otherId;
+	}
+
+	public void setOtherId(int otherId) {
+		this.otherId = otherId;
 	}
 
 }
