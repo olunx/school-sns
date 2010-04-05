@@ -3,8 +3,10 @@ package cn.gdpu.action;
 import cn.gdpu.service.PeopleService;
 import cn.gdpu.service.StudentService;
 import cn.gdpu.util.Log;
+import cn.gdpu.vo.Admin;
 import cn.gdpu.vo.People;
 import cn.gdpu.vo.Student;
+import cn.gdpu.vo.Teacher;
 
 @SuppressWarnings("serial")
 public class LoginAction extends BaseAction {
@@ -13,6 +15,8 @@ public class LoginAction extends BaseAction {
 	private String password;
 	private PeopleService<People, Integer> peopleService;
 	private StudentService<Student, Integer> studentService;
+	private StudentService<Teacher, Integer> teacherService;
+	private StudentService<Admin, Integer> adminService;
 
 	public String auth() {
 
@@ -25,9 +29,24 @@ public class LoginAction extends BaseAction {
 				People people = peopleService.getPeopleByUsernameAndPwd(username, password);
 				Log.init(getClass()).info("登录用户对象: " + people);
 				if (people != null) {
-					Student student = studentService.getStudentByUserName(username);
 					Log.init(getClass()).info("验证通过，跳转: ");
-					this.getSession().put("student", student);
+					this.getSession().put("user", people);
+					int peopleId = people.getId();
+					Student student = studentService.getEntity(Student.class, peopleId);
+					if (student != null) {
+						this.getSession().put("student", student);
+					} else {
+						Admin admin = adminService.getEntity(Admin.class, peopleId);
+						if(admin != null) {
+							this.getSession().put("admin", admin);
+						}else {
+							Teacher teacher = teacherService.getEntity(Teacher.class, peopleId);
+							if(teacher != null) {
+								this.getSession().put("teacher", teacher);
+							}
+						}
+					}
+
 					this.getSession().put("isAccess", "true");
 					return super.SUCCESS;
 				}
@@ -35,9 +54,9 @@ public class LoginAction extends BaseAction {
 		}
 
 		// 绕过验证
-		 this.getSession().put("isAccess", "true");
-		 return super.SUCCESS;
-		//return super.INDEX;
+		this.getSession().put("isAccess", "true");
+		return super.SUCCESS;
+		// return super.INDEX;
 	}
 
 	public String go() {
@@ -75,4 +94,21 @@ public class LoginAction extends BaseAction {
 	public void setStudentService(StudentService<Student, Integer> studentService) {
 		this.studentService = studentService;
 	}
+
+	public StudentService<Teacher, Integer> getTeacherService() {
+		return teacherService;
+	}
+
+	public void setTeacherService(StudentService<Teacher, Integer> teacherService) {
+		this.teacherService = teacherService;
+	}
+
+	public StudentService<Admin, Integer> getAdminService() {
+		return adminService;
+	}
+
+	public void setAdminService(StudentService<Admin, Integer> adminService) {
+		this.adminService = adminService;
+	}
+
 }

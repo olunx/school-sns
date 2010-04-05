@@ -25,7 +25,6 @@ public class TopicAction extends BaseAction {
 			if (author instanceof People) {
 				topic.setAuthor((People) author);
 			}
-			;
 			topic.setTime(new Date());
 			topicService.addEntity(topic);
 		}
@@ -57,6 +56,15 @@ public class TopicAction extends BaseAction {
 		return super.list();
 	}
 
+	public String listMy() {
+		Log.init(getClass()).info("listMy");
+		this.pageBean = this.topicService.queryForPage("from Topic t where t.istopic = '1'", 10, page);
+		if (pageBean.getList().isEmpty()) {
+			pageBean.setList(null);
+		}
+		Log.init(getClass()).info("listMy finish");
+		return super.list();
+	}
 	public int getId() {
 		return id;
 	}
