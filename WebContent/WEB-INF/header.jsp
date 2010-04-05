@@ -97,7 +97,9 @@
 	<li><a href="#">消息</a></li>
 	<li><a href="#">博客</a></li>
 </ul>
-<div class="nav_account"><span class="loginName">欢迎</span> <a rel="dialog" href="<%=path%>/login/goLogin">登录</a> | <a href="">注册</a></div>
+<div class="nav_account"><span class="loginName">欢迎</span>
+ <a rel="dialog" href="<%=path%>/mail/listMyReceMail">小纸条</a>
+ <a rel="dialog" href="<%=path%>/login/goLogin">登录</a> | <a href="">注册</a></div>
 <div id="dialog" /></div>
 </div>
 </div>

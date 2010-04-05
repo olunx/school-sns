@@ -9,8 +9,8 @@
 <label>接收者：</label><input type="text" name="receiverId" value="${receiverId}" />
 <br/>
 <label>标题：</label><input type="text" name="mail.title" />
-<div class="paddingmin"><textarea name="mail.content" id="demo" rows="10" cols="50" style="width: 600px; height: 195px"></textarea>
+<div class="paddingmin"><textarea name="mail.content" id="demo" rows="10" cols="50" style="width: 500px; height: 150px"></textarea>
 <br />
 </div>
-<p class="paddingmin"><input type="submit" value="提交" /> <input type="reset" value="重置" /><input type="hidden" name="mail.istopic" value="true" /></p>
+<p class="paddingmin"><input type="submit" value="提交" /> <input type="reset" value="重置" /></p>
 </form>

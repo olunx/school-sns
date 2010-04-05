@@ -1,6 +1,8 @@
 package cn.gdpu.action;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import cn.gdpu.service.MailService;
 import cn.gdpu.service.PeopleService;
@@ -33,6 +35,7 @@ public class MailAction extends BaseAction {
 				}
 				mail.setIsreaded(false);
 				mail.setTime(new Date());
+				mail.setIstopic(true);
 				mailService.addEntity(mail);
 			}
 		}
@@ -40,8 +43,50 @@ public class MailAction extends BaseAction {
 		return super.add();
 	}
 
+	public String goReply() {
+		return "replyPage";
+	}
+
+	public String reply() {
+
+		Object author = this.getSession().get("user");
+		if (author != null) {
+			if (author instanceof People) {
+				People people = (People) author;
+				Log.init(getClass()).info("people name " + people.getName());
+				mail.setSender(people);
+			}
+			mail.setIsreaded(false);
+			mail.setTime(new Date());
+			mail.setIstopic(false);
+			mailService.addEntity(mail);
+
+			Mail parent = mailService.getEntity(Mail.class, id);
+			List<Mail> list = parent.getReply();
+			if (list == null) {
+				list = new ArrayList<Mail>();
+			}
+			list.add(mail);
+			parent.setReply(list);
+			parent.setHasreply(true);
+			
+			mailService.updateEntity(parent);
+		}
+
+		Log.init(getClass()).info("add finish ");
+
+		return super.add();
+	}
+
 	@Override
 	public String delete() {
+		Mail del = mailService.getEntity(Mail.class, id);
+		List<Mail> reply = del.getReply();
+		if (reply != null) {
+			for (Mail m : reply) {
+				mailService.deleteEntity(Mail.class, m.getId());
+			}
+		}
 		mailService.deleteEntity(Mail.class, id);
 		return super.delete();
 	}
@@ -104,6 +149,7 @@ public class MailAction extends BaseAction {
 	public String view() {
 		mail = mailService.getEntity(Mail.class, id);
 		mail.setIsreaded(true);
+		mail.setHasreply(false);
 		mailService.updateEntity(mail);
 		return super.view();
 	}

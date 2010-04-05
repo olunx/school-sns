@@ -12,6 +12,7 @@ public class Mail {
 	private Date time;
 	private boolean isreaded;
 	private boolean istopic;
+	private boolean hasreply;
 	private List<Mail> reply;
 
 	public int getId() {
@@ -76,6 +77,14 @@ public class Mail {
 
 	public void setIstopic(boolean istopic) {
 		this.istopic = istopic;
+	}
+
+	public boolean isHasreply() {
+		return hasreply;
+	}
+
+	public void setHasreply(boolean hasreply) {
+		this.hasreply = hasreply;
 	}
 
 	public List<Mail> getReply() {

@@ -26,10 +26,22 @@
 			<c:forEach items="${pageBean.list}" var="mail">
 				<tr>
 					<td><input type="checkbox" name="ids" value="${mail.id }" />
-					<c:choose><c:when test="${mail.isreaded == false}"><a style="color:red;">未读</a></c:when><c:otherwise>已读</c:otherwise></c:choose>
+					 <c:if test="${mail.isreaded == false}"><a style="color:red;">未读</a></c:if>
+					 <a target="content" href="<%=path%>/mail/goReplyMail?id=${mail.id }">回复</a>
 					</td>
-					<td><a target="content" href="<%=path%>/mail/viewMail?id=${mail.id}">${mail.title}</a></td>
-					<td>${mail.content}</td>
+					<td>
+					<a target="content" href="<%=path%>/mail/viewMail?id=${mail.id}">${mail.title}</a>
+					 <c:if test="${mail.hasreply == true}"><a style="color:red;">有新回复</a></c:if>
+					</td>
+					<td>${mail.content}
+					<c:choose>
+						<c:when test="${mail.reply != null}">
+							<c:forEach items="${mail.reply}" var="reply">
+								回复： ${reply.content}
+							</c:forEach>
+						</c:when>
+					</c:choose>
+					</td>
 					<td>${mail.sender.name}</td>
 					<td>${mail.receiver.name}</td>
 					<td><fmt:formatDate value="${mail.time}" pattern="yyyy-MM-dd HH:mm" /></td>

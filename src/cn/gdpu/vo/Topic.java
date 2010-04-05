@@ -10,7 +10,8 @@ public class Topic {
 	private People author;
 	private Date time;
 	private boolean istopic;
-	private List<Topic> post;
+	private boolean hasreply;
+	private List<Topic> reply;
 
 	public int getId() {
 		return id;
@@ -60,12 +61,20 @@ public class Topic {
 		this.istopic = istopic;
 	}
 
-	public List<Topic> getPost() {
-		return post;
+	public boolean isHasreply() {
+		return hasreply;
 	}
 
-	public void setPost(List<Topic> post) {
-		this.post = post;
+	public void setHasreply(boolean hasreply) {
+		this.hasreply = hasreply;
+	}
+
+	public List<Topic> getReply() {
+		return reply;
+	}
+
+	public void setReply(List<Topic> reply) {
+		this.reply = reply;
 	}
 
 }

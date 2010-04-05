@@ -52,7 +52,7 @@ public class TopicServiceTest {
 		post.add(t2);
 		post.add(t3);
 
-		t.setPost(post);
+		t.setReply(post);
 		topicService.addEntity(t);
 
 	}

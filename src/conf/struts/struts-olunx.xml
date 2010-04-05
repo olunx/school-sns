@@ -37,6 +37,7 @@
 			<result name="addPage">/WEB-INF/model/mail/mailAdd.jsp</result>
 			<result name="index">/WEB-INF/model/mail/mailList.jsp</result>
 			<result name="viewPage">/WEB-INF/model/mail/mailView.jsp</result>
+			<result name="replyPage">/WEB-INF/model/mail/mailReply.jsp</result>
 		</global-results>
 		<action name="*Mail" class="cn.gdpu.action.MailAction" method="{1}"></action>
 	</package>

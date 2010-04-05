@@ -7,11 +7,11 @@
 %>
 <form onSubmit="post(this);return false;" action="<%=path%>/topic/addTopic" method="post">
 <label>发表：</label>
-<div class="paddingmin"><textarea name="topic.content" id="demo" rows="10" cols="50" style="width: 600px; height: 195px"></textarea>
+<div class="paddingmin"><textarea name="topic.content" id="demo" rows="10" cols="50" style="width: 500px; height: 150px"></textarea>
 <br />
 </div>
 <a>图片    视频    链接    文件    投票</a>
-<p class="paddingmin"><input type="submit" value="提交" /> <input type="reset" value="重置" /><input type="hidden" name="topic.istopic" value="true" /></p>
+<p class="paddingmin"><input type="submit" value="提交" /> <input type="reset" value="重置" /></p>
 </form>
 
 <c:choose>
@@ -39,9 +39,9 @@
 					<td></td>
 					<td>${topic.content}
 					<c:choose>
-						<c:when test="${topic.post != null}">
-							<c:forEach items="${topic.post}" var="post">
-								回复： ${post.content}
+						<c:when test="${topic.reply != null}">
+							<c:forEach items="${topic.reply}" var="reply">
+								回复： ${reply.content}
 							</c:forEach>
 						</c:when>
 					</c:choose>

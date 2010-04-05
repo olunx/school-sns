@@ -17,6 +17,7 @@
 		<many-to-one name="receiver" />
 		<property name="isreaded" />
 		<property name="istopic" />
+		<property name="hasreply" />
 		<list name="reply">
 			<key column="mailId" />
 			<index column="indexId" />
