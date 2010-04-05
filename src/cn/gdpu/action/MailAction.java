@@ -13,7 +13,7 @@ import cn.gdpu.vo.Mail;
 public class MailAction extends BaseAction {
 
 	private int id;
-	private String ids;
+	private Integer[] ids;
 	private Mail mail;
 	private MailService<Mail, Integer> mailService;
 	private int receiverId;
@@ -49,7 +49,7 @@ public class MailAction extends BaseAction {
 	@Override
 	public String deleteMany() {
 		Log.init(getClass()).info("deleMamy " + ids);
-		// TODO Auto-generated method stub
+		mailService.deleteManyEntity(Mail.class, ids);
 		return super.deleteMany();
 	}
 
@@ -70,8 +70,8 @@ public class MailAction extends BaseAction {
 		if (author != null) {
 			if (author instanceof People) {
 				People people = (People) author;
-				this.pageBean = this.mailService.queryForPage(
-						"from Mail m where m.istopic = '1' and m.sender = '" + people.getId() + "'", 10, page);
+				this.pageBean = this.mailService.queryForPage("from Mail m where m.istopic = '1' and m.sender = '" + people.getId() + "'",
+						10, page);
 				if (pageBean.getList().isEmpty()) {
 					pageBean.setList(null);
 				}
@@ -81,7 +81,7 @@ public class MailAction extends BaseAction {
 		Log.init(getClass()).info("listMy finish");
 		return super.list();
 	}
-	
+
 	public String listMyRece() {
 		Log.init(getClass()).info("listMy");
 		Object author = this.getSession().get("user");
@@ -99,7 +99,15 @@ public class MailAction extends BaseAction {
 		Log.init(getClass()).info("listMy finish");
 		return super.list();
 	}
-	
+
+	@Override
+	public String view() {
+		mail = mailService.getEntity(Mail.class, id);
+		mail.setIsreaded(true);
+		mailService.updateEntity(mail);
+		return super.view();
+	}
+
 	public int getId() {
 		return id;
 	}
@@ -108,11 +116,11 @@ public class MailAction extends BaseAction {
 		this.id = id;
 	}
 
-	public String getIds() {
+	public Integer[] getIds() {
 		return ids;
 	}
 
-	public void setIds(String ids) {
+	public void setIds(Integer[] ids) {
 		this.ids = ids;
 	}
 

@@ -1,6 +1,8 @@
 package cn.gdpu.action;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import cn.gdpu.service.TopicService;
 import cn.gdpu.util.Log;
@@ -12,7 +14,7 @@ import cn.gdpu.vo.Topic;
 public class TopicAction extends BaseAction {
 
 	private int id;
-	private String ids;
+	private Integer[] ids;
 	private int otherId;
 	private Topic topic;
 	private TopicService<Topic, Integer> topicService;
@@ -36,6 +38,38 @@ public class TopicAction extends BaseAction {
 		return super.add();
 	}
 
+	public String goReply() {
+		return "replyPage";
+	}
+	
+	public String reply() {
+	
+		Object author = this.getSession().get("user");
+		if (author != null) {
+			if (author instanceof People) {
+				People people = (People) author;
+				Log.init(getClass()).info("people name " + people.getName());
+				topic.setAuthor(people);
+			}
+			topic.setTime(new Date());
+			topicService.addEntity(topic);
+			
+			Topic parent = topicService.getEntity(Topic.class, id);
+			List<Topic> list = parent.getPost(); 
+			if(list == null){
+				list = new ArrayList<Topic>();
+			}
+			list.add(topic);
+			parent.setPost(list);
+			
+			topicService.updateEntity(parent);
+		}
+		
+		Log.init(getClass()).info("add finish ");
+		
+		return super.add();
+	}
+	
 	@Override
 	public String delete() {
 		topicService.deleteEntity(Topic.class, id);
@@ -45,7 +79,7 @@ public class TopicAction extends BaseAction {
 	@Override
 	public String deleteMany() {
 		Log.init(getClass()).info("deleMamy " + ids);
-		// TODO Auto-generated method stub
+		topicService.deleteManyEntity(Topic.class, ids);
 		return super.deleteMany();
 	}
 
@@ -99,11 +133,11 @@ public class TopicAction extends BaseAction {
 		this.id = id;
 	}
 
-	public String getIds() {
+	public Integer[] getIds() {
 		return ids;
 	}
 
-	public void setIds(String ids) {
+	public void setIds(Integer[] ids) {
 		this.ids = ids;
 	}
 
