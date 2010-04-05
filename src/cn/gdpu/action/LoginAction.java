@@ -1,7 +1,9 @@
 package cn.gdpu.action;
 
+import cn.gdpu.service.AdminService;
 import cn.gdpu.service.PeopleService;
 import cn.gdpu.service.StudentService;
+import cn.gdpu.service.TeacherService;
 import cn.gdpu.util.Log;
 import cn.gdpu.vo.Admin;
 import cn.gdpu.vo.People;
@@ -15,8 +17,8 @@ public class LoginAction extends BaseAction {
 	private String password;
 	private PeopleService<People, Integer> peopleService;
 	private StudentService<Student, Integer> studentService;
-	private StudentService<Teacher, Integer> teacherService;
-	private StudentService<Admin, Integer> adminService;
+	private TeacherService<Teacher, Integer> teacherService;
+	private AdminService<Admin, Integer> adminService;
 
 	public String auth() {
 
@@ -37,11 +39,11 @@ public class LoginAction extends BaseAction {
 						this.getSession().put("student", student);
 					} else {
 						Admin admin = adminService.getEntity(Admin.class, peopleId);
-						if(admin != null) {
+						if (admin != null) {
 							this.getSession().put("admin", admin);
-						}else {
+						} else {
 							Teacher teacher = teacherService.getEntity(Teacher.class, peopleId);
-							if(teacher != null) {
+							if (teacher != null) {
 								this.getSession().put("teacher", teacher);
 							}
 						}
@@ -95,19 +97,19 @@ public class LoginAction extends BaseAction {
 		this.studentService = studentService;
 	}
 
-	public StudentService<Teacher, Integer> getTeacherService() {
+	public TeacherService<Teacher, Integer> getTeacherService() {
 		return teacherService;
 	}
 
-	public void setTeacherService(StudentService<Teacher, Integer> teacherService) {
+	public void setTeacherService(TeacherService<Teacher, Integer> teacherService) {
 		this.teacherService = teacherService;
 	}
 
-	public StudentService<Admin, Integer> getAdminService() {
+	public AdminService<Admin, Integer> getAdminService() {
 		return adminService;
 	}
 
-	public void setAdminService(StudentService<Admin, Integer> adminService) {
+	public void setAdminService(AdminService<Admin, Integer> adminService) {
 		this.adminService = adminService;
 	}
 
