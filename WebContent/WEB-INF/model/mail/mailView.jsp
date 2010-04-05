@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%
 	String path = request.getContextPath();
@@ -10,4 +11,11 @@
 ${mail.content}
 </textarea>
 <br />
+<c:choose>
+	<c:when test="${mail.reply != null}">
+		<c:forEach items="${mail.reply}" var="reply">
+			 ${reply.sender.name} 回复： ${reply.content}
+		</c:forEach>
+	</c:when>
+</c:choose>
 </div>

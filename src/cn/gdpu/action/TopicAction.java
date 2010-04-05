@@ -31,19 +31,20 @@ public class TopicAction extends BaseAction {
 				topic.setAuthor(people);
 			}
 			topic.setTime(new Date());
+			topic.setIstopic(true);
 			topicService.addEntity(topic);
 		}
 		Log.init(getClass()).info("add finish ");
-		
+
 		return super.add();
 	}
 
 	public String goReply() {
 		return "replyPage";
 	}
-	
+
 	public String reply() {
-	
+
 		Object author = this.getSession().get("user");
 		if (author != null) {
 			if (author instanceof People) {
@@ -52,26 +53,35 @@ public class TopicAction extends BaseAction {
 				topic.setAuthor(people);
 			}
 			topic.setTime(new Date());
+			topic.setIstopic(false);
 			topicService.addEntity(topic);
-			
+
 			Topic parent = topicService.getEntity(Topic.class, id);
-			List<Topic> list = parent.getPost(); 
-			if(list == null){
+			List<Topic> list = parent.getReply();
+			if (list == null) {
 				list = new ArrayList<Topic>();
 			}
 			list.add(topic);
-			parent.setPost(list);
-			
+			parent.setReply(list);
+			parent.setHasreply(true);
 			topicService.updateEntity(parent);
 		}
-		
+
 		Log.init(getClass()).info("add finish ");
-		
+
 		return super.add();
 	}
-	
+
 	@Override
 	public String delete() {
+		Topic del = topicService.getEntity(Topic.class, id);
+		List<Topic> reply = del.getReply();
+		if (reply != null) {
+			for (Topic t : reply) {
+				topicService.deleteEntity(Topic.class, t.getId());
+			}
+		}
+
 		topicService.deleteEntity(Topic.class, id);
 		return super.delete();
 	}
@@ -109,14 +119,13 @@ public class TopicAction extends BaseAction {
 		}
 
 		Log.init(getClass()).info("listMy finish");
-		
+
 		return super.list();
 	}
 
 	public String listOther() {
 		Log.init(getClass()).info("listOther");
-		this.pageBean = this.topicService.queryForPage("from Topic t where t.istopic = '1' and t.author = '" + otherId + "'", 10,
-				page);
+		this.pageBean = this.topicService.queryForPage("from Topic t where t.istopic = '1' and t.author = '" + otherId + "'", 10, page);
 		if (pageBean.getList().isEmpty()) {
 			pageBean.setList(null);
 		}
