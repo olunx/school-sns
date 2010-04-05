@@ -12,5 +12,7 @@
 	<li><a target="content" href="<%=path%>/course/listCourse">课程</a> <a target="content" href="<%=path%>/course/goAddCourse">添加</a></li>
 	<li><a target="content" href="<%=path%>/score/queryScore">成绩</a> <a target="content" href="<%=path%>/score/goAddScore">添加</a></li>
 	<li><a target="content" href="<%=path%>/attendance/listAttendance">考勤</a> <a target="content" href="<%=path%>/attendance/goAddAttendance">添加</a></li>
+	<li><a target="content" href="<%=path%>/vote/listVote">投票</a> <a target="content" href="<%=path%>/vote/goAddVote">添加</a></li>
+	
 </ul>
 </div>

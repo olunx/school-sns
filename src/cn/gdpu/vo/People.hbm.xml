@@ -34,6 +34,7 @@
 			private Set<Achievement> achievement;
 			private Set<Student> friends;
 			private Set<Score> scores;
+			private Set<Vote> votes;
 		 -->
 		<joined-subclass name="Student" table="t_student"> 
             <key column="id" /> 
@@ -74,6 +75,10 @@
 				<one-to-many class="Score" />
 			</set>
 			
+			<set name="votes" table="t_vote_student" lazy="true">
+				<key column="studentId" />
+				<many-to-many class="Vote" column="voteId" />
+			</set>
 			
 		 </joined-subclass> 
 		 <!-- 

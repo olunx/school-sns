@@ -22,7 +22,16 @@ public class Student extends People {
 	private Set<Achievement> achievement;
 	private Set<Student> friends;
 	private Set<Score> scores;
+	private Set<Vote> votes;
 
+
+	public Set<Vote> getVotes() {
+		return votes;
+	}
+
+	public void setVotes(Set<Vote> votes) {
+		this.votes = votes;
+	}
 
 	public School getSchool() {
 		return school;

@@ -57,7 +57,10 @@ public class ScoreAction extends BaseAction {
 		Student student = (Student) getSession().get("student");
 		String sno = student.getSno();
 		Student stu = studentService.getStudentByNo(sno);
-		Set<Score> scores = stu.getScores();
+		Set<Score> scores = null;
+		if(stu != null){
+			scores = stu.getScores();
+		}
 		if(scores.size() == 0)
 			scores = null;			
 		getRequest().put("scores", scores);
