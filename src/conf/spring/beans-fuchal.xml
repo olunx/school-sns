@@ -30,4 +30,19 @@
 	<bean name="scoreService" class="cn.gdpu.service.impl.ScoreServiceImpl" scope="prototype">
 		<property name="baseDao" ref="scoreDaoImpl" />
 	</bean>
+	
+	<!-- Vote Bean 投票管理 -->
+	<bean name="voteDaoImpl" class="cn.gdpu.dao.impl.VoteDaoImpl" scope="prototype">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean name="voteService" class="cn.gdpu.service.impl.VoteServiceImpl" scope="prototype">
+		<property name="baseDao" ref="voteDaoImpl" />
+	</bean>
+	<!-- VoteItem Bean 投票管理 -->
+	<bean name="voteItemDaoImpl" class="cn.gdpu.dao.impl.VoteItemDaoImpl" scope="prototype">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean name="voteItemService" class="cn.gdpu.service.impl.VoteItemServiceImpl" scope="prototype">
+		<property name="baseDao" ref="voteItemDaoImpl" />
+	</bean>
 </beans>

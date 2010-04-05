@@ -31,4 +31,17 @@
 			<param name="savePath">/upload</param>
 		</action>
 	</package>	
+	
+	<!-- 投票管理 -->
+	<package name="vote" extends="default" namespace="/vote">
+		<global-results>
+			<result name="list" type="redirect">listVote?page=${page}</result>
+			<result name="viewPage" type="redirect">viewVote?vid=${vid}</result>
+			<result name="index">/WEB-INF/model/vote/voteList.jsp</result> 
+			<result name="addPage">/WEB-INF/model/vote/voteAdd.jsp</result>
+			<result name="view">/WEB-INF/model/vote/voteView.jsp</result>
+			<result name="govoting">/WEB-INF/model/vote/voteLink.jsp</result>
+		</global-results>
+		<action name="*Vote" class="cn.gdpu.action.VoteAction" method="{1}"></action>
+	</package>
 </struts>    
