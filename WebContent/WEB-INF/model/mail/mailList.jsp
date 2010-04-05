@@ -25,8 +25,10 @@
 			</tr>
 			<c:forEach items="${pageBean.list}" var="mail">
 				<tr>
-					<td><input type="checkbox" name="ids" value="${mail.id }" /></td>
-					<td>${mail.title}</td>
+					<td><input type="checkbox" name="ids" value="${mail.id }" />
+					<c:choose><c:when test="${mail.isreaded == false}"><a style="color:red;">未读</a></c:when><c:otherwise>已读</c:otherwise></c:choose>
+					</td>
+					<td><a target="content" href="<%=path%>/mail/viewMail?id=${mail.id}">${mail.title}</a></td>
 					<td>${mail.content}</td>
 					<td>${mail.sender.name}</td>
 					<td>${mail.receiver.name}</td>

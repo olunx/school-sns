@@ -34,10 +34,18 @@
 			</tr>
 			<c:forEach items="${pageBean.list}" var="topic">
 				<tr>
-					<td><input type="checkbox" name="ids" value="${topic.id }" /></td>
+					<td><input type="checkbox" name="ids" value="${topic.id }" /><a target="content" href="<%=path%>/topic/goReplyTopic?id=${topic.id }">回复</a></td>
 					<td>${topic.title}</td>
 					<td></td>
-					<td>${topic.content}</td>
+					<td>${topic.content}
+					<c:choose>
+						<c:when test="${topic.post != null}">
+							<c:forEach items="${topic.post}" var="post">
+								回复： ${post.content}
+							</c:forEach>
+						</c:when>
+					</c:choose>
+					</td>
 					<td>${topic.author.name}</td>
 					<td><fmt:formatDate value="${topic.time}" pattern="yyyy-MM-dd HH:mm" /></td>
 					<td><a target="content" href="<%=path%>/topic/deleteTopic?id=${topic.id }&page=${page}" class="btn_del">删除</a></td>

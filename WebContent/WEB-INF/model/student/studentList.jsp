@@ -25,7 +25,8 @@
 			<c:forEach items="${pageBean.list}" var="student">
 				<tr>
 					<td><input type="checkbox" name="ids" value="${student.id}" /></td>
-					<td><a target="content" href="<%=path%>/student/viewStudent?id=${student.id}&page=${page}">${student.username}</a></td>
+					<td><a target="content" href="<%=path%>/student/viewStudent?id=${student.id}&page=${page}">${student.username}</a>
+					 <a target="content" href="<%=path%>/mail/goAddMail?receiverId=${student.id}">传纸条</a></td>
 					<td>${student.name}</td>
 					<td>${student.dorm}</td>
 					<td>${student.status}</td>
