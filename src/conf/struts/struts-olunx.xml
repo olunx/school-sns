@@ -29,7 +29,7 @@
 		</global-results>
 		<action name="*Topic" class="cn.gdpu.action.TopicAction" method="{1}"></action>
 	</package>
-	
+
 	<!-- 邮件-->
 	<package name="mail" extends="default" namespace="/mail">
 		<global-results>
@@ -41,4 +41,18 @@
 		</global-results>
 		<action name="*Mail" class="cn.gdpu.action.MailAction" method="{1}"></action>
 	</package>
+
+	<!-- 上传截图图片-->
+	<package name="img" extends="default" namespace="/img">
+		<global-results>
+			<result name="success">/WEB-INF/model/dialog/avatar.jsp</result>
+			<result name="select">/WEB-INF/model/dialog/avatar.jsp</result>
+			<result name="index">/WEB-INF/model/test/listTest.jsp</result>
+		</global-results>
+		<action name="*Upload" class="cn.gdpu.action.FileUploadAction" method="{1}">
+			<!-- Action中的savePath属性的值 -->
+			<param name="savePath">/upload</param>
+		</action>
+	</package>
+
 </struts>    

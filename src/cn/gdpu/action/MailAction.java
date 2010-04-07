@@ -80,13 +80,6 @@ public class MailAction extends BaseAction {
 
 	@Override
 	public String delete() {
-		Mail del = mailService.getEntity(Mail.class, id);
-		List<Mail> reply = del.getReply();
-		if (reply != null) {
-			for (Mail m : reply) {
-				mailService.deleteEntity(Mail.class, m.getId());
-			}
-		}
 		mailService.deleteEntity(Mail.class, id);
 		return super.delete();
 	}
