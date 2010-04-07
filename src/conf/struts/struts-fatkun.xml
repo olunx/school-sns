@@ -27,5 +27,13 @@
 		</global-results>
 		<action name="*Attendance" class="cn.gdpu.action.AttendanceAction" method="{1}"></action>
 	</package>
-	
+
+	<!-- 聊天室的Action -->
+	<package name="chat" extends="default" namespace="/chat">
+		<global-results>
+			<result name="list" type="redirect">listChat</result>
+			<result name="index">/WEB-INF/model/chat/chatList.jsp</result> 
+		</global-results>
+		<action name="*Chat" class="cn.gdpu.action.ChatAction" method="{1}"></action>
+	</package>
 </struts>    
