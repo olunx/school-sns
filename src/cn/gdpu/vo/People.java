@@ -7,7 +7,7 @@ public class People {
 	private String name;
 	private String sex;
 	private int permission;
-	private String avatar;
+	private Image avatar;
 	private String phoneNo;
 	private String email;
 	private String qq;
@@ -60,11 +60,11 @@ public class People {
 		this.permission = permission;
 	}
 
-	public String getAvatar() {
+	public Image getAvatar() {
 		return avatar;
 	}
 
-	public void setAvatar(String avatar) {
+	public void setAvatar(Image avatar) {
 		this.avatar = avatar;
 	}
 

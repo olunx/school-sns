@@ -4,23 +4,30 @@ import java.util.List;
 
 public class PageBean {
 
-	  private List list;        //要返回的某一页的记录列表  
+	  @SuppressWarnings("unchecked")
+	private List list;        //要返回的某一页的记录列表  
       
 	    private int allRow;         //总记录数  
 	    private int totalPage;        //总页数  
 	    private int currentPage;    //当前页  
 	    private int pageSize;        //每页记录数  
 	      
-	    private boolean isFirstPage;    //是否为第一页  
-	    private boolean isLastPage;        //是否为最后一页  
-	    private boolean hasPreviousPage;    //是否有前一页  
-	    private boolean hasNextPage;        //是否有下一页  
+	    @SuppressWarnings("unused")
+		private boolean isFirstPage;    //是否为第一页  
+	    @SuppressWarnings("unused")
+		private boolean isLastPage;        //是否为最后一页  
+	    @SuppressWarnings("unused")
+		private boolean hasPreviousPage;    //是否有前一页  
+	    @SuppressWarnings("unused")
+		private boolean hasNextPage;        //是否有下一页  
 	      
 	      
-	    public List getList() {  
+	    @SuppressWarnings("unchecked")
+		public List getList() {  
 	        return list;  
 	    }  
-	    public void setList(List list) {  
+	    @SuppressWarnings("unchecked")
+		public void setList(List list) {  
 	        this.list = list;  
 	    }  
 	    public int getAllRow() {  
