@@ -36,7 +36,6 @@ public class EditorUploadAction extends BaseAction {
 		File target = null;
 		String targetFileName = null;
 		targetFileName = generateFileName(fileName);
-		System.out.println("test : sdfsdf " + targetFileName);
 		target = new File(targetDirectory, targetFileName);
 		
 		try {
@@ -46,7 +45,6 @@ public class EditorUploadAction extends BaseAction {
 			e.printStackTrace();
 		}
 		imgUrl = context.getContextPath() + savePath + "/" + targetFileName;
-		System.out.println("sdfsdfsadfsadfsdf" + imgUrl);
 		getRequest().put("imgUrl", imgUrl);
 		return SUCCESS;
 	}

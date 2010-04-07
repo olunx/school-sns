@@ -35,6 +35,7 @@
 			private Set<Student> friends;
 			private Set<Score> scores;
 			private Set<Vote> votes;
+			private Set<Goods> goods;
 		 -->
 		<joined-subclass name="Student" table="t_student"> 
             <key column="id" /> 
@@ -78,6 +79,11 @@
 			<set name="votes" table="t_vote_student" lazy="true">
 				<key column="studentId" />
 				<many-to-many class="Vote" column="voteId" />
+			</set>
+			
+			<set name="goods" inverse="true" cascade="all" lazy="true" order-by="id asc">
+				<key column="studentId" />
+				<one-to-many class="Goods" />
 			</set>
 			
 		 </joined-subclass> 
