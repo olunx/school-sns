@@ -18,7 +18,7 @@
 		<property name="isreaded" />
 		<property name="istopic" />
 		<property name="hasreply" />
-		<list name="reply">
+		<list name="reply" cascade="all">
 			<key column="mailId" />
 			<index column="indexId" />
 			<one-to-many class="Mail" />

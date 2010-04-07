@@ -16,7 +16,7 @@
 		<many-to-one name="author" />
 		<property name="istopic" />
 		<property name="hasreply" />
-		<list name="reply">
+		<list name="reply" cascade="all">
 			<key column="topicId" />
 			<index column="indexId" />
 			<one-to-many class="Topic" />

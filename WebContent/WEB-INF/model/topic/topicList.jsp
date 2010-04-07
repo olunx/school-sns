@@ -13,47 +13,47 @@
 <a>图片    视频    链接    文件    投票</a>
 <p class="paddingmin"><input type="submit" value="提交" /> <input type="reset" value="重置" /></p>
 </form>
-
+<style type="text/css">
+.box{width:98%;float:left;margin-bottom:30px;border:1px solid black;}
+.left{width:80px;height:30px;float:left;margin:1px;border:1px solid black;}
+.right{width:450px;float:left;margin:5px;border:1px solid black;}
+.reply{width:90%;float:right;margin:5px;border:1px solid black;}
+</style>
 <c:choose>
 
 	<c:when test="${pageBean.list==null}">
 		<a>没有数据</a>
 	</c:when>
 	<c:otherwise>
-
+		<div id="box">
 		<form onSubmit="post(this);return false;"  action="<%=path%>/topic/deleteManyTopic" method="post">
-		<table class="table">
-			<tr>
-				<th><a rel="checkall">全选</a></th>
-				<th>标题</th>
-				<th>类别</th>
-				<th>内容</th>
-				<th>作者</th>
-				<th>创建时间</th>
-				<th>删除</th>
-			</tr>
-			<c:forEach items="${pageBean.list}" var="topic">
-				<tr>
-					<td><input type="checkbox" name="ids" value="${topic.id }" /><a target="content" href="<%=path%>/topic/goReplyTopic?id=${topic.id }">回复</a></td>
-					<td>${topic.title}</td>
-					<td></td>
-					<td>${topic.content}
-					<c:choose>
-						<c:when test="${topic.reply != null}">
-							<c:forEach items="${topic.reply}" var="reply">
-								回复： ${reply.content}
-							</c:forEach>
-						</c:when>
-					</c:choose>
-					</td>
-					<td>${topic.author.name}</td>
-					<td><fmt:formatDate value="${topic.time}" pattern="yyyy-MM-dd HH:mm" /></td>
-					<td><a target="content" href="<%=path%>/topic/deleteTopic?id=${topic.id }&page=${page}" class="btn_del">删除</a></td>
-				</tr>
-			</c:forEach>
-		</table>
+		<c:forEach items="${pageBean.list}" var="topic">
+			<div class="box">
+	    	<div class="left">
+		 		<input type="checkbox" name="ids" value="${topic.id }" />
+				 ${topic.author.name}
+				<br/>
+				<fmt:formatDate value="${topic.time}" pattern="yyyy-MM-dd HH:mm" />
+				<br/>
+				<a target="content" href="<%=path%>/topic/goReplyTopic?id=${topic.id }">回复</a> 
+				<a target="content" href="<%=path%>/topic/deleteTopic?id=${topic.id }&page=${page}" class="btn_del">删除</a>
+	    	</div>
+	    	<div class="right">
+	        	<div class="text">
+	            	主要内容 : ${topic.content}
+	            </div>
+	            <c:choose>
+					<c:when test="${topic.reply != null}">
+						<c:forEach items="${topic.reply}" var="reply">
+							<div class="reply">${reply.author.name} 回复： ${reply.content}</div>
+						</c:forEach>
+					</c:when>
+				</c:choose>
+	        </div>
+	    	</div>
+		</c:forEach>
 		
-		<div id="pagecount">
+		<div id="pagecount" style="margin:5px;float:left;">
 		<p>共 ${pageBean.allRow} 条记录 共 ${pageBean.totalPage} 页 当前第 ${pageBean.currentPage}页</p>
 		<c:choose>
 			<c:when test="${pageBean.currentPage == 1}">
@@ -73,7 +73,8 @@
 				<a><span>下一页</span></a>
 				<a><span>尾页</span></a>
 			</c:otherwise>
-		</c:choose></div>
+		</c:choose>
+		</div>
 
 		<select name="cmd">
 			<option value="0" selected="selected">批量操作，请选择</option>
@@ -81,6 +82,7 @@
 		</select> <input type="submit" value="确定" />
 		
 		</form>
+		</div>
 	</c:otherwise>
 </c:choose>
 

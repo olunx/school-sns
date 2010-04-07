@@ -82,3 +82,16 @@ $(document).ready(function() {
 <input id="uploadify" type="file" name="files"/><br/>
 <a href="javascript:$('#uploadify').uploadifyUpload();"">开始上传</a>
 <p><a href="javascript:$('#uploadify').uploadifyClearQueue()">取消</a></p>
+
+JQ 图片选择
+<!-- JQuery 图片选择 插件 -->
+<link type="text/css" rel="stylesheet" href="<%=path%>/content/jq-imgareaselect/css/imgareaselect-default.css.css" />
+<script type="text/javascript" src="<%=path%>/content/jq-imgareaselect/jquery.imgareaselect.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function () {
+    $('img#photo').imgAreaSelect({
+        handles: true,
+        onSelectEnd: someFunction
+    });
+});
+</script>

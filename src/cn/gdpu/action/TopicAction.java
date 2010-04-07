@@ -74,14 +74,6 @@ public class TopicAction extends BaseAction {
 
 	@Override
 	public String delete() {
-		Topic del = topicService.getEntity(Topic.class, id);
-		List<Topic> reply = del.getReply();
-		if (reply != null) {
-			for (Topic t : reply) {
-				topicService.deleteEntity(Topic.class, t.getId());
-			}
-		}
-
 		topicService.deleteEntity(Topic.class, id);
 		return super.delete();
 	}
