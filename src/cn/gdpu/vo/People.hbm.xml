@@ -11,7 +11,7 @@
 		<property name="name" />
 		<property name="sex" />
 		<property name="permission" />
-		<property name="avatar" />
+		<one-to-one name="avatar" />
 		<property name="phoneNo" />
 		<property name="qq" />
 		<property name="email" />

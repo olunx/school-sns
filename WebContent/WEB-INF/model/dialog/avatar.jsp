@@ -5,19 +5,41 @@
 %>
 <script type="text/javascript" src="<%=path%>/content/js/jquery-1.4.2.min.js"></script>
 <!-- JQuery 图片选择 插件 -->
-<link type="text/css" rel="stylesheet" href="<%=path%>/content/jq-imgareaselect/css/imgareaselect-default.css" />
+
+<link type="text/css" rel="stylesheet" href="<%=path%>/content/jq-imgareaselect/css/imgareaselect-animated.css" />
 <script type="text/javascript" src="<%=path%>/content/jq-imgareaselect/jquery.imgareaselect.min.js"></script>
 <script type="text/javascript">
+	function preview(img, selection) {
+	    $('#x').val(selection.x1);
+	    $('#y').val(selection.y1);
+	    $('#width').val(selection.width);
+	    $('#height').val(selection.height);    
+	}
+
 	$(document).ready(function() {
 		$('#photo').imgAreaSelect( {
-			aspectRatio : '1:1',
+			aspectRatio : '',
 			handles : true,
-			fadeSpeed : 200
+			fadeSpeed : 200,
+			maxWidth: 320,
+			maxHeight: 240,
+			x1: 10,
+			y1: 10,
+			x2: 80,
+			y2: 80,
+			onSelectChange: preview
 		});
 	});
 </script>
-<c:if test="${targetsFilePath != null}">
-	<c:forEach items="${targetsFileUrl}" var="img">
-		<img id="photo" src="<%=path%>/${img}" />
-	</c:forEach>
+<c:if test="${image != null}">
+	<img id="photo" src="<%=path%>${image.oriFilePath}" />
+	<div>
+		<form onSubmit="post(this);return false;" action="<%=path %>/avatar/modifyAvatar" method="post">
+		 x1: <input type="text" id="x" name="x" value="0" />
+		 y1: <input type="text" id="y" name="y" value="0" />
+		 width: <input type="text" id="width" name="width" value="0" />
+		 height: <input type="text" id="height" name="height" value="0" />
+		 <input type="submit" value="确定" />
+		 </form>
+	</div>
 </c:if>

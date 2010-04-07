@@ -19,7 +19,6 @@ public class FileUploadAction extends BaseAction {
 	private List<File> files;
 	// 系统默认注入
 	private List<String> filesFileName;
-	@SuppressWarnings("unused")
 	private List<String> filesContentType;
 
 	// struts配置文件中设置
@@ -31,12 +30,7 @@ public class FileUploadAction extends BaseAction {
 	
 	private List<String> targetsFileUrl;
 
-	public String select() {
-		Log.init(getClass()).info(targetsFilePath);
-		return "select";
-	}
-
-	// 上传头像或者物品截图
+	// 上传头像
 	public String avatar() {
 		Log.init(getClass()).info("--------上传 ");
 		return this.upload(".jpg.jpeg.gif.png.bmp");
@@ -91,8 +85,8 @@ public class FileUploadAction extends BaseAction {
 				e.printStackTrace();
 			}
 
-			targetsFileUrl.add(savePath + "\\" + targetFileName);
-			targetsFilePath.add(targetDirectory + "\\" + targetFileName);
+			targetsFileUrl.add(savePath + "/" + targetFileName);
+			targetsFilePath.add(targetDirectory + "/" + targetFileName);
 		}
 
 		this.getRequest().put("targetFileUrl", targetsFilePath);
@@ -111,20 +105,44 @@ public class FileUploadAction extends BaseAction {
 		return System.nanoTime() + ext;
 	}
 
+	public List<File> getFiles() {
+		return files;
+	}
+
 	public void setFiles(List<File> files) {
 		this.files = files;
+	}
+
+	public List<String> getFilesFileName() {
+		return filesFileName;
 	}
 
 	public void setFilesFileName(List<String> filesFileName) {
 		this.filesFileName = filesFileName;
 	}
 
+	public List<String> getFilesContentType() {
+		return filesContentType;
+	}
+
 	public void setFilesContentType(List<String> filesContentType) {
 		this.filesContentType = filesContentType;
 	}
 
+	public String getSavePath() {
+		return savePath;
+	}
+
 	public void setSavePath(String savePath) {
 		this.savePath = savePath;
+	}
+
+	public ServletContext getContext() {
+		return context;
+	}
+
+	public void setContext(ServletContext context) {
+		this.context = context;
 	}
 
 	public List<String> getTargetsFilePath() {
@@ -137,6 +155,10 @@ public class FileUploadAction extends BaseAction {
 
 	public List<String> getTargetsFileUrl() {
 		return targetsFileUrl;
+	}
+
+	public void setTargetsFileUrl(List<String> targetsFileUrl) {
+		this.targetsFileUrl = targetsFileUrl;
 	}
 
 }

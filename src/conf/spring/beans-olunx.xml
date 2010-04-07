@@ -5,8 +5,7 @@
 			http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
 			http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
 			http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd"
-	default-lazy-init="false"
-	>
+	default-lazy-init="false">
 	<!-- 注释 -->
 
 	<!-- 主题 -->
@@ -16,7 +15,7 @@
 	<bean name="topicService" class="cn.gdpu.service.impl.TopicServiceImpl" scope="prototype">
 		<property name="baseDao" ref="topicDaoImpl" />
 	</bean>
-	
+
 	<!-- 邮件 -->
 	<bean name="mailDaoImpl" class="cn.gdpu.dao.impl.MailDaoImpl" scope="prototype">
 		<property name="sessionFactory" ref="sessionFactory" />
@@ -24,5 +23,12 @@
 	<bean name="mailService" class="cn.gdpu.service.impl.MailServiceImpl" scope="prototype">
 		<property name="baseDao" ref="mailDaoImpl" />
 	</bean>
-	
+
+	<!-- 图片 -->
+	<bean name="imageDaoImpl" class="cn.gdpu.dao.impl.ImageDaoImpl" scope="prototype">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean name="imageService" class="cn.gdpu.service.impl.ImageServiceImpl" scope="prototype">
+		<property name="baseDao" ref="imageDaoImpl" />
+	</bean>
 </beans>
