@@ -12,21 +12,21 @@ import com.opensymphony.xwork2.interceptor.AbstractInterceptor;
 public class AuthInterceptor extends AbstractInterceptor {
 
 	private Map<String, Object> session;
-	
+
 	@Override
 	public String intercept(ActionInvocation invocation) throws Exception {
-		if(session == null) {
+		if (session == null) {
 			session = invocation.getInvocationContext().getSession();
 		}
-		
+
 		Log.init(getClass()).info("session isAccess: " + session.get("isAccess"));
-		
-		String access = (String)session.get("isAccess");
-		if (access == "true" || access.equals("ture")) {
+
+		String access = (String) session.get("isAccess");
+		if (access != null && (access == "ture" || access.equals("true"))) {
 			Log.init(getClass()).info("验证成功。");
 			return invocation.invoke();
 		}
-		
+
 		Log.init(getClass()).info("验证失败。");
 		return Action.LOGIN;
 	}

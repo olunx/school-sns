@@ -23,6 +23,7 @@ public class ClassFeeAction extends BaseAction {
 
 	@Override
 	public String add() {
+		Log.init(getClass()).info(classfee.getFee());
 		classfee.setTime(new Date());
 		String remarks = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()) + "：" + "，创建班费记录；";
 		classfee.setRemarks(remarks);

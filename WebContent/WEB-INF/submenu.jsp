@@ -14,6 +14,7 @@
 	<li><a target="content" href="<%=path%>/attendance/listAttendance">考勤</a> <a target="content" href="<%=path%>/attendance/goAddAttendance">添加</a></li>
 	<li><a target="content" href="<%=path%>/vote/listVote">投票</a> <a target="content" href="<%=path%>/vote/goAddVote">添加</a></li>
 	<li><a target="content" href="<%=path%>/goods/listmeGoods">交换</a> <a target="content" href="<%=path%>/goods/goAddGoods">添加</a></li>
-	
+	<li><a target="content" href="<%=path%>/chat/listChat">聊天室</a> </li>
+
 </ul>
 </div>
