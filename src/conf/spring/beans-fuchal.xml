@@ -45,4 +45,13 @@
 	<bean name="voteItemService" class="cn.gdpu.service.impl.VoteItemServiceImpl" scope="prototype">
 		<property name="baseDao" ref="voteItemDaoImpl" />
 	</bean>
+	
+	<!-- Goods Bean 货品管理-->
+	<bean name="goodsDaoImpl" class="cn.gdpu.dao.impl.GoodsDaoImpl" scope="prototype">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean name="goodsService" class="cn.gdpu.service.impl.GoodsServiceImpl" scope="prototype">
+		<property name="baseDao" ref="goodsDaoImpl" />
+	</bean>
+	
 </beans>

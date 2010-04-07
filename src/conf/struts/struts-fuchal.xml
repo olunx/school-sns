@@ -44,4 +44,21 @@
 		</global-results>
 		<action name="*Vote" class="cn.gdpu.action.VoteAction" method="{1}"></action>
 	</package>
+	
+	<!-- 货品Action -->
+	<package name="goods" extends="default" namespace="/goods">
+		<global-results>
+			<result name="list" type="redirect">listmeGoods?page=${page}</result>
+			<result name="index">/WEB-INF/model/goods/goodsList.jsp</result>
+			<result name="success" type="chain">addGoods</result>
+			<result name="addPage">/WEB-INF/model/goods/goodsAdd.jsp</result>
+			<result name="listall">/WEB-INF/model/goods/goodsListAll.jsp</result>
+			<result name="viewPage">/WEB-INF/model/goods/goodsView.jsp</result>
+		</global-results>
+		<action name="*Goods" class="cn.gdpu.action.GoodsAction" method="{1}"></action>
+		<action name="goodsUpload" class="cn.gdpu.action.FileUploadAction" method="goods">
+			<!-- Action中的savePath属性的值 -->
+			<param name="savePath">/upload/goods</param>
+		</action>
+	</package>	
 </struts>    

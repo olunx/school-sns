@@ -9,7 +9,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
-<script type="text/javascript" src="content/js/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="<%=path %>/content/js/jquery-1.4.2.min.js"></script>
 <script type="text/javascript">
 function loadJS(url,callback,charset)
 {
@@ -29,8 +29,8 @@ function loadJS(url,callback,charset)
 }
 function initEditor()
 {
-	loadJS('content/xheditor/xheditor-zh-cn.js',function(){$('#elm1').xheditor(true,{shortcuts:{'ctrl+enter':submitForm}});$('#btnInit').hide();});
-	$('#elm1').xheditor(true,{upImgUrl:"<%=path %>/editorUpload.action",upImgExt:"jpg,jpeg,gif,png",shortcuts:{'ctrl+enter':submitForm}});
+	loadJS('<%=path %>/content/xheditor/xheditor-zh-cn.js',function(){
+		$('#elm1').xheditor(true,{upImgUrl:"<%=path %>/editorUpload.action",upImgExt:"jpg,jpeg,gif,png",shortcuts:{'ctrl+enter':submitForm}});$('#btnInit').hide();});
 }
 function insertUpload(msg)
 {
@@ -38,6 +38,7 @@ function insertUpload(msg)
 }
 function submitForm(){$('#frmDemo').submit();}
 </script>
+
 <body>
 	<form id="frmDemo" method="post" action="show.php">
 	<h3>xhEditor demo11 : 异步加载</h3>
