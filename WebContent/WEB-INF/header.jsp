@@ -34,6 +34,7 @@
 
 	//注册二级事件
 	function ajax() {
+		$("a[rel='dialog']").colorbox();
 		$("#content a[target='content']").click(function() {
 			var href = $(this).attr('href');
 			loadContent(href);

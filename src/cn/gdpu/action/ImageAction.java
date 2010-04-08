@@ -16,6 +16,7 @@ public class ImageAction extends BaseAction {
 
 	private List<String> filesFileName;
 	private List<String> targetsFileUrl;
+	private List<String> targetsFileName;
 
 	private ImageService<Image, Integer> imageService;
 	private PeopleService<People, Integer> peopleService;
@@ -51,7 +52,7 @@ public class ImageAction extends BaseAction {
 				People people = (People) author;
 				image = people.getAvatar();
 
-				String fileName = image.getOriFileName();
+				String fileName = image.getBigFileName();
 				String fileDir = ServletActionContext.getServletContext().getRealPath("/upload");
 
 				String minFileName = new ImageResize().resize(fileName, fileDir, x, y, width, height);
@@ -78,7 +79,8 @@ public class ImageAction extends BaseAction {
 					Log.init(getClass()).info("people name " + people.getName());
 					image = new Image();
 					image.setOriFileName(filesFileName.get(0));
-					image.setOriFilePath(targetsFileUrl.get(0));
+					image.setBigFileName(targetsFileName.get(0));
+					image.setBigFilePath(targetsFileUrl.get(0));
 					imageService.addEntity(image);
 					Log.init(getClass()).info(image.getOriFileName());
 					people.setAvatar(image);
@@ -161,6 +163,14 @@ public class ImageAction extends BaseAction {
 
 	public void setHeight(int height) {
 		this.height = height;
+	}
+
+	public List<String> getTargetsFileName() {
+		return targetsFileName;
+	}
+
+	public void setTargetsFileName(List<String> targetsFileName) {
+		this.targetsFileName = targetsFileName;
 	}
 
 }
