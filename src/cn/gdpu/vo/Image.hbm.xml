@@ -7,7 +7,8 @@
 			<generator class="native" />
 		</id>
 		<property name="oriFileName" />
-		<property name="oriFilePath" />
+		<property name="bigFileName" />
+		<property name="bigFilePath" />
 		<property name="minFileName" />
 		<property name="minFilePath" />
 	</class>

@@ -26,9 +26,9 @@ public class FileUploadAction extends BaseAction {
 
 	private ServletContext context = ServletActionContext.getServletContext();
 
-	private List<String> targetsFilePath;
-	
-	private List<String> targetsFileUrl;
+	private List<String> targetsFilePath;//真实路径
+	private List<String> targetsFileUrl;//相对路径 /upload/xxx
+	private List<String> targetsFileName;//修改后的文件名
 
 	// 上传头像
 	public String avatar() {
@@ -63,6 +63,8 @@ public class FileUploadAction extends BaseAction {
 
 		targetsFilePath = new ArrayList<String>();
 		targetsFileUrl = new ArrayList<String>();
+		targetsFileName = new ArrayList<String>();
+		
 		// 获取在服务器中的目录
 		String targetDirectory = context.getRealPath(savePath);
 		String targetFileName = null;
@@ -87,9 +89,10 @@ public class FileUploadAction extends BaseAction {
 
 			targetsFileUrl.add(savePath + "/" + targetFileName);
 			targetsFilePath.add(targetDirectory + "/" + targetFileName);
+			targetsFileName.add(targetFileName);
 		}
 
-		this.getRequest().put("targetFileUrl", targetsFilePath);
+//		this.getRequest().put("targetFileUrl", targetsFilePath);
 		Log.init(getClass()).info("-----------------上传成功 " + targetsFilePath);
 		return super.SUCCESS;
 	}
@@ -159,6 +162,14 @@ public class FileUploadAction extends BaseAction {
 
 	public void setTargetsFileUrl(List<String> targetsFileUrl) {
 		this.targetsFileUrl = targetsFileUrl;
+	}
+
+	public List<String> getTargetsFileName() {
+		return targetsFileName;
+	}
+
+	public void setTargetsFileName(List<String> targetsFileName) {
+		this.targetsFileName = targetsFileName;
 	}
 
 }

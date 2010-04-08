@@ -4,7 +4,8 @@ public class Image {
 
 	private int id;
 	private String oriFileName;
-	private String oriFilePath;
+	private String bigFileName;
+	private String bigFilePath;
 	private String minFileName;
 	private String minFilePath;
 
@@ -24,12 +25,20 @@ public class Image {
 		this.oriFileName = oriFileName;
 	}
 
-	public String getOriFilePath() {
-		return oriFilePath;
+	public String getBigFileName() {
+		return bigFileName;
 	}
 
-	public void setOriFilePath(String oriFilePath) {
-		this.oriFilePath = oriFilePath;
+	public void setBigFileName(String bigFileName) {
+		this.bigFileName = bigFileName;
+	}
+
+	public String getBigFilePath() {
+		return bigFilePath;
+	}
+
+	public void setBigFilePath(String bigFilePath) {
+		this.bigFilePath = bigFilePath;
 	}
 
 	public String getMinFileName() {

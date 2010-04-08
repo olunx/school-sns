@@ -24,76 +24,12 @@
 测试主页
 <a rel="ajax" href="<%=path%>/test/goModifyTest">修改</a>
 
-<style type="text/css"> 
- 
-.example {	
-	padding: 0 20px;
-	float: left;		
-	width: 230px;
-}
- 
-div.button {
-	height: 29px;	
-	width: 133px;
-	background: #fff;
-	
-	font-size: 14px;
-	color: #C7D92C;
-	text-align: center;
-	padding-top: 15px;
-}
-</style> 
-<script type="text/javascript" src="<%=path%>/content/js/ajaxupload.js"></script>
+<br/><br/><br/>
 <script type="text/javascript">
-$(document).ready(function() {
-	/* example 1 */
-	var button = $('#button1'), interval;
-	new AjaxUpload(button,{
-		action: '<%=path%>/avatar/avatarUpload', 
-		name: 'files',
-		onSubmit : function(file, ext){
-			
-            if (! (ext && /^(jpg|png|jpeg|gif)$/i.test(ext))){
-                alert('不允许的文件格式！');
-                return false;
-       		}
-      		 
-			button.text('正在上传');
-			
-			this.disable();
-			
-			// Uploding -> Uploading. -> Uploading...
-			interval = window.setInterval(function(){
-				var text = button.text();
-				if (text.length < 13){
-					button.text(text + '.');
-				} else {
-					button.text('正在上传');	
-				}
-			}, 200);
-		},
-		onComplete: function(){
-			$('#content').load('<%=path%>/avatar/goModifyAvatar', ajax);		
-		}
+	$(document).ready(function() {
+		$("a[rel='avatar']").colorbox({width:"80%", height:"80%", iframe:true});
+		//$("a[rel='avatar']").colorbox({width:"80%", height:"80%"});
 	});
-});
 </script>
+<a rel="avatar" href="<%=path%>/avatar/goAddAvatar">上传头像</a>
 
-
-<br/>
-<br/>
-<h2 class="caption">上传头像：</h2>
-<ul>
-<li id="example1" class="example"> 
-	<div class="wrapper"> 
-		<div id="button1" class="button">上传</div> 
-	</div>
-</li>
-</ul>
-
-<br/><br/><br/><br/>
-
-<form action="<%=path%>/avatar/avatarUpload" enctype="multipart/form-data" method="post">
-<input id="uploadify" type="file" name="files"/><br/>
-<input type="submit" value="确定"></input>
-</form>

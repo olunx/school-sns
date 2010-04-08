@@ -3,9 +3,13 @@
 <%
 	String path = request.getContextPath();
 %>
+<!-- JQuery库 -->
 <script type="text/javascript" src="<%=path%>/content/js/jquery-1.4.2.min.js"></script>
-<!-- JQuery 图片选择 插件 -->
+<!-- colorbox -->
+<link type="text/css" rel="stylesheet" href="<%=path%>/content/jq-colorbox/colorbox.css" />
+<script type="text/javascript" src="<%=path%>/content/jq-colorbox/jquery.colorbox-min.js"></script>
 
+<!-- JQuery 图片选择 插件 -->
 <link type="text/css" rel="stylesheet" href="<%=path%>/content/jq-imgareaselect/css/imgareaselect-animated.css" />
 <script type="text/javascript" src="<%=path%>/content/jq-imgareaselect/jquery.imgareaselect.min.js"></script>
 <script type="text/javascript">
@@ -21,8 +25,8 @@
 			aspectRatio : '',
 			handles : true,
 			fadeSpeed : 200,
-			maxWidth: 320,
-			maxHeight: 240,
+			maxWidth: 120,
+			maxHeight: 120,
 			x1: 10,
 			y1: 10,
 			x2: 80,
@@ -30,11 +34,16 @@
 			onSelectChange: preview
 		});
 	});
+
+	function closes() {
+		parent.$("*").colorbox.close();
+		//$("*").colorbox.close();
+	}
 </script>
 <c:if test="${image != null}">
-	<img id="photo" src="<%=path%>${image.oriFilePath}" />
+	<img id="photo" src="<%=path%>${image.bigFilePath}" />
 	<div>
-		<form onSubmit="post(this);return false;" action="<%=path %>/avatar/modifyAvatar" method="post">
+		<form onSubmit="parent.post(this);closes();return false;" action="<%=path %>/avatar/modifyAvatar" method="post">
 		 x1: <input type="text" id="x" name="x" value="0" />
 		 y1: <input type="text" id="y" name="y" value="0" />
 		 width: <input type="text" id="width" name="width" value="0" />
