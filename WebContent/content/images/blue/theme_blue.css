@@ -1,0 +1,4 @@
+@charset "utf-8";
+.menuk{background:#1e90ff;}
+#submenu { background:#1e90ff url(submenu_shadow.png) repeat-y right;}
+#main{background:#1e90ff;}
