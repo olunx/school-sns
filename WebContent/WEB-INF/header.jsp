@@ -9,6 +9,8 @@
 <title>School Social</title>
 <!-- <link type="text/css" rel="stylesheet" href="<%=path%>/content/images/reset.css" />-->
 <link type="text/css" rel="stylesheet" href="<%=path%>/content/images/layout.css" />
+<link id="themecss" type="text/css" rel="stylesheet" href="<%=path%>/content/images/blue/theme_blue.css" />
+
 <!-- JQuery库 -->
 <script type="text/javascript" src="<%=path%>/content/js/jquery-1.4.2.min.js"></script>
 <!-- colorbox -->

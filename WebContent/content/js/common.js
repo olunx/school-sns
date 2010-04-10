@@ -1,10 +1,12 @@
 $(document).ready(function(){
-	
-	//class为corner时为圆角
-	$(".corner").corner("8px");
-	$("#submenu").corner("left 8px");
-	$("#content").corner("right bottom 8px");
 
+    //class为corner时为圆角
+	if (!$.browser.msie) {
+        $(".corner").corner("8px");
+        $("#submenu").corner("left 8px");
+        $("#content").corner("right bottom 8px");
+    }
+    
     $("a[rel='dialog']").colorbox();
     
     //注册事件
