@@ -6,12 +6,16 @@
 <script type='text/javascript' src='<%=path%>/dwr/engine.js'></script>
 <script type='text/javascript' src='<%=path%>/dwr/util.js'></script>
 <script type='text/javascript' src='<%=path%>/dwr/interface/MyChat.js'></script>
-<script language="javascript"> 
-function init() {
+<script language="javascript">
+	function init() {
 	  dwr.engine.setActiveReverseAjax(true);
+	  setTimeout("MyChat.updateUsersList();",1000);
 	}
+	init();
 
-	function updateOnlineUser(data){
+
+	//接收在线用户数据
+	function receiveOnlineUser(data){
 		var userlist = "";
 		for (var i in data) {
 			userlist = userlist +", "+ (data[i].name);
@@ -22,8 +26,9 @@ function init() {
 
 	function show(msg){
 		msg = msg +"<br/>"+ dwr.util.getValue("showmsg",{escapeHtml:false});
-		dwr.util.setValue("showmsg",msg,{escapeHtml:false});
 		//alert(msg);
+		dwr.util.setValue("showmsg",msg,{escapeHtml:false});
+		
 	}
 
 	function sendmsg(){
@@ -35,7 +40,15 @@ function init() {
 		}
 	}
 
-	init();
+	function receiveMessage(message){
+		var tmpstr = dwr.util.getValue("showmsg",{escapeHtml:false});
+		if (message.to == "所有人")
+			tmpstr = tmpstr +"<br/>"+ message.from +" 说："+ message.text+" ";
+		else 
+			tmpstr = tmpstr +"<br/>"+ message.from +" 对 "+message.to +" 说："+ message.text+" ";
+		tmpstr = tmpstr + "<span class='chat_time'>"+message.time+"</span>";
+		dwr.util.setValue("showmsg",tmpstr,{escapeHtml:false});
+	}
 /*
 	function receiveMessages(messages) {
 	  var chatlog = "";
@@ -47,8 +60,7 @@ function init() {
 	*/
 </script>
 <div id="userlist"></div>
-<input type="text" name="username" id="username" /><button onclick="MyChat.updateUsersList(dwr.util.getValue('username'));">进入</button>
-<button onclick="MyChat.updateUsersList('');">刷新在线用户</button>
+<button id="refresh" onclick="MyChat.updateUsersList();">刷新在线用户</button>
 <select name="sendto" id="sendto">
 	<option value="">所有人</option>
 </select>

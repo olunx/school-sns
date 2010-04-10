@@ -3,6 +3,5 @@
   <div id="footer">
     <p>&copy; 2010 3C-Team</p>
   </div>
-  <div id="footer_bottom"></div>
 </body>
 </html>
