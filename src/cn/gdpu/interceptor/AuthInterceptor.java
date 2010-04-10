@@ -15,9 +15,9 @@ public class AuthInterceptor extends AbstractInterceptor {
 
 	@Override
 	public String intercept(ActionInvocation invocation) throws Exception {
-		if (session == null) {
+		//if (session == null) {
 			session = invocation.getInvocationContext().getSession();
-		}
+		//}
 
 		Log.init(getClass()).info("session isAccess: " + session.get("isAccess"));
 
