@@ -71,7 +71,7 @@ public class StudentAction extends BaseAction {
 
 	// 检查是否是朋友
 	public static Boolean isMyFriend(Set<Student> set, Student stu) {
-		if (set.contains(stu))
+		if (set != null && stu != null && set.contains(stu))
 			return true;
 		return false;
 	}
