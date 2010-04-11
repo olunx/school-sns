@@ -8,8 +8,8 @@
 		</id>
 		<property name="oriFileName" />
 		<property name="bigFileName" />
-		<property name="bigFilePath" />
+		<property name="bigFileUrl" />
 		<property name="minFileName" />
-		<property name="minFilePath" />
+		<property name="minFileUrl" />
 	</class>
 </hibernate-mapping>
