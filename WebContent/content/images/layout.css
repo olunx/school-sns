@@ -9,7 +9,7 @@ table{width:100%;}
 td,th{padding:2px 5px;}
 ul{ list-style:none;}
 /* 头部*/
-#header{margin:0 auto; width:960px;height:45px;color:#FFF;}
+#header{margin:0 auto; width:960px;height:60px;color:#FFF;}
 #header a{color:#FFF;text-decoration:none;}
 #header .logo{float:left;padding:6px 0 0 10px;margin:0;}
 #header .logo a{width:80px;display:block;background:none;overflow:hidden;height:auto;}
@@ -25,14 +25,14 @@ ul{ list-style:none;}
 /*中间*/
 #container{margin:0 auto;width:960px;padding-top:10px;}
 
-#submenu{width:100px;float:left;background:#1e90ff;padding:5px 5px 5px 10px; margin:15px 0 0 0;}
+#submenu{float:left;}
 #submenu a:link,#submenu a:visited{ color:#fff;}
 #submenu a:hover{ color:#004080;}
 
-#main{width:845px; float:left; background:#1e90ff;}
+#main{width:810px; float:left; background:#1e90ff;}
 
-#content{width:640px;float:left; min-height:400px; _height:400px;/*ie6 min-height hack*/ background:#FFF; margin:15px 0 0 0; padding:10px;}
-#sidebar{width:175px;float:left; padding:5px;}
+#content{width:590px;float:left; min-height:400px; _height:400px;/*ie6 min-height hack*/ background:#FFF; margin:15px 0 0 0; padding:10px;}
+#sidebar{width:200px;float:left; padding:0px;}
 /*底部*/
 #footer{width:940px; clear:both; margin:10px auto; padding:10px; border-bottom:8px solid #999;color:#333;text-align:center;}
 #footer p{font:#FFF;}
