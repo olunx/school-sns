@@ -25,11 +25,20 @@
 <a rel="ajax" href="<%=path%>/test/goModifyTest">修改</a>
 
 <br/><br/><br/>
+
+<link type="text/css" rel="stylesheet" href="<%=path%>/content/jq-highslide/highslide.css" />
+<script type="text/javascript" src="<%=path%>/content/jq-highslide/highslide-full.min.js"></script>
 <script type="text/javascript">
-	$(document).ready(function() {
-		$("a[rel='avatar']").colorbox({width:"80%", height:"80%", iframe:true});
-		//$("a[rel='avatar']").colorbox({width:"80%", height:"80%"});
-	});
+$(document).ready(function() {
+    hs.graphicsDir = '<%=path%>/content/jq-highslide/graphics/';
+    hs.align = 'center';
+    hs.outlineType = 'rounded-white';
+    hs.wrapperClassName = 'draggable-header';
+    hs.transitions = ['expand', 'crossfade'];
+	hs.useBox = true;
+	hs.width = 640;
+	hs.height = 480;
+});
 </script>
-<a rel="avatar" href="<%=path%>/avatar/goAddAvatar">上传头像</a>
+<a onclick="return hs.htmlExpand(this, { objectType: 'iframe' } )" href="<%=path%>/avatar/goAddAvatar">上传头像</a>
 

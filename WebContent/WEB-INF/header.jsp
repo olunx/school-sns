@@ -14,9 +14,6 @@
 
 <!-- JQuery库 -->
 <script type="text/javascript" src="<%=path%>/content/js/jquery-1.4.2.min.js"></script>
-<!-- colorbox -->
-<link type="text/css" rel="stylesheet" href="<%=path%>/content/jq-colorbox/colorbox.css" />
-<script type="text/javascript" src="<%=path%>/content/jq-colorbox/jquery.colorbox-min.js"></script>
 
 <script type="text/javascript" src="<%=path%>/content/js/jquery.corner.js"></script>
 
@@ -37,8 +34,8 @@
         </ul>
         <div class="nav_account">
         <c:choose>
-        	<c:when test="${isAccess!=null}"><span class="loginName">欢迎，${user.name }</span> <a rel="dialog" href="<%=path%>/mail/listMyReceMail">小纸条</a> | <a href="<%=path%>/logout">退出</a></c:when>
-        	<c:otherwise><a rel="dialog" href="<%=path%>/goLogin">登录</a> | <a href="">注册</a> </c:otherwise>
+        	<c:when test="${isAccess!=null}"><span class="loginName">欢迎，${user.name }</span> <a href="<%=path%>/mail/listMyReceMail">小纸条</a> | <a href="<%=path%>/logout">退出</a></c:when>
+        	<c:otherwise><a href="<%=path%>/goLogin">登录</a> | <a href="">注册</a> </c:otherwise>
         </c:choose>
 		</div>
         <div id="dialog"></div>

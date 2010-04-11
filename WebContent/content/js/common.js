@@ -7,8 +7,6 @@ $(document).ready(function(){
         $("#content").corner("right bottom 8px");
     }
     
-    $("a[rel='dialog']").colorbox();
-    
     //注册事件
     $("a[target='content']").click(function(){
         var href = $(this).attr('href');
@@ -20,7 +18,6 @@ $(document).ready(function(){
 
 //注册二级事件
 function ajax(){
-    //$("a[rel='dialog']").colorbox();
     $("#content a[target='content']").click(function(){
         var href = $(this).attr('href');
         loadContent(href);
