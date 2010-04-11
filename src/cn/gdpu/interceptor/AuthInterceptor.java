@@ -15,20 +15,20 @@ public class AuthInterceptor extends AbstractInterceptor {
 
 	@Override
 	public String intercept(ActionInvocation invocation) throws Exception {
-		//if (session == null) {
-			session = invocation.getInvocationContext().getSession();
-		//}
+		session = invocation.getInvocationContext().getSession();
 
 		Log.init(getClass()).info("session isAccess: " + session.get("isAccess"));
 
-		String access = (String) session.get("isAccess");
-		if (access != null && (access == "ture" || access.equals("true"))) {
-			Log.init(getClass()).info("验证成功。");
-			return invocation.invoke();
-		}
-
-		Log.init(getClass()).info("验证失败。");
-		return Action.LOGIN;
+//		String access = (String) session.get("isAccess");
+//		if (access != null && (access == "ture" || access.equals("true"))) {
+//			Log.init(getClass()).info("验证成功。");
+//			return invocation.invoke();
+//		}
+//
+//		Log.init(getClass()).info("验证失败。");
+//		return Action.LOGIN;
+		
+		return invocation.invoke();
 	}
 
 	public Map<String, Object> getSession() {
