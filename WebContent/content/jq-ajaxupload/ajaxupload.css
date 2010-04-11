@@ -1,0 +1,11 @@
+@charset utf-8;
+.button {
+	height: 29px;	
+	width: 133px;
+	background: #000;
+	
+	font-size: 14px;
+	color: #fff;
+	text-align: center;
+	padding-top: 15px;
+}
