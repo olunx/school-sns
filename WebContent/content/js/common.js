@@ -28,13 +28,12 @@ function ajax(){
 //加载数据
 function loadContent(href){
     var content = $('#content');
-    content.fadeOut('fast', function(){
+		content.html("");
         onLoading();//打开loading
         content.load(href, function(){
             offLoading();//关闭loading
             content.fadeIn('normal', ajax);
         });
-    });
 }
 
 //打开loading
@@ -53,7 +52,7 @@ function post(obj){
     var content = $('#content');
     var urlStr = $(obj).attr('action');
     var dataStr = decodeURIComponent($(obj).serialize());
-    content.fadeOut('fast', function(){
+    content.slideUp('fast', function(){
         onLoading();//打开loading
         $.ajax({
             url: urlStr,
@@ -62,7 +61,7 @@ function post(obj){
             success: function(result){
                 content.html(result);
                 offLoading();//关闭loading
-                content.fadeIn('normal', ajax);
+                content.slideDown('normal', ajax);
             }
         });
     });
