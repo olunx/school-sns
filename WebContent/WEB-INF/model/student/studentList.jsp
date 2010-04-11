@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="my" uri="http://gdpu.cn/functions"%>
 <%
 	String path = request.getContextPath();
 %>
@@ -17,6 +18,7 @@
 				<th><a rel="checkall">全选</a></th>
 				<th>用户名</th>
 				<th>姓名</th>
+				<th>加为好友</th>
 				<th>宿舍</th>
 				<th>状态</th>
 				<th>编辑</th>
@@ -27,6 +29,12 @@
 					<td><input type="checkbox" name="ids" value="${student.id}" /></td>
 					<td><a target="content" href="<%=path%>/student/viewStudent?id=${student.id}&page=${page}">${student.username}</a>
 					 <a target="content" href="<%=path%>/mail/goAddMail?receiverId=${student.id}">传纸条</a></td>
+					 <td><a target="content" href="<%=path%>/student/followStudent?id=${student.id}&page=${page}">
+					 <c:choose>
+					 	<c:when test="${my:isMyFriend(friends,student)}">删除好友</c:when>
+					 	<c:otherwise>加为好友</c:otherwise>
+					 </c:choose>
+					 </a></td>
 					<td>${student.name}</td>
 					<td>${student.dorm}</td>
 					<td>${student.status}</td>
