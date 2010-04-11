@@ -2,11 +2,8 @@ package cn.gdpu.action;
 
 import java.util.List;
 
-import org.apache.struts2.ServletActionContext;
-
 import cn.gdpu.service.ImageService;
 import cn.gdpu.service.PeopleService;
-import cn.gdpu.util.ImageResize;
 import cn.gdpu.util.Log;
 import cn.gdpu.vo.Image;
 import cn.gdpu.vo.People;
@@ -29,66 +26,30 @@ public class ImageAction extends BaseAction {
 	private int height;
 
 	@Override
-	public String goModify() {
-		Object author = this.getSession().get("user");
-		Log.init(getClass()).info("add3 " + author);
-		if (author != null) {
-			if (author instanceof People) {
-				People people = (People) author;
-				image = people.getAvatar();
-			}
-		}
-
-		return super.goModify();
-	}
-
-	@Override
-	public String modify() {
-
-		Object author = this.getSession().get("user");
-		Log.init(getClass()).info("add3 " + author);
-		if (author != null) {
-			if (author instanceof People) {
-				People people = (People) author;
-				image = people.getAvatar();
-
-				String fileName = image.getBigFileName();
-				String fileDir = ServletActionContext.getServletContext().getRealPath("/upload");
-
-				String minFileName = new ImageResize().resize(fileName, fileDir, x, y, width, height);
-
-				image.setMinFileName(minFileName);
-				
-				Log.init(getClass()).info("minFileName添加： " + minFileName);
-				
-				imageService.updateEntity(image);
-			}
-		}
-
-		return super.INDEX;
-	}
-
-	@Override
 	public String add() {
-		if (filesFileName != null && filesFileName.size() > 0) {
-			Object author = this.getSession().get("user");
-			Log.init(getClass()).info("add333 " + author);
-			if (author != null) {
-				if (author instanceof People) {
-					People people = (People) author;
-					Log.init(getClass()).info("people name " + people.getName());
-					image = new Image();
-					image.setOriFileName(filesFileName.get(0));
-					image.setBigFileName(targetsFileName.get(0));
-					image.setBigFilePath(targetsFileUrl.get(0));
-					imageService.addEntity(image);
-					Log.init(getClass()).info(image.getOriFileName());
-					people.setAvatar(image);
-					peopleService.updateEntity(people);
-					return super.goModify();
-				}
-			}
-		}
+		Log.init(getClass()).info("targetsFileUrl " + targetsFileUrl);
+		Log.init(getClass()).info("filesFileName " + filesFileName);
+		Log.init(getClass()).info("targetsFileName " + targetsFileName);
+		
+//		if (filesFileName != null && filesFileName.size() > 0) {
+//			Object author = this.getSession().get("user");
+//			Log.init(getClass()).info("add333 " + author);
+//			if (author != null) {
+//				if (author instanceof People) {
+//					People people = (People) author;
+//					Log.init(getClass()).info("people name " + people.getName());
+//					image = new Image();
+//					image.setOriFileName(filesFileName.get(0));
+//					image.setBigFileName(targetsFileName.get(0));
+//					image.setBigFilePath(targetsFileUrl.get(0));
+//					imageService.addEntity(image);
+//					Log.init(getClass()).info(image.getOriFileName());
+//					people.setAvatar(image);
+//					peopleService.updateEntity(people);
+//					return super.goModify();
+//				}
+//			}
+//		}
 
 		return super.INDEX;
 	}

@@ -4,11 +4,33 @@
 	String path = request.getContextPath();
 %>
 <script type="text/javascript" src="<%=path%>/content/js/jquery-1.4.2.min.js"></script>
+<!-- JQuery 图片选择 插件 -->
+<link type="text/css" rel="stylesheet" href="<%=path%>/content/jq-imgareaselect/css/imgareaselect-animated.css" />
+<script type="text/javascript" src="<%=path%>/content/jq-imgareaselect/jquery.imgareaselect.min.js"></script>
 
 <!-- JQuery 上传插件 -->
 <link type="text/css" rel="stylesheet" href="<%=path%>/content/jq-ajaxupload/ajaxupload.css" />
 <script type="text/javascript" src="<%=path%>/content/jq-ajaxupload/ajaxupload.js"></script>
 <script type="text/javascript">
+function imgselect() {
+	$('#photo').imgAreaSelect( {
+		aspectRatio : '',
+		handles : true,
+		fadeSpeed : 200,
+		maxWidth: 120,
+		maxHeight: 120,
+		x1: 10,
+		y1: 10,
+		x2: 80,
+		y2: 80,
+		onSelectChange: function(img, selection) {
+		    $('#x').val(selection.x1);
+		    $('#y').val(selection.y1);
+		    $('#width').val(selection.width);
+		    $('#height').val(selection.height);    
+		}
+	});
+}
 $(document).ready(function() {
 	var button = $('#button'), interval;
 	new AjaxUpload(button,{
@@ -35,12 +57,17 @@ $(document).ready(function() {
 				}
 			}, 200);
 		},
-		onComplete: function(){
+		onComplete: function(file, response){
 			//$('#dialogbox').load('<%=path%>/avatar/goModifyAvatar', ajax);
-			location.href = '<%=path%>/avatar/goModifyAvatar';
+			//$('#dialogbox').load(response, ajax);
+			//location.href = '<%=path%>/avatar/goModifyAvatar';
+			//alert(response);
+			$('#dialogbox').html(response);
+			imgselect();
 		}
 	});
 });
+
 </script>
 
 

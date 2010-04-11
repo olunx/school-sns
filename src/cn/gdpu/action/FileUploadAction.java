@@ -32,19 +32,19 @@ public class FileUploadAction extends BaseAction {
 
 	// 上传头像
 	public String avatar() {
-		Log.init(getClass()).info("--------上传 ");
+		Log.init(getClass()).info("--------上传 头像");
 		return this.upload(".jpg.jpeg.gif.png.bmp");
 	}
 
 	// 上传学生信息文件
 	public String student() {
-		Log.init(getClass()).info("--------上传 ");
+		Log.init(getClass()).info("--------上传学生信息文件 ");
 		return this.upload(".xls");
 	}
 
 	// 上传课程表文件
 	public String course() {
-		Log.init(getClass()).info("--------上传 ");
+		Log.init(getClass()).info("--------上传 课程表文件");
 		return this.upload(".xls");
 	}
 
@@ -71,7 +71,7 @@ public class FileUploadAction extends BaseAction {
 		File targetFile = null;
 		int n = files.size();
 		for (int i = 0; i < n; i++) {
-
+			Log.init(getClass()).info("filesFileName " + filesFileName);
 			String fileExt = extraFileExt(filesFileName.get(i));
 			if (!allowedType.contains(fileExt)) {
 				Log.init(getClass()).info("不能上传非 " + allowedType + " 类型的文件");
@@ -88,11 +88,13 @@ public class FileUploadAction extends BaseAction {
 			}
 
 			targetsFileUrl.add(savePath + "/" + targetFileName);
-			targetsFilePath.add(targetDirectory + "/" + targetFileName);
+			targetsFilePath.add(targetDirectory + "\\" + targetFileName);
 			targetsFileName.add(targetFileName);
 		}
 
-//		this.getRequest().put("targetFileUrl", targetsFilePath);
+		//this.getSession().put("filesFileName", filesFileName);
+		//this.getSession().put("targetsFileUrl", targetsFileUrl);
+		//this.getSession().put("targetsFileName", targetsFileName);
 		Log.init(getClass()).info("-----------------上传成功 " + targetsFilePath);
 		return super.SUCCESS;
 	}
@@ -110,6 +112,22 @@ public class FileUploadAction extends BaseAction {
 
 	public List<File> getFiles() {
 		return files;
+	}
+
+	public List<String> getTargetsFileUrl() {
+		return targetsFileUrl;
+	}
+
+	public void setTargetsFileUrl(List<String> targetsFileUrl) {
+		this.targetsFileUrl = targetsFileUrl;
+	}
+
+	public List<String> getTargetsFileName() {
+		return targetsFileName;
+	}
+
+	public void setTargetsFileName(List<String> targetsFileName) {
+		this.targetsFileName = targetsFileName;
 	}
 
 	public void setFiles(List<File> files) {
@@ -154,22 +172,6 @@ public class FileUploadAction extends BaseAction {
 
 	public void setTargetsFilePath(List<String> targetsFilePath) {
 		this.targetsFilePath = targetsFilePath;
-	}
-
-	public List<String> getTargetsFileUrl() {
-		return targetsFileUrl;
-	}
-
-	public void setTargetsFileUrl(List<String> targetsFileUrl) {
-		this.targetsFileUrl = targetsFileUrl;
-	}
-
-	public List<String> getTargetsFileName() {
-		return targetsFileName;
-	}
-
-	public void setTargetsFileName(List<String> targetsFileName) {
-		this.targetsFileName = targetsFileName;
 	}
 
 }
