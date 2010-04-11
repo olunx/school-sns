@@ -43,7 +43,7 @@
 <c:if test="${image != null}">
 	<img id="photo" src="<%=path%>${image.bigFilePath}" />
 	<div>
-		<form onSubmit="parent.post(this);closes();return false;" action="<%=path %>/avatar/modifyAvatar" method="post">
+		<form onSubmit="closes();" action="<%=path %>/avatar/modifyAvatar" method="post">
 		 x1: <input type="text" id="x" name="x" value="0" />
 		 y1: <input type="text" id="y" name="y" value="0" />
 		 width: <input type="text" id="width" name="width" value="0" />

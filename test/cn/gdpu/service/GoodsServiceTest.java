@@ -9,6 +9,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import cn.gdpu.vo.Goods;
+import cn.gdpu.vo.GoodsType;
 import cn.gdpu.vo.Student;
 import cn.gdpu.vo.Topic;
 
@@ -45,7 +46,10 @@ public class GoodsServiceTest{
 		replys.add(reply1);
 		replys.add(reply2);
 		goods.setReply(replys);
-		goods.setValue("300");
+		goods.setValue(300);
+		GoodsType goodsType = new GoodsType();
+		goodsType.setName("数码产品");
+		goods.setGoodsType(goodsType);
 		goodsService.addEntity(goods);
 	}
 	

@@ -3,16 +3,20 @@
                                    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping package="cn.gdpu.vo">
 	<!--
-		private int id;
-		private String name;
-		private String content;
-		private String image;
-		private int quantity;
-		private Student owner;
-		private int state;
-		private String value;
-		private String record;
-		private List<Topic> reply;
+	private int id;
+	private String name;
+	private String content;
+	private String image;
+	private int quantity;
+	private Student owner;
+	private int state;
+	private double value;
+	private String record;
+	private List<Topic> reply;
+	private GoodsType goodsType;
+	private String exchange;
+	private int hot;
+	private Date time;
 	-->
 	<class name="Goods" table="t_goods" >
 		<id name="id" column="id">
@@ -31,5 +35,9 @@
 			<index column="indexId" />
 			<one-to-many class="Topic" />
 		</list>
+		<many-to-one name="goodsType" column="gtId" cascade="save-update" />
+		<property name="exchange" />
+		<property name="hot" />
+		<property name="airTime" />
 	</class>
 </hibernate-mapping>
