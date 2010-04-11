@@ -53,5 +53,12 @@
 	<bean name="goodsService" class="cn.gdpu.service.impl.GoodsServiceImpl" scope="prototype">
 		<property name="baseDao" ref="goodsDaoImpl" />
 	</bean>
+	<!-- GoodsType Bean 货品管理-->
+	<bean name="goodsTypeDaoImpl" class="cn.gdpu.dao.impl.GoodsTypeDaoImpl" scope="prototype">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean name="goodsTypeService" class="cn.gdpu.service.impl.GoodsTypeServiceImpl" scope="prototype">
+		<property name="baseDao" ref="goodsTypeDaoImpl" />
+	</bean>
 	
 </beans>

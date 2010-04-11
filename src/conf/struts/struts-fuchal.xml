@@ -54,6 +54,7 @@
 			<result name="addPage">/WEB-INF/model/goods/goodsAdd.jsp</result>
 			<result name="listall">/WEB-INF/model/goods/goodsListAll.jsp</result>
 			<result name="viewPage">/WEB-INF/model/goods/goodsView.jsp</result>
+			<result name="replyPage">/WEB-INF/model/goods/goodsReply.jsp</result>
 		</global-results>
 		<action name="*Goods" class="cn.gdpu.action.GoodsAction" method="{1}"></action>
 		<action name="goodsUpload" class="cn.gdpu.action.FileUploadAction" method="goods">

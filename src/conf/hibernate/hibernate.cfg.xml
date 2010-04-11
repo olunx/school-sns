@@ -39,6 +39,7 @@
 		<mapping resource="cn/gdpu/vo/VoteItem.hbm.xml"/> 
 		
 		<mapping resource="cn/gdpu/vo/Goods.hbm.xml"/> 
+		<mapping resource="cn/gdpu/vo/GoodsType.hbm.xml"/> 
 		
 	</session-factory>
 </hibernate-configuration>

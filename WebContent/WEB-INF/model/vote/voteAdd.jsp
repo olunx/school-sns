@@ -9,7 +9,7 @@
 <!-- JQuery UI 插件 -->
 <link type="text/css" rel="stylesheet" href="<%=path%>/content/jq-ui/jquery-ui-1.8.custom.css" />
 <script type="text/javascript" src="<%=path%>/content/jq-ui/jquery-ui-1.8.custom.min.js"></script>
-<script language="javascript" type="text/javascript" src="../content/js/common.js"></script>
+<script language="javascript" type="text/javascript" src="<%=path %>/content/js/common.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
 
@@ -23,6 +23,20 @@
 		});
 
 	});
+	
+	function addNewVote(obj) {
+		var html = '<div><label>选项：</label><input class="inputmid" type="text" name="content" /> <a href="#" class="btn_del" onclick="return delVote(this)">删除</a></div>';
+		
+		for ( var i = 0; i < 3; i++) {
+		 $("#" + obj).append(html);
+		}
+		return false;
+	};
+
+	function delVote(obj) {
+		$(obj).parent().remove();
+		return false;
+	};
 </script>
 
 <form onSubmit="post(this);return false;" class="form" action="<%=path %>/vote/addVote" method="post">

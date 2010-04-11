@@ -1,5 +1,6 @@
 package cn.gdpu.vo;
 
+import java.util.Date;
 import java.util.List;
 
 public class Goods {
@@ -10,9 +11,13 @@ public class Goods {
 	private int quantity;
 	private Student owner;
 	private int state;
-	private String value;
+	private double value;
 	private String record;
 	private List<Topic> reply;
+	private GoodsType goodsType;
+	private String exchange;
+	private int hot;
+	private Date airTime;
 	
 	public int getId() {
 		return id;
@@ -56,12 +61,6 @@ public class Goods {
 	public void setState(int state) {
 		this.state = state;
 	}
-	public String getValue() {
-		return value;
-	}
-	public void setValue(String value) {
-		this.value = value;
-	}
 	public String getRecord() {
 		return record;
 	}
@@ -73,5 +72,35 @@ public class Goods {
 	}
 	public void setReply(List<Topic> reply) {
 		this.reply = reply;
+	}
+	public double getValue() {
+		return value;
+	}
+	public void setValue(double value) {
+		this.value = value;
+	}
+	public GoodsType getGoodsType() {
+		return goodsType;
+	}
+	public void setGoodsType(GoodsType goodsType) {
+		this.goodsType = goodsType;
+	}
+	public String getExchange() {
+		return exchange;
+	}
+	public void setExchange(String exchange) {
+		this.exchange = exchange;
+	}
+	public int getHot() {
+		return hot;
+	}
+	public void setHot(int hot) {
+		this.hot = hot;
+	}
+	public Date getAirTime() {
+		return airTime;
+	}
+	public void setAirTime(Date airTime) {
+		this.airTime = airTime;
 	}
 }
