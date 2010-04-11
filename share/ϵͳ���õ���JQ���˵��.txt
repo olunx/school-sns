@@ -43,34 +43,21 @@ JQ UI
 上传插件
 http://valums.com/ajax-upload/
 
-<style type="text/css"> 
- 
-.example {	
-	padding: 0 20px;
-	float: left;		
-	width: 230px;
-}
- 
-div.button {
-	height: 29px;	
-	width: 133px;
-	background: #fff;
-	
-	font-size: 14px;
-	color: #C7D92C;
-	text-align: center;
-	padding-top: 15px;
-}
-</style> 
-<script type="text/javascript" src="<%=path%>/content/js/ajaxupload.js"></script>
+<link type="text/css" rel="stylesheet" href="<%=path%>/content/jq-ajaxupload/ajaxupload.css" />
+<script type="text/javascript" src="<%=path%>/content/jq-ajaxupload/ajaxupload.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
-	/* example 1 */
-	var button = $('#button1'), interval;
+	var button = $('#button'), interval;
 	new AjaxUpload(button,{
 		action: '<%=path%>/avatar/avatarUpload', 
 		name: 'files',
 		onSubmit : function(file, ext){
+			
+            if (! (ext && /^(jpg|png|jpeg|gif)$/i.test(ext))){
+                alert('不允许的文件格式！');
+                return false;
+       		}
+      		 
 			button.text('正在上传');
 			
 			this.disable();
@@ -86,25 +73,18 @@ $(document).ready(function() {
 			}, 200);
 		},
 		onComplete: function(){
-			$('#content').load('<%=path%>/avatar/goModifyAvatar', ajax);		
+			//$('#dialogbox').load('<%=path%>/avatar/goModifyAvatar', ajax);
+			location.href = '<%=path%>/avatar/goModifyAvatar';
 		}
 	});
 });
 </script>
 
 
-<br/>
-<br/>
-<h2 class="caption">上传头像：</h2>
-<ul>
-<li id="example1" class="example"> 
-	<div class="wrapper"> 
-		<div id="button1" class="button">上传</div> 
-	</div>
-</li>
-</ul>
-
-<br/><br/><br/><br/>
+<div id="dialogbox">
+	<h2 class="caption">上传头像：</h2>
+	<div id="button" class="button">上传</div> 
+</div>
 
 
 JQ 图片选择

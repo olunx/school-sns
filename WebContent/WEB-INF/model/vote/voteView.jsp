@@ -6,7 +6,7 @@
 <%
 	String path = request.getContextPath();
 %>
-<script type="text/javascript" src="<%=path%>/content/js/highcharts.js"></script>
+<script type="text/javascript" src="<%=path%>/content/jq-highcharts/highcharts.js"></script>
 <script type="text/javascript">
 	var data = "${data}";
 	$(document).ready(function() {

@@ -4,29 +4,13 @@
 	String path = request.getContextPath();
 %>
 <script type="text/javascript" src="<%=path%>/content/js/jquery-1.4.2.min.js"></script>
-<style type="text/css"> 
-.example {	
-	padding: 0 20px;
-	float: left;		
-	width: 230px;
-}
- 
-div.button {
-	height: 29px;	
-	width: 133px;
-	background: #000;
-	
-	font-size: 14px;
-	color: #fff;
-	text-align: center;
-	padding-top: 15px;
-}
-</style> 
-<script type="text/javascript" src="<%=path%>/content/js/ajaxupload.js"></script>
+
+<!-- JQuery 上传插件 -->
+<link type="text/css" rel="stylesheet" href="<%=path%>/content/jq-ajaxupload/ajaxupload.css" />
+<script type="text/javascript" src="<%=path%>/content/jq-ajaxupload/ajaxupload.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
-	/* example 1 */
-	var button = $('#button1'), interval;
+	var button = $('#button'), interval;
 	new AjaxUpload(button,{
 		action: '<%=path%>/avatar/avatarUpload', 
 		name: 'files',
@@ -61,17 +45,6 @@ $(document).ready(function() {
 
 
 <div id="dialogbox">
-	<br/>
-	<br/>
 	<h2 class="caption">上传头像：</h2>
-	<ul>
-	<li id="example1" class="example"> 
-		<div class="wrapper"> 
-			<div id="button1" class="button">上传</div> 
-		</div>
-	</li>
-	</ul>
-	<br/>
-	<br/>
-	<br/>
+	<div id="button" class="button">上传</div> 
 </div>
