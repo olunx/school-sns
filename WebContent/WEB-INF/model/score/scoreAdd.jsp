@@ -13,7 +13,7 @@ $(document).ready(function() {
 		name: 'files',
 		onSubmit : function(file, ext){
 			
-            if (! (ext && /^(jpg|png|jpeg|gif)$/i.test(ext))){
+            if (! (ext && /^(xls)$/i.test(ext))){
                 alert('不允许的文件格式！');
                 return false;
        		}
