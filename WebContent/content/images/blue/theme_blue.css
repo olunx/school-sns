@@ -1,4 +1,6 @@
 @charset "utf-8";
+a:link,a:visited{ color:#666; text-decoration:none;}
+a:hover{ color:#004080;}
 .menuk{background:#1e90ff;}
 #submenu { background:#1e90ff url(submenu_shadow.png) repeat-y right;}
 #main{background:#1e90ff;}
