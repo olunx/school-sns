@@ -3,7 +3,7 @@
 <jsp:include page="submenu.jsp"></jsp:include>
 <div id="main" class="corner">
 <div id="content">
-
+首页
 </div>
 <jsp:include page="sidebar.jsp"></jsp:include>
 </div>

@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<jsp:include page="/WEB-INF/header.jsp"></jsp:include>
 <%
 	String path = request.getContextPath();
 %>
+<jsp:include page="/WEB-INF/header.jsp"></jsp:include>
 <!-- 登录页专用件 -->
 <link type="text/css" rel="stylesheet" href="<%=path%>/content/images/login.css" />
 <!-- 验证插件 -->
@@ -19,7 +19,7 @@
       <div id="loginbox">
         <h3 id="logintitle">请登录：</h3>
         <div id="login">
-          <form rel="validate" action="login/authLogin" method="post">
+          <form rel="validate" action="authLogin" method="post">
             <p>
               <label for="username">用户名</label>
               <input type="text" name="username" id="username" class="t_input validate[required]" value="0707501131" />
