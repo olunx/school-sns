@@ -21,12 +21,14 @@
 	<!-- 登录 -->
 	<package name="login" extends="struts-default" namespace="/">
 		<global-results>
-			<result name="success" type="dispatcher">/WEB-INF/index.jsp</result>
+			<result name="success" type="redirectAction">home</result>
 			<result name="index">/login.jsp</result>
 			<result name="goLogin">/WEB-INF/model/dialog/login.jsp</result>
 		</global-results>
 		<action name="*Login" class="cn.gdpu.action.LoginAction" method="{1}">
 			<interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+		<action name="logout" class="cn.gdpu.action.LoginAction" method="logout">
 		</action>
 	</package>
 	

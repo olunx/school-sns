@@ -60,6 +60,15 @@ public class LoginAction extends BaseAction {
 		return super.SUCCESS;
 		// return super.INDEX;
 	}
+	
+	public String logout(){
+		this.getSession().remove("isAccess");
+		this.getSession().remove("user");
+		this.getSession().remove("student");
+		this.getSession().remove("admin");
+		this.getSession().remove("teacher");
+		return super.INDEX;
+	}
 
 	public String go() {
 		return "goLogin";

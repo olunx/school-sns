@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%
 	String path = request.getContextPath();
 %>
@@ -28,14 +29,17 @@
       <div class="logo"><a href="">LOGO</a></div>
       <div class="menuk corner">
         <ul class="menu">
-          <li><a href="<%=path%>/login.jsp">首页</a></li>
+          <li><a href="<%=path%>/home">首页</a></li>
           <li><a href="#">学校</a></li>
           <li><a href="#">群组</a></li>
           <li><a href="#">消息</a></li>
           <li><a href="#">博客</a></li>
         </ul>
-        <div class="nav_account"><span class="loginName">欢迎</span> <a rel="dialog" href="<%=path%>/mail/listMyReceMail">小纸条</a> <a
-	rel="dialog" href="<%=path%>/login/goLogin">登录</a> | <a href="">注册</a>
+        <div class="nav_account">
+        <c:choose>
+        	<c:when test="${isAccess!=null}"><span class="loginName">欢迎，${user.name }</span> <a rel="dialog" href="<%=path%>/mail/listMyReceMail">小纸条</a> | <a href="<%=path%>/logout">退出</a></c:when>
+        	<c:otherwise><a rel="dialog" href="<%=path%>/goLogin">登录</a> | <a href="">注册</a> </c:otherwise>
+        </c:choose>
 		</div>
         <div id="dialog"></div>
     </div>
