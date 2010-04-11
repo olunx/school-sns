@@ -29,10 +29,10 @@ http://www.position-relative.net/creation/formValidator/
 使用帮助
 http://www.highcharts.com/documentation/how-to-use
 
-<script type="text/javascript" src="<%=path%>/content/js/highcharts.js"></script>
-<script type="text/javascript" src="<%=path%>/content/js/highcharts-gridtheme.js"></script>
+<script type="text/javascript" src="<%=path%>/content/jq-highcharts/highcharts.js"></script>
+<script type="text/javascript" src="<%=path%>/content/jq-highcharts/highcharts-gridtheme.js"></script>
 <!--[if IE]> 
-		<script type="text/javascript" src="<%=path%>/content/js/highcharts-ie.js"></script> 
+		<script type="text/javascript" src="<%=path%>/content/jq-highcharts/highcharts-ie.js"></script> 
 <![endif]-->
 
 JQ UI

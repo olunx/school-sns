@@ -7,6 +7,10 @@
 	String path = request.getContextPath();
 %>
 <script type="text/javascript" src="<%=path%>/content/jq-highcharts/highcharts.js"></script>
+<script type="text/javascript" src="<%=path%>/content/jq-highcharts/highcharts-gridtheme.js"></script>
+<!--[if IE]> 
+		<script type="text/javascript" src="<%=path%>/content/jq-highcharts/highcharts-ie.js"></script> 
+<![endif]-->
 <script type="text/javascript">
 	var data = "${data}";
 	$(document).ready(function() {
