@@ -1,5 +1,6 @@
 package cn.gdpu.util;
 
+import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
@@ -22,11 +23,21 @@ public class ImageResize {
 		String fileName = "map.jpg";
 		String fileDir = "C:\\Users\\olunx\\Desktop";
 
-		new ImageResize().resize(fileName, fileDir, 0, 0, 320, 240);
+		new ImageResize().cut(fileName, fileDir, 0, 0, 320, 240);
+	}
+	
+	//剪裁图片
+	public String cut(String fileName, String fileDir, int x1, int y1, int width, int height) {
+		return this.process(fileName, fileDir, x1, y1, width, height, 0);
 	}
 
+	//缩放图片
+	public String zoom(String fileName, String fileDir, int x1, int y1, int width, int height) {
+		return this.process(fileName, fileDir, x1, y1, width, height, 1);
+	}
+	
 	/**
-	 * 剪裁图片大小，返回新图片的文件名。
+	 * 返回新图片的文件名。
 	 * 
 	 * @param fileName
 	 * @param fileDir
@@ -36,7 +47,8 @@ public class ImageResize {
 	 * @param height
 	 * @return
 	 */
-	public String resize(String fileName, String fileDir, int x1, int y1, int width, int height) {
+	@SuppressWarnings("null")
+	private String process(String fileName, String fileDir, int x1, int y1, int width, int height, int which) {
 
 		File src = new File(fileDir + "\\" + fileName);
 
@@ -50,8 +62,20 @@ public class ImageResize {
 			
 			Log.init(getClass()).info("图片路径： " + src);
 			
-			BufferedImage bufferedImage = ImageIO.read(input);
+			BufferedImage bufferedImage = null;
 
+			switch(which) {
+			case 0:{
+				bufferedImage = ImageIO.read(input);
+				break;
+			}
+			case 1:{
+				Image image = ImageIO.read(input).getScaledInstance(y1, y1, Image.SCALE_SMOOTH);
+				bufferedImage.getGraphics().drawImage(image, 0, 0, null);
+				break;
+			}
+			}
+			
 			bufferedImage = bufferedImage.getSubimage(x1, y1, width, height);
 
 			FileOutputStream fos = new FileOutputStream(minFilePath);
