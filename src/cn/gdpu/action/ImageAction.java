@@ -41,7 +41,7 @@ public class ImageAction extends BaseAction {
 
 		// 处理缩略图
 		String fileDir = ServletActionContext.getServletContext().getRealPath("/upload");
-		String miniFileName = new ImageResize().resize(targetsFileName.get(0), fileDir, x, y, width, height);
+		String miniFileName = new ImageResize().cut(targetsFileName.get(0), fileDir, x, y, width, height);
 		image.setMinFileName(miniFileName);
 		image.setMinFileUrl("/upload/" + miniFileName);
 
