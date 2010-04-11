@@ -4,6 +4,7 @@
 	String path = request.getContextPath();
 %>
 <script type="text/javascript" src="<%=path%>/content/js/jquery-1.4.2.min.js"></script>
+
 <!-- JQuery 图片选择 插件 -->
 <link type="text/css" rel="stylesheet" href="<%=path%>/content/jq-imgareaselect/css/imgareaselect-animated.css" />
 <script type="text/javascript" src="<%=path%>/content/jq-imgareaselect/jquery.imgareaselect.min.js"></script>
@@ -11,7 +12,14 @@
 <!-- JQuery 上传插件 -->
 <link type="text/css" rel="stylesheet" href="<%=path%>/content/jq-ajaxupload/ajaxupload.css" />
 <script type="text/javascript" src="<%=path%>/content/jq-ajaxupload/ajaxupload.js"></script>
+
+<!-- 验证插件 -->
+<link type="text/css" rel="stylesheet" href="<%=path%>/content/jq-validate/jquery.validationEngine.css" />
+<script type="text/javascript" src="<%=path%>/content/jq-validate/jquery.validationEngine-cn.js"></script>
+<script type="text/javascript" src="<%=path%>/content/jq-validate/jquery.validationEngine.js"></script>
+
 <script type="text/javascript">
+//图片选择事件
 function imgselect() {
 	$('#photo').imgAreaSelect( {
 		aspectRatio : '',
@@ -31,6 +39,12 @@ function imgselect() {
 		}
 	});
 }
+
+//验证事件
+function validate() {
+	$("form[rel='validate']").validationEngine();
+}
+
 $(document).ready(function() {
 	var button = $('#button'), interval;
 	new AjaxUpload(button,{
@@ -64,12 +78,11 @@ $(document).ready(function() {
 			//alert(response);
 			$('#dialogbox').html(response);
 			imgselect();
+			validate();
 		}
 	});
 });
-
 </script>
-
 
 <div id="dialogbox">
 	<h2 class="caption">上传头像：</h2>

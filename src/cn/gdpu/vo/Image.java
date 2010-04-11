@@ -5,9 +5,9 @@ public class Image {
 	private int id;
 	private String oriFileName;
 	private String bigFileName;
-	private String bigFilePath;
+	private String bigFileUrl;
 	private String minFileName;
-	private String minFilePath;
+	private String minFileUrl;
 
 	public int getId() {
 		return id;
@@ -33,12 +33,12 @@ public class Image {
 		this.bigFileName = bigFileName;
 	}
 
-	public String getBigFilePath() {
-		return bigFilePath;
+	public String getBigFileUrl() {
+		return bigFileUrl;
 	}
 
-	public void setBigFilePath(String bigFilePath) {
-		this.bigFilePath = bigFilePath;
+	public void setBigFileUrl(String bigFileUrl) {
+		this.bigFileUrl = bigFileUrl;
 	}
 
 	public String getMinFileName() {
@@ -49,12 +49,12 @@ public class Image {
 		this.minFileName = minFileName;
 	}
 
-	public String getMinFilePath() {
-		return minFilePath;
+	public String getMinFileUrl() {
+		return minFileUrl;
 	}
 
-	public void setMinFilePath(String minFilePath) {
-		this.minFilePath = minFilePath;
+	public void setMinFileUrl(String minFileUrl) {
+		this.minFileUrl = minFileUrl;
 	}
 
 }

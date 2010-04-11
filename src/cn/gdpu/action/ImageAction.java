@@ -2,8 +2,11 @@ package cn.gdpu.action;
 
 import java.util.List;
 
+import org.apache.struts2.ServletActionContext;
+
 import cn.gdpu.service.ImageService;
 import cn.gdpu.service.PeopleService;
+import cn.gdpu.util.ImageResize;
 import cn.gdpu.util.Log;
 import cn.gdpu.vo.Image;
 import cn.gdpu.vo.People;
@@ -30,26 +33,19 @@ public class ImageAction extends BaseAction {
 		Log.init(getClass()).info("targetsFileUrl " + targetsFileUrl);
 		Log.init(getClass()).info("filesFileName " + filesFileName);
 		Log.init(getClass()).info("targetsFileName " + targetsFileName);
-		
-//		if (filesFileName != null && filesFileName.size() > 0) {
-//			Object author = this.getSession().get("user");
-//			Log.init(getClass()).info("add333 " + author);
-//			if (author != null) {
-//				if (author instanceof People) {
-//					People people = (People) author;
-//					Log.init(getClass()).info("people name " + people.getName());
-//					image = new Image();
-//					image.setOriFileName(filesFileName.get(0));
-//					image.setBigFileName(targetsFileName.get(0));
-//					image.setBigFilePath(targetsFileUrl.get(0));
-//					imageService.addEntity(image);
-//					Log.init(getClass()).info(image.getOriFileName());
-//					people.setAvatar(image);
-//					peopleService.updateEntity(people);
-//					return super.goModify();
-//				}
-//			}
-//		}
+
+		image = new Image();
+		image.setOriFileName(filesFileName.get(0));
+		image.setBigFileName(targetsFileName.get(0));
+		image.setBigFileUrl(targetsFileUrl.get(0));
+
+		// 处理缩略图
+		String fileDir = ServletActionContext.getServletContext().getRealPath("/upload");
+		String miniFileName = new ImageResize().resize(targetsFileName.get(0), fileDir, x, y, width, height);
+		image.setMinFileName(miniFileName);
+		image.setMinFileUrl("/upload/" + miniFileName);
+
+		Log.init(getClass()).info(image.getOriFileName());
 
 		return super.INDEX;
 	}

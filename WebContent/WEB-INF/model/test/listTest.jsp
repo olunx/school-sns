@@ -36,9 +36,10 @@ $(document).ready(function() {
     hs.wrapperClassName = 'draggable-header';
     hs.transitions = ['expand', 'crossfade'];
 	hs.useBox = true;
-	hs.width = 640;
-	hs.height = 480;
+	hs.width = 680;
+	hs.height = 450;
 });
 </script>
 <a onclick="return hs.htmlExpand(this, { objectType: 'iframe' } )" href="<%=path%>/avatar/goAddAvatar">上传头像</a>
-
+<!-- 上传成功后，图片将插到这里。 -->
+<div id="pic"></div>

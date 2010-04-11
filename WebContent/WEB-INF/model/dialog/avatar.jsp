@@ -3,21 +3,15 @@
 <%
 	String path = request.getContextPath();
 %>
-<script type="text/javascript">
-	function closes() {
-		parent.$("*").colorbox.close();
-		//$("*").colorbox.close();
-	}
-</script>
 <c:if test="${targetsFileUrl != null}">
 	<c:forEach items="${targetsFileUrl}" var="image">
 		<img id="photo" src="<%=path%>${image}" />
 		<div>
-			<form onSubmit="parent.post(this);closes();return false;" action="<%=path %>/avatar/addAvatar" method="post">
-			 x1: <input type="text" id="x" name="x" value="0" />
-			 y1: <input type="text" id="y" name="y" value="0" />
-			 width: <input type="text" id="width" name="width" value="0" />
-			 height: <input type="text" id="height" name="height" value="0" />
+			<form rel="validate" action="<%=path %>/avatar/addAvatar" method="post">
+			 x1: <input type="text" id="x" name="x" class="validate[required]" />
+			 y1: <input type="text" id="y" name="y" class="validate[required]" />
+			 width: <input type="text" id="width" name="width" class="validate[required]" />
+			 height: <input type="text" id="height" name="height" class="validate[required]" />
 			 <input type="submit" value="确定" />
 			 <input type="hidden" name="targetsFileUrl" value="${image}" />
 			 <c:if test="${targetsFileUrl != null}">
