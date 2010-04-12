@@ -12,7 +12,7 @@ import cn.gdpu.service.StudentService;
 import cn.gdpu.vo.Student;
 
 public class FetionServiceImpl implements FetionService {
-	private StudentService studentService;
+	private StudentService<Student, Integer> studentService;
 
 	public void sendFetion(final String phone, final String pwd, final String tophone, final String content) {
 
@@ -75,7 +75,7 @@ public class FetionServiceImpl implements FetionService {
 		thread.start();
 	}
 
-	public void setStudentService(StudentService studentService) {
+	public void setStudentService(StudentService<Student, Integer> studentService) {
 		this.studentService = studentService;
 	}
 

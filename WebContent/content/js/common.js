@@ -38,7 +38,7 @@ function loadContent(href){
 
 //打开loading
 function onLoading(){
-    $('#content').append('<span id="loading"><img src="<%=path%>/content/jq-colorbox/images/loading.gif" />加载中...</span>');
+    $('#content').append('<span id="loading">加载中...</span>');
     $('#loading').fadeIn('fast');
 }
 

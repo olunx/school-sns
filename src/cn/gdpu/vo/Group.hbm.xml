@@ -27,10 +27,9 @@
 			<index column="indexId" />
 			<one-to-many class="Topic"/>
 		</list>
-		<set name="people" lazy="true">
-			<key column="groupId"/>
-			<one-to-many class="People" />
+		<set name="member" table="t_group_student"  cascade="save-update" >
+			<key column="groupId" />
+			<many-to-many class="Student" column="studentId" />
 		</set>
-		
 	</class>
 </hibernate-mapping>

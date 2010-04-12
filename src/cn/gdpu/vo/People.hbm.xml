@@ -15,98 +15,78 @@
 		<property name="phoneNo" />
 		<property name="qq" />
 		<property name="email" />
-		<!-- 
-			private int id;
-			private School school;
-			private Institute institute;
-			private Classes classes;
-			private String dorm;
-			private int entryYear;
-			private String sno;
-			private String nickname;
-			private String status;
-			private String activity;
-			private Date lastlogin;
-			private Long point;
-			private Set<Duty> duty;
-			private Set<Hobby> hobby;
-			private Set<Group> group;
-			private Set<Achievement> achievement;
-			private Set<Student> friends;
-			private Set<Score> scores;
-			private Set<Vote> votes;
-			private Set<Goods> goods;
-		 -->
-		<joined-subclass name="Student" table="t_student"> 
-            <key column="id" /> 
-			<many-to-one name="school" column="schoolId"/>
-			<many-to-one name="institute" column="instituteId"/>
-			<many-to-one name="classes" column="classesId"/>
-			<property name="dorm"/>
-			<property name="entryYear"/>
-			<property name="sno"/>
-			<property name="nickname"/>
-			<property name="status"/>
-			<property name="activity"/>
-			<property name="lastlogin"/>
-			<property name="point"/>
+		<!--
+			private int id; private School school; private Institute institute; private Classes classes; private String dorm; private int entryYear;
+			private String sno; private String nickname; private String status; private String activity; private Date lastlogin; private Long point;
+			private Set<Duty> duty; private Set<Hobby> hobby; private Set<Group> group; private Set<Achievement> achievement; private Set<Student>
+			friends; private Set<Score> scores; private Set<Vote> votes; private Set<Goods> goods;
+		-->
+		<joined-subclass name="Student" table="t_student">
+			<key column="id" />
+			<many-to-one name="school" column="schoolId" />
+			<many-to-one name="institute" column="instituteId" />
+			<many-to-one name="classes" column="classesId" />
+			<property name="dorm" />
+			<property name="entryYear" />
+			<property name="sno" />
+			<property name="nickname" />
+			<property name="status" />
+			<property name="activity" />
+			<property name="lastlogin" />
+			<property name="point" />
 			<set name="duty" lazy="true">
-				<key column="studentId"/>
+				<key column="studentId" />
 				<one-to-many class="Duty" />
 			</set>
 			<set name="hobby" lazy="true">
-				<key column="studentId"/>
+				<key column="studentId" />
 				<one-to-many class="Hobby" />
 			</set>
-			<set name="group" lazy="true">
-				<key column="studentId"/>
-				<one-to-many class="Group" />
-			</set>
 			<set name="achievement" lazy="true">
-				<key column="studentId"/>
+				<key column="studentId" />
 				<one-to-many class="Achievement" />
 			</set>
 			<set name="friends" lazy="true">
-				<key column="studentId"/>
+				<key column="studentId" />
 				<one-to-many class="Student" />
 			</set>
-			
 			<set name="scores" inverse="true" cascade="all" lazy="true" order-by="id asc">
-				<key column="studentId"/>
+				<key column="studentId" />
 				<one-to-many class="Score" />
 			</set>
-			
+			<set name="group" table="t_group_student" lazy="true">
+				<key column="studentId" />
+				<many-to-many class="Group" column="groupId" />
+			</set>
 			<set name="votes" table="t_vote_student" lazy="true">
 				<key column="studentId" />
 				<many-to-many class="Vote" column="voteId" />
 			</set>
-			
 			<set name="goods" inverse="true" cascade="all" lazy="true" order-by="id asc">
 				<key column="studentId" />
 				<one-to-many class="Goods" />
 			</set>
-			
-		 </joined-subclass> 
-		 <!-- 
+		</joined-subclass>
+		<!-- 
 		 	教师
 			private School school;
 			private String division;
 			private Duty duty;
 			private Set<Excel> excel;
 		 -->
-		 <joined-subclass name="Teacher" table="t_teacher"> 
-		 	<key column="id" /> 
-		 	<property name="division"/>
-		 	<many-to-one name="school" column="schoolId"></many-to-one>
-		 	<many-to-one name="duty" column="dutyId"></many-to-one>
-		 	
+		<joined-subclass name="Teacher" table="t_teacher">
+			<key column="id" />
+			<property name="division" />
+			<many-to-one name="school" column="schoolId"></many-to-one>
+			<many-to-one name="duty" column="dutyId"></many-to-one>
+
 			<set name="excel" lazy="true">
-				<key column="teacherId"/>
+				<key column="teacherId" />
 				<one-to-many class="Excel" />
 			</set>
-		 </joined-subclass>
-		 <joined-subclass name="Admin" table="t_admin"> 
-		 	<key column="id" /> 
-		 </joined-subclass>
+		</joined-subclass>
+		<joined-subclass name="Admin" table="t_admin">
+			<key column="id" />
+		</joined-subclass>
 	</class>
 </hibernate-mapping>
