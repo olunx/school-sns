@@ -12,7 +12,7 @@ public class Group {
 	private String type;
 	private People admin;
 	private List<Topic> post;
-	private Set<People> member;
+	private Set<People> members;
 
 	public int getId() {
 		return id;
@@ -78,12 +78,12 @@ public class Group {
 		this.post = post;
 	}
 
-	public Set<People> getMember() {
-		return member;
+	public Set<People> getMembers() {
+		return members;
 	}
 
-	public void setMember(Set<People> member) {
-		this.member = member;
+	public void setMembers(Set<People> members) {
+		this.members = members;
 	}
 
 }

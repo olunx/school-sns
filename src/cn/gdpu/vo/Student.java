@@ -18,7 +18,7 @@ public class Student extends People {
 	private Long point;
 	private Set<Duty> duty;
 	private Set<Hobby> hobby;
-	private Set<Group> group;
+	private Set<Group> groups;
 	private Set<Achievement> achievement;
 	private Set<Student> friends;
 	private Set<Score> scores;
@@ -139,12 +139,12 @@ public class Student extends People {
 		this.hobby = hobby;
 	}
 
-	public Set<Group> getGroup() {
-		return group;
+	public Set<Group> getGroups() {
+		return groups;
 	}
 
-	public void setGroup(Set<Group> group) {
-		this.group = group;
+	public void setGroups(Set<Group> groups) {
+		this.groups = groups;
 	}
 
 	public Set<Achievement> getAchievement() {

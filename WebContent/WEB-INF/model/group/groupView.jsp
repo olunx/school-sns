@@ -12,8 +12,8 @@
 <p><label> 类型： </label> <input type="text" name="group.type" value="${group.type}" /></p>
 <p><label> 管理员： </label> <input type="text" name="group.admin" value="${group.admin.name}" /></p>
 <p><label> 成员： </label>
-<c:if test="${group.member != null}">
-	<c:forEach items="${group.member}" var="people">
+<c:if test="${group.members != null}">
+	<c:forEach items="${group.members}" var="people">
 		<br/><input type="text" value="${people.name}" />
 	</c:forEach>
 </c:if>
