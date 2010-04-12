@@ -46,7 +46,7 @@
 				<key column="studentId" />
 				<one-to-many class="Achievement" />
 			</set>
-			<set name="friends" lazy="true">
+			<set name="friends" lazy="false">
 				<key column="studentId" />
 				<one-to-many class="Student" />
 			</set>
@@ -54,7 +54,7 @@
 				<key column="studentId" />
 				<one-to-many class="Score" />
 			</set>
-			<set name="group" table="t_group_student" lazy="true">
+			<set name="group" table="t_group_student" lazy="false">
 				<key column="studentId" />
 				<many-to-many class="Group" column="groupId" />
 			</set>
