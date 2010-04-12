@@ -8,13 +8,14 @@ import cn.gdpu.service.StudentService;
 import cn.gdpu.util.Log;
 import cn.gdpu.util.PageBean;
 import cn.gdpu.util.excel.StudentExcel;
+import cn.gdpu.vo.Group;
 import cn.gdpu.vo.Student;
 
 @SuppressWarnings("serial")
 public class StudentAction extends BaseAction {
 
 	private int id;
-	private String ids;
+	private Integer[] ids;
 
 	private Student student;
 
@@ -76,10 +77,19 @@ public class StudentAction extends BaseAction {
 		return false;
 	}
 
+	// 检查是否我的群组
+	public static Boolean isMyGroup(Set<Group> set, Group group) {
+		System.out.println("set " + set);
+		System.out.println("group " + group);
+		if (set != null && group != null && set.contains(group))
+			return true;
+		return false;
+	}
+
 	@Override
 	public String deleteMany() {
 		Log.init(getClass()).info("deleMamy " + ids);
-		// TODO Auto-generated method stub
+		studentService.deleteManyEntity(Student.class, ids);
 		return super.deleteMany();
 	}
 
@@ -139,11 +149,11 @@ public class StudentAction extends BaseAction {
 		this.page = page;
 	}
 
-	public String getIds() {
+	public Integer[] getIds() {
 		return ids;
 	}
 
-	public void setIds(String ids) {
+	public void setIds(Integer[] ids) {
 		this.ids = ids;
 	}
 

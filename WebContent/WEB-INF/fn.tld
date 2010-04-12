@@ -15,4 +15,9 @@
 		<function-signature>boolean isMyFriend(java.util.Set,cn.gdpu.vo.Student)</function-signature>
 	</function>
 
+	<function>
+		<name>isMyGroup</name>
+		<function-class>cn.gdpu.action.StudentAction</function-class>
+		<function-signature>boolean isMyGroup(java.util.Set,cn.gdpu.vo.Group)</function-signature>
+	</function>
 </taglib>

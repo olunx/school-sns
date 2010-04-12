@@ -3,10 +3,12 @@ package cn.gdpu.action;
 import java.util.Set;
 
 import cn.gdpu.service.GroupService;
+import cn.gdpu.service.StudentService;
 import cn.gdpu.util.Log;
 import cn.gdpu.util.PageBean;
 import cn.gdpu.vo.Group;
 import cn.gdpu.vo.People;
+import cn.gdpu.vo.Student;
 
 @SuppressWarnings("serial")
 public class GroupAction extends BaseAction {
@@ -15,6 +17,7 @@ public class GroupAction extends BaseAction {
 	private Integer[] ids;
 	private Group group;
 	private GroupService<Group, Integer> groupService;
+	private StudentService<Student, Integer> studentService;
 	private PageBean pageBean;
 	private int page;
 
@@ -50,6 +53,11 @@ public class GroupAction extends BaseAction {
 
 	@Override
 	public String list() {
+		Student stu = (Student) this.getSession().get("student");
+		if (stu != null) {
+			stu = studentService.getEntity(Student.class, stu.getId());
+			this.getRequest().put("groups", stu.getGroups());
+		}
 		this.pageBean = this.groupService.queryForPage(Group.class, 10, page);
 		if (pageBean.getList().isEmpty())
 			pageBean.setList(null);
@@ -59,31 +67,33 @@ public class GroupAction extends BaseAction {
 	// 列出我创建的小组
 	public String listMyCreate() {
 		Log.init(getClass()).info("listMy");
-		Object author = this.getSession().get("user");
-		if (author != null) {
-			if (author instanceof People) {
-				People people = (People) author;
-				this.pageBean = this.groupService.queryForPage("from Group g where g.admin = '" + people.getId() + "'", 10, page);
-				if (pageBean.getList().isEmpty())
-					pageBean.setList(null);
-			}
+		Student stu = (Student) this.getSession().get("student");
+		if (stu != null) {
+			this.pageBean = this.groupService.queryForPage("from Group g where g.admin = '" + stu.getId() + "'", 10, page);
+			if (pageBean.getList().isEmpty())
+				pageBean.setList(null);
 		}
 		return super.list();
 	}
 
 	public String join() {
 		Log.init(getClass()).info("join");
-		Object author = this.getSession().get("user");
-		if (author != null) {
-			if (author instanceof People) {
-				People people = (People) author;
-				group = groupService.getEntity(Group.class, id);
-				Set<People> member = group.getMember();
-				member.add(people);
-				group.setMember(member);
-				groupService.updateEntity(group);
+
+		Student stu = (Student) this.getSession().get("student");
+		Log.init(getClass()).info("stu " + stu);
+		if (stu != null) {
+			group = groupService.getEntity(Group.class, id);
+			stu = studentService.getEntity(Student.class, stu.getId());
+			Set<People> members = group.getMembers();
+			if (members.contains(stu)) {
+				members.remove(stu);
+			} else {
+				members.add(stu);
 			}
+			group.setMembers(members);
+			groupService.updateEntity(group);
 		}
+		
 		Log.init(getClass()).info("join完成，跳转。");
 		
 		return super.LIST;
@@ -147,6 +157,14 @@ public class GroupAction extends BaseAction {
 
 	public void setPage(int page) {
 		this.page = page;
+	}
+
+	public StudentService<Student, Integer> getStudentService() {
+		return studentService;
+	}
+
+	public void setStudentService(StudentService<Student, Integer> studentService) {
+		this.studentService = studentService;
 	}
 
 }

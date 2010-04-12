@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="my" uri="http://gdpu.cn/functions"%>
 <%
 	String path = request.getContextPath();
 %>
-
 <c:choose>
 	<c:when test="${pageBean.list == null}">
 					没有数据！
@@ -30,7 +30,12 @@
 					<td><input type="checkbox" name="ids" value="${group.id}" /></td>
 					<td>
 					<a target="content" href="<%=path%>/group/viewGroup?id=${group.id}&page=${page}">${group.name}</a>
-					 <a target="content" href="<%=path%>/group/joinGroup?id=${group.id}&page=${page}">加入</a>
+					 <a target="content" href="<%=path%>/group/joinGroup?id=${group.id}&page=${page}">
+					 <c:choose>
+					 	<c:when test="${my:isMyGroup(groups,group)}">退出</c:when>
+					 	<c:otherwise>加入</c:otherwise>
+					 </c:choose>
+					 </a>
 					</td>
 					<td>${group.intro}</td>
 					<td>${group.pic}</td>
@@ -38,7 +43,7 @@
 					<td>${group.type}</td>
 					<td>${group.admin.name}</td>
 					<td><c:if test="${group.post != null}">(${fn:length(group.post)})</c:if></td>
-					<td><c:if test="${group.member != null}">(${fn:length(group.member)})</c:if></td>
+					<td><c:if test="${group.members != null}">(${fn:length(group.members)})</c:if></td>
 					<td><a target="content" href="<%=path%>/group/goModifyGroup?id=${group.id }&page=${page}" class="btn_edit">编辑</a></td>
 					<td><a target="content" href="<%=path%>/group/deleteGroup?id=${group.id }&page=${page}" class="btn_del">删除</a></td>
 				</tr>

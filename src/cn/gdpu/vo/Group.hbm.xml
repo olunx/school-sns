@@ -27,7 +27,7 @@
 			<index column="indexId" />
 			<one-to-many class="Topic"/>
 		</list>
-		<set name="member" table="t_group_student"  cascade="save-update" >
+		<set name="members" table="t_group_student"  cascade="save-update" >
 			<key column="groupId" />
 			<many-to-many class="Student" column="studentId" />
 		</set>
