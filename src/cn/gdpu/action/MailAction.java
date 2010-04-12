@@ -28,7 +28,7 @@ public class MailAction extends BaseAction {
 		People receiver = peopleService.getEntity(People.class, receiverId);
 		if (receiver != null) {
 			mail.setReceiver(receiver);
-			Object author = this.getSession().get("student");
+			Object author = this.getSession().get("user");
 			if (author != null) {
 				if (author instanceof People) {
 					mail.setSender((People) author);

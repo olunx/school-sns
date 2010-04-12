@@ -16,3 +16,10 @@
 <p><label> 手机： </label> <input type="text" name="student.phoneNo" value="${student.phoneNo}" /></p>
 <p><label> QQ： </label> <input type="text" name="student.qq" value="${student.qq}" /></p>
 <p><label> 邮箱： </label> <input type="text" name="student.email" value="${student.email}" /></p>
+<p><label> 参加的小组： </label>
+<c:if test="${student.group != null}">
+	<c:forEach items="${student.group}" var="group">
+		 <input type="text" value="${group.name}" />
+	</c:forEach>
+</c:if>
+</p>
