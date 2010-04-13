@@ -1,25 +1,26 @@
 package cn.gdpu.chat;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
-import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpSessionBindingEvent;
 import javax.servlet.http.HttpSessionBindingListener;
 
 import org.directwebremoting.ScriptSession;
-import org.directwebremoting.event.ScriptSessionEvent;
-import org.directwebremoting.event.ScriptSessionListener;
 
 
 public class User implements HttpSessionBindingListener,Serializable {
+	private static final long serialVersionUID = 1L;
 	private String userid;
 	private String name;
 	private ScriptSession ss;
-	public User(String name) {
+	private HttpSession hs;
+
+	public User(String userid, String name, ScriptSession ss, HttpSession hs) {
+		this.userid = userid;
 		this.name = name;
+		this.ss = ss;
+		this.hs = hs;
 	}
 
 	private UserList userList = UserList.getInstance();
@@ -59,6 +60,25 @@ public class User implements HttpSessionBindingListener,Serializable {
 
 	public void setSs(ScriptSession ss) {
 		this.ss = ss;
+	}
+
+	public HttpSession getHs() {
+		return hs;
+	}
+
+	public void setHs(HttpSession hs) {
+		this.hs = hs;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		User user = (User)obj;
+		return user.userid.equals(userid);
+	}
+
+	@Override
+	public int hashCode() {
+		return userid.hashCode();
 	}
 
 

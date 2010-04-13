@@ -1,13 +1,15 @@
 package cn.gdpu.chat;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
-import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 
 public class UserList {
-	private LinkedList<User> userList = new LinkedList<User>();
+	private Map<String,User> userList = new HashMap<String,User>();
 	private static UserList instance = null;
 	
 	public static synchronized UserList getInstance() {
@@ -19,14 +21,23 @@ public class UserList {
 
 
 	public void addUser(User u) {
-		this.userList.add(u);
+		this.userList.put(u.getUserid(),u);
 	}
 	public void removeUser(User u) {
-		this.userList.remove(u);
+		this.userList.remove(u.getUserid());
 	}
 
 
-	public LinkedList<User> getUserList() {
+	public Map<String,User> getUserList() {
 		return userList;
+	}
+	
+	public List<User> getUserNameList(){
+		List<User> list = new ArrayList<User>();
+		for (Object o : userList.keySet()) {
+			User user = userList.get(o);
+			list.add(user);
+		}
+		return list;
 	}
 }
