@@ -43,3 +43,4 @@ $(document).ready(function() {
 <a onclick="return hs.htmlExpand(this, { objectType: 'iframe' } )" href="<%=path%>/avatar/goAddAvatar">上传头像</a>
 <!-- 上传成功后，图片将插到这里。 -->
 <div id="pic"></div>
+

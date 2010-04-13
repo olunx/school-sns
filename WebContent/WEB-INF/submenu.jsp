@@ -15,6 +15,7 @@
 	<li><a class="letterspacing" target="content" href="<%=path%>/attendance/listAttendance">考勤</a> <span><a target="content" href="<%=path%>/attendance/goAddAttendance">添加</a></span></li>
 	<li><a class="letterspacing" target="content" href="<%=path%>/vote/listVote">投票</a> <span><a target="content" href="<%=path%>/vote/goAddVote">添加</a></span></li>
 	<li><a class="letterspacing" target="content" href="<%=path%>/goods/listmeGoods">交换</a> <span><a target="content" href="<%=path%>/goods/goAddGoods">添加</a></span></li>
+	<li><a class="letterspacing" target="content" href="<%=path%>/issue/listmeIssue">问答</a> <span><a target="content" href="<%=path%>/issue/goAddIssue">添加</a></span></li>
 	<li><a target="content" href="<%=path%>/chat/listChat">聊天室</a> </li>
 
 </ul>

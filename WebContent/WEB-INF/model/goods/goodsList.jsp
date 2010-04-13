@@ -122,3 +122,15 @@
 		&nbsp;&nbsp;暂无最新货品
 	</c:otherwise>
 </c:choose>
+<br />
+<br />
+<form onSubmit="post(this);return false;" class="form" action="<%=path %>/goods/searchGoods" method="post">
+	<select name="gtid">  
+		<option value="-1">全部</option>
+		<c:forEach items="${goodsType}" var="gst">
+			<option value="${gst.id}">${gst.name}</option>
+		</c:forEach>
+	</select>
+	<input type="text" name="search" />
+	<input type="submit" value="搜索"/>
+</form>

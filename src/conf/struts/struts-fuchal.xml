@@ -62,4 +62,18 @@
 			<param name="savePath">/upload/goods</param>
 		</action>
 	</package>	
+	
+	<!-- 问答Action -->
+	<package name="issue" extends="default" namespace="/issue">
+		<global-results>
+			<result name="list" type="redirect">listmeIssue?page=${page}</result>
+			<result name="index">/WEB-INF/model/issue/issueList.jsp</result>
+			<result name="success" type="chain">addIssue</result>
+			<result name="addPage">/WEB-INF/model/issue/issueAdd.jsp</result>
+			<result name="listall">/WEB-INF/model/issue/issueListAll.jsp</result>
+			<result name="viewPage">/WEB-INF/model/issue/issueView.jsp</result>
+			<result name="replyPage">/WEB-INF/model/issue/issueReply.jsp</result>
+		</global-results>
+		<action name="*Issue" class="cn.gdpu.action.IssueAction" method="{1}"></action>
+	</package>	
 </struts>    

@@ -53,12 +53,27 @@
 	<bean name="goodsService" class="cn.gdpu.service.impl.GoodsServiceImpl" scope="prototype">
 		<property name="baseDao" ref="goodsDaoImpl" />
 	</bean>
-	<!-- GoodsType Bean 货品管理-->
+	<!-- GoodsType Bean 货品类型管理-->
 	<bean name="goodsTypeDaoImpl" class="cn.gdpu.dao.impl.GoodsTypeDaoImpl" scope="prototype">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
 	<bean name="goodsTypeService" class="cn.gdpu.service.impl.GoodsTypeServiceImpl" scope="prototype">
 		<property name="baseDao" ref="goodsTypeDaoImpl" />
+	</bean>
+	
+	<!-- Issue Bean 问答管理-->
+	<bean name="issueDaoImpl" class="cn.gdpu.dao.impl.IssueDaoImpl" scope="prototype">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean name="issueService" class="cn.gdpu.service.impl.IssueServiceImpl" scope="prototype">
+		<property name="baseDao" ref="issueDaoImpl" />
+	</bean>
+	<!-- IssueType Bean 问答类型管理-->
+	<bean name="issueTypeDaoImpl" class="cn.gdpu.dao.impl.IssueTypeDaoImpl" scope="prototype">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean name="issueTypeService" class="cn.gdpu.service.impl.IssueTypeServiceImpl" scope="prototype">
+		<property name="baseDao" ref="issueTypeDaoImpl" />
 	</bean>
 	
 </beans>

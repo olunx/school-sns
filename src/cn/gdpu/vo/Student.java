@@ -24,8 +24,7 @@ public class Student extends People {
 	private Set<Score> scores;
 	private Set<Vote> votes;
 	private Set<Goods> goods;
-
-
+	
 
 	public Set<Vote> getVotes() {
 		return votes;
@@ -186,6 +185,4 @@ public class Student extends People {
 	public void setGoods(Set<Goods> goods) {
 		this.goods = goods;
 	}
-	
-	
 }
