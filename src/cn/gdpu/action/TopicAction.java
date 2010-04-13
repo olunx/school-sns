@@ -4,11 +4,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import cn.gdpu.service.FeedService;
 import cn.gdpu.service.TopicService;
 import cn.gdpu.util.Log;
 import cn.gdpu.util.PageBean;
-import cn.gdpu.vo.Feed;
 import cn.gdpu.vo.People;
 import cn.gdpu.vo.Topic;
 
@@ -20,7 +18,6 @@ public class TopicAction extends BaseAction {
 	private int otherId;
 	private Topic topic;
 	private TopicService<Topic, Integer> topicService;
-	private FeedService<Feed, Integer> feedService;
 	private PageBean pageBean;
 	private int page;
 
@@ -38,13 +35,7 @@ public class TopicAction extends BaseAction {
 			topicService.addEntity(topic);
 		}
 
-		// 添加到Feed列表
-		Feed feed = new Feed();
-		feed.setAuthor(topic.getAuthor());
-		feed.setType("Topic");
-		feed.setMessage("说： " + topic.getContent());
-		feed.setTime(topic.getTime());
-		feedService.addEntity(feed);
+		FeedAction.init().add(topic);
 
 		Log.init(getClass()).info("add finish ");
 
@@ -193,13 +184,4 @@ public class TopicAction extends BaseAction {
 	public void setOtherId(int otherId) {
 		this.otherId = otherId;
 	}
-
-	public FeedService<Feed, Integer> getFeedService() {
-		return feedService;
-	}
-
-	public void setFeedService(FeedService<Feed, Integer> feedService) {
-		this.feedService = feedService;
-	}
-
 }
