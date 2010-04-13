@@ -6,13 +6,13 @@ a:hover{ color:#004080;}
 子菜单
 */
 #submenu { background:#1e90ff url(submenu_shadow.png) repeat-y right;width:140px;padding:10px 0 15px 10px; margin:15px 0 0 0;}
-#submenu li{ line-height:25px; padding-left:20px;}
+#submenu li{ line-height:25px; padding-left:10px;}
 #submenu .on{background:url(submenu_on.gif) no-repeat right;}
 #submenu .on a{ color:#004080;}
 #submenu li:hover{background:url(submenu_on.gif) no-repeat right;}
 #submenu li:hover a{ color:#004080;}
 #submenu a{color:#1e90ff; font-size:14px;}
-.letterspacing{ letter-spacing:10px; margin-right:30px;}
+.letterspacing{ letter-spacing:10px; margin-right:20px;}
 #submenu span a{ font-size:12px; margin-right:0px;}
 
 
