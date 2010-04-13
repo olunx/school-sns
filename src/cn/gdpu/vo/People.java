@@ -1,5 +1,7 @@
 package cn.gdpu.vo;
 
+import java.util.Set;
+
 public class People {
 	private int id;
 	private String username;
@@ -11,6 +13,7 @@ public class People {
 	private String phoneNo;
 	private String email;
 	private String qq;
+	private Set<Issue> issue;
 
 	public int getId() {
 		return id;
@@ -92,4 +95,12 @@ public class People {
 		this.qq = qq;
 	}
 
+	public Set<Issue> getIssue() {
+		return issue;
+	}
+
+	public void setIssue(Set<Issue> issue) {
+		this.issue = issue;
+	}
+	
 }

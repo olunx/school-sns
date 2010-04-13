@@ -30,6 +30,7 @@ public class GoodsAction extends BaseAction {
 	private int rid;
 	private int gtid;
 	private String gsType[];
+	private String search;
 
 	@Override
 	public String add() {
@@ -104,24 +105,23 @@ public class GoodsAction extends BaseAction {
 				this.pageBean = goodsService.queryForPage(hql, 30, page);
 				if(pageBean.getList().isEmpty())
 		    		pageBean.setList(null);
-				System.out.println("goodshot = dddddddddddddddddddd");
 				hql = "from Goods g where g.owner.name <>'" + stu.getName() + "' order by g.hot DESC limit 5";
-				System.out.println("goodshot = hql == " + hql);
 				List<Goods> goodshot = goodsService.getEntity(Goods.class, hql);
 				if(goodshot.isEmpty() || goodshot.size()==0){
 					goodshot = null;
 				}
-				System.out.println("goodshot = " + goodshot);
 				getRequest().put("goodshot", goodshot);
 				hql = "from Goods g where g.owner.name <>'" + stu.getName() + "' order by g.airTime DESC limit 5";
-				System.out.println("goodshot = hql == " + hql);
 				List<Goods> goodsnew = goodsService.getEntity(Goods.class, hql);
-				System.out.println("goodsnew.size() = " + goodsnew.size());
 				if(goodsnew.isEmpty() || goodsnew.size()==0){
 					goodsnew = null;
 				}
-				System.out.println("goodsnew = " + goodsnew);
 				getRequest().put("goodsnew", goodsnew);
+				List<GoodsType> goodsType = goodsTypeService.getAllEntity(GoodsType.class);
+				if(goodsType.isEmpty() || goodsType.size()==0){
+					goodsType = null;
+				}
+				getRequest().put("goodsType", goodsType);
 			}
 		}
 		return INDEX;
@@ -143,6 +143,7 @@ public class GoodsAction extends BaseAction {
 				goods = goodsService.getEntity(Goods.class, id);
 				goods.setHot(goods.getHot() + 1);
 				goodsService.updateEntity(goods);
+				
 				if(goods.getState() == 1){
 					gsType = goods.getExchange().split(",");
 					String hql = "from Goods g where g.owner.name <>'" + stu.getName() + "' and g.state <>'1' and (g.goodsType.name ='" + gsType[0] + "'";
@@ -219,6 +220,25 @@ public class GoodsAction extends BaseAction {
 		return VIEW_PAGE;
 	}
 
+	public String search() {
+		Object author = this.getSession().get("user");
+		if (author != null) {
+			if (author instanceof People) {
+				People people = (People) author;
+				String hql = "";
+				if(gtid == -1){
+					hql = "from Goods g where g.owner.name <>'" + people.getName() + "' and g.name like '%" + search + "%' order by g.hot DESC";
+				}
+				else{
+					hql = "from Goods g where g.owner.name <>'" + people.getName() + "' and g.name like '%" + search + "%' and g.goodsType.id ='" + gtid + "' order by g.hot DESC";
+				}
+				this.pageBean = this.goodsService.queryForPage(hql, 30, page);
+				if(pageBean.getList().isEmpty())
+		    		pageBean.setList(null);
+			}
+		}
+		return "listall";
+	}
 	
 	//setter and getter
 	public GoodsService<Goods, Integer> getGoodsService() {
@@ -316,5 +336,12 @@ public class GoodsAction extends BaseAction {
 	public void setGtid(int gtid) {
 		this.gtid = gtid;
 	}
-	
+
+	public String getSearch() {
+		return search;
+	}
+
+	public void setSearch(String search) {
+		this.search = search;
+	}
 }
