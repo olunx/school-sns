@@ -9,11 +9,10 @@
 <script language="javascript">
 	function init() {
 	  dwr.engine.setActiveReverseAjax(true);
-	  setTimeout("MyChat.updateUsersList();",1000);
+	  setTimeout("MyChat.updateUsersList();",500);
+	  MyChat.getMessageList(function(data){receiveMessage(data)});
 	}
-	init();
-
-
+	
 	//接收在线用户数据
 	function receiveOnlineUser(data){
 		var userlist = "";
@@ -39,16 +38,20 @@
 				dwr.util.setValue("msg","");
 		}
 	}
-
-	function receiveMessage(message){
-		var tmpstr = dwr.util.getValue("showmsg",{escapeHtml:false});
-		if (message.to == "所有人")
-			tmpstr = tmpstr +"<br/>"+ message.from +" 说："+ message.text+" ";
-		else 
-			tmpstr = tmpstr +"<br/>"+ message.from +" 对 "+message.to +" 说："+ message.text+" ";
-		tmpstr = tmpstr + "<span class='chat_time'>"+message.time+"</span>";
-		dwr.util.setValue("showmsg",tmpstr,{escapeHtml:false});
+	function receiveMessage(messageList){
+		for (var data in messageList){
+			var message = messageList[data];
+			var tmpstr = dwr.util.getValue("showmsg",{escapeHtml:false});
+			if (message.to == "所有人")
+				tmpstr = tmpstr +"<br/>"+ message.from +" 说："+ message.text+" ";
+			else 
+				tmpstr = tmpstr +"<br/>"+ message.from +" 对 "+message.to +" 说："+ message.text+" ";
+			tmpstr = tmpstr + "<span class='chat_time'>"+message.time+"</span>";
+			dwr.util.setValue("showmsg",tmpstr,{escapeHtml:false});
+		}
 	}
+	init();
+	
 /*
 	function receiveMessages(messages) {
 	  var chatlog = "";
