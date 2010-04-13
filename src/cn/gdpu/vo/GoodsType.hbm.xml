@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="cn.gdpu.vo">
+	<class name="GoodsType" table="t_goodsType">
+		<id name="id" column="id">
+			<generator class="native" />
+		</id>
+		<property name="name" unique="true"/>
+		<set name="goods" cascade="all" lazy="false" order-by="id asc">
+			<key column="gtId" />
+			<one-to-many class="Goods" />
+		</set>
+	</class>
+</hibernate-mapping>

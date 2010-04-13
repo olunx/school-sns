@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="cn.gdpu.vo">
+	<!--
+	private int id;
+	private String name;
+	private String content;
+	private People owner;
+	private int state;
+	private double value;        
+	private List<Topic> reply;
+	private Topic answer;
+	private IssueType issueType;
+	private int hot;
+	private Date airTime;
+	private Date deadline;	
+	-->
+	<class name="Issue" table="t_issue" >
+		<id name="id" column="id">
+			<generator class="native" />
+		</id>
+		<property name="name" />
+		<property name="content" />
+		<many-to-one name="owner" column="userId" cascade="save-update" />
+		<property name="state" />
+		<property name="value" />
+		<list name="reply" cascade="all" lazy="false">
+			<key column="issueId" />
+			<index column="indexId" />
+			<one-to-many class="Topic" />
+		</list>
+		<many-to-one name="answer" column="issueId" cascade="all" unique="true"/>
+		<many-to-one name="issueType" column="itId" cascade="save-update" />
+		<property name="hot" />
+		<property name="airTime" />
+		<property name="deadline" />
+	</class>
+</hibernate-mapping>

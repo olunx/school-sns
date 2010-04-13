@@ -1,0 +1,38 @@
+@charset utf-8;
+/*全局*/
+*{ padding:0; margin:0;}
+.clear{clear:both;}
+body{ font-family:Arial, Helvetica, sans-serif,"宋体"; font-size:13px; background:#000 url(bg.jpg) top center no-repeat;}
+a:link,a:visited{ color:#999; text-decoration:none;}
+a:hover{ color:#004080;}
+table{width:100%;}
+td,th{padding:2px 5px;}
+ul{ list-style:none;}
+/* 头部*/
+#header{margin:0 auto; width:960px;height:60px;color:#FFF;}
+#header a{color:#FFF;text-decoration:none;}
+#header .logo{float:left;padding:6px 0 0 10px;margin:0;}
+#header .logo a{width:80px;display:block;background:none;overflow:hidden;height:auto;}
+#header .logo a img{margin:0;}
+.menuk{float:right;background:#1e90ff; width:400px; margin:15px 0px 0 0; padding:5px 10px; color:#999;}
+.menu li{float:left;padding:0 6px;}
+.menu li a{}
+.menu li a:hover{color:#fff;text-decoration:none;}
+.nav_account{ float:right;}
+.nav_account a:link,.nav_account a:visited{color:#666;}
+.nav_account a:hover{color:#fff;}
+.loginName{color:#CDEB8B;font-size:13px;padding-left:10px;padding-right:5px;}
+/*中间*/
+#container{margin:0 auto;width:960px;padding-top:10px;}
+
+#submenu{float:left;}
+#submenu a:link,#submenu a:visited{ color:#fff;}
+#submenu a:hover{ color:#004080;}
+
+#main{width:810px; float:left; background:#1e90ff;}
+
+#content{width:590px;float:left; min-height:400px; _height:400px;/*ie6 min-height hack*/ background:#FFF; margin:15px 0 0 0; padding:10px;}
+#sidebar{width:200px;float:left; padding:0px;}
+/*底部*/
+#footer{width:940px; clear:both; margin:10px auto; padding:10px; border-bottom:8px solid #999;color:#333;text-align:center;}
+#footer p{font:#FFF;}

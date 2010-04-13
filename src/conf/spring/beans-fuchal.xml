@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+			http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+			http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+			http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd"
+	default-lazy-init="true"
+	>
+	<!-- 测试BaseDao和BaseService -->
+	<bean name="aDaoImpl" class="cn.gdpu.dao.impl.ADaoImpl" scope="prototype">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean name="aService" class="cn.gdpu.service.impl.AServiceImpl" scope="prototype">
+		<property name="baseDao" ref="aDaoImpl" />
+	</bean>
+	
+	<!-- ClassFee Bean 班费管理 -->
+	<bean name="classfeeDaoImpl" class="cn.gdpu.dao.impl.ClassFeeDaoImpl" scope="prototype">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean name="classfeeService" class="cn.gdpu.service.impl.ClassFeeServiceImpl" scope="prototype">
+		<property name="baseDao" ref="classfeeDaoImpl" />
+	</bean>
+	
+	<!-- Score Bean 成绩管理 -->
+	<bean name="scoreDaoImpl" class="cn.gdpu.dao.impl.ScoreDaoImpl" scope="prototype">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean name="scoreService" class="cn.gdpu.service.impl.ScoreServiceImpl" scope="prototype">
+		<property name="baseDao" ref="scoreDaoImpl" />
+	</bean>
+	
+	<!-- Vote Bean 投票管理 -->
+	<bean name="voteDaoImpl" class="cn.gdpu.dao.impl.VoteDaoImpl" scope="prototype">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean name="voteService" class="cn.gdpu.service.impl.VoteServiceImpl" scope="prototype">
+		<property name="baseDao" ref="voteDaoImpl" />
+	</bean>
+	<!-- VoteItem Bean 投票管理 -->
+	<bean name="voteItemDaoImpl" class="cn.gdpu.dao.impl.VoteItemDaoImpl" scope="prototype">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean name="voteItemService" class="cn.gdpu.service.impl.VoteItemServiceImpl" scope="prototype">
+		<property name="baseDao" ref="voteItemDaoImpl" />
+	</bean>
+	
+	<!-- Goods Bean 货品管理-->
+	<bean name="goodsDaoImpl" class="cn.gdpu.dao.impl.GoodsDaoImpl" scope="prototype">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean name="goodsService" class="cn.gdpu.service.impl.GoodsServiceImpl" scope="prototype">
+		<property name="baseDao" ref="goodsDaoImpl" />
+	</bean>
+	<!-- GoodsType Bean 货品类型管理-->
+	<bean name="goodsTypeDaoImpl" class="cn.gdpu.dao.impl.GoodsTypeDaoImpl" scope="prototype">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean name="goodsTypeService" class="cn.gdpu.service.impl.GoodsTypeServiceImpl" scope="prototype">
+		<property name="baseDao" ref="goodsTypeDaoImpl" />
+	</bean>
+	
+	<!-- Issue Bean 问答管理-->
+	<bean name="issueDaoImpl" class="cn.gdpu.dao.impl.IssueDaoImpl" scope="prototype">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean name="issueService" class="cn.gdpu.service.impl.IssueServiceImpl" scope="prototype">
+		<property name="baseDao" ref="issueDaoImpl" />
+	</bean>
+	<!-- IssueType Bean 问答类型管理-->
+	<bean name="issueTypeDaoImpl" class="cn.gdpu.dao.impl.IssueTypeDaoImpl" scope="prototype">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean name="issueTypeService" class="cn.gdpu.service.impl.IssueTypeServiceImpl" scope="prototype">
+		<property name="baseDao" ref="issueTypeDaoImpl" />
+	</bean>
+	
+</beans>
