@@ -4,7 +4,6 @@ import java.util.Map;
 
 import cn.gdpu.util.Log;
 
-import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.interceptor.AbstractInterceptor;
 
@@ -19,6 +18,13 @@ public class AuthInterceptor extends AbstractInterceptor {
 
 		Log.init(getClass()).info("session isAccess: " + session.get("isAccess"));
 
+//		Action action = (Action) invocation.getAction();
+//		Log.init(getClass()).info("action: " + action);
+//		if(action instanceof HomeAction) {
+//			Log.init(getClass()).info("HomeAction: " + action);
+//			HomeAction homeAction = (HomeAction)action;
+//		}
+		
 //		String access = (String) session.get("isAccess");
 //		if (access != null && (access == "ture" || access.equals("true"))) {
 //			Log.init(getClass()).info("验证成功。");

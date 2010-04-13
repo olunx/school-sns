@@ -8,6 +8,22 @@
 	default-lazy-init="true">
 	<!-- 注释 -->
 
+	<bean name="theAfterAdvice" class="cn.gdpu.interceptor.FeedProcess"></bean>
+	<bean name="autoProxy" class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
+		<!-- 对哪些对象进行代理 -->
+		<property name="beanNames">
+			<list>
+				<value>*Service</value>
+			</list>
+		</property>
+		<!-- 谁是代理 -->
+		<property name="interceptorNames">
+			<list>
+				<value>theAfterAdvice</value>
+			</list>
+		</property>
+	</bean>
+
 	<!-- 主题 -->
 	<bean name="topicDaoImpl" class="cn.gdpu.dao.impl.TopicDaoImpl" scope="prototype">
 		<property name="sessionFactory" ref="sessionFactory" />
@@ -31,4 +47,13 @@
 	<bean name="imageService" class="cn.gdpu.service.impl.ImageServiceImpl" scope="prototype">
 		<property name="baseDao" ref="imageDaoImpl" />
 	</bean>
+
+	<!-- 好友动态 -->
+	<bean name="feedDaoImpl" class="cn.gdpu.dao.impl.FeedDaoImpl" scope="prototype">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean name="feedService" class="cn.gdpu.service.impl.FeedServiceImpl" scope="prototype">
+		<property name="baseDao" ref="feedDaoImpl" />
+	</bean>
+
 </beans>
