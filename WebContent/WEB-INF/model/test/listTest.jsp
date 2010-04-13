@@ -42,5 +42,12 @@ $(document).ready(function() {
 </script>
 <a onclick="return hs.htmlExpand(this, { objectType: 'iframe' } )" href="<%=path%>/avatar/goAddAvatar">上传头像</a>
 <!-- 上传成功后，图片将插到这里。 -->
-<div id="pic"></div>
+<div id="pic">
+<img src=""></img>
+<input id="oriFileName" type="hidden" name="image.oriFileName" value=""/>
+<input id="bigFileName" type="hidden" name="image.bigFileName" value=""/>
+<input id="bigFileUrl" type="hidden" name="image.bigFileUrl" value=""/>
+<input id="minFileName" type="hidden" name="image.minFileName" value=""/>
+<input id="minFileUrl" type="hidden" name="image.minFileUrl" value=""/>
+</div>
 

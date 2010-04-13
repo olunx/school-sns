@@ -12,7 +12,12 @@ $(document).ready(function() {
 	if (parent.window.hs) {
 		setTimeout(function() {
 			//想返回什么数据到前端，可以写到这里。
-			parent.$("#pic").append("<img src='<%=path%>${image.minFileUrl}'><img>");
+			parent.$("#pic img").attr("src", "<%=path%>${image.minFileUrl}");
+			parent.$("#oriFileName").attr("value", "${image.oriFileName}");
+			parent.$("#bigFileName").attr("value", "${image.bigFileName}");
+			parent.$("#bigFileUrl").attr("value", "${image.bigFileUrl}");
+			parent.$("#minFileName").attr("value", "${image.minFileName}");
+			parent.$("#minFileUrl").attr("value", "${image.minFileUrl}");
 			parent.window.hs.close();
 		}, 1000);
 	}

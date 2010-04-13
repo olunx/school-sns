@@ -1,5 +1,7 @@
 package cn.gdpu.action;
 
+import javax.annotation.Resource;
+
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
