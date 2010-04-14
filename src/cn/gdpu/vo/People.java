@@ -13,6 +13,8 @@ public class People {
 	private String phoneNo;
 	private String email;
 	private String qq;
+	private Set<Vote> votes;
+	private Set<Goods> goods;
 	private Set<Issue> issue;
 
 	public int getId() {
@@ -94,7 +96,23 @@ public class People {
 	public void setQq(String qq) {
 		this.qq = qq;
 	}
+	
+	public Set<Vote> getVotes() {
+		return votes;
+	}
 
+	public void setVotes(Set<Vote> votes) {
+		this.votes = votes;
+	}
+
+	public Set<Goods> getGoods() {
+		return goods;
+	}
+
+	public void setGoods(Set<Goods> goods) {
+		this.goods = goods;
+	}
+	
 	public Set<Issue> getIssue() {
 		return issue;
 	}

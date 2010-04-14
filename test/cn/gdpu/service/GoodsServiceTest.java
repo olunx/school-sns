@@ -10,6 +10,8 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import cn.gdpu.vo.Goods;
 import cn.gdpu.vo.GoodsType;
+import cn.gdpu.vo.Image;
+import cn.gdpu.vo.People;
 import cn.gdpu.vo.Student;
 import cn.gdpu.vo.Topic;
 
@@ -35,8 +37,9 @@ public class GoodsServiceTest{
 		goods.setContent("this is a test goods");
 		goods.setName("mp3");
 		goods.setState(0);
-		goods.setImage("image");
-		Student owner = new Student();
+		Image image = new Image();
+		goods.setImage(image);
+		People owner = new People();
 		goods.setOwner(owner);
 		goods.setQuantity(10);
 		goods.setRecord("创建货品");
@@ -48,7 +51,7 @@ public class GoodsServiceTest{
 		goods.setReply(replys);
 		goods.setValue(300);
 		GoodsType goodsType = new GoodsType();
-		goodsType.setName("数码产品");
+		goodsType.setName("二手");
 		goods.setGoodsType(goodsType);
 		goodsService.addEntity(goods);
 	}

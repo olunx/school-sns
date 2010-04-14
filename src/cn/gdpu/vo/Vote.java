@@ -5,7 +5,7 @@ import java.util.Set;
 
 public class Vote {
 	private int id;			  	 	//投票ID
-	private Student author;      	    //投票发起人
+	private People author;      	    //投票发起人
 	private String title;		   		//投票标题
 	private String summary;		   		 //投票描述
 	private Set<VoteItem> items;	    //投票选项           一个投票有多个选项(one-to-many)
@@ -13,7 +13,7 @@ public class Vote {
 	private int scope;					//可见范围
 	private Date airTime;			    //投票发起时间
 	private Date deadline;		  	    //投票结束时间
-	private Set<Student> voters;		//投票人               多个投票可以由多个学生投票(many-to-many)
+	private Set<People> voters;		//投票人               多个投票可以由多个人投票(many-to-many)
 	
 	public int getId() {
 		return id;
@@ -21,10 +21,10 @@ public class Vote {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public Student getAuthor() {
+	public People getAuthor() {
 		return author;
 	}
-	public void setAuthor(Student author) {
+	public void setAuthor(People author) {
 		this.author = author;
 	}
 	public String getTitle() {
@@ -69,10 +69,10 @@ public class Vote {
 	public void setDeadline(Date deadline) {
 		this.deadline = deadline;
 	}
-	public Set<Student> getVoters() {
+	public Set<People> getVoters() {
 		return voters;
 	}
-	public void setVoters(Set<Student> voters) {
+	public void setVoters(Set<People> voters) {
 		this.voters = voters;
 	}
 	

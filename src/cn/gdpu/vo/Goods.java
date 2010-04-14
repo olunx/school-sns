@@ -7,9 +7,9 @@ public class Goods {
 	private int id;
 	private String name;
 	private String content;
-	private String image;
+	private Image image;
 	private int quantity;
-	private Student owner;
+	private People owner;
 	private int state;
 	private double value;
 	private String record;
@@ -37,10 +37,10 @@ public class Goods {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public String getImage() {
+	public Image getImage() {
 		return image;
 	}
-	public void setImage(String image) {
+	public void setImage(Image image) {
 		this.image = image;
 	}
 	public int getQuantity() {
@@ -49,10 +49,10 @@ public class Goods {
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
-	public Student getOwner() {
+	public People getOwner() {
 		return owner;
 	}
-	public void setOwner(Student owner) {
+	public void setOwner(People owner) {
 		this.owner = owner;
 	}
 	public int getState() {

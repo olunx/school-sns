@@ -22,15 +22,13 @@
 //图片选择事件
 function imgselect() {
 	$('#photo').imgAreaSelect( {
-		aspectRatio : '',
+		aspectRatio : '1:1',
 		handles : true,
 		fadeSpeed : 200,
-		maxWidth: 120,
-		maxHeight: 120,
-		x1: 10,
-		y1: 10,
-		x2: 80,
-		y2: 80,
+		x1: 0,
+		y1: 0,
+		x2: 50,
+		y2: 50,
 		onSelectChange: function(img, selection) {
 		    $('#x').val(selection.x1);
 		    $('#y').val(selection.y1);
@@ -83,7 +81,6 @@ $(document).ready(function() {
 	});
 });
 </script>
-
 <div id="dialogbox">
 	<h2 class="caption">上传头像：</h2>
 	<div id="button" class="button">上传</div> 
