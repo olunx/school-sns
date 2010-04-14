@@ -17,6 +17,14 @@
 			<result name="login" type="redirect">/login.jsp</result>
 		</global-results>
 	</package>
+
+	<!-- 安装 -->
+	<package name="install" extends="struts-default" namespace="/">
+		<global-results>
+			<result name="success">/login.jsp</result>
+		</global-results>
+		<action name="install" class="cn.gdpu.action.InstallAction"></action>
+	</package>
 	
 	<!-- 登录 -->
 	<package name="login" extends="struts-default" namespace="/">
@@ -31,8 +39,8 @@
 		<action name="logout" class="cn.gdpu.action.LoginAction" method="logout">
 		</action>
 	</package>
-	
-		<!-- 测试的Action -->
+
+	<!-- 测试的Action -->
 	<package name="test" extends="default" namespace="/test">
 		<global-results>
 			<result name="index">/WEB-INF/model/test/listTest.jsp</result>
@@ -41,6 +49,6 @@
 			<result name="modifyPage">/WEB-INF/model/test/modifyTest.jsp</result>
 		</global-results>
 		<action name="*Test" class="cn.gdpu.action.TestAction" method="{1}"></action>
-		
 	</package>
+	
 </struts>    
