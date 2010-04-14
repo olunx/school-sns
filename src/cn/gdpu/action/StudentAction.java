@@ -4,11 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import cn.gdpu.service.ImageService;
 import cn.gdpu.service.StudentService;
 import cn.gdpu.util.Log;
 import cn.gdpu.util.PageBean;
 import cn.gdpu.util.excel.StudentExcel;
 import cn.gdpu.vo.Group;
+import cn.gdpu.vo.Image;
 import cn.gdpu.vo.Student;
 
 @SuppressWarnings("serial")
@@ -16,12 +18,12 @@ public class StudentAction extends BaseAction {
 
 	private int id;
 	private Integer[] ids;
-
 	private Student student;
-
 	private StudentService<Student, Integer> studentService;
 	private PageBean pageBean;
 	private int page;
+	private Image image;
+	private ImageService<Image, Integer> imageService;
 
 	@Override
 	public String add() {
@@ -115,13 +117,18 @@ public class StudentAction extends BaseAction {
 
 	@Override
 	public String modify() {
-		this.studentService.updateEntity(student);
+		Log.init(getClass()).info(image);
+		Log.init(getClass()).info(image.getMinFileUrl());
+		imageService.addEntity(image);
+		student.setAvatar(image);
+		studentService.updateEntity(student);
 		return super.modify();
 	}
 
 	@Override
 	public String view() {
-		this.setStudent(studentService.getEntity(Student.class, id));
+		student = studentService.getEntity(Student.class, id);
+		Log.init(getClass()).info("student.getAvatar() " + student.getAvatar());
 		return super.view();
 	}
 
@@ -171,6 +178,22 @@ public class StudentAction extends BaseAction {
 
 	public void setStudent(Student student) {
 		this.student = student;
+	}
+
+	public Image getImage() {
+		return image;
+	}
+
+	public void setImage(Image image) {
+		this.image = image;
+	}
+
+	public ImageService<Image, Integer> getImageService() {
+		return imageService;
+	}
+
+	public void setImageService(ImageService<Image, Integer> imageService) {
+		this.imageService = imageService;
 	}
 
 }

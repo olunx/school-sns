@@ -24,7 +24,7 @@
 		<property name="name" />
 		<property name="sex" />
 		<property name="permission" />
-		<one-to-one name="avatar" />
+		<many-to-one name="avatar" column="imageId" class="Image" cascade="all" unique="true" />
 		<property name="phoneNo" />
 		<property name="qq" />
 		<property name="email" />
