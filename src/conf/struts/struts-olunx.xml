@@ -45,9 +45,9 @@
 	<!-- 上传截图图片-->
 	<package name="avatar" extends="default" namespace="/avatar">
 		<global-results>
-			<result name="addPage">/WEB-INF/model/dialog/avatarAdd.jsp</result>
-			<result name="index">/WEB-INF/model/dialog/success.jsp</result>
-			<result name="success">/WEB-INF/model/dialog/avatar.jsp</result>
+			<result name="addPage">/WEB-INF/model/dialog/imageAdd.jsp</result>
+			<result name="index">/WEB-INF/model/dialog/imageSuc.jsp</result>
+			<result name="success">/WEB-INF/model/dialog/image.jsp</result>
 		</global-results>
 		<action name="*Avatar" class="cn.gdpu.action.ImageAction" method="{1}" />
 		<action name="avatarUpload" class="cn.gdpu.action.FileUploadAction" method="avatar">

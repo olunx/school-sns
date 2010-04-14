@@ -23,19 +23,20 @@ public class ImageResize {
 		String fileName = "map.jpg";
 		String fileDir = "C:\\Users\\olunx\\Desktop";
 
-		new ImageResize().cut(fileName, fileDir, 0, 0, 320, 240);
+		// new ImageResize().zoom(fileName, fileDir, 0, 0, 320, 240);
+		new ImageResize().zoom(fileName, fileDir, 0, 0, 320, 240);
 	}
-	
-	//剪裁图片
+
+	// 剪裁图片
 	public String cut(String fileName, String fileDir, int x1, int y1, int width, int height) {
 		return this.process(fileName, fileDir, x1, y1, width, height, 0);
 	}
 
-	//缩放图片
+	// 缩放图片
 	public String zoom(String fileName, String fileDir, int x1, int y1, int width, int height) {
 		return this.process(fileName, fileDir, x1, y1, width, height, 1);
 	}
-	
+
 	/**
 	 * 返回新图片的文件名。
 	 * 
@@ -47,35 +48,40 @@ public class ImageResize {
 	 * @param height
 	 * @return
 	 */
-	@SuppressWarnings("null")
 	private String process(String fileName, String fileDir, int x1, int y1, int width, int height, int which) {
 
 		File src = new File(fileDir + "\\" + fileName);
 
-		String minFileName = "min_" + fileName;
+		String minFileName = null;
 
-		String minFilePath = fileDir + "\\" + minFileName;
+		String minFilePath = null;
 
 		try {
 
 			InputStream input = new FileInputStream(src);
-			
+
 			Log.init(getClass()).info("图片路径： " + src);
-			
+
 			BufferedImage bufferedImage = null;
 
-			switch(which) {
-			case 0:{
+			switch (which) {
+			case 0: {
+				minFileName = "cut_" + fileName;
+				minFilePath = fileDir + "\\" + minFileName;
+
 				bufferedImage = ImageIO.read(input);
 				break;
 			}
-			case 1:{
-				Image image = ImageIO.read(input).getScaledInstance(y1, y1, Image.SCALE_SMOOTH);
+			case 1: {
+				minFileName = "min_" + fileName;
+				minFilePath = fileDir + "\\" + minFileName;
+				bufferedImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+				Image image = ImageIO.read(input).getScaledInstance(width, height, Image.SCALE_SMOOTH);
 				bufferedImage.getGraphics().drawImage(image, 0, 0, null);
 				break;
 			}
 			}
-			
+
 			bufferedImage = bufferedImage.getSubimage(x1, y1, width, height);
 
 			FileOutputStream fos = new FileOutputStream(minFilePath);
