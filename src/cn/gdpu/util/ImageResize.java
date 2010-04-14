@@ -21,7 +21,7 @@ public class ImageResize {
 	public static void main(String[] args) {
 
 		String fileName = "map.jpg";
-		String fileDir = "C:\\Users\\olunx\\Desktop";
+		String fileDir = "I:\\Users\\olunx\\Desktop";
 
 		// new ImageResize().zoom(fileName, fileDir, 0, 0, 320, 240);
 		new ImageResize().zoom(fileName, fileDir, 0, 0, 320, 240);

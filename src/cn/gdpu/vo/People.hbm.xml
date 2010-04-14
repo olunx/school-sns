@@ -13,6 +13,8 @@
 	private String phoneNo;
 	private String email;
 	private String qq;
+	private Set<Vote> votes;
+	private Set<Goods> goods;
 	private Set<Issue> issue;
  -->
 	<class name="People" table="t_people">
@@ -28,15 +30,23 @@
 		<property name="phoneNo" />
 		<property name="qq" />
 		<property name="email" />
+		<set name="votes" table="t_vote_user" lazy="true">
+				<key column="userId" />
+				<many-to-many class="Vote" column="voteId" />
+		</set>
+		<set name="goods" inverse="true" cascade="all" lazy="true" order-by="id asc">
+			<key column="userId" />
+			<one-to-many class="Goods" />
+		</set>
 		<set name="issue" inverse="true" cascade="all" lazy="true" order-by="id asc">
-			<key column="studentId" />
+			<key column="userId" />
 			<one-to-many class="Issue" />
 		</set>
 		<!--
 			private int id; private School school; private Institute institute; private Classes classes; private String dorm; private int entryYear;
 			private String sno; private String nickname; private String status; private String activity; private Date lastlogin; private Long point;
 			private Set<Duty> duty; private Set<Hobby> hobby; private Set<Group> group; private Set<Achievement> achievement; private Set<Student>
-			friends; private Set<Score> scores; private Set<Vote> votes; private Set<Goods> goods;
+			friends; private Set<Score> scores;
 		-->
 		<joined-subclass name="Student" table="t_student">
 			<key column="id" />
@@ -75,15 +85,6 @@
 				<key column="studentId" />
 				<many-to-many class="Group" column="groupId" />
 			</set>
-			<set name="votes" table="t_vote_student" lazy="true">
-				<key column="studentId" />
-				<many-to-many class="Vote" column="voteId" />
-			</set>
-			<set name="goods" inverse="true" cascade="all" lazy="true" order-by="id asc">
-				<key column="studentId" />
-				<one-to-many class="Goods" />
-			</set>
-			
 		</joined-subclass>
 		<!-- 
 		 	教师

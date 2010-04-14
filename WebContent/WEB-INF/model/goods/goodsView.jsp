@@ -8,6 +8,14 @@
 
 
 货品名称：${goods.name } <br />
+货品图片：<c:choose>
+			<c:when test="${goods.image != null}">
+			<img src="<%=path %>/${goods.image.minFileUrl }" width="80"/><br />
+			</c:when>
+			<c:otherwise>
+				<img src="" />图片无法显示<br />
+			</c:otherwise>
+		 </c:choose>
 货品描述：${goods.content }	<br />
 货品状态：${goods.state == 1? "正常(可交换)" :"正常(不可交换)" } <br />
 货品价钱：${goods.value } <br />

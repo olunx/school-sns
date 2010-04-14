@@ -7,11 +7,13 @@ import java.util.List;
 
 import cn.gdpu.service.GoodsService;
 import cn.gdpu.service.GoodsTypeService;
+import cn.gdpu.service.ImageService;
 import cn.gdpu.service.TopicService;
 import cn.gdpu.util.Log;
 import cn.gdpu.util.PageBean;
 import cn.gdpu.vo.Goods;
 import cn.gdpu.vo.GoodsType;
+import cn.gdpu.vo.Image;
 import cn.gdpu.vo.People;
 import cn.gdpu.vo.Student;
 import cn.gdpu.vo.Topic;
@@ -21,8 +23,10 @@ public class GoodsAction extends BaseAction {
 	private GoodsService<Goods, Integer> goodsService;
 	private TopicService<Topic, Integer> topicService;
 	private GoodsTypeService<GoodsType, Integer> goodsTypeService;
+	private ImageService<Image, Integer> imageService;
 	private Goods goods;
 	private GoodsType goodsType;
+	private Image image;
 	private Topic reply;
 	private PageBean pageBean;
 	private int page;
@@ -34,12 +38,15 @@ public class GoodsAction extends BaseAction {
 
 	@Override
 	public String add() {
-		Object student = this.getSession().get("user");
-		if (student != null) {
-			if (student instanceof Student) {
-				Student stu = (Student) student;
-				goods.setOwner(stu);
+		Object people = this.getSession().get("user");
+		if (people != null) {
+			if (people instanceof People) {
+				People user = (People) people;
+				goods.setOwner(user);
 			}
+			System.out.println("image url = " + image);
+			goods.setImage(image);
+			System.out.println("image -----------url = " + image.getMinFileUrl());
 			String record = goods.getRecord();
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			Date date = new Date();
@@ -97,21 +104,21 @@ public class GoodsAction extends BaseAction {
 	}
 
 	public String listme() {
-		Object student = this.getSession().get("user");
-		if (student != null) {
-			if (student instanceof Student) {
-				Student stu = (Student) student;
-				String hql = "from Goods g where g.owner.name ='" + stu.getName() + "'";
+		Object people = this.getSession().get("user");
+		if (people != null) {
+			if (people instanceof People) {
+				People user = (People) people;
+				String hql = "from Goods g where g.owner.name ='" + user.getName() + "'";
 				this.pageBean = goodsService.queryForPage(hql, 30, page);
 				if(pageBean.getList().isEmpty())
 		    		pageBean.setList(null);
-				hql = "from Goods g where g.owner.name <>'" + stu.getName() + "' order by g.hot DESC limit 5";
+				hql = "from Goods g where g.owner.name <>'" + user.getName() + "' order by g.hot DESC limit 5";
 				List<Goods> goodshot = goodsService.getEntity(Goods.class, hql);
 				if(goodshot.isEmpty() || goodshot.size()==0){
 					goodshot = null;
 				}
 				getRequest().put("goodshot", goodshot);
-				hql = "from Goods g where g.owner.name <>'" + stu.getName() + "' order by g.airTime DESC limit 5";
+				hql = "from Goods g where g.owner.name <>'" + user.getName() + "' order by g.airTime DESC limit 5";
 				List<Goods> goodsnew = goodsService.getEntity(Goods.class, hql);
 				if(goodsnew.isEmpty() || goodsnew.size()==0){
 					goodsnew = null;
@@ -135,18 +142,18 @@ public class GoodsAction extends BaseAction {
 
 	@Override
 	public String view() {
-		Student stu =null;
+		People user = null;
 		Object author = this.getSession().get("user");
 		if (author != null) {
-			if (author instanceof Student) {
-				stu = (Student) author;
+			if (author instanceof People) {
+				user = (Student) author;
 				goods = goodsService.getEntity(Goods.class, id);
 				goods.setHot(goods.getHot() + 1);
 				goodsService.updateEntity(goods);
 				
 				if(goods.getState() == 1){
 					gsType = goods.getExchange().split(",");
-					String hql = "from Goods g where g.owner.name <>'" + stu.getName() + "' and g.state <>'1' and (g.goodsType.name ='" + gsType[0] + "'";
+					String hql = "from Goods g where g.owner.name <>'" + user.getName() + "' and g.state <>'1' and (g.goodsType.name ='" + gsType[0] + "'";
 					if(gsType.length != 0){
 						for(int i=1;i<gsType.length;i++){
 							hql += " or g.goodsType.name ='" + gsType[i] + "'";
@@ -343,5 +350,21 @@ public class GoodsAction extends BaseAction {
 
 	public void setSearch(String search) {
 		this.search = search;
+	}
+
+	public ImageService<Image, Integer> getImageService() {
+		return imageService;
+	}
+
+	public void setImageService(ImageService<Image, Integer> imageService) {
+		this.imageService = imageService;
+	}
+
+	public Image getImage() {
+		return image;
+	}
+
+	public void setImage(Image image) {
+		this.image = image;
 	}
 }

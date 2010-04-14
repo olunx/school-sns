@@ -4,14 +4,14 @@
 <hibernate-mapping package="cn.gdpu.vo">
 	<!--
 		private int id;
-		private Student author; 
+		private People author; 
 		private String title; 
 		private String summary;		   
 		private Set<VoteItem> items; 
 		private String type; 
 		private Date airTime;	
 		private Date deadline;
-		private Set<Student> voters;
+		private Set<People> voters;
 	-->
 	<class name="Vote" table="t_vote" >
 		<id name="id" column="id">
@@ -28,9 +28,9 @@
 		<property name="scope" />
 		<property name="airTime" />
 		<property name="deadline" />
-		<set name="voters" table="t_vote_student"  cascade="save-update" >
+		<set name="voters" table="t_vote_user" cascade="save-update" >
 			<key column="voteId" />
-			<many-to-many class="Student" column="studentId" />
+			<many-to-many class="People" column="userId" />
 		</set>
 	</class>
 </hibernate-mapping>

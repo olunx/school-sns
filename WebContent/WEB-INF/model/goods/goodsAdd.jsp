@@ -4,7 +4,21 @@
 <%
 	String path = request.getContextPath();
 %>
+<link type="text/css" rel="stylesheet" href="<%=path%>/content/jq-highslide/highslide.css" />
+<script type="text/javascript" src="<%=path%>/content/jq-highslide/highslide-full.min.js"></script>
 <script language="javascript" type="text/javascript">
+	
+	$(document).ready(function() {
+	    hs.graphicsDir = '<%=path%>/content/jq-highslide/graphics/';
+	    hs.align = 'center';
+	    hs.outlineType = 'rounded-white';
+	    hs.wrapperClassName = 'draggable-header';
+	    hs.transitions = ['expand', 'crossfade'];
+		hs.useBox = true;
+		hs.width = 680;
+		hs.height = 450;
+	});
+
 	function addNewGoods(obj) {
 		var cbox = document.getElementsByName('goods.state');
 		if(cbox[0].checked == true){
@@ -40,6 +54,17 @@
 			</c:forEach>
 		</select>
 	</p>
+	<label>货品图片：</label>
+	<a onclick="return hs.htmlExpand(this, { objectType: 'iframe' } )" href="<%=path%>/avatar/goAddAvatar">上传图片</a>
+	<!-- 上传成功后，图片将插到这里。 -->
+	<div id="pic">
+		<img src=""></img>
+		<input id="oriFileName" type="hidden" name="image.oriFileName" value=""/>
+		<input id="bigFileName" type="hidden" name="image.bigFileName" value=""/>
+		<input id="bigFileUrl" type="hidden" name="image.bigFileUrl" value=""/>
+		<input id="minFileName" type="hidden" name="image.minFileName" value=""/>
+		<input id="minFileUrl" type="hidden" name="image.minFileUrl" value=""/>
+	</div>
 	<p><label>描述内容：</label>
 	<textarea name="goods.content" id="demo" rows="50" cols="150" style="width: 600px; height: 150px"></textarea>
 	</p>

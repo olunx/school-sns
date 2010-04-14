@@ -8,7 +8,7 @@
 	private String content;
 	private String image;
 	private int quantity;
-	private Student owner;
+	private People owner;
 	private int state;
 	private double value;
 	private String record;
@@ -24,9 +24,9 @@
 		</id>
 		<property name="name" />
 		<property name="content" />
-		<property name="image" />
+		<many-to-one name="image" column="imageId" unique="true" cascade="all"/>
 		<property name="quantity" />
-		<many-to-one name="owner" column="studentId" cascade="save-update" />
+		<many-to-one name="owner" column="userId" cascade="save-update" />
 		<property name="state" />
 		<property name="value" />
 		<property name="record" />

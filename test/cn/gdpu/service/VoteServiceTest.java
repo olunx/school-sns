@@ -12,7 +12,7 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import cn.gdpu.vo.Student;
+import cn.gdpu.vo.People;
 import cn.gdpu.vo.Vote;
 import cn.gdpu.vo.VoteItem;
 
@@ -20,17 +20,14 @@ import cn.gdpu.vo.VoteItem;
 
 public class VoteServiceTest {
 
-	private static VoteService voteService;
-	private static VoteItemService voteItemService;
-	private static StudentService studentService;
+	private static VoteService<Vote, Integer> voteService;
 
+	@SuppressWarnings("unchecked")
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		try {
 			ApplicationContext ctx = new ClassPathXmlApplicationContext("conf/spring/applicationContext.xml");
-			voteService = (VoteService) ctx.getBean("voteService");
-			voteItemService = (VoteItemService) ctx.getBean("voteItemService");
-			studentService = (StudentService) ctx.getBean("studentService");
+			voteService = (VoteService<Vote, Integer>) ctx.getBean("voteService");
 		} catch (RuntimeException e) {
 			e.printStackTrace();
 		}
@@ -40,8 +37,8 @@ public class VoteServiceTest {
 	//测试新建投票
 	@Test
 	public void insertVote(){
-		Student author = studentService.getStudentByNo("0707501145");
-		System.out.println("test= " + author.getName());
+		People author = new People();
+		author.setName("test");
 		Vote vote = new Vote();
 		HashSet<VoteItem> items = new HashSet<VoteItem>();
 		Calendar cal = Calendar.getInstance();
@@ -82,7 +79,7 @@ public class VoteServiceTest {
 //		voteItemService.addEntity(items);
 		vote.setItems(items);		
 		
-		HashSet<Student> voters = new HashSet<Student>();
+		HashSet<People> voters = new HashSet<People>();
 //		Student voter = studentService.getStudentByNo("");
 		voters.add(author);
 		vote.setVoters(voters);
@@ -99,7 +96,7 @@ public class VoteServiceTest {
 		if(votes != null)
 			for(Vote vote : votes){
 				System.out.println("voteId:" + vote.getId() + ",votesTitle:" + vote.getTitle());
-				for(Iterator iter = vote.getItems().iterator();iter.hasNext(); ){
+				for(Iterator<VoteItem> iter = vote.getItems().iterator();iter.hasNext(); ){
 					VoteItem voteItem = (VoteItem) iter.next();
 					System.out.println(voteItem.getContent() + ":得票" +voteItem.getNum());
 				}
@@ -117,7 +114,7 @@ public class VoteServiceTest {
 		Vote vote = (Vote) voteService.getEntity(Vote.class, vid);
 		if(vote != null){			
 			System.out.println("voteId:" + vote.getId() + ",votesTitle:" + vote.getTitle());
-			for(Iterator iter = vote.getItems().iterator();iter.hasNext(); ){
+			for(Iterator<VoteItem> iter = vote.getItems().iterator();iter.hasNext(); ){
 				VoteItem voteItem = (VoteItem) iter.next();
 				System.out.println(voteItem.getContent() + ":得票" +voteItem.getNum());
 			}
@@ -184,7 +181,7 @@ public class VoteServiceTest {
 		if(votes != null)
 			for(Vote vote : votes){
 				System.out.println("voteId:" + vote.getId() + ",votesTitle:" + vote.getTitle());
-				for(Iterator iter = vote.getItems().iterator();iter.hasNext(); ){
+				for(Iterator<VoteItem> iter = vote.getItems().iterator();iter.hasNext(); ){
 					VoteItem voteItem = (VoteItem) iter.next();
 					System.out.println(voteItem.getContent() + ":得票" +voteItem.getNum());
 				}
