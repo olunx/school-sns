@@ -21,6 +21,10 @@ public class HomeAction extends BaseAction {
 
 		return "home";
 	}
+	
+	public String center() {
+		return "center";
+	}
 
 	public StudentService<Student, Integer> getStudentService() {
 		return studentService;

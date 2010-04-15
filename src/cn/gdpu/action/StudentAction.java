@@ -120,7 +120,7 @@ public class StudentAction extends BaseAction {
 	@Override
 	public String modify() {
 		Log.init(getClass()).info(image);
-		Log.init(getClass()).info(image.getMinFileUrl());
+		Log.init(getClass()).info("image.getMinFileUrl()" + image.getMinFileUrl());
 		imageService.addEntity(image);
 		student.setAvatar(image);
 		studentService.updateEntity(student);

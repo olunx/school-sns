@@ -3,13 +3,6 @@
 	PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
 	"http://struts.apache.org/dtds/struts-2.1.dtd" >
 <struts>
-	<!-- 个人首页的Action -->
-	<package name="home" extends="default" namespace="/">
-		<global-results>
-			<result name="home">/WEB-INF/index.jsp</result>
-		</global-results>
-		<action name="home" class="cn.gdpu.action.HomeAction" method="home"></action>
-	</package>	
 	
 	<!-- 课程的Action -->
 	<package name="course" extends="default" namespace="/course">

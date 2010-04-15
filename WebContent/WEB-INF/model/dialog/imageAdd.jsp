@@ -46,7 +46,7 @@ function validate() {
 $(document).ready(function() {
 	var button = $('#button'), interval;
 	new AjaxUpload(button,{
-		action: '<%=path%>/avatar/avatarUpload', 
+		action: '<%=path%>/image/imageUpload', 
 		name: 'files',
 		onSubmit : function(file, ext){
 			
@@ -70,10 +70,6 @@ $(document).ready(function() {
 			}, 200);
 		},
 		onComplete: function(file, response){
-			//$('#dialogbox').load('<%=path%>/avatar/goModifyAvatar', ajax);
-			//$('#dialogbox').load(response, ajax);
-			//location.href = '<%=path%>/avatar/goModifyAvatar';
-			//alert(response);
 			$('#dialogbox').html(response);
 			imgselect();
 			validate();
