@@ -7,11 +7,13 @@ import java.util.Set;
 
 import org.apache.struts2.ServletActionContext;
 
+import cn.gdpu.service.CourseService;
 import cn.gdpu.service.GoodsTypeService;
 import cn.gdpu.service.IssueTypeService;
 import cn.gdpu.service.StudentService;
 import cn.gdpu.util.Log;
 import cn.gdpu.util.excel.StudentExcel;
+import cn.gdpu.vo.Course;
 import cn.gdpu.vo.GoodsType;
 import cn.gdpu.vo.IssueType;
 import cn.gdpu.vo.Student;
@@ -22,12 +24,15 @@ public class InstallAction extends BaseAction {
 	private StudentService<Student, Integer> studentService;
 	private GoodsTypeService<GoodsType, Integer> goodsTypeService;
 	private IssueTypeService<IssueType, Integer> issueTypeService;
+	private CourseService<Course, Integer> courseService;
 	
 	@Override
 	public String execute() throws Exception {
 
 		// 添加学生
 		addMany("001.xls");
+		//添加课程表
+		addCourse("kecheng.xls");
 		//添加交换类型
 		addGoodType();
 		//添加提问类型
@@ -48,6 +53,19 @@ public class InstallAction extends BaseAction {
 		}
 		Log.init(getClass()).info("学生添加完成.......");
 	}
+	
+	//添加课程表
+	private void addCourse(String fileName) {
+		String filePath = ServletActionContext.getServletContext().getRealPath("\\upload") + "\\" + fileName;
+		Log.init(getClass()).info("filePath " + filePath);
+		List<Course> courseList = new ArrayList<Course>();
+			courseList = StudentExcel.getStudentExcel().getCourseData(filePath);
+		for (Course c:courseList){
+			c.setClasses(null);//设置课程表的班级
+			courseService.addEntity(c);
+		}
+	}
+	
 	private void addGoodType(){
 		GoodsType goodsType = new GoodsType();
 		goodsType.setName("数码产品");
@@ -113,5 +131,9 @@ public class InstallAction extends BaseAction {
 
 	public void setIssueTypeService(IssueTypeService<IssueType, Integer> issueTypeService) {
 		this.issueTypeService = issueTypeService;
+	}
+
+	public void setCourseService(CourseService<Course, Integer> courseService) {
+		this.courseService = courseService;
 	}
 }

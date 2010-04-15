@@ -9,6 +9,10 @@
 	>
 	
 	<!-- 测试BaseDao和BaseService -->
+	<bean name="feedImpl" class="cn.gdpu.action.FeedAction" scope="prototype">
+		<property name="feedService" ref="feedService" />
+	</bean>
+	
 	<bean name="peopleDaoImpl" class="cn.gdpu.dao.impl.PeopleDaoImpl" scope="prototype">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>

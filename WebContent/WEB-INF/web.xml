@@ -78,7 +78,7 @@
 		</init-param>
 		<init-param>
 			<param-name>pollAndCometEnabled</param-name>
-			<param-value>true</param-value>
+			<param-value>false</param-value>
 		</init-param>
 	</servlet>
 	<servlet-mapping>

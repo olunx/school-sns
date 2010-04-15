@@ -1,33 +1,24 @@
 package cn.gdpu.chat;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
-import java.util.Set;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.directwebremoting.Browser;
 import org.directwebremoting.ScriptBuffer;
 import org.directwebremoting.ScriptSession;
-import org.directwebremoting.ScriptSessions;
 import org.directwebremoting.WebContextFactory;
-import org.directwebremoting.proxy.dwr.Util;
-
 import cn.gdpu.util.Log;
 import cn.gdpu.vo.*;
 
-public class MyChat {
+public class PrivateChat {
 	Map<String, User> userList = UserList.getInstance().getUserList(); // 用户表
 	LinkedList<Message> messageList = new LinkedList<Message>();
 
-	@SuppressWarnings( { "deprecation" })
-	public String updateUsersList(HttpServletRequest request) {
+	//登陆
+	public String login(HttpServletRequest request){
 		// 取得学生
 		People people = (People) request.getSession().getAttribute("user");
 		Log.init(this.getClass()).info("登陆名：" + people.getName());
@@ -45,49 +36,57 @@ public class MyChat {
 			}
 		}
 		Log.init(this.getClass()).info("userList：" + userList);
+		updateUsersList();//更新用户列表
+		return request.getSession().getId();
+	}
+	
+	//退出
+	public void logout(HttpServletRequest request){
+		request.getSession().removeAttribute("chatuser");
+		userList.remove(request.getSession().getId());
+		Log.init(this.getClass()).info("userList：" + userList);
+		updateUsersList();//更新用户列表
+	}
 
+	//更新在线用户
+	public void updateUsersList() {
+		//循环更新所有用户的在线列表
 		for (Object o : userList.keySet()) {
 			User user = userList.get(o);
 			ScriptSession ss = user.getSs();
+			ss.addScript(new ScriptBuffer().appendCall("setUserid", user.getUserid()));
 			ss.addScript(new ScriptBuffer().appendCall("receiveOnlineUser", userList));
-			Util util = new Util(ss);
-			util.removeAllOptions("sendto");
-			util.addOptions("sendto", new String[] { "所有人" });
-			util.addOptions("sendto", UserList.getInstance().getUserNameList(), "userid", "name");
+//			Util util = new Util(ss);
+//			util.removeAllOptions("sendto");
+//			util.addOptions("sendto", new String[] { "所有人" });
+//			util.addOptions("sendto", UserList.getInstance().getUserNameList(), "userid", "name");
 		}
-		return request.getSession().getId();
 	};
-
-	public void sayHi() {
-		Browser.withAllSessions(new Runnable() {
-			public void run() {
-				ScriptSessions.addFunctionCall("show", "Hi!!");
-			}
-		});
-	}
-	
-	public LinkedList<Message> getMessageList(){
+		
+	// 旧信息
+	public LinkedList<Message> getMessageList() {
 		return messageList;
 	}
-	
-	//说话
+
+	//从userid取得user
+	public User getUser(String userid) {
+		return userList.get(userid);
+	}
+
+	// 说话
 	public void sayTo(String toId, String msg, HttpServletRequest request) {
 		Log.init(this.getClass()).info("msg：" + msg);
-		User user = (User) request.getSession().getAttribute("chatuser");
-		Log.init(this.getClass()).info("user：" + user);
-		String fromUsername = user.getName();
-		String fromId = user.getUserid();
+		User formUser = (User) request.getSession().getAttribute("chatuser");
+		Log.init(this.getClass()).info("user：" + formUser);
+		
+		String fromUsername = formUser.getName();
+		String fromId = formUser.getUserid();
 		String date = new SimpleDateFormat("hh:mm:ss").format(new Date());
 		String toUsername = toId;
-		Log.init(this.getClass()).info("userList：" + userList);
-		for (Object o : userList.keySet()) {
-			User u = userList.get(o);
-			if (u.getUserid().equals(toId)) {
-				toUsername = u.getName();
-				break;
-			}
-		}
-		
+		User toUser = getUser(toId);
+		if (toUser != null)
+			toUsername = toUser.getName();
+
 		// 信息类
 		final Message message = new Message();
 		message.setText(msg);
@@ -96,19 +95,20 @@ public class MyChat {
 		message.setTo(toUsername);
 		message.setToid(toId);
 		message.setTime(date);
-		
-		//保存信息列表
+
+		// 保存信息列表
 		messageList.add(message);
-		if (messageList.size()>10) messageList.removeFirst();
-		
+		if (messageList.size() > 10)
+			messageList.removeFirst();
+
 		LinkedList<Message> sendMessageList = new LinkedList<Message>();
 		sendMessageList.add(message);
-		
+
 		for (Object o : userList.keySet()) {
 			ScriptSession ss = userList.get(o).getSs();
 			ss.addScript(new ScriptBuffer().appendCall("receiveMessage", sendMessageList));
 		}
-		
+
 		// Log.init(this.getClass()).info("遍历sm："+sm);
 		// for (String o : sm.keySet()) {
 		// ScriptSession ss = sm.get(o);
@@ -124,11 +124,11 @@ public class MyChat {
 		// }
 		// }
 
-//		Browser.withAllSessions(new Runnable() {
-//			public void run() {
-//				ScriptSessions.addFunctionCall("receiveMessage", message);
-//			}
-//		});
+		// Browser.withAllSessions(new Runnable() {
+		// public void run() {
+		// ScriptSessions.addFunctionCall("receiveMessage", message);
+		// }
+		// });
 	}
 
 }
