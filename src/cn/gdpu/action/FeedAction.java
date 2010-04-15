@@ -34,6 +34,8 @@ public class FeedAction extends BaseAction {
 
 	public final static String ADD_TWITTER ="add_twitter";
 	public final static String REPLY ="reply_topic";
+	public final static String ADD_FRIEND ="add_friend";
+	public final static String DEL_FRIEND ="del_friend";
 	public final static String ADD_GROUP ="add_group";
 	public final static String JOIN_GROUP ="join_group";
 	public final static String Quit_GROUP ="quit_group";
@@ -57,6 +59,7 @@ public class FeedAction extends BaseAction {
 		return feedAction;
 	}
 
+	//话题
 	public String add(Topic topic, String type) {
 
 		Log.init(getClass()).info("FeedAction add");
@@ -72,6 +75,7 @@ public class FeedAction extends BaseAction {
 		return super.add();
 	}
 
+	//圈子
 	public String add(Group group, People author, String type) {
 		
 		Feed feed = new Feed();
@@ -84,11 +88,20 @@ public class FeedAction extends BaseAction {
 		return super.add();
 	}
 	
-	public String add(Student student, String type) {
+	//好友
+	public String add(Student student, Student friend, String type) {
+		
+		Feed feed = new Feed();
+		feed.setAuthor(student);
+		feed.setType(type);
+		feed.setMessage(friend.getName());
+		feed.setTime(new Date());
+		service.addEntity(feed);
 		
 		return super.add();
 	}
 	
+	//投票
 	public String add(Vote vote, String type) {
 		
 		Feed feed = new Feed();
@@ -101,6 +114,7 @@ public class FeedAction extends BaseAction {
 		return super.add();
 	}
 	
+	//群组
 	public String add(Goods goods, String type) {
 		
 		Feed feed = new Feed();
@@ -113,6 +127,7 @@ public class FeedAction extends BaseAction {
 		return super.add();
 	}
 	
+	//问答
 	public String add(Issue issue, String type) {
 		Feed feed = new Feed();
 		feed.setAuthor(issue.getOwner());
@@ -124,26 +139,24 @@ public class FeedAction extends BaseAction {
 		return super.add();
 	}
 	
-	@SuppressWarnings("unchecked")
 	@Override
 	public String list() {
 		People user = (People) this.getSession().get("user");
 		if (user instanceof Student) {
 			student = studentService.getEntity(Student.class, user.getId());
 
-			List<Feed> feeds = new ArrayList<Feed>();
 			Set<Student> friends = student.getFriends();
-			for (Student f : friends) {
-				// feeds.addAll(feedService.getEntity(Feed.class,
-				// "from Feed f where f.author = '" + f.getId() + "'"));
-				pageBean = feedService.queryForPage("from Feed f where f.author = '" + f.getId() + "'", 10, page);
-				feeds.addAll(pageBean.getList());
-				//feeds.addAll(feedService.queryForPage("from Feed f where f.author = '" + f.getId() + "'", 10, page).getList());
-			}
-			if (pageBean.getList().isEmpty()) {
-				pageBean.setList(null);
-			}else {
-				pageBean.setList(feeds);
+			if(friends != null && friends.size() > 0) {
+				StringBuffer sql = new StringBuffer();
+				for (Student f : friends) {
+					sql.append(" f.author = '" + f.getId() + "' or");
+				}
+				sql.delete(sql.lastIndexOf("or"), sql.length());
+				Log.init(getClass()).info(sql);
+				pageBean = feedService.queryForPage("from Feed f where " + sql + "order by 'time' desc", 20, page);
+				if (pageBean.getList().isEmpty()) {
+					pageBean.setList(null);
+				}
 			}
 			
 		}
