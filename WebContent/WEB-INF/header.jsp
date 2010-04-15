@@ -19,6 +19,30 @@
 
 <!-- 常用库，确保这段代码在最下方 -->
 <script type="text/javascript" src="<%=path%>/content/js/common.js"></script>
+
+<!-- highslide -->
+<link type="text/css" rel="stylesheet" href="<%=path%>/content/jq-highslide/highslide.css" />
+<script type="text/javascript" src="<%=path%>/content/jq-highslide/highslide-full.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+    //class为corner时为圆角
+	if (!$.browser.msie) {
+        $(".corner").corner("8px");
+        $("#submenu").corner("left 8px");
+        $("#content").corner("right bottom 8px");
+    }
+    
+    hs.graphicsDir = '<%=path%>/content/jq-highslide/graphics/';
+    hs.align = 'center';
+    hs.outlineType = 'rounded-white';
+    hs.wrapperClassName = 'draggable-header';
+    hs.transitions = ['expand', 'crossfade'];
+	hs.useBox = true;
+	hs.width = 680;
+	hs.height = 450;
+});
+</script>
+
 </head>
 <body>
 
@@ -34,7 +58,11 @@
         </ul>
         <div class="nav_account">
         <c:choose>
-        	<c:when test="${isAccess!=null}"><span class="loginName">欢迎，${user.name }</span> <a href="<%=path%>/mail/listMyReceMail">小纸条</a> | <a href="<%=path%>/logout">退出</a></c:when>
+        	<c:when test="${isAccess!=null}">
+        	<span class="loginName">欢迎，${user.name }</span>
+        	 <a onclick="return hs.htmlExpand(this, { objectType: 'iframe' } )" href="<%=path%>/mail/boxMail">小纸箱</a>
+        	  | <a href="<%=path%>/logout">退出</a>
+        	</c:when>
         	<c:otherwise><a href="<%=path%>/goLogin">登录</a> | <a href="">注册</a> </c:otherwise>
         </c:choose>
 		</div>

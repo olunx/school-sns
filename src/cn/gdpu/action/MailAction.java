@@ -47,6 +47,10 @@ public class MailAction extends BaseAction {
 		return "replyPage";
 	}
 
+	public String box() {
+		return "boxPage";
+	}
+	
 	public String reply() {
 
 		Object author = this.getSession().get("user");

@@ -26,6 +26,7 @@
 			<result name="list" type="redirect">listTopic?page=${page}</result>
 			<result name="listMy" type="redirect">listMyTopic?page=${page}</result>
 			<result name="index">/WEB-INF/model/topic/topicList.jsp</result>
+			<result name="addPage">/WEB-INF/model/topic/topicAdd.jsp</result>
 			<result name="replyPage">/WEB-INF/model/topic/topicReply.jsp</result>
 		</global-results>
 		<action name="*Topic" class="cn.gdpu.action.TopicAction" method="{1}"></action>
@@ -37,6 +38,7 @@
 			<result name="list" type="redirect">listMail?page=${page}</result>
 			<result name="addPage">/WEB-INF/model/mail/mailAdd.jsp</result>
 			<result name="index">/WEB-INF/model/mail/mailList.jsp</result>
+			<result name="boxPage">/WEB-INF/model/mail/mailBox.jsp</result>
 			<result name="viewPage">/WEB-INF/model/mail/mailView.jsp</result>
 			<result name="replyPage">/WEB-INF/model/mail/mailReply.jsp</result>
 		</global-results>

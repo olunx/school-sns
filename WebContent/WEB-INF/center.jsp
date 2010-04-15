@@ -5,19 +5,33 @@
 %>
 <script type="text/javascript">
 	$(function() {
+		$("#box").load("<%=path%>/topic/goAddTopic", ajax);
 		$("#feed").load("<%=path%>/feed/listFeed", ajax);
+
+	    $("a[target='box']").click(function(){
+	        var href = $(this).attr('href');
+	        $('#box').css("height", $('#box').css("height"));
+	        $('#box').fadeOut("normal", function(){
+	        	$('#box').load(href);
+	        	$('#box').css("height", "auto").fadeIn("normal");
+			});
+	        return false;
+	    });
 	});
 </script>
-微博：
-<div id="twitter">
-<form onSubmit="post(this);return false;" action="<%=path%>/topic/addMyTopic" method="post">
-<label>发表：</label>
-<div class="paddingmin"><textarea name="topic.content" id="demo" rows="10" cols="50" style="width: 500px; height: 150px"></textarea>
-<br />
+消息：
+<div id="news">
+<div id="box"></div>
+<div>
+ <a target="box" href="<%=path%>/topic/goAddTopic">微博</a>
+ <a>图片</a>
+ <a>视频</a>
+ <a>链接</a>
+ <a>文件 </a>
+ <a target="box" href="<%=path%>/vote/goAddVote">投票</a>
+ <a target="box" href="<%=path%>/issue/goAddIssue">问答</a>
+ <a target="box" href="<%=path%>/goods/goAddGoods">交换</a>
 </div>
-<a>图片    视频    链接    文件    投票</a>
-<p class="paddingmin"><input type="submit" value="提交" /> <input type="reset" value="重置" /></p>
-</form>
 </div>
 <br/><br/>
 好友动态：

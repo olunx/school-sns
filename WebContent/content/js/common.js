@@ -1,12 +1,5 @@
 $(document).ready(function(){
 
-    //class为corner时为圆角
-	if (!$.browser.msie) {
-        $(".corner").corner("8px");
-        $("#submenu").corner("left 8px");
-        $("#content").corner("right bottom 8px");
-    }
-    
     //注册事件
     $("a[target='content']").click(function(){
         var href = $(this).attr('href');
@@ -32,7 +25,7 @@ function loadContent(href){
         onLoading();//打开loading
         content.load(href, function(){
             offLoading();//关闭loading
-            content.fadeIn('normal', ajax);
+            content.fadeIn('slow', ajax);
         });
 }
 
