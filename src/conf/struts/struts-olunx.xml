@@ -24,6 +24,7 @@
 	<package name="topic" extends="default" namespace="/topic">
 		<global-results>
 			<result name="list" type="redirect">listTopic?page=${page}</result>
+			<result name="listMy" type="redirect">listMyTopic?page=${page}</result>
 			<result name="index">/WEB-INF/model/topic/topicList.jsp</result>
 			<result name="replyPage">/WEB-INF/model/topic/topicReply.jsp</result>
 		</global-results>

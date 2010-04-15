@@ -13,6 +13,7 @@
 		<property name="title" />
 		<property name="time" />
 		<property name="content" />
+		<property name="type" />
 		<many-to-one name="author" />
 		<property name="istopic" />
 		<property name="hasreply" />

@@ -23,8 +23,8 @@ public class ImageResize {
 		String fileName = "map.jpg";
 		String fileDir = "I:\\Users\\olunx\\Desktop";
 
-		// new ImageResize().zoom(fileName, fileDir, 0, 0, 320, 240);
-		new ImageResize().zoom(fileName, fileDir, 0, 0, 320, 240);
+		//new ImageResize().cut(fileName, fileDir, 0, 0, 320, 240);
+		new ImageResize().zoom(fileName, fileDir, 0, 0, 1024, 768);
 	}
 
 	// 剪裁图片
