@@ -5,14 +5,15 @@
 <%
 	String path = request.getContextPath();
 %>
-<form onSubmit="post(this);return false;" action="<%=path%>/topic/addTopic" method="post">
-<label>发表：</label>
-<div class="paddingmin"><textarea name="topic.content" id="demo" rows="10" cols="50" style="width: 500px; height: 150px"></textarea>
-<br />
+<script type="text/javascript">
+	$(function() {
+		$("#twitter").load("<%=path%>/topic/goAddTopic", ajax);
+	});
+</script>
+微博：
+<div id="twitter">
 </div>
-<a>图片    视频    链接    文件    投票</a>
-<p class="paddingmin"><input type="submit" value="提交" /> <input type="reset" value="重置" /></p>
-</form>
+
 <style type="text/css">
 .box{width:98%;float:left;margin-bottom:30px;border:1px solid black;}
 .left{width:80px;height:30px;float:left;margin:1px;border:1px solid black;}
