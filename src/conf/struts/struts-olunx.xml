@@ -44,14 +44,14 @@
 	</package>
 
 	<!-- 上传截图图片-->
-	<package name="avatar" extends="default" namespace="/avatar">
+	<package name="image" extends="default" namespace="/image">
 		<global-results>
 			<result name="addPage">/WEB-INF/model/dialog/imageAdd.jsp</result>
 			<result name="index">/WEB-INF/model/dialog/imageSuc.jsp</result>
 			<result name="success">/WEB-INF/model/dialog/image.jsp</result>
 		</global-results>
-		<action name="*Avatar" class="cn.gdpu.action.ImageAction" method="{1}" />
-		<action name="avatarUpload" class="cn.gdpu.action.FileUploadAction" method="avatar">
+		<action name="*Image" class="cn.gdpu.action.ImageAction" method="{1}" />
+		<action name="imageUpload" class="cn.gdpu.action.FileUploadAction" method="image">
 			<!-- Action中的savePath属性的值 -->
 			<param name="savePath">/upload</param>
 		</action>

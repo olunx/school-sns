@@ -30,9 +30,9 @@ public class FileUploadAction extends BaseAction {
 	private List<String> targetsFileUrl;//相对路径 /upload/xxx
 	private List<String> targetsFileName;//修改后的文件名
 
-	// 上传头像
-	public String avatar() {
-		Log.init(getClass()).info("--------上传 头像");
+	// 上传图片
+	public String image() {
+		Log.init(getClass()).info("--------上传 图片");
 		return this.upload(".jpg.jpeg.gif.png.bmp");
 	}
 
