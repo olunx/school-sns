@@ -40,6 +40,15 @@
 		</action>
 	</package>
 
+	<!-- 好友动态 -->
+	<package name="feed" extends="default" namespace="/feed">
+		<global-results>
+			<result name="list" type="redirect">listFeed?page=${page}</result>
+			<result name="index">/WEB-INF/model/dialog/feedList.jsp</result>
+		</global-results>
+		<action name="*Feed" class="cn.gdpu.action.FeedAction" method="{1}"></action>
+	</package>
+	
 	<!-- 测试的Action -->
 	<package name="test" extends="default" namespace="/test">
 		<global-results>

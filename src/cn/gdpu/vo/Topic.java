@@ -7,6 +7,7 @@ public class Topic {
 	private int id;
 	private String title;
 	private String content;
+	private String type;
 	private People author;
 	private Date time;
 	private boolean istopic;
@@ -35,6 +36,14 @@ public class Topic {
 
 	public void setContent(String content) {
 		this.content = content;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
 	}
 
 	public People getAuthor() {

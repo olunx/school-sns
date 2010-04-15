@@ -7,16 +7,21 @@
 <jsp:include page="submenu.jsp"></jsp:include>
 <div id="main" class="corner">
 <div id="content">
+<script type="text/javascript">
+	$(function() {
+		$("#twitter").load("<%=path%>/topic/listMyTopic");
+		$("#feed").load("<%=path%>/feed/listFeed", ajax);
+	});
+</script>
+微博：
+<div id="twitter">
+
+</div>
+<br/><br/>
 好友动态：
-<c:if test="${feeds != null}">
-	<c:forEach items="${feeds}" var="feed">
-		 <ul>
-		 <li>${feed.author.name} ${feed.time}</li>
-		 <li>${feed.type}</li>
-		 <li>${feed.message}</li>
-		 </ul>
-	</c:forEach>
-</c:if>
+<div id="feed">
+
+</div>
 </div>
 <jsp:include page="sidebar.jsp"></jsp:include>
 </div>
