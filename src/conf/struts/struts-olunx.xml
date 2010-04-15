@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts 
+	PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.1.dtd" >
+<struts>
+	<!-- 学生 -->
+	<package name="student" extends="default" namespace="/student">
+		<global-results>
+			<result name="list" type="redirect">listStudent?page=${page}</result>
+			<result name="index">/WEB-INF/model/student/studentList.jsp</result>
+			<result name="addPage">/WEB-INF/model/student/studentAdd.jsp</result>
+			<result name="modifyPage">/WEB-INF/model/student/studentModify.jsp</result>
+			<result name="viewPage">/WEB-INF/model/student/studentView.jsp</result>
+			<result name="success" type="chain">addManyStudent</result>
+		</global-results>
+		<action name="*Student" class="cn.gdpu.action.StudentAction" method="{1}"></action>
+		<action name="studentUpload" class="cn.gdpu.action.FileUploadAction" method="student">
+			<!-- Action中的savePath属性的值 -->
+			<param name="savePath">/upload</param>
+		</action>
+	</package>
+
+	<!-- 微博-->
+	<package name="topic" extends="default" namespace="/topic">
+		<global-results>
+			<result name="list" type="redirect">listTopic?page=${page}</result>
+			<result name="index">/WEB-INF/model/topic/topicList.jsp</result>
+			<result name="replyPage">/WEB-INF/model/topic/topicReply.jsp</result>
+		</global-results>
+		<action name="*Topic" class="cn.gdpu.action.TopicAction" method="{1}"></action>
+	</package>
+
+	<!-- 邮件-->
+	<package name="mail" extends="default" namespace="/mail">
+		<global-results>
+			<result name="list" type="redirect">listMail?page=${page}</result>
+			<result name="addPage">/WEB-INF/model/mail/mailAdd.jsp</result>
+			<result name="index">/WEB-INF/model/mail/mailList.jsp</result>
+			<result name="viewPage">/WEB-INF/model/mail/mailView.jsp</result>
+			<result name="replyPage">/WEB-INF/model/mail/mailReply.jsp</result>
+		</global-results>
+		<action name="*Mail" class="cn.gdpu.action.MailAction" method="{1}"></action>
+	</package>
+
+	<!-- 上传截图图片-->
+	<package name="avatar" extends="default" namespace="/avatar">
+		<global-results>
+			<result name="addPage">/WEB-INF/model/dialog/imageAdd.jsp</result>
+			<result name="index">/WEB-INF/model/dialog/imageSuc.jsp</result>
+			<result name="success">/WEB-INF/model/dialog/image.jsp</result>
+		</global-results>
+		<action name="*Avatar" class="cn.gdpu.action.ImageAction" method="{1}" />
+		<action name="avatarUpload" class="cn.gdpu.action.FileUploadAction" method="avatar">
+			<!-- Action中的savePath属性的值 -->
+			<param name="savePath">/upload</param>
+		</action>
+	</package>
+
+	<!-- 群组-->
+	<package name="group" extends="default" namespace="/group">
+		<global-results>
+			<result name="list" type="redirect">listGroup?page=${page}</result>
+			<result name="index">/WEB-INF/model/group/groupList.jsp</result>
+			<result name="addPage">/WEB-INF/model/group/groupAdd.jsp</result>
+			<result name="viewPage">/WEB-INF/model/group/groupView.jsp</result>
+			<result name="modifyPage">/WEB-INF/model/group/groupModify.jsp</result>
+			<result name="replyPage">/WEB-INF/model/group/groupReply.jsp</result>
+		</global-results>
+		<action name="*Group" class="cn.gdpu.action.GroupAction" method="{1}"></action>
+	</package>
+</struts>    

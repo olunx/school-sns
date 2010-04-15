@@ -1,0 +1,15 @@
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+
+	<!-- Kissy Editor 插入本地图片action配置	-->
+	
+	<package name="editor" extends="struts-default" namespace="/">
+		<action name="editorUpload" class="cn.gdpu.action.EditorUploadAction" >
+			<param name="savePath">/content/images/xheditor</param>
+			<result name="success">/content/xheditor/xheditorRes.jsp</result>
+			<result name="error">/content/xheditor/xheditorRes.jsp</result>
+		</action>
+	</package>
+</struts>

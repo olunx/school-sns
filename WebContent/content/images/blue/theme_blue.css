@@ -1,0 +1,26 @@
+@charset "utf-8";
+a:link,a:visited{ color:#666; text-decoration:none;}
+a:hover{ color:#004080;}
+.menuk{background:#1e90ff;}
+/*
+子菜单
+*/
+#submenu { background:#1e90ff url(submenu_shadow.png) repeat-y right;width:140px;padding:10px 0 15px 10px; margin:15px 0 0 0;}
+#submenu li{ line-height:25px; padding-left:10px;}
+#submenu .on{background:url(submenu_on.gif) no-repeat right;}
+#submenu .on a{ color:#004080;}
+#submenu li:hover{background:url(submenu_on.gif) no-repeat right;}
+#submenu li:hover a{ color:#004080;}
+#submenu a{color:#1e90ff; font-size:14px;}
+.letterspacing{ letter-spacing:10px; margin-right:20px;}
+#submenu span a{ font-size:12px; margin-right:0px;}
+
+
+#main{background:#1e90ff;}
+
+/*
+右侧栏
+*/
+#sidebar {padding:15px 10px;width:180px;}
+#sidebar .mod{margin-bottom:10px;}
+#sidebar h2{ font-size:14px; color:#FFF; border-bottom:1px solid #fff; padding-bottom:5px; margin-bottom:5px;}
