@@ -30,16 +30,22 @@ public class TopicAction extends BaseAction {
 				Log.init(getClass()).info("people name " + people.getName());
 				topic.setAuthor(people);
 			}
+			topic.setType("twitter");
 			topic.setTime(new Date());
 			topic.setIstopic(true);
 			topicService.addEntity(topic);
 		}
 
-		FeedAction.init().add(topic);
+		FeedAction.init().add(topic, FeedAction.ADD_TWITTER);
 
 		Log.init(getClass()).info("add finish ");
 
 		return super.add();
+	}
+	
+	public String addMy() {
+		this.add();
+		return "listMy";
 	}
 
 	public String goReply() {
@@ -68,6 +74,8 @@ public class TopicAction extends BaseAction {
 			parent.setReply(list);
 			parent.setHasreply(true);
 			topicService.updateEntity(parent);
+			
+			FeedAction.init().add(topic, FeedAction.REPLY);
 		}
 
 		Log.init(getClass()).info("add finish ");
@@ -91,7 +99,7 @@ public class TopicAction extends BaseAction {
 	@Override
 	public String list() {
 		Log.init(getClass()).info("list ");
-		this.pageBean = this.topicService.queryForPage("from Topic t where t.istopic = '1'", 10, page);
+		this.pageBean = this.topicService.queryForPage("from Topic t where t.istopic = '1' and t.type = 'twitter'", 10, page);
 		if (pageBean.getList().isEmpty()) {
 			pageBean.setList(null);
 		}
@@ -106,7 +114,7 @@ public class TopicAction extends BaseAction {
 			if (author instanceof People) {
 				People people = (People) author;
 				this.pageBean = this.topicService.queryForPage(
-						"from Topic t where t.istopic = '1' and t.author = '" + people.getId() + "'", 10, page);
+						"from Topic t where t.istopic = '1' and t.type = 'twitter' and t.author = '" + people.getId() + "'", 10, page);
 				if (pageBean.getList().isEmpty()) {
 					pageBean.setList(null);
 				}
@@ -120,7 +128,7 @@ public class TopicAction extends BaseAction {
 
 	public String listOther() {
 		Log.init(getClass()).info("listOther");
-		this.pageBean = this.topicService.queryForPage("from Topic t where t.istopic = '1' and t.author = '" + otherId + "'", 10, page);
+		this.pageBean = this.topicService.queryForPage("from Topic t where t.istopic = '1' and t.type = 'twitter' and t.author = '" + otherId + "'", 10, page);
 		if (pageBean.getList().isEmpty()) {
 			pageBean.setList(null);
 		}

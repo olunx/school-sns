@@ -23,13 +23,12 @@ public class GroupAction extends BaseAction {
 
 	@Override
 	public String add() {
-		Object author = this.getSession().get("user");
+		People author = (People) this.getSession().get("user");
 		if (author != null) {
-			if (author instanceof People) {
-				group.setAdmin((People) author);
-			}
+			group.setAdmin(author);
 		}
 		groupService.addEntity(group);
+		FeedAction.init().add(group, author, FeedAction.ADD_GROUP);
 		return super.add();
 	}
 
@@ -87,15 +86,17 @@ public class GroupAction extends BaseAction {
 			Set<People> members = group.getMembers();
 			if (members.contains(stu)) {
 				members.remove(stu);
+				FeedAction.init().add(group, stu, FeedAction.Quit_GROUP);
 			} else {
 				members.add(stu);
+				FeedAction.init().add(group, stu, FeedAction.JOIN_GROUP);
 			}
 			group.setMembers(members);
 			groupService.updateEntity(group);
 		}
-		
+
 		Log.init(getClass()).info("join完成，跳转。");
-		
+
 		return super.LIST;
 	}
 
