@@ -56,15 +56,17 @@ public class StudentAction extends BaseAction {
 
 	// 加为好友
 	public String follow() {
-		Student oneStu = studentService.getEntity(Student.class, id);
+		Student friend = studentService.getEntity(Student.class, id);
 		Student me = (Student) this.getSession().get("student");
-		if (oneStu != null && me != null) {
+		if (friend != null && me != null) {
 			me = studentService.getEntity(Student.class, me.getId());
 			Set<Student> myFriends = me.getFriends();
-			if (myFriends.contains(oneStu)) {// 如果是朋友就删除
-				myFriends.remove(oneStu);
+			if (myFriends.contains(friend)) {// 如果是朋友就删除
+				myFriends.remove(friend);
+				FeedAction.init().add(me, friend, FeedAction.DEL_FRIEND);
 			} else {
-				myFriends.add(oneStu);
+				myFriends.add(friend);
+				FeedAction.init().add(me, friend, FeedAction.ADD_FRIEND);
 			}
 			me.setFriends(myFriends);
 			studentService.updateEntity(me);
