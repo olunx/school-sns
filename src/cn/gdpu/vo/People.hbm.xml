@@ -44,8 +44,7 @@
 			<key column="peopleId" />
 			<one-to-many class="Student" />
 		</set>
-
-		<set name="groups" table="t_group_student" lazy="true">
+		<set name="groups" table="t_group_people" lazy="true">
 			<key column="peopleId" />
 			<many-to-many class="Group" column="groupId" />
 		</set>
@@ -66,6 +65,7 @@
 			<one-to-many class="Excel" />
 		</set>
 		<!--
+			学生
 		-->
 		<joined-subclass name="Student" table="t_student">
 			<key column="id" />

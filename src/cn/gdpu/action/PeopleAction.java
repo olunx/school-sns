@@ -83,8 +83,8 @@ public class PeopleAction extends BaseAction {
 
 	// 检查是否我的群组
 	public static Boolean isMyGroup(Set<Group> set, Group group) {
-		System.out.println("set " + set);
-		System.out.println("group " + group);
+		System.out.println("group " + group.getName());
+		System.out.println("group set " + set);
 		if (set != null && group != null && set.contains(group))
 			return true;
 		return false;
