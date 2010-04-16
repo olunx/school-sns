@@ -3,12 +3,11 @@ package cn.gdpu.action;
 import java.util.Set;
 
 import cn.gdpu.service.GroupService;
-import cn.gdpu.service.StudentService;
+import cn.gdpu.service.PeopleService;
 import cn.gdpu.util.Log;
 import cn.gdpu.util.PageBean;
 import cn.gdpu.vo.Group;
 import cn.gdpu.vo.People;
-import cn.gdpu.vo.Student;
 
 @SuppressWarnings("serial")
 public class GroupAction extends BaseAction {
@@ -17,7 +16,7 @@ public class GroupAction extends BaseAction {
 	private Integer[] ids;
 	private Group group;
 	private GroupService<Group, Integer> groupService;
-	private StudentService<Student, Integer> studentService;
+	private PeopleService<People, Integer> peopleService;
 	private PageBean pageBean;
 	private int page;
 
@@ -52,10 +51,10 @@ public class GroupAction extends BaseAction {
 
 	@Override
 	public String list() {
-		Student stu = (Student) this.getSession().get("student");
-		if (stu != null) {
-			stu = studentService.getEntity(Student.class, stu.getId());
-			this.getRequest().put("groups", stu.getGroups());
+		People people = (People) this.getSession().get("user");
+		if (people != null) {
+			people = peopleService.getEntity(People.class, people.getId());
+			this.getRequest().put("groups", people.getGroups());
 		}
 		this.pageBean = this.groupService.queryForPage(Group.class, 10, page);
 		if (pageBean.getList().isEmpty())
@@ -66,9 +65,9 @@ public class GroupAction extends BaseAction {
 	// 列出我创建的小组
 	public String listMyCreate() {
 		Log.init(getClass()).info("listMy");
-		Student stu = (Student) this.getSession().get("student");
-		if (stu != null) {
-			this.pageBean = this.groupService.queryForPage("from Group g where g.admin = '" + stu.getId() + "'", 10, page);
+		People people = (People) this.getSession().get("user");
+		if (people != null) {
+			this.pageBean = this.groupService.queryForPage("from Group g where g.admin = '" + people.getId() + "'", 10, page);
 			if (pageBean.getList().isEmpty())
 				pageBean.setList(null);
 		}
@@ -78,18 +77,18 @@ public class GroupAction extends BaseAction {
 	public String join() {
 		Log.init(getClass()).info("join");
 
-		Student stu = (Student) this.getSession().get("student");
-		Log.init(getClass()).info("stu " + stu);
-		if (stu != null) {
+		People people = (People) this.getSession().get("user");
+		Log.init(getClass()).info("people " + people);
+		if (people != null) {
 			group = groupService.getEntity(Group.class, id);
-			stu = studentService.getEntity(Student.class, stu.getId());
+			people = peopleService.getEntity(People.class, people.getId());
 			Set<People> members = group.getMembers();
-			if (members.contains(stu)) {
-				members.remove(stu);
-				FeedAction.init().add(group, stu, FeedAction.Quit_GROUP);
+			if (members.contains(people)) {
+				members.remove(people);
+				FeedAction.init().add(group, people, FeedAction.Quit_GROUP);
 			} else {
-				members.add(stu);
-				FeedAction.init().add(group, stu, FeedAction.JOIN_GROUP);
+				members.add(people);
+				FeedAction.init().add(group, people, FeedAction.JOIN_GROUP);
 			}
 			group.setMembers(members);
 			groupService.updateEntity(group);
@@ -144,6 +143,14 @@ public class GroupAction extends BaseAction {
 		this.groupService = groupService;
 	}
 
+	public PeopleService<People, Integer> getPeopleService() {
+		return peopleService;
+	}
+
+	public void setPeopleService(PeopleService<People, Integer> peopleService) {
+		this.peopleService = peopleService;
+	}
+
 	public PageBean getPageBean() {
 		return pageBean;
 	}
@@ -158,14 +165,6 @@ public class GroupAction extends BaseAction {
 
 	public void setPage(int page) {
 		this.page = page;
-	}
-
-	public StudentService<Student, Integer> getStudentService() {
-		return studentService;
-	}
-
-	public void setStudentService(StudentService<Student, Integer> studentService) {
-		this.studentService = studentService;
 	}
 
 }
