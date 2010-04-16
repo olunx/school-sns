@@ -5,10 +5,6 @@ import java.lang.reflect.Method;
 import org.springframework.aop.AfterReturningAdvice;
 import org.springframework.aop.MethodBeforeAdvice;
 
-import cn.gdpu.service.MailService;
-import cn.gdpu.service.TopicService;
-import cn.gdpu.util.Log;
-
 public class FeedProcess implements AfterReturningAdvice, MethodBeforeAdvice {
 
 	@Override
@@ -18,7 +14,6 @@ public class FeedProcess implements AfterReturningAdvice, MethodBeforeAdvice {
 //		}
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public void afterReturning(Object obj, Method method, Object[] obj2, Object serviceImpl) throws Throwable {
 

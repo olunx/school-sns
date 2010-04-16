@@ -23,13 +23,10 @@ public class TopicAction extends BaseAction {
 
 	@Override
 	public String add() {
-		Object author = this.getSession().get("user");
+		People author = (People) this.getSession().get("user");
 		if (author != null) {
-			if (author instanceof People) {
-				People people = (People) author;
-				Log.init(getClass()).info("people name " + people.getName());
-				topic.setAuthor(people);
-			}
+			Log.init(getClass()).info("people name " + author.getName());
+			topic.setAuthor(author);
 			topic.setType("twitter");
 			topic.setTime(new Date());
 			topic.setIstopic(true);
@@ -42,7 +39,7 @@ public class TopicAction extends BaseAction {
 
 		return super.add();
 	}
-	
+
 	public String addMy() {
 		this.add();
 		return "listMy";
@@ -54,13 +51,10 @@ public class TopicAction extends BaseAction {
 
 	public String reply() {
 
-		Object author = this.getSession().get("user");
+		People author = (People) this.getSession().get("user");
 		if (author != null) {
-			if (author instanceof People) {
-				People people = (People) author;
-				Log.init(getClass()).info("people name " + people.getName());
-				topic.setAuthor(people);
-			}
+			Log.init(getClass()).info("people name " + author.getName());
+			topic.setAuthor(author);
 			topic.setTime(new Date());
 			topic.setIstopic(false);
 			topicService.addEntity(topic);
@@ -74,7 +68,7 @@ public class TopicAction extends BaseAction {
 			parent.setReply(list);
 			parent.setHasreply(true);
 			topicService.updateEntity(parent);
-			
+
 			FeedAction.init().add(topic, FeedAction.REPLY);
 		}
 
@@ -109,15 +103,12 @@ public class TopicAction extends BaseAction {
 
 	public String listMy() {
 		Log.init(getClass()).info("listMy");
-		Object author = this.getSession().get("user");
+		People author = (People) this.getSession().get("user");
 		if (author != null) {
-			if (author instanceof People) {
-				People people = (People) author;
-				this.pageBean = this.topicService.queryForPage(
-						"from Topic t where t.istopic = '1' and t.type = 'twitter' and t.author = '" + people.getId() + "'", 10, page);
-				if (pageBean.getList().isEmpty()) {
-					pageBean.setList(null);
-				}
+			this.pageBean = this.topicService.queryForPage("from Topic t where t.istopic = '1' and t.type = 'twitter' and t.author = '"
+					+ author.getId() + "'", 10, page);
+			if (pageBean.getList().isEmpty()) {
+				pageBean.setList(null);
 			}
 		}
 
@@ -128,7 +119,8 @@ public class TopicAction extends BaseAction {
 
 	public String listOther() {
 		Log.init(getClass()).info("listOther");
-		this.pageBean = this.topicService.queryForPage("from Topic t where t.istopic = '1' and t.type = 'twitter' and t.author = '" + otherId + "'", 10, page);
+		this.pageBean = this.topicService.queryForPage("from Topic t where t.istopic = '1' and t.type = 'twitter' and t.author = '"
+				+ otherId + "'", 10, page);
 		if (pageBean.getList().isEmpty()) {
 			pageBean.setList(null);
 		}

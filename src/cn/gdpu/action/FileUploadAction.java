@@ -37,7 +37,7 @@ public class FileUploadAction extends BaseAction {
 	}
 
 	// 上传学生信息文件
-	public String student() {
+	public String people() {
 		Log.init(getClass()).info("--------上传学生信息文件 ");
 		return this.upload(".xls");
 	}

@@ -12,7 +12,6 @@ import cn.gdpu.service.VoteService;
 import cn.gdpu.util.PageBean;
 import cn.gdpu.util.VoteItemComparator;
 import cn.gdpu.vo.People;
-import cn.gdpu.vo.Student;
 import cn.gdpu.vo.Vote;
 import cn.gdpu.vo.VoteItem;
 
@@ -23,7 +22,7 @@ public class VoteAction extends BaseAction {
 	private VoteItemService<VoteItem, Integer> voteItemService;
 	private Vote vote;
 	private VoteItem voteItem;
-	private String[] content;	
+	private String[] content;
 	private String time;
 	private int vid;
 	private int[] vids;
@@ -31,9 +30,7 @@ public class VoteAction extends BaseAction {
 
 	private PageBean pageBean;
 	private int page;
-	
-	
-	
+
 	public String add() {
 		Object people = this.getSession().get("user");
 		if (people != null) {
@@ -41,8 +38,8 @@ public class VoteAction extends BaseAction {
 				People user = (People) people;
 				vote.setAuthor(user);
 				vote.setAirTime(new Date());
-				SimpleDateFormat timesdf =   new SimpleDateFormat("HH:mm:ss");
-		        String str = timesdf.format(new Date());
+				SimpleDateFormat timesdf = new SimpleDateFormat("HH:mm:ss");
+				String str = timesdf.format(new Date());
 				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 				Date date = null;
 				try {
@@ -53,26 +50,26 @@ public class VoteAction extends BaseAction {
 				vote.setDeadline(date);
 				VoteItemComparator<VoteItem> voteItemComparator = new VoteItemComparator<VoteItem>();
 				Set<VoteItem> items = new TreeSet<VoteItem>(voteItemComparator);
-				for(int i=0;i<content.length;i++){
-					if(content[i] == null || content[i].trim().equals(""))
+				for (int i = 0; i < content.length; i++) {
+					if (content[i] == null || content[i].trim().equals(""))
 						continue;
 					boolean exit = false;
-					for(int j=0 ;j<i ; j++){
-						if(content[j].equals(content[i])){
+					for (int j = 0; j < i; j++) {
+						if (content[j].equals(content[i])) {
 							exit = true;
 							break;
-						}					
+						}
 					}
-					if(exit)
+					if (exit)
 						continue;
 					VoteItem voteItem = new VoteItem();
 					voteItem.setContent(content[i]);
 					items.add(voteItem);
 				}
-				if(items.isEmpty()){
+				if (items.isEmpty()) {
 					this.addFieldError("content", "投票选项不能全为空");
 				}
-				if(hasFieldErrors())
+				if (hasFieldErrors())
 					return INPUT;
 				vote.setItems(items);
 				voteService.addEntity(vote);
@@ -88,85 +85,62 @@ public class VoteAction extends BaseAction {
 	}
 
 	@Override
-	public String deleteMany() {
-		// TODO Auto-generated method stub
-		return super.deleteMany();
-	}
-
-	@Override
-	public String goAdd() {
-		return super.goAdd();
-	}
-
-	@Override
-	public String goModify() {
-		// TODO Auto-generated method stub
-		return super.goModify();
-	}
-
-	@Override
 	public String list() {
 		this.pageBean = this.voteService.queryForPage(Vote.class, 30, page);
-		if(pageBean.getList().isEmpty())
-    		pageBean.setList(null);
+		if (pageBean.getList().isEmpty())
+			pageBean.setList(null);
 		return super.list();
-	}
-
-	@Override
-	public String modify() {
-		// TODO Auto-generated method stub
-		return super.modify();
 	}
 
 	public String goVoting() throws ParseException {
 		Vote vote = (Vote) voteService.getEntity(Vote.class, vid);
 		getRequest().put("vote", vote);
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String str1 = sdf.format(new Date());
-        Date toDay = sdf.parse(str1);
-		if(toDay.after(vote.getDeadline()))     //如果投票过期 ，返回timeout
+		String str1 = sdf.format(new Date());
+		Date toDay = sdf.parse(str1);
+		if (toDay.after(vote.getDeadline())) // 如果投票过期 ，返回timeout
 			return super.view();
 		Set<People> voters = vote.getVoters();
-		Student voter = (Student) getSession().get("student");
-		if(voter == null){
+		People voter = (People) getSession().get("user");
+		if (voter == null) {
 			return super.view();
 		}
-		for(People stu : voters ){
-			if(stu.getId() == voter.getId())					//如果投票人已经投票，返回voterexist
+		for (People people : voters) {
+			if (people.getId() == voter.getId()) // 如果投票人已经投票，返回voterexist
 				return super.view();
 		}
 		return "govoting";
 	}
 
 	public String voting() throws Exception {
-		vote =	(Vote) voteService.getEntity(Vote.class, vid);
-		if(viid == null)										//验证投票先是否为空
+		vote = (Vote) voteService.getEntity(Vote.class, vid);
+		if (viid == null) // 验证投票先是否为空
 			this.addFieldError("viid", "投票选项不能为空");
-		if(hasFieldErrors()){
+		if (hasFieldErrors()) {
 			getRequest().put("vote", vote);
 			return "govoting";
 		}
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String str1 = sdf.format(new Date());
-        Date toDay = sdf.parse(str1);
-		if(toDay.after(vote.getDeadline()))     //如果投票过期 ，返回timeout
+		String str1 = sdf.format(new Date());
+		Date toDay = sdf.parse(str1);
+		if (toDay.after(vote.getDeadline())) // 如果投票过期 ，返回timeout
 			return super.view();
 		Set<People> voters = vote.getVoters();
-		Student voter = (Student) getSession().get("student");
-		if(voter == null)
+		People voter = (People) getSession().get("user");
+		if (voter == null)
 			return LIST;
-		for(People stu : voters ){
-			if(stu.getId() == voter.getId())			//如果投票人已经投票，返回voterexist
+		for (People stu : voters) {
+			if (stu.getId() == voter.getId()) // 如果投票人已经投票，返回voterexist
 				return super.view();
 		}
 		if (!voters.add(voter))
 			return super.view();
 		vote.setVoters(voters);
-		for(int i=0;i<viid.length;i++){
+		for (int i = 0; i < viid.length; i++) {
 			voteItem = (VoteItem) voteItemService.getEntity(VoteItem.class, viid[i]);
 			System.out.println("test = " + voteItem.getContent());
-			voteItem.setNum(voteItem.getNum()+1);
-		}		
+			voteItem.setNum(voteItem.getNum() + 1);
+		}
 		voteService.updateEntity(vote);
 		return super.view();
 	}
@@ -175,19 +149,19 @@ public class VoteAction extends BaseAction {
 	public String view() {
 		String data = "";
 		vote = (Vote) voteService.getEntity(Vote.class, vid);
-		
-		for(Iterator<VoteItem> iter = vote.getItems().iterator();iter.hasNext(); ){
+
+		for (Iterator<VoteItem> iter = vote.getItems().iterator(); iter.hasNext();) {
 			VoteItem voteItem = (VoteItem) iter.next();
 			data += voteItem.getContent();
-			if(iter.hasNext()){
+			if (iter.hasNext()) {
 				data += ",";
 			}
 		}
-		data +="-";
-		for(Iterator<VoteItem> iter = vote.getItems().iterator();iter.hasNext(); ){
+		data += "-";
+		for (Iterator<VoteItem> iter = vote.getItems().iterator(); iter.hasNext();) {
 			VoteItem voteItem = (VoteItem) iter.next();
-			data +=voteItem.getNum();
-			if(iter.hasNext()){
+			data += voteItem.getNum();
+			if (iter.hasNext()) {
 				data += ",";
 			}
 		}
@@ -195,8 +169,7 @@ public class VoteAction extends BaseAction {
 		return "view";
 	}
 
-	
-	//setter and getter
+	// setter and getter
 	public VoteService<Vote, Integer> getVoteService() {
 		return voteService;
 	}
@@ -236,7 +209,7 @@ public class VoteAction extends BaseAction {
 	public void setPageBean(PageBean pageBean) {
 		this.pageBean = pageBean;
 	}
-	
+
 	public int getPage() {
 		return page;
 	}
@@ -244,7 +217,7 @@ public class VoteAction extends BaseAction {
 	public void setPage(int page) {
 		this.page = page;
 	}
-	
+
 	public String[] getContent() {
 		return content;
 	}
@@ -252,7 +225,7 @@ public class VoteAction extends BaseAction {
 	public void setContent(String[] content) {
 		this.content = content;
 	}
-	
+
 	public String getTime() {
 		return time;
 	}

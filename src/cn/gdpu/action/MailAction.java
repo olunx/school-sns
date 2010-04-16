@@ -28,11 +28,9 @@ public class MailAction extends BaseAction {
 		People receiver = peopleService.getEntity(People.class, receiverId);
 		if (receiver != null) {
 			mail.setReceiver(receiver);
-			Object author = this.getSession().get("user");
+			People author = (People) this.getSession().get("user");
 			if (author != null) {
-				if (author instanceof People) {
-					mail.setSender((People) author);
-				}
+				mail.setSender(author);
 				mail.setIsreaded(false);
 				mail.setTime(new Date());
 				mail.setIstopic(true);
@@ -50,16 +48,13 @@ public class MailAction extends BaseAction {
 	public String box() {
 		return "boxPage";
 	}
-	
+
 	public String reply() {
 
-		Object author = this.getSession().get("user");
+		People author = (People) this.getSession().get("user");
 		if (author != null) {
-			if (author instanceof People) {
-				People people = (People) author;
-				Log.init(getClass()).info("people name " + people.getName());
-				mail.setSender(people);
-			}
+			Log.init(getClass()).info("people name " + author.getName());
+			mail.setSender(author);
 			mail.setIsreaded(false);
 			mail.setTime(new Date());
 			mail.setIstopic(false);
@@ -73,7 +68,7 @@ public class MailAction extends BaseAction {
 			list.add(mail);
 			parent.setReply(list);
 			parent.setHasreply(true);
-			
+
 			mailService.updateEntity(parent);
 		}
 
@@ -108,15 +103,12 @@ public class MailAction extends BaseAction {
 
 	public String listMySend() {
 		Log.init(getClass()).info("listMy");
-		Object author = this.getSession().get("user");
+		People author = (People) this.getSession().get("user");
 		if (author != null) {
-			if (author instanceof People) {
-				People people = (People) author;
-				this.pageBean = this.mailService.queryForPage("from Mail m where m.istopic = '1' and m.sender = '" + people.getId() + "'",
-						10, page);
-				if (pageBean.getList().isEmpty()) {
-					pageBean.setList(null);
-				}
+			this.pageBean = this.mailService.queryForPage("from Mail m where m.istopic = '1' and m.sender = '" + author.getId() + "'", 10,
+					page);
+			if (pageBean.getList().isEmpty()) {
+				pageBean.setList(null);
 			}
 		}
 
@@ -126,15 +118,12 @@ public class MailAction extends BaseAction {
 
 	public String listMyRece() {
 		Log.init(getClass()).info("listMy");
-		Object author = this.getSession().get("user");
+		People author = (People) this.getSession().get("user");
 		if (author != null) {
-			if (author instanceof People) {
-				People people = (People) author;
-				this.pageBean = this.mailService.queryForPage(
-						"from Mail m where m.istopic = '1' and m.receiver = '" + people.getId() + "'", 10, page);
-				if (pageBean.getList().isEmpty()) {
-					pageBean.setList(null);
-				}
+			this.pageBean = this.mailService.queryForPage("from Mail m where m.istopic = '1' and m.receiver = '" + author.getId() + "'",
+					10, page);
+			if (pageBean.getList().isEmpty()) {
+				pageBean.setList(null);
 			}
 		}
 
