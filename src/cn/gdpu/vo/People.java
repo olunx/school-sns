@@ -4,28 +4,29 @@ import java.util.Date;
 import java.util.Set;
 
 public class People {
-	private int id;
+	private int id;                                                       
 	private School school;
 	private Institute institute;
 	private Classes classes;
-	private int entryYear;
+	private int entryYear;                  
 
-	private String dorm;
-	private String username;
-	private String password;
-	private String name;
-	private String sex;
-	private int permission;
-	private Image avatar;
-	private String phoneNo;
-	private String email;
-	private String qq;
-	private Date birthday;
+	private String dorm;        //宿舍
+	private String username;     //用户名
+	private String password;        //密码
+	private String name;          //真实姓名
+	private int sex;               //性别        女0,男1
+	private int permission;           //权限             注册成功:1        加入班级为学生:2为老师:3，管理员是999
+	private int status;       		  //状态             正常：1 or 0 ，禁言2，锁定3，封号4
+	private Image avatar;              //头像
+	private String phoneNo;            //电话号码
+	private String email;            //电子邮箱
+	private String qq;          //QQ号码
+	private Date birthday;          //生日
 
-	private String activity;
-	private Long point;
-	private String nickname;
-	private String status;
+	private int activity;           //活跃度
+	private Long point;           //积分
+	private String nickname;        //昵称
+	     
 
 	private Date lastlogin;
 	private Set<Excel> excel;
@@ -110,11 +111,11 @@ public class People {
 		this.name = name;
 	}
 
-	public String getSex() {
+	public int getSex() {
 		return sex;
 	}
 
-	public void setSex(String sex) {
+	public void setSex(int sex) {
 		this.sex = sex;
 	}
 
@@ -166,11 +167,11 @@ public class People {
 		this.birthday = birthday;
 	}
 
-	public String getActivity() {
+	public int getActivity() {
 		return activity;
 	}
 
-	public void setActivity(String activity) {
+	public void setActivity(int activity) {
 		this.activity = activity;
 	}
 
@@ -190,11 +191,11 @@ public class People {
 		this.nickname = nickname;
 	}
 
-	public String getStatus() {
+	public int getStatus() {
 		return status;
 	}
 
-	public void setStatus(String status) {
+	public void setStatus(int status) {
 		this.status = status;
 	}
 

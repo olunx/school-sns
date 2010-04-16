@@ -32,6 +32,7 @@
 			<result name="success" type="redirectAction">home</result>
 			<result name="index">/login.jsp</result>
 			<result name="goLogin">/WEB-INF/model/dialog/login.jsp</result>
+			<result name="register" type="redirect">authLogin?username=${user.username}&amp;password=${user.password}</result>
 		</global-results>
 		<action name="*Login" class="cn.gdpu.action.LoginAction" method="{1}">
 			<interceptor-ref name="defaultStack"></interceptor-ref>
