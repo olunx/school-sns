@@ -32,24 +32,28 @@
 
 		});
 </script>
-<form action="<%=path %>/issue/addIssue" method="post" onsubmit="post(this);return false;" Class="form" >
+<form action="<%=path %>/register" method="post" onsubmit="post(this);return false;" Class="form" >
 	<p><label>账号：</label>
-	<input type="text" name="issue.name" />
+	<input type="text" name="user.username" />
 	</p>
 	<p><label>密码：</label>
-	<input type="text" name="issue.name" />
+	<input type="text" name="user.password" />
 	</p>
 	<p><label>确认：</label>
-	<input type="text" name="issue.name" />
+	<input type="text" name="repassword" />
 	</p>
 	<p><label>真实姓名：</label>
-	<input type="text" name="issue.name" />
+	<input type="text" name="user.name" />
+	</p>
+	<p><label>性别：</label>
+	<input type="radio" name="user.sex" value="1"/>男
+	<input type="radio" name="user.sex" value="0"/>女
 	</p>
 	<p><label>生日：</label>
-	<input id="datepicker" type="text" name="issue.name" />
+	<input id="datepicker" type="text" name="birthday" />
 	</p>
 	<p><label>电子邮箱：</label>
-	<input type="text" name="issue.name" />
+	<input type="text" name="user.email" />
 	</p>
 	<div id="thirdselect">
 		<label>选择学校：</label>
@@ -57,6 +61,7 @@
 		<select id="second" name="scId" size="1"><option value="">--</option></select>
 		
 	</div>
-	<p><input type="checkbox" name="state" value="1" />我已阅读并接受<a href="">“服务条款”</a></p>
+	<p><input type="checkbox" name="protocol" value="1" />我已阅读并接受<a href="">“服务条款”</a>
+	</p>
 	<input type="submit" value="提交问题"/>
 </form>

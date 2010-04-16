@@ -1,5 +1,7 @@
 package cn.gdpu.action;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -30,6 +32,11 @@ public class LoginAction extends BaseAction {
 	private AdminService<Admin, Integer> adminService;
 	private SchoolService<School, Integer> schoolService;
 	private ProvinceService<Province, Integer> provinceService;
+	private People user;
+	private String repassword;
+	private String birthday;
+	private int schoolId;
+	private int protocol;
 
 	public String auth() {
 
@@ -105,6 +112,28 @@ public class LoginAction extends BaseAction {
 		getRequest().put("schoolmap", jo);
 		return "goregister";
 	}
+	
+	public String register() throws Exception{
+		if (user.getUsername() != null && protocol == 1 ) {
+			People people = peopleService.getPeopleByUsername(user.getUsername());
+			System.out.println("----people---------" + people);
+			if(people == null && user.getPassword().trim() != null && repassword.trim() != null && user.getPassword().trim().equals(repassword.trim())){
+				System.out.println("----people---------");
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+				Date date =sdf.parse(birthday);
+				user.setBirthday(date);
+				School school = schoolService.getEntity(School.class, schoolId);
+				user.setSchool(school);
+				user.setPermission(1);        //普通注册完成是1
+				user.setStatus(1);           //普通用户注册成功状态为1
+				peopleService.addEntity(user);
+				System.out.println("-----------------------------------------注册成功---" + user.getUsername());
+				Log.init(getClass()).info("用户注册成功：" + user.getUsername());
+				return "register";
+			}
+		}
+		return INDEX;
+	}
 
 	public String getUsername() {
 		return username;
@@ -168,5 +197,45 @@ public class LoginAction extends BaseAction {
 
 	public void setProvinceService(ProvinceService<Province, Integer> provinceService) {
 		this.provinceService = provinceService;
+	}
+
+	public People getUser() {
+		return user;
+	}
+
+	public void setUser(People user) {
+		this.user = user;
+	}
+
+	public String getRepassword() {
+		return repassword;
+	}
+
+	public void setRepassword(String repassword) {
+		this.repassword = repassword;
+	}
+
+	public String getBirthday() {
+		return birthday;
+	}
+
+	public void setBirthday(String birthday) {
+		this.birthday = birthday;
+	}
+
+	public int getProtocol() {
+		return protocol;
+	}
+
+	public void setProtocol(int protocol) {
+		this.protocol = protocol;
+	}
+
+	public int getSchoolId() {
+		return schoolId;
+	}
+
+	public void setSchoolId(int schoolId) {
+		this.schoolId = schoolId;
 	}
 }

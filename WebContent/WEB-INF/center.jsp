@@ -19,6 +19,9 @@
 	    });
 	});
 </script>
+<div id="information">
+	<c:if test="${user.permission ==1 }"><a href="">继续完善资料认识找到很多同学</a></c:if> 
+</div>
 消息：
 <div id="news">
 <div id="box"></div>
