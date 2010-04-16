@@ -145,10 +145,10 @@ public class FeedAction extends BaseAction {
 		if (user instanceof Student) {
 			student = studentService.getEntity(Student.class, user.getId());
 
-			Set<Student> friends = student.getFriends();
+			Set<People> friends = student.getFriends();
 			if(friends != null && friends.size() > 0) {
 				StringBuffer sql = new StringBuffer();
-				for (Student f : friends) {
+				for (People f : friends) {
 					sql.append(" f.author = '" + f.getId() + "' or");
 				}
 				sql.delete(sql.lastIndexOf("or"), sql.length());
