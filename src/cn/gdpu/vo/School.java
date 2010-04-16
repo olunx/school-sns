@@ -5,6 +5,7 @@ import java.util.Set;
 public class School {
 	private int id;
 	private String name;
+	private Province province;
 	private Set<Institute> institute;
 	private String address;
 
@@ -14,6 +15,14 @@ public class School {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	public Province getProvince() {
+		return province;
+	}
+
+	public void setProvince(Province province) {
+		this.province = province;
 	}
 
 	public Set<Institute> getInstitute() {

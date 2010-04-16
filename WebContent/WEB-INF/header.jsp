@@ -59,11 +59,13 @@ $(document).ready(function() {
         <div class="nav_account">
         <c:choose>
         	<c:when test="${isAccess!=null}">
-        	<span class="loginName">欢迎，${user.name }</span>
+		<span class="loginName">欢迎，${user.name }</span>
         	 <a onclick="return hs.htmlExpand(this, { objectType: 'iframe' } )" href="<%=path%>/mail/boxMail">小纸箱</a>
         	  | <a href="<%=path%>/logout">退出</a>
         	</c:when>
-        	<c:otherwise><a href="<%=path%>/goLogin">登录</a> | <a href="">注册</a> </c:otherwise>
+        
+     <c:otherwise><a href="<%=path%>/goLogin">登录</a> | <a href="<%=path%>/goRegister">注册</a> </c:otherwise>
+
         </c:choose>
 		</div>
         <div id="dialog"></div>

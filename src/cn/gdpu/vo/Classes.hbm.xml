@@ -10,7 +10,6 @@
 	private String intro;
 	private Teacher assistant;
 	private Institute institute;
-	private School school;
 	private List<ClassFee> classfees;
  -->
 	<class name="Classes" table="t_classes">
@@ -32,9 +31,8 @@
 		</list>
 
 		 <many-to-one name="assistant" column="assistantId"/>
-		 <many-to-one name="institute" column="instituteId"></many-to-one>
-		 <many-to-one name="school" column="schoolId"></many-to-one>
-		 
+		 <many-to-one name="institute" column="instituteId" cascade="save-update"/>
+
 		 <list name="classfees">
 			<key column="classId"/>
 			<index column="indexId" />

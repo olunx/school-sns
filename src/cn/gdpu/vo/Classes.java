@@ -12,7 +12,6 @@ public class Classes {
 	private String intro;
 	private Teacher assistant;
 	private Institute institute;
-	private School school;
 	private List<ClassFee> classfees;
 
 	
@@ -71,14 +70,6 @@ public class Classes {
 
 	public void setInstitute(Institute institute) {
 		this.institute = institute;
-	}
-
-	public School getSchool() {
-		return school;
-	}
-
-	public void setSchool(School school) {
-		this.school = school;
 	}
 
 	public int getId() {

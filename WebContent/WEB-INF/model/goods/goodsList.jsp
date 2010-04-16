@@ -6,7 +6,7 @@
 	String path = request.getContextPath();
 %>
 
-<a target="content" href="<%=path %>/goods/listGoods" >全部学生的成绩</a>	<br />
+<a target="content" href="<%=path %>/goods/listGoods" >全部交换品</a>	<br />
 <c:choose>
 	<c:when test="${pageBean.list == null}">
 					没有该学生的货品数据！

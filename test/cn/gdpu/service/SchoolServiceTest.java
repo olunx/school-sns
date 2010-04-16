@@ -1,7 +1,5 @@
 package cn.gdpu.service;
 
-import java.util.HashSet;
-import java.util.Set;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -17,6 +15,7 @@ public class SchoolServiceTest{
 	private static InstituteService<Institute, Integer> instituteService;
 	private static ClassesService<Classes, Integer> classesService;
 
+	@SuppressWarnings("unchecked")
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		try {
@@ -50,12 +49,10 @@ public class SchoolServiceTest{
 		c1.setName("信息管理与信息系统（医药软件工程方向）");
 		c1.setEntryYear(2007);
 		c1.setInstitute(i1);
-		c1.setSchool(sch);
 		Classes c2 = new Classes();
 		c2.setName("生物医学智能");
 		c2.setEntryYear(2007);
 		c2.setInstitute(i1);
-		c2.setSchool(sch);
 		classesService.addEntity(c1);
 		classesService.addEntity(c2);
 		

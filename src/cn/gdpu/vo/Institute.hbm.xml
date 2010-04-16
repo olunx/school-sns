@@ -14,11 +14,11 @@
 		</id>
 		<property name="name" />
 		
-		<set name="classes" lazy="true">
+		<set name="classes" lazy="false" cascade="all" order-by="id asc">
 			<key column="instituteId"/>
 			<one-to-many class="Classes"/>
 		</set>
-		<many-to-one name="school" column="schoolId"></many-to-one>
+		<many-to-one name="school" column="schoolId" cascade="save-update"></many-to-one>
 		
 	</class>
 </hibernate-mapping>

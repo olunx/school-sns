@@ -38,6 +38,11 @@
 		</action>
 		<action name="logout" class="cn.gdpu.action.LoginAction" method="logout">
 		</action>
+		<action name="goRegister" class="cn.gdpu.action.LoginAction" method="goRegister">
+			<result name="goregister">/WEB-INF/model/dialog/register.jsp</result>
+		</action>
+		<action name="register" class="cn.gdpu.action.LoginAction" method="register">
+		</action>
 	</package>
 
 	<!-- 个人首页的Action -->
