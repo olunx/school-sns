@@ -11,6 +11,7 @@ import cn.gdpu.util.PageBean;
 import cn.gdpu.util.excel.StudentExcel;
 import cn.gdpu.vo.Group;
 import cn.gdpu.vo.Image;
+import cn.gdpu.vo.People;
 import cn.gdpu.vo.Student;
 
 @SuppressWarnings("serial")
@@ -60,7 +61,7 @@ public class StudentAction extends BaseAction {
 		Student me = (Student) this.getSession().get("student");
 		if (friend != null && me != null) {
 			me = studentService.getEntity(Student.class, me.getId());
-			Set<Student> myFriends = me.getFriends();
+			Set<People> myFriends = me.getFriends();
 			if (myFriends.contains(friend)) {// 如果是朋友就删除
 				myFriends.remove(friend);
 				FeedAction.init().add(me, friend, FeedAction.DEL_FRIEND);
