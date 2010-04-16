@@ -9,6 +9,7 @@
 		<many-to-one name="author" />
 		<property name="type" />
 		<property name="message" />
+		<property name="msgId" />
 		<property name="time" />
 	</class>
 </hibernate-mapping>

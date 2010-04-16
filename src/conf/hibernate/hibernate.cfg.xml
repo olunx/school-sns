@@ -10,7 +10,6 @@
 		<property name="connection.useUnicode">true</property>
 		<property name="connection.characterEncoding">UTF-8</property>
 		
-		<mapping resource="cn/gdpu/vo/A.hbm.xml" />
 		<mapping resource="cn/gdpu/vo/People.hbm.xml" />
 		
 		<mapping resource="cn/gdpu/vo/Province.hbm.xml" />

@@ -12,6 +12,7 @@ import cn.gdpu.util.excel.StudentExcel;
 import cn.gdpu.vo.Group;
 import cn.gdpu.vo.Image;
 import cn.gdpu.vo.People;
+import cn.gdpu.vo.Student;
 
 @SuppressWarnings("serial")
 public class PeopleAction extends BaseAction {
@@ -36,7 +37,7 @@ public class PeopleAction extends BaseAction {
 	public String addMany() {
 		List<String> fileList = (List<String>) this.getRequest().get("targetsFilePath");
 		Log.init(getClass()).info("fileList" + fileList);
-		List<People> peopleList = new ArrayList<People>();
+		List<Student> peopleList = new ArrayList<Student>();
 		if (fileList.size() > 0) {
 			peopleList = StudentExcel.getStudentExcel().getStudentData(fileList.get(0));
 			Log.init(getClass()).info("peopleList" + peopleList);

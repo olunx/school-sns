@@ -18,6 +18,7 @@ import cn.gdpu.vo.People;
 import cn.gdpu.vo.Student;
 import cn.gdpu.vo.Topic;
 
+@SuppressWarnings("serial")
 public class GoodsAction extends BaseAction {
 
 	private GoodsService<Goods, Integer> goodsService;
@@ -66,6 +67,7 @@ public class GoodsAction extends BaseAction {
 				goods.setExchange(goodsType);
 			}
 			goodsService.addEntity(goods);
+			FeedAction.init().add(goods, FeedAction.ADD_GOODS);
 		}
 		return super.add();
 	}

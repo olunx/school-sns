@@ -18,17 +18,14 @@ import cn.gdpu.util.excel.StudentExcel;
 import cn.gdpu.vo.Score;
 import cn.gdpu.vo.Student;
 
+@SuppressWarnings("serial")
 public class ScoreAction extends BaseAction {
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 
 	private String fileName;
 	private String phone;
 	private String pwd;
 	private Map<String, Object> request;
+	@SuppressWarnings("unused")
 	private FetionService fetionService;
 	private ScoreService<Score, Integer> scoreService;
 	private StudentService<Student, Integer> studentService;
@@ -144,6 +141,7 @@ public class ScoreAction extends BaseAction {
 			return "input";
 		}
 
+		@SuppressWarnings("unused")
 		String filePath = ServletActionContext.getServletContext().getRealPath("/upload") + "/" + fileName;
 //		Map<String, Object> items = StudentExcel.getStudentExcel().getScoreData(filePath);   // getStudentRegExcel().getScoreData(filePath);
 		

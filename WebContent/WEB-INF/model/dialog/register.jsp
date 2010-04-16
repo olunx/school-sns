@@ -27,7 +27,9 @@
 				monthNames: ['一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月'],
 				showMonthAfterYear: true,
 				changeYear: true,
-				maxDate: new Date()
+				maxDate: new Date(),
+				minDate: new Date(1980, 1, 1),
+				defaultDate: new Date(1986, 1, 1)
 			});
 
 		});
@@ -49,7 +51,7 @@
 	<input type="radio" name="user.sex" value="1"/>男
 	<input type="radio" name="user.sex" value="0"/>女
 	</p>
-	<p><label>生日：</label>
+	<p><label>出生年月：</label>
 	<input id="datepicker" type="text" name="birthday" />
 	</p>
 	<p><label>电子邮箱：</label>

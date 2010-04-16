@@ -73,6 +73,7 @@ public class VoteAction extends BaseAction {
 					return INPUT;
 				vote.setItems(items);
 				voteService.addEntity(vote);
+				FeedAction.init().add(vote, FeedAction.ADD_VOTE);
 			}
 		}
 		return super.add();

@@ -20,11 +20,13 @@ public class ImageResize {
 	 */
 	public static void main(String[] args) {
 
-		String fileName = "map.jpg";
-		String fileDir = "I:\\Users\\olunx\\Desktop";
+		//String fileName = "map.jpg";
+		//String fileDir = "I:\\Users\\olunx\\Desktop";
 
 		//new ImageResize().cut(fileName, fileDir, 0, 0, 320, 240);
-		new ImageResize().zoom(fileName, fileDir, 0, 0, 1024, 768);
+		//new ImageResize().zoom(fileName, fileDir, 0, 0, 1024, 768);
+		
+		//s = (Student)p;
 	}
 
 	// 剪裁图片
