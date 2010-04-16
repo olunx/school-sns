@@ -3,6 +3,24 @@
 	PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
 	"http://struts.apache.org/dtds/struts-2.1.dtd" >
 <struts>
+
+	<!-- 人员 -->
+	<package name="people" extends="default" namespace="/people">
+		<global-results>
+			<result name="list" type="redirect">listPeople?page=${page}</result>
+			<result name="index">/WEB-INF/model/people/peopleList.jsp</result>
+			<result name="addPage">/WEB-INF/model/people/peopleAdd.jsp</result>
+			<result name="modifyPage">/WEB-INF/model/people/peopleModify.jsp</result>
+			<result name="viewPage">/WEB-INF/model/people/peopleView.jsp</result>
+			<result name="success" type="chain">addManyPeople</result>
+		</global-results>
+		<action name="*People" class="cn.gdpu.action.PeopleAction" method="{1}"></action>
+		<action name="peopleUpload" class="cn.gdpu.action.FileUploadAction" method="people">
+			<!-- Action中的savePath属性的值 -->
+			<param name="savePath">/upload</param>
+		</action>
+	</package>
+	
 	<!-- 学生 -->
 	<package name="student" extends="default" namespace="/student">
 		<global-results>
@@ -14,7 +32,7 @@
 			<result name="success" type="chain">addManyStudent</result>
 		</global-results>
 		<action name="*Student" class="cn.gdpu.action.StudentAction" method="{1}"></action>
-		<action name="studentUpload" class="cn.gdpu.action.FileUploadAction" method="student">
+		<action name="studentUpload" class="cn.gdpu.action.FileUploadAction" method="people">
 			<!-- Action中的savePath属性的值 -->
 			<param name="savePath">/upload</param>
 		</action>

@@ -18,7 +18,6 @@
 				<th><a rel="checkall">全选</a></th>
 				<th>用户名</th>
 				<th>姓名</th>
-				<th>加为好友</th>
 				<th>宿舍</th>
 				<th>状态</th>
 				<th>编辑</th>
@@ -27,14 +26,8 @@
 			<c:forEach items="${pageBean.list}" var="student">
 				<tr>
 					<td><input type="checkbox" name="ids" value="${student.id}" /></td>
-					<td><a target="content" href="<%=path%>/student/viewStudent?id=${student.id}&page=${page}">${student.username}</a>
-					 <a target="content" href="<%=path%>/mail/goAddMail?receiverId=${student.id}">传纸条</a></td>
-					 <td><a target="content" href="<%=path%>/student/followStudent?id=${student.id}&page=${page}">
-					 <c:choose>
-					 	<c:when test="${my:isMyFriend(friends,student)}">删除好友</c:when>
-					 	<c:otherwise>加为好友</c:otherwise>
-					 </c:choose>
-					 </a></td>
+					<td><a target="content" href="<%=path%>/student/viewStudent?id=${student.id}&page=${page}">${student.username}</a> <a
+						target="content" href="<%=path%>/mail/goAddMail?receiverId=${student.id}">传纸条</a></td>
 					<td>${student.name}</td>
 					<td>${student.dorm}</td>
 					<td>${student.status}</td>
@@ -45,7 +38,7 @@
 		</table>
 
 		<div id="pagecount">
-		<p>共  ${pageBean.allRow} 条记录 共 ${pageBean.totalPage} 页 当前第 ${pageBean.currentPage}页</p>
+		<p>共 ${pageBean.allRow} 条记录 共 ${pageBean.totalPage} 页 当前第 ${pageBean.currentPage}页</p>
 		<c:choose>
 			<c:when test="${pageBean.currentPage == 1}">
 				<a><span>首页</span></a>
@@ -55,8 +48,7 @@
 				<a target="content" href="<%=path%>/student/listStudent?page=1"><span>首页</span></a>
 				<a target="content" href="<%=path%>/student/listStudent?page=${pageBean.currentPage-1}"><span>上一页</span></a>
 			</c:otherwise>
-		</c:choose>
-		<c:choose>
+		</c:choose> <c:choose>
 			<c:when test="${pageBean.currentPage != pageBean.totalPage}">
 				<a target="content" href="<%=path%>/student/listStudent?page=${pageBean.currentPage+1}"><span>下一页</span></a>
 				<a target="content" href="<%=path%>/student/listStudent?page=${pageBean.totalPage}"><span>尾页</span></a>
@@ -65,8 +57,7 @@
 				<a><span>下一页</span></a>
 				<a><span>尾页</span></a>
 			</c:otherwise>
-		</c:choose>
-		</div>
+		</c:choose></div>
 
 		<select name="cmd">
 			<option value="0" selected="selected">批量操作，请选择</option>
