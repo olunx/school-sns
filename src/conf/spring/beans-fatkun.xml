@@ -58,6 +58,12 @@
 		<property name="baseDao" ref="schoolDaoImpl" />
 	</bean>
 	
+	<bean name="provinceDaoImpl" class="cn.gdpu.dao.impl.ProvinceDaoImpl" scope="prototype">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean name="provinceService" class="cn.gdpu.service.impl.ProvinceServiceImpl" scope="prototype">
+		<property name="baseDao" ref="provinceDaoImpl" />
+	</bean>
 	
 	<bean name="instituteDaoImpl" class="cn.gdpu.dao.impl.InstituteDaoImpl" scope="prototype">
 		<property name="sessionFactory" ref="sessionFactory" />

@@ -1,5 +1,6 @@
 package cn.gdpu.vo;
 
+import java.util.Date;
 import java.util.Set;
 
 public class People {
@@ -13,6 +14,7 @@ public class People {
 	private String phoneNo;
 	private String email;
 	private String qq;
+	private Date birthday;
 	private Set<Vote> votes;
 	private Set<Goods> goods;
 	private Set<Issue> issue;
@@ -97,6 +99,14 @@ public class People {
 		this.qq = qq;
 	}
 	
+	public Date getBirthday() {
+		return birthday;
+	}
+
+	public void setBirthday(Date birthday) {
+		this.birthday = birthday;
+	}
+
 	public Set<Vote> getVotes() {
 		return votes;
 	}

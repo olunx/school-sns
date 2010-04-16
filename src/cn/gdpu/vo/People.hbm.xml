@@ -13,6 +13,7 @@
 	private String phoneNo;
 	private String email;
 	private String qq;
+	private Date birthday
 	private Set<Vote> votes;
 	private Set<Goods> goods;
 	private Set<Issue> issue;
@@ -30,6 +31,7 @@
 		<property name="phoneNo" />
 		<property name="qq" />
 		<property name="email" />
+		<property name="birthday" />
 		<set name="votes" table="t_vote_user" lazy="true">
 				<key column="userId" />
 				<many-to-many class="Vote" column="voteId" />
