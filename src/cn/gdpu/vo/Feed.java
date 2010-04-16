@@ -8,6 +8,7 @@ public class Feed {
 	private People author;
 	private String type;
 	private String message;
+	private int msgId;
 	private Date time;
 
 	public int getId() {
@@ -40,6 +41,14 @@ public class Feed {
 
 	public void setMessage(String message) {
 		this.message = message;
+	}
+
+	public int getMsgId() {
+		return msgId;
+	}
+
+	public void setMsgId(int msgId) {
+		this.msgId = msgId;
 	}
 
 	public Date getTime() {

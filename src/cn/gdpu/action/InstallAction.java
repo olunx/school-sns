@@ -16,7 +16,6 @@ import cn.gdpu.util.excel.StudentExcel;
 import cn.gdpu.vo.Course;
 import cn.gdpu.vo.GoodsType;
 import cn.gdpu.vo.IssueType;
-import cn.gdpu.vo.People;
 import cn.gdpu.vo.Student;
 
 @SuppressWarnings("serial")
@@ -38,6 +37,7 @@ public class InstallAction extends BaseAction {
 		addGoodType();
 		// 添加提问类型
 		addIssueType();
+		
 		return super.SUCCESS;
 	}
 
@@ -47,11 +47,9 @@ public class InstallAction extends BaseAction {
 
 		Log.init(getClass()).info("filePath " + filePath);
 
-		List<People> peopleList = new ArrayList<People>();
+		List<Student> peopleList = new ArrayList<Student>();
 		peopleList = StudentExcel.getStudentExcel().getStudentData(filePath);
-		Student s;
-		for (People p : peopleList) {
-			s = (Student) p;
+		for (Student s : peopleList) {
 			studentService.addEntity(s);
 		}
 		Log.init(getClass()).info("学生添加完成.......");

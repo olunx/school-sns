@@ -46,30 +46,31 @@ $(document).ready(function() {
 </head>
 <body>
 
-  <div id="header">
-      <div class="logo"><a href="">LOGO</a></div>
-      <div class="menuk corner">
-        <ul class="menu">
-          <li><a href="<%=path%>/home">首页</a></li>
-          <li><a href="#">学校</a></li>
-          <li><a href="#">群组</a></li>
-          <li><a href="#">消息</a></li>
-          <li><a href="#">博客</a></li>
-        </ul>
-        <div class="nav_account">
-        <c:choose>
-        	<c:when test="${isAccess!=null}">
+<div id="header">
+<div class="logo"><a href="">LOGO</a></div>
+<div class="menuk corner">
+<ul class="menu">
+	<li><a href="<%=path%>/home">首页</a></li>
+	<li><a href="#">学校</a></li>
+	<li><a href="#">群组</a></li>
+	<li><a href="#">消息</a></li>
+	<li><a href="#">博客</a></li>
+</ul>
+<div class="nav_account"><c:choose>
+	<c:when test="${isAccess!=null}">
 		<span class="loginName">欢迎，${user.name }</span>
-        	 <a onclick="return hs.htmlExpand(this, { objectType: 'iframe' } )" href="<%=path%>/mail/boxMail">小纸箱</a>
-        	  | <a href="<%=path%>/logout">退出</a>
-        	</c:when>
-        
-     <c:otherwise><a href="<%=path%>/goLogin">登录</a> | <a href="<%=path%>/goRegister">注册</a> </c:otherwise>
+		<a onclick="return hs.htmlExpand(this, { objectType: 'iframe' } )" href="<%=path%>/mail/boxMail">小纸箱</a>
+        | <a href="<%=path%>/logout">退出</a>
+	</c:when>
 
-        </c:choose>
-		</div>
-        <div id="dialog"></div>
-    </div>
+	<c:otherwise>
+		<a href="#">登录</a>
+      | <a onclick="return hs.htmlExpand(this, { objectType: 'iframe' } )" href="<%=path%>/goRegister">注册</a>
+	</c:otherwise>
+
+</c:choose></div>
+<div id="dialog"></div>
+</div>
 
 </div>
 

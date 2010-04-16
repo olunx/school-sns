@@ -7,7 +7,6 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import cn.gdpu.vo.Course;
-import cn.gdpu.vo.People;
 import cn.gdpu.vo.Score;
 import cn.gdpu.vo.Student;
 
@@ -29,7 +28,7 @@ public class StudentExcel extends ReadExcel {
 	 * @param filePath
 	 * @return
 	 */
-	public List<People> getStudentData(String filePath) {
+	public List<Student> getStudentData(String filePath) {
 
 		// 获取原始数据
 		List<String> result = super.readExcel(filePath);
@@ -37,7 +36,7 @@ public class StudentExcel extends ReadExcel {
 		if (result != null) {
 
 			// 用于保存返回的数据
-			List<People> resultData = new ArrayList<People>();
+			List<Student> resultData = new ArrayList<Student>();
 
 			int resultLength = result.size();
 			// 获取保存的属性列数

@@ -1,31 +1,24 @@
 package cn.gdpu.action;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
-import cn.gdpu.service.GoodsService;
-import cn.gdpu.service.GoodsTypeService;
 import cn.gdpu.service.IssueService;
 import cn.gdpu.service.IssueTypeService;
 import cn.gdpu.service.TopicService;
 import cn.gdpu.util.Log;
 import cn.gdpu.util.PageBean;
-import cn.gdpu.vo.Goods;
-import cn.gdpu.vo.GoodsType;
 import cn.gdpu.vo.Issue;
 import cn.gdpu.vo.IssueType;
 import cn.gdpu.vo.People;
-import cn.gdpu.vo.Student;
 import cn.gdpu.vo.Topic;
 
+@SuppressWarnings("serial")
 public class IssueAction extends BaseAction {
 
 	private IssueService<Issue, Integer> issueService;
@@ -55,6 +48,7 @@ public class IssueAction extends BaseAction {
 			issue.setIssueType(issueType);
 			issue.setAirTime(new Date());
 			issueService.addEntity(issue);
+			FeedAction.init().add(issue, FeedAction.ADD_ISSUE);
 		}
 		return super.add();
 	}
@@ -63,12 +57,6 @@ public class IssueAction extends BaseAction {
 	public String delete() {
 		issueService.deleteEntity(Issue.class, id);
 		return super.delete();
-	}
-
-	@Override
-	public String deleteMany() {
-		// TODO Auto-generated method stub
-		return super.deleteMany();
 	}
 
 	@Override
@@ -90,12 +78,6 @@ public class IssueAction extends BaseAction {
         JSONObject jo = JSONObject.fromObject(map);
 		getRequest().put("jsonmap", jo);
 		return super.goAdd();
-	}
-
-	@Override
-	public String goModify() {
-		// TODO Auto-generated method stub
-		return super.goModify();
 	}
 
 	@Override
@@ -165,12 +147,6 @@ public class IssueAction extends BaseAction {
 			}
 		}
 		return INDEX;
-	}
-	
-	@Override
-	public String modify() {
-		// TODO Auto-generated method stub
-		return super.modify();
 	}
 
 	@Override

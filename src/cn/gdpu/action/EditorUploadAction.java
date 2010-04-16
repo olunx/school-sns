@@ -8,8 +8,6 @@ import javax.servlet.ServletContext;
 import org.apache.commons.io.FileUtils;
 import org.apache.struts2.ServletActionContext;
 
-import com.opensymphony.xwork2.ActionSupport;
-
 public class EditorUploadAction extends BaseAction {
 
 	private static final long serialVersionUID = 1L;
@@ -41,7 +39,6 @@ public class EditorUploadAction extends BaseAction {
 		try {
 			FileUtils.copyFile(filedata, target);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		imgUrl = context.getContextPath() + savePath + "/" + targetFileName;

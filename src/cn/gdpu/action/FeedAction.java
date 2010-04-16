@@ -65,6 +65,7 @@ public class FeedAction extends BaseAction {
 		feed.setAuthor(topic.getAuthor());
 		feed.setType(type);
 		feed.setMessage(topic.getContent());
+		feed.setMsgId(topic.getId());
 		feed.setTime(topic.getTime());
 		service.addEntity(feed);
 
@@ -78,6 +79,7 @@ public class FeedAction extends BaseAction {
 		feed.setAuthor(author);
 		feed.setType(type);
 		feed.setMessage(group.getName());
+		feed.setMsgId(group.getId());
 		feed.setTime(new Date());
 		service.addEntity(feed);
 
@@ -91,6 +93,7 @@ public class FeedAction extends BaseAction {
 		feed.setAuthor(people);
 		feed.setType(type);
 		feed.setMessage(friend.getName());
+		feed.setMsgId(friend.getId());
 		feed.setTime(new Date());
 		service.addEntity(feed);
 
@@ -104,6 +107,7 @@ public class FeedAction extends BaseAction {
 		feed.setAuthor(vote.getAuthor());
 		feed.setType(type);
 		feed.setMessage(vote.getTitle());
+		feed.setMsgId(vote.getId());
 		feed.setTime(new Date());
 		service.addEntity(feed);
 
@@ -117,6 +121,7 @@ public class FeedAction extends BaseAction {
 		feed.setAuthor(goods.getOwner());
 		feed.setType(type);
 		feed.setMessage(goods.getName());
+		feed.setMsgId(goods.getId());
 		feed.setTime(new Date());
 		service.addEntity(feed);
 
@@ -129,6 +134,7 @@ public class FeedAction extends BaseAction {
 		feed.setAuthor(issue.getOwner());
 		feed.setType(type);
 		feed.setMessage(issue.getName());
+		feed.setMsgId(issue.getId());
 		feed.setTime(new Date());
 		service.addEntity(feed);
 
@@ -141,17 +147,19 @@ public class FeedAction extends BaseAction {
 		user = peopleService.getEntity(People.class, user.getId());
 
 		Set<People> friends = user.getFriends();
+		StringBuffer sql = new StringBuffer();
+		sql.append("(" + user.getId() + ", ");
 		if (friends != null && friends.size() > 0) {
-			StringBuffer sql = new StringBuffer();
 			for (People f : friends) {
-				sql.append(" f.author = '" + f.getId() + "' or");
+				sql.append(f.getId() + ", ");
 			}
-			sql.delete(sql.lastIndexOf("or"), sql.length());
-			Log.init(getClass()).info(sql);
-			pageBean = feedService.queryForPage("from Feed f where " + sql + "order by 'time' desc", 20, page);
-			if (pageBean.getList().isEmpty()) {
-				pageBean.setList(null);
-			}
+		}
+		sql.delete(sql.lastIndexOf(","), sql.length());
+		sql.append(")");
+		Log.init(getClass()).info(sql);
+		pageBean = feedService.queryForPage("from Feed f where f.author in " + sql + " order by 'time' desc", 20, page);
+		if (pageBean.getList().isEmpty()) {
+			pageBean.setList(null);
 		}
 
 		return super.list();
