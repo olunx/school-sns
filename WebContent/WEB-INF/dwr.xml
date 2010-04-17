@@ -10,6 +10,7 @@
 	    </create>
 	    <convert converter="bean" match="cn.gdpu.chat.Message"/>
 	    <convert converter="bean" match="cn.gdpu.chat.User"/>
+		<convert converter="bean" match="cn.gdpu.chat.PrivateUser"/>
 
 	</allow>
 </dwr>    

@@ -13,6 +13,7 @@ public class PrivateUser implements HttpSessionBindingListener,Serializable {
 	private static final long serialVersionUID = 1L;
 	private String userid;
 	private String name;
+	private PrivateUser chatuser;
 	private ScriptSession ss;
 	private HttpSession hs;
 
@@ -79,6 +80,14 @@ public class PrivateUser implements HttpSessionBindingListener,Serializable {
 	@Override
 	public int hashCode() {
 		return userid.hashCode();
+	}
+
+	public PrivateUser getChatuser() {
+		return chatuser;
+	}
+
+	public void setChatuser(PrivateUser chatuser) {
+		this.chatuser = chatuser;
 	}
 
 
