@@ -1,29 +1,54 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%
 	String path = request.getContextPath();
 %>
 <c:choose>
 	<c:when test="${pageBean.list == null}">
 					没有数据！
-			</c:when>
+	</c:when>
 	<c:otherwise>
-		<table class="table">
-			<tr>
-				<th>姓名</th>
-				<th>时间</th>
-				<th>类型</th>
-				<th>消息</th>
-			</tr>
-			<c:forEach items="${pageBean.list}" var="feed">
-				<tr>
-					<td>${feed.author.name}</td>
-					<td>${feed.time}</td>
-					<td>${feed.type}</td>
-					<td>${feed.message}</td>
-				</tr>
-			</c:forEach>
-		</table>
+		<c:forEach items="${pageBean.list}" var="feed">
+			<div class="box">
+				<fmt:formatDate value="${feed.time}" pattern="MM月dd日 HH:mm" />  
+				<c:choose>
+					<c:when test="${feed.type ==  'add_twitter'}">
+						${feed.author.name}  叽歪的说：   ${feed.message}  。
+					</c:when>
+					<c:when test="${feed.type == 'add_group'}">
+						${feed.author.name}  创建了群组  
+						<a target="content" href="<%=path %>/group/viewGroup?id=${feed.msgId}">${feed.message}</a> 。
+					</c:when>
+					<c:when test="${feed.type == 'join_group'}">
+						${feed.author.name}  加入了   
+						<a target="content" href="<%=path %>/group/viewGroup?id=${feed.msgId}">${feed.message}</a>   小组。
+					</c:when>
+					<c:when test="${feed.type == 'reply_topic'}">
+						${feed.author.name}  回复了   ${feed.message}  帖子。
+					</c:when>
+					<c:when test="${feed.type == 'add_friend'}">
+						${feed.author.name}  添加 了  
+						<a target="content" href="<%=path %>/people/viewPeople?id=${feed.msgId}">${feed.message}</a>   为好友。
+					</c:when>
+					<c:when test="${feed.type == 'add_goods'}">
+						${feed.author.name}  有  
+						<a target="content" href="<%=path %>/goods/viewGoods?id=${feed.msgId}">${feed.message}</a>   可以交换。
+					</c:when>
+					<c:when test="${feed.type == 'add_issue'}">
+						${feed.author.name}  发起问题  
+						<a target="content" href="<%=path %>/issue/viewIssue?id=${feed.msgId}">${feed.message}</a>  。
+					</c:when>
+					<c:when test="${feed.type == 'add_vote'}">
+						${feed.author.name}  发起投票  
+						<a target="content" href="<%=path %>/issue/viewIssue?id=${feed.msgId}">${feed.message}</a>  。
+					</c:when>
+					<c:otherwise>
+						${feed.author.name} ${feed.type} ${feed.message}
+					</c:otherwise>
+				</c:choose>
+			</div>
+		</c:forEach>
 
 		<div id="pagecount">
 		<p>共  ${pageBean.allRow} 条记录 共 ${pageBean.totalPage} 页 当前第 ${pageBean.currentPage}页</p>

@@ -157,7 +157,7 @@ public class FeedAction extends BaseAction {
 		sql.delete(sql.lastIndexOf(","), sql.length());
 		sql.append(")");
 		Log.init(getClass()).info(sql);
-		pageBean = feedService.queryForPage("from Feed f where f.author in " + sql + " order by 'time' desc", 20, page);
+		pageBean = feedService.queryForPage("from Feed f where f.author in " + sql + " order by f.time desc", 10, page);
 		if (pageBean.getList().isEmpty()) {
 			pageBean.setList(null);
 		}

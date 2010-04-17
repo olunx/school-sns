@@ -5,6 +5,8 @@
 <%
 	String path = request.getContextPath();
 %>
+<!-- JQuery库 -->
+<script type="text/javascript" src="<%=path%>/content/js/jquery-1.4.2.min.js"></script>
 <!-- JQuery UI 插件 -->
 <link type="text/css" rel="stylesheet" href="<%=path%>/content/jq-ui/jquery-ui-1.8.custom.css" />
 <script type="text/javascript" src="<%=path%>/content/jq-ui/jquery-ui-1.8.custom.min.js"></script>
