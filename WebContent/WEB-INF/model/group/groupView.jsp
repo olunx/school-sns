@@ -35,7 +35,7 @@
 				        <div class="name">${post.author.name }</div>
 				    </div>
 				    <div class="center">
-				        <div class="text"> 内容： ${post.content}<br/></>时间: <fmt:formatDate value="${post.time }" pattern="yyyy-MM-dd HH:mm" /></div>
+				        <div class="text"> 内容： ${post.content}<br/>时间: <fmt:formatDate value="${post.time }" pattern="yyyy-MM-dd HH:mm" /></div>
 						<c:choose>
 							<c:when test="${post.reply != null}">
 								<c:forEach items="${post.reply}" var="reply">

@@ -8,15 +8,6 @@
 		$("#box").load("<%=path%>/topic/goAddTopic", ajax);
 		$("#feed").load("<%=path%>/feed/listFeed", ajax);
 
-	    $("a[target='box']").click(function(){
-	        var href = $(this).attr('href');
-	        $('#box').css("height", $('#box').css("height"));
-	        $('#box').fadeOut("normal", function(){
-	        	$('#box').load(href);
-	        	$('#box').css("height", "auto").fadeIn("normal");
-			});
-	        return false;
-	    });
 	});
 </script>
 <div id="information">
@@ -26,18 +17,16 @@
 <div id="news">
 <div id="box"></div>
 <div>
- <a target="box" href="<%=path%>/topic/goAddTopic">微博</a>
+ <a>微博</a>
  <a>图片</a>
  <a>视频</a>
  <a>链接</a>
  <a>文件 </a>
- <a target="box" href="<%=path%>/vote/goAddVote">投票</a>
- <a target="box" href="<%=path%>/issue/goAddIssue">问答</a>
- <a target="box" href="<%=path%>/goods/goAddGoods">交换</a>
+ <a id="vote" onclick="return hs.htmlExpand(this, { objectType: 'iframe', targetY: 'vote'} )" href="<%=path%>/vote/goAddVote">投票</a>
+ <a id="issue" onclick="return hs.htmlExpand(this, { objectType: 'iframe', targetY: 'issue' } )" href="<%=path%>/issue/goAddIssue">问答</a>
+ <a id="goods" onclick="return hs.htmlExpand(this, { objectType: 'iframe', targetY: 'goods' } )" href="<%=path%>/goods/goAddGoods">交换</a>
 </div>
 </div>
 <br/><br/>
 好友动态：
-<div id="feed">
-
-</div>
+<div id="feed"></div>
