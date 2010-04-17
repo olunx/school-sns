@@ -1,13 +1,17 @@
 package cn.gdpu.action;
 
+import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 import cn.gdpu.service.GroupService;
 import cn.gdpu.service.PeopleService;
+import cn.gdpu.service.TopicService;
 import cn.gdpu.util.Log;
 import cn.gdpu.util.PageBean;
 import cn.gdpu.vo.Group;
 import cn.gdpu.vo.People;
+import cn.gdpu.vo.Topic;
 
 @SuppressWarnings("serial")
 public class GroupAction extends BaseAction {
@@ -17,6 +21,8 @@ public class GroupAction extends BaseAction {
 	private Group group;
 	private GroupService<Group, Integer> groupService;
 	private PeopleService<People, Integer> peopleService;
+	private TopicService<Topic, Integer> topicService;
+	private Topic topic;
 	private PageBean pageBean;
 	private int page;
 
@@ -47,6 +53,38 @@ public class GroupAction extends BaseAction {
 	public String goModify() {
 		group = groupService.getEntity(Group.class, id);
 		return super.goModify();
+	}
+
+	public String goAddTopic() {
+		return "addTopicPage";
+	}
+
+	public String addTopic() {
+		People author = (People) this.getSession().get("user");
+		if (author != null) {
+			topic.setAuthor(author);
+			topic.setTime(new Date());
+			topic.setIstopic(true);
+			topic.setType("group");
+			topicService.addEntity(topic);
+
+			group = groupService.getEntity(Group.class, id);
+			List<Topic> post = group.getPost();
+			post.add(topic);
+			group.setPost(post);
+			groupService.updateEntity(group);
+		}
+		return "list";
+	}
+
+	public String goReply() {
+
+		return "replyPage";
+	}
+
+	public String reply() {
+
+		return "list";
 	}
 
 	@Override
@@ -165,6 +203,22 @@ public class GroupAction extends BaseAction {
 
 	public void setPage(int page) {
 		this.page = page;
+	}
+
+	public TopicService<Topic, Integer> getTopicService() {
+		return topicService;
+	}
+
+	public void setTopicService(TopicService<Topic, Integer> topicService) {
+		this.topicService = topicService;
+	}
+
+	public Topic getTopic() {
+		return topic;
+	}
+
+	public void setTopic(Topic topic) {
+		this.topic = topic;
 	}
 
 }

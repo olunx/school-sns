@@ -3,36 +3,49 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <style type="text/css">
-#box{float:left;width:550px;}
-.box{width:550px;float:left;}
-.left{width:80px;height:30px;float:left;margin:5px;}
-.right{width:450px;float:left;margin:5px;}
-.reply{width:80%;float:right;margin:5px;}
-#pagebar{width:98%;float:left;margin:5px;}
+.box{width:580px;float:left;border:black solid 1px;margin:5px;}
+.left{width:80px;float:left;margin:5px;border:black solid 1px;}
+	.avatar{width:64px;height:64px;overflow:hidden;margin:0 auto;border:black solid 1px;}
+	.name{width:64px;margin:0 auto;border:black solid 1px;}
+.center{width:400px;float:left;margin:5px;border:black solid 1px;}
+	.post{width:90%;float:right;margin:5px;border:black solid 1px;}
+.right{width:60px;float:left;margin:5px;border:black solid 1px;}
+	.reply{height:30px;margin:5px;text-align:center;font:20px bold;border:black solid 1px;}
+	.delete{margin:5px;text-align:center;font:12px;border:black solid 1px;}
 </style>
 </head>
 <body>
-<div id="box">
-	<div class="box">
-    	<div class="left">
-        xdddddd
-        dddddddddd
-        ddd
-        dddddddddd
-        ddddddddd
-        dddddddddd
-        </div>
-    	<div class="right">
-        	<div class="text">
-            	主要内容
-            </div>
-        	<div class="reply">
-            	回复
-            </div>
-            <div class="reply">
-            	回复
-            </div>
-        </div>
+
+<div class="box">
+    <div class="left">
+        <div class="avatar"><img /></div>
+        <div class="name">名字</div>
+    </div>
+    <div class="center">
+        <div class="text">主要内容 :  xxxx</div>
+        <div class="post">xxx : 回</div>
+        <div class="post">xxxx : 回复</div>
+    </div>
+    <div class="right">
+        <div class="reply">回复</div>
+        <div class="delete">删除</div>
+        <input type="checkbox" name="ids" value="" />
+    </div>
+</div>
+<div class="box">
+    <div class="left">
+        <div class="avatar"><img /></div>
+        <div class="name">名字</div>
+    </div>
+    <div class="center">
+        <div class="text">主要内容 :  xxxx</div>
+        <div class="post">xxx : 回</div>
+        <div class="post">xxxx : 回复</div>
+    </div>
+    <div class="right">
+        <div class="reply">回复</div>
+        <div class="delete">删除</div>
+        <input type="checkbox" name="ids" value="" />
     </div>
 </div>
 </body>

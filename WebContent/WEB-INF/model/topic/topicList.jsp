@@ -14,44 +14,39 @@
 <div id="twitter">
 </div>
 
-<style type="text/css">
-.box{width:98%;float:left;margin-bottom:30px;border:1px solid black;}
-.left{width:80px;height:30px;float:left;margin:1px;border:1px solid black;}
-.right{width:450px;float:left;margin:5px;border:1px solid black;}
-.reply{width:90%;float:right;margin:5px;border:1px solid black;}
-</style>
+
 <c:choose>
 
 	<c:when test="${pageBean.list==null}">
 		<a>没有数据</a>
 	</c:when>
 	<c:otherwise>
-		<div id="box">
-		<form onSubmit="post(this);return false;"  action="<%=path%>/topic/deleteManyTopic" method="post">
+	<form onSubmit="post(this);return false;"  action="<%=path%>/topic/deleteManyTopic" method="post">
+	
 		<c:forEach items="${pageBean.list}" var="topic">
-			<div class="box">
-	    	<div class="left">
-		 		<input type="checkbox" name="ids" value="${topic.id }" />
-				 ${topic.author.name}
-				<br/>
-				<fmt:formatDate value="${topic.time}" pattern="yyyy-MM-dd HH:mm" />
-				<br/>
-				<a target="content" href="<%=path%>/topic/goReplyTopic?id=${topic.id }">回复</a> 
-				<a target="content" href="<%=path%>/topic/deleteTopic?id=${topic.id }&page=${page}" class="btn_del">删除</a>
-	    	</div>
-	    	<div class="right">
+		<div class="box">
+			<div class="left">
+		        <div class="avatar"><img src="<%=path %>${topic.author.avatar.minFileUrl}" /></div>
+		        <div class="name">${topic.author.name}</div>
+		    </div>
+		    <div class="center">
 	        	<div class="text">
-	            	主要内容 : ${topic.content}
+	            	主要内容 : ${topic.content} <br/>时间：<fmt:formatDate value="${topic.time}" pattern="yyyy-MM-dd HH:mm" />
 	            </div>
 	            <c:choose>
 					<c:when test="${topic.reply != null}">
 						<c:forEach items="${topic.reply}" var="reply">
-							<div class="reply">${reply.author.name} 回复： ${reply.content}</div>
+							<div class="post">${reply.author.name} 回复： ${reply.content}</div>
 						</c:forEach>
 					</c:when>
 				</c:choose>
-	        </div>
-	    	</div>
+		    </div>
+		    <div class="right">
+		        <div class="reply"><a target="content" href="<%=path%>/topic/goReplyTopic?id=${topic.id }">回复</a> </div>
+		        <div class="delete"><a target="content" href="<%=path%>/topic/deleteTopic?id=${topic.id }&page=${page}" class="btn_del">删除</a></div>
+		        <input type="checkbox" name="ids" value="${topic.id }" />
+		    </div>
+		</div>
 		</c:forEach>
 		
 		<div id="pagecount" style="margin:5px;float:left;">
@@ -83,7 +78,7 @@
 		</select> <input type="submit" value="确定" />
 		
 		</form>
-		</div>
+		
 	</c:otherwise>
 </c:choose>
 
