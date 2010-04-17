@@ -3,6 +3,7 @@
 <%
 	String path = request.getContextPath();
 %>
+<script type="text/javascript" src="<%=path%>/content/js/jquery-1.4.2.min.js"></script>
 <script type='text/javascript' src='<%=path%>/dwr/engine.js'></script>
 <script type='text/javascript' src='<%=path%>/dwr/util.js'></script>
 <script type='text/javascript' src='<%=path%>/dwr/interface/PrivateChat.js'></script>
@@ -14,9 +15,7 @@ var myuserid;
 function init(){
     cBtn(0);
     dwr.engine.setActiveReverseAjax(true);
-    showSystem("正在载入，请稍等...");
-    setTimeout("PrivateChat.login(function(data){myuserid = data;});", 1000);
-    setTimeout("PrivateChat.getMessageList(function(data){receiveMessage(data)});", 1000);
+    PrivateChat.updateUsersList();
 }
 
 //设置我的userid
@@ -24,25 +23,74 @@ function setUserid(id){
     myuserid = id;
 }
 
+/**
+ * 对Date的扩展，将 Date 转化为指定格式的String
+ * 月(M)、日(d)、12小时(h)、24小时(H)、分(m)、秒(s)、周(E)、季度(q) 可以用 1-2 个占位符
+ * 年(y)可以用 1-4 个占位符，毫秒(S)只能用 1 个占位符(是 1-3 位的数字)
+ * eg:
+ * (new Date()).pattern("yyyy-MM-dd hh:mm:ss.S") ==> 2006-07-02 08:09:04.423
+ * (new Date()).pattern("yyyy-MM-dd E HH:mm:ss") ==> 2009-03-10 二 20:09:04
+ * (new Date()).pattern("yyyy-MM-dd EE hh:mm:ss") ==> 2009-03-10 周二 08:09:04
+ * (new Date()).pattern("yyyy-MM-dd EEE hh:mm:ss") ==> 2009-03-10 星期二 08:09:04
+ * (new Date()).pattern("yyyy-M-d h:m:s.S") ==> 2006-7-2 8:9:4.18
+ */
+Date.prototype.pattern=function(fmt) {
+	var o = {
+	"M+" : this.getMonth()+1, //月份
+	"d+" : this.getDate(), //日
+	"h+" : this.getHours()%12 == 0 ? 12 : this.getHours()%12, //小时
+	"H+" : this.getHours(), //小时
+	"m+" : this.getMinutes(), //分
+	"s+" : this.getSeconds(), //秒
+	"q+" : Math.floor((this.getMonth()+3)/3), //季度
+	"S" : this.getMilliseconds() //毫秒
+	};
+	var week = {
+	"0" : "\u65e5",
+	"1" : "\u4e00",
+	"2" : "\u4e8c",
+	"3" : "\u4e09",
+	"4" : "\u56db",
+	"5" : "\u4e94",
+	"6" : "\u516d"
+	};
+	if(/(y+)/.test(fmt)){
+		fmt=fmt.replace(RegExp.$1, (this.getFullYear()+"").substr(4 - RegExp.$1.length));
+	}
+	if(/(E+)/.test(fmt)){
+		fmt=fmt.replace(RegExp.$1, ((RegExp.$1.length>1) ? (RegExp.$1.length>2 ? "\u661f\u671f" : "\u5468") : "")+week[this.getDay()+""]);
+	}
+	for(var k in o){
+		if(new RegExp("("+ k +")").test(fmt)){
+			fmt = fmt.replace(RegExp.$1, (RegExp.$1.length==1) ? (o[k]) : (("00"+ o[k]).substr((""+ o[k]).length)));
+		}
+	}
+	return fmt;
+}
+
+function receiveSystemMessage(cmd,msg){
+	switch(cmd)
+	   {
+	   case 0:
+		 showSystem("系统消息："+msg);
+	     break;
+	   case 1:
+		showSystem(msg);
+	   	cBtn(1);
+	   	break;
+	   case 2:
+		 showSystem("配对失败："+msg);
+	     break;
+	   default:
+		   showSystem("系统消息："+msg);
+	   }
+}
+
+
 //接收在线用户数据
 function receiveOnlineUser(data){
-    var userlist = "";
-    var selVal = $("#sendto").selectedValues();
-    $("#sendto").removeOption(/./);
-    $("#sendto").addOption("", "所有人");
-    for (var i in data) {
-        userlist = userlist + ", " + (data[i].name);
-        if (myuserid != data[i].userid) 
-            $("#sendto").addOption(data[i].userid, data[i].name);
-    }
-    
-    $("#sendto").selectOptions(selVal);
-    cBtn(1);
-    userlist = userlist.substr(2, userlist.length);
-    
     $("#onlineuser").remove();
-    $("#sidebar").prepend("<div id='onlineuser' class='mod'><h2 onclick='PrivateChat.updateUsersList();'>在线人员(刷新)</h2>" + userlist + "</div>");
-    showSystem("更新在线用户成功.");
+    $("#sidebar").prepend("<div id='onlineuser' class='mod'><h2 onclick='PrivateChat.updateUsersList();'>匿名聊天在线人数:"+data+"</h2></div>");
 }
 
 //设置button状态
@@ -61,8 +109,9 @@ function cBtn(state){
 function sendmsg(){
     var msg = $("#msg").val();
     if (msg != "") {
-        var sendto = dwr.util.getValue("sendto");
-        PrivateChat.sayTo(sendto, msg);
+        PrivateChat.say(msg);
+        var mymsg = [{from: "你", fromid: "", text: msg, time: (new Date()).pattern("hh:mm:ss"), to: "", toid: ""}];
+        receiveMessage(mymsg);
         $("#msg").val("").focus();
     }
 }
@@ -90,15 +139,21 @@ function receiveMessage(messageList){
         tmpstr = tmpstr + "</p>";
         $("#showmsg").append(tmpstr);
     }
-    var lastp = $("#showmsg p:last").position();
-    if (lastp != null) {
-        $("#showmsg").scrollTop(lastp.top + 5000);
-    };
-    };
+    scrollBottom();
+};
 
 //显示操作信息
 function showSystem(message){
     $("#showmsg").append("<p>" + message + "</p>");
+    scrollBottom();
+}
+
+//滚动到最下方
+function scrollBottom(){
+    var lastp = $("#showmsg p:last").position();
+    if (lastp != null) {
+        $("#showmsg").scrollTop(lastp.top + 5000);
+    };
 }
 
 //退出
@@ -106,26 +161,36 @@ function logout(){
     var flag = $("#logoutBtn").attr("title");
     if (flag == "0") {
         PrivateChat.logout();
-        $("#onlineuser").remove();
+        //$("#onlineuser").remove();
         $("#logoutBtn").attr("title", "1");
-        $("#logoutBtn").val("登陆");
+        $("#logoutBtn").val("开始聊天");
         cBtn(0);
     }
     else {
-        PrivateChat.login();
+    	$("#showmsg").html("");
+    	showSystem("连接服务器...");
+    	PrivateChat.login(function(data){myuserid = data;showSystem("连接服务器成功，正在为您配对...");});
+    	PrivateChat.updateUsersList();
         $("#logoutBtn").attr("title", "0");
-        $("#logoutBtn").val("退出");
+        $("#logoutBtn").val("断开");
     };
-    };
+};
+
+/*对方退出*/
+function onelogout(){
+	showSystem("对方已经断开了，请重新寻找下一位");
+    $("#logoutBtn").attr("title", "1");
+    $("#logoutBtn").val("开始聊天");
+    cBtn(0);
+}
+
 
 init();
 
 //-->
 </script>
+<div id="sysmsg">点击下方的开始聊天畅聊吧~</div>
 <div id="showmsg"></div>
-<select name="sendto" id="sendto">
-	<option value="">所有人</option>
-</select>
 <input type="text" name="msg" id="msg" onkeypress="" onkeydown="if (event.keyCode==13){sendmsg();};"/>
 <input type="button" id="sendBtn" onclick="sendmsg()" disabled="disabled" value="发送" />
-<input type="button" id="logoutBtn" onclick="logout()" title="0" value="退出"/>
+<input type="button" id="logoutBtn" onclick="logout()" title="1" value="开始聊天"/>

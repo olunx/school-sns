@@ -4,8 +4,8 @@ function init(){
     cBtn(0);
     dwr.engine.setActiveReverseAjax(true);
     showSystem("正在载入，请稍等...");
-    setTimeout("PublicChat.login(function(data){myuserid = data;});", 1000);
-    setTimeout("PublicChat.getMessageList(function(data){receiveMessage(data)});", 1000);
+    setTimeout("PublicChat.login(function(data){myuserid = data;showSystem('载入成功，开始聊天吧!');});", 1000);
+    setTimeout("PublicChat.getMessageList(function(data){receiveMessage(data)});", 800);
 }
 
 //设置我的userid
@@ -31,7 +31,6 @@ function receiveOnlineUser(data){
     
     $("#onlineuser").remove();
     $("#sidebar").prepend("<div id='onlineuser' class='mod'><h2 onclick='PublicChat.updateUsersList();'>在线人员(刷新)</h2>" + userlist + "</div>");
-    showSystem("更新在线用户成功.");
 }
 
 //设置button状态
@@ -101,7 +100,7 @@ function logout(){
         cBtn(0);
     }
     else {
-        PublicChat.login();
+        PublicChat.login(function(data){myuserid = data;});
         $("#logoutBtn").attr("title", "0");
         $("#logoutBtn").val("退出");
     };
