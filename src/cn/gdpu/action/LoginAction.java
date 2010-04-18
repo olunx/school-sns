@@ -6,6 +6,16 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.ServletContext;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.struts2.ServletActionContext;
+import org.apache.struts2.StrutsStatics;
+
+import com.opensymphony.xwork2.ActionContext;
+
 import net.sf.json.JSONObject;
 import cn.gdpu.service.AdminService;
 import cn.gdpu.service.PeopleService;
@@ -37,11 +47,13 @@ public class LoginAction extends BaseAction {
 	private String birthday;
 	private int schoolId;
 	private int protocol;
+	HttpServletResponse hsresponse = ServletActionContext.getResponse();
+	HttpServletRequest hsrequest = ServletActionContext.getRequest();
 
 	public String auth() {
 
-		Log.init(getClass()).info("username: " + username);
-		Log.init(getClass()).info("password: " + password);
+		Log.init(getClass()).info("登陆 username: " + username);
+		Log.init(getClass()).info("登陆 password: " + password);
 
 		if (username != null && password != null) {
 			if (peopleService != null) {
@@ -52,6 +64,15 @@ public class LoginAction extends BaseAction {
 					Log.init(getClass()).info("验证通过，跳转: ");
 					this.getSession().put("user", people);
 					int peopleId = people.getId();
+					// 写入cookies
+					int maxAge = 60 * 60 * 24 * 30;
+					Cookie cookieUsername = new Cookie("username", username);
+					cookieUsername.setMaxAge(maxAge);
+					Cookie cookiePassword = new Cookie("password", password);
+					cookiePassword.setMaxAge(maxAge);
+					hsresponse.addCookie(cookieUsername);
+					hsresponse.addCookie(cookiePassword);
+
 					Student student = studentService.getEntity(Student.class, peopleId);
 					if (student != null) {
 						this.getSession().put("student", student);
@@ -70,21 +91,51 @@ public class LoginAction extends BaseAction {
 					this.getSession().put("isAccess", "true");
 					return super.SUCCESS;
 				}
+			} else {
+				// 登陆不成功
+				cookieClean();// 清除cookies
 			}
 		}
 
 		// 绕过验证
-		this.getSession().put("isAccess", "true");
-		return super.SUCCESS;
-		// return super.INDEX;
+		//this.getSession().put("isAccess", "true");
+		//return super.SUCCESS;
+		return super.INDEX;
 	}
 	
-	public String logout(){
+	private void cookieClean(){
+		// 清除cookies
+		Cookie[] cookies = hsrequest.getCookies();
+		if (cookies != null && cookies.length > 0) {
+			for (Cookie c : cookies) {
+				if (c.getName().equals("username") || c.getName().equals("password")) {
+					c.setValue("");
+					c.setMaxAge(0);
+					hsresponse.addCookie(c);
+				}
+			}
+		}
+	}
+	
+	public String cookieAuth(){
+		//检查cookies
+		Cookie[] cookies = hsrequest.getCookies();
+		if (cookies!=null) {  
+			for (Cookie c : cookies){
+				if (c.getName().equals("username")) username = c.getValue();
+				if (c.getName().equals("password")) password = c.getValue();
+			}
+		}
+		return auth();
+	}
+
+	public String logout() {
 		this.getSession().remove("isAccess");
 		this.getSession().remove("user");
 		this.getSession().remove("student");
 		this.getSession().remove("admin");
 		this.getSession().remove("teacher");
+		cookieClean();// 清除cookies
 		return super.INDEX;
 	}
 
@@ -92,40 +143,49 @@ public class LoginAction extends BaseAction {
 		return "goLogin";
 	}
 	
-	public String goRegister(){
+	public String login() {
+		Cookie[] cookies = hsrequest.getCookies();
+		if (cookies!=null) {
+			return cookieAuth();
+		}
+		return super.INDEX;
+	}
+
+	public String goRegister() {
 		List<Province> provinces = provinceService.getAllEntity(Province.class);
-		
+
 		Map<String, Map<String, Object>> map = new LinkedHashMap<String, Map<String, Object>>();
-		for(Province province: provinces){
+		for (Province province : provinces) {
 			Map<String, Object> promap = new LinkedHashMap<String, Object>();
 			Map<String, Integer> sclmap = new LinkedHashMap<String, Integer>();
 			promap.put("key", province.getId());
 			promap.put("defaultvalue", province.getSchools().iterator().next().getId());
-			for(School school : province.getSchools()){
+			for (School school : province.getSchools()) {
 				sclmap.put(school.getName(), school.getId());
 			}
-			
+
 			promap.put("values", sclmap);
 			map.put(province.getName(), promap);
 		}
-        JSONObject jo = JSONObject.fromObject(map);
+		JSONObject jo = JSONObject.fromObject(map);
 		getRequest().put("schoolmap", jo);
 		return "goregister";
 	}
-	
-	public String register() throws Exception{
-		if (user.getUsername() != null && protocol == 1 ) {
+
+	public String register() throws Exception {
+		if (user.getUsername() != null && protocol == 1) {
 			People people = peopleService.getPeopleByUsername(user.getUsername());
 			System.out.println("----people---------" + people);
-			if(people == null && user.getPassword().trim() != null && repassword.trim() != null && user.getPassword().trim().equals(repassword.trim())){
+			if (people == null && user.getPassword().trim() != null && repassword.trim() != null
+					&& user.getPassword().trim().equals(repassword.trim())) {
 				System.out.println("----people---------");
 				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-				Date date =sdf.parse(birthday);
+				Date date = sdf.parse(birthday);
 				user.setBirthday(date);
 				School school = schoolService.getEntity(School.class, schoolId);
 				user.setSchool(school);
-				user.setPermission(1);        //普通注册完成是1
-				user.setStatus(1);           //普通用户注册成功状态为1
+				user.setPermission(1); // 普通注册完成是1
+				user.setStatus(1); // 普通用户注册成功状态为1
 				peopleService.addEntity(user);
 				System.out.println("-----------------------------------------注册成功---" + user.getUsername());
 				Log.init(getClass()).info("用户注册成功：" + user.getUsername());

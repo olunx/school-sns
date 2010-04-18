@@ -14,7 +14,8 @@
 		</interceptors>
 		<default-interceptor-ref name="customInterceptor"></default-interceptor-ref>
 		<global-results>
-			<result name="login" type="redirect">/login.jsp</result>
+			<result name="login" type="redirect">/</result>
+			<result name="cookieauth" type="chain">cookieAuthLogin</result>
 		</global-results>
 	</package>
 
@@ -36,6 +37,8 @@
 		</global-results>
 		<action name="*Login" class="cn.gdpu.action.LoginAction" method="{1}">
 			<interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+		<action name="login" class="cn.gdpu.action.LoginAction" method="login">
 		</action>
 		<action name="logout" class="cn.gdpu.action.LoginAction" method="logout">
 		</action>
