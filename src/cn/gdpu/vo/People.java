@@ -4,31 +4,56 @@ import java.util.Date;
 import java.util.Set;
 
 public class People {
-	private int id;                                                       
+	private int id;
+	private String username;
+	private String password;
 	private School school;
 	private Institute institute;
 	private Classes classes;
-	private int entryYear;                  
-
-	private String dorm;        //宿舍
-	private String username;     //用户名
-	private String password;        //密码
-	private String name;          //真实姓名
-	private int sex;               //性别        女0,男1
-	private int permission;           //权限             注册成功:1        加入班级为学生:2为老师:3，管理员是999
-	private int status;       		  //状态             正常：1 or 0 ，禁言2，锁定3，封号4
-	private Image avatar;              //头像
-	private String phoneNo;            //电话号码
-	private String email;            //电子邮箱
-	private String qq;          //QQ号码
-	private Date birthday;          //生日
-
-	private int activity;           //活跃度
-	private Long point;           //积分
-	private String nickname;        //昵称
-	     
-
+	private int entryYear;
+	private String phoneNo;
+	private String email;
+	private String qq;
+	private Date birthday;
 	private Date lastlogin;
+	
+	/**
+	 * 宿舍
+	 */
+	private String dorm;
+	/**
+	 * 真实姓名
+	 */
+	private String name;
+	/**
+	 * 性别 女0, 男1
+	 */
+	private int sex;
+	/**
+	 * 权限 注册成功:1 加入班级为学生:2为老师:3，管理员是999
+	 */
+	private int permission;
+	/**
+	 * 状态 正常：1 or 0 ，禁言2，锁定3，封号4
+	 */
+	private int status;
+	/**
+	 * 头像
+	 */
+	private Image avatar;
+	/**
+	 * 活跃度
+	 */
+	private int activity;
+	/**
+	 * 积分
+	 */
+	private Long point;
+	/**
+	 * 昵称
+	 */
+	private String nickname;
+	
 	private Set<Excel> excel;
 	private Set<Duty> duty;
 	private Set<Vote> votes;

@@ -2,14 +2,38 @@ package cn.gdpu.vo;
 
 import java.util.Date;
 
+/**
+ * @author olunx
+ */
 public class ClassFee {
-	private int id;              //费用ID
-	private Student cmaker;       //经手人
-	private double fee;			  //费用
-	private String event;		  //执行事件
-	private Date time;			  //事件执行时间
-	private String remarks;		  //班费备注
-	private Classes classes;	  //所属班级
+	/**
+	 * 费用ID
+	 */
+	private int id;
+	/**
+	 * 经手人
+	 */
+	private Student cmaker;
+	/**
+	 * 费用
+	 */
+	private double fee;
+	/**
+	 * 执行事件
+	 */
+	private String event;
+	/**
+	 * 事件执行时间
+	 */
+	private Date time;
+	/**
+	 * 班费备注
+	 */
+	private String remarks;
+	/**
+	 * 所属班级
+	 */
+	private Classes classes;
 
 	public Classes getClasses() {
 		return classes;
@@ -25,7 +49,7 @@ public class ClassFee {
 
 	public void setId(int id) {
 		this.id = id;
-	}	
+	}
 
 	public Student getCmaker() {
 		return cmaker;
