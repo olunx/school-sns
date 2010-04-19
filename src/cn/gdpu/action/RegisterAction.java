@@ -81,6 +81,7 @@ public class RegisterAction extends BaseAction {
 				user.setSchool(school);
 				user.setPermission(1);        //普通注册完成是1
 				user.setStatus(1);           //普通用户注册成功状态为1
+				user.setRegTime(new Date());
 				
 				if(identity == 1){
 					studentService.addEntity(user);
@@ -94,7 +95,7 @@ public class RegisterAction extends BaseAction {
 					teacher.setEmail(user.getEmail());
 					teacher.setPermission(user.getPermission());
 					teacher.setStatus(user.getStatus());
-					
+					teacher.setRegTime(user.getRegTime());
 					teacherService.addEntity(teacher);
 				}
 				

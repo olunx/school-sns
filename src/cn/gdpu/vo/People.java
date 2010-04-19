@@ -14,6 +14,7 @@ public class People {
 	private String phoneNo;
 	private String email;
 	private String qq;
+	private Date regTime;
 	private Date birthday;
 	private Date lastlogin;
 	
@@ -304,4 +305,11 @@ public class People {
 		this.friends = friends;
 	}
 
+	public Date getRegTime() {
+		return regTime;
+	}
+
+	public void setRegTime(Date regTime) {
+		this.regTime = regTime;
+	}
 }
