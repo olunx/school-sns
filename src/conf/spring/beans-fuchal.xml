@@ -69,4 +69,11 @@
 		<property name="baseDao" ref="issueTypeDaoImpl" />
 	</bean>
 	
+	<!-- Visitor Bean 访问者管理-->
+	<bean name="visitorDaoImpl" class="cn.gdpu.dao.impl.VisitorDaoImpl" scope="prototype">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean name="visitorService" class="cn.gdpu.service.impl.VisitorServiceImpl" scope="prototype">
+		<property name="baseDao" ref="visitorDaoImpl" />
+	</bean>
 </beans>

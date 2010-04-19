@@ -16,25 +16,8 @@
 		    $('#first').doubleSelect('second', schoolselect);      
 	        
 	 });
-
-	 $(document).ready(function() {
-
-			$("#datepicker").datepicker( {
-				
-				dateFormat : 'yy-mm-dd',
-				dayNamesMin : [ '日', '一', '二', '三', '四', '五', '六' ],
-				firstDay : 1,
-				monthNames: ['一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月'],
-				showMonthAfterYear: true,
-				changeYear: true,
-				maxDate: new Date(),
-				minDate: new Date(1980, 1, 1),
-				defaultDate: new Date(1986, 1, 1)
-			});
-
-		});
 </script>
-<form action="<%=path %>/register" method="post" onsubmit="post(this);return false;" Class="form" >
+<form action="<%=path %>/register" method="post"  Class="form" >
 	<p><label>账号：</label>
 	<input type="text" name="user.username" />
 	</p>
@@ -44,25 +27,23 @@
 	<p><label>确认：</label>
 	<input type="text" name="repassword" />
 	</p>
-	<p><label>真实姓名：</label>
-	<input type="text" name="user.name" />
-	</p>
 	<p><label>性别：</label>
 	<input type="radio" name="user.sex" value="1"/>男
 	<input type="radio" name="user.sex" value="0"/>女
 	</p>
-	<p><label>出生年月：</label>
-	<input id="datepicker" type="text" name="birthday" />
-	</p>
 	<p><label>电子邮箱：</label>
 	<input type="text" name="user.email" />
 	</p>
-	<div id="thirdselect">
+	<div id="select">
 		<label>选择学校：</label>
 		<select id="first" size="1"><option value="">--</option></select>
-		<select id="second" name="scId" size="1"><option value="">--</option></select>
+		<select id="second" name="schoolId" size="1"><option value="">--</option></select>
 		
 	</div>
+	<p><label>注册身份：</label>
+	<input type="radio" name="identity" value="1" checked="checked"/>学生
+	<input type="radio" name="identity" value="0"/>老师(注册老师需要申请)
+	</p>
 	<p><input type="checkbox" name="protocol" value="1" />我已阅读并接受<a href="">“服务条款”</a>
 	</p>
 	<input type="submit" value="提交问题"/>

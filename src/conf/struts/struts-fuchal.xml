@@ -76,4 +76,18 @@
 		</global-results>
 		<action name="*Issue" class="cn.gdpu.action.IssueAction" method="{1}"></action>
 	</package>	
+	
+	<!-- 学校Action -->
+	<package name="school" extends="default" namespace="/school">
+		<global-results>
+			<result name="list" type="redirect">listmeSchool?page=${page}</result>
+			<result name="index">/WEB-INF/model/school/schoolList.jsp</result>
+			<result name="success" type="chain">addSchool</result>
+			<result name="addPage">/WEB-INF/model/school/schoolAdd.jsp</result>
+			<result name="listall">/WEB-INF/model/school/schoolListAll.jsp</result>
+			<result name="viewPage">/WEB-INF/model/school/schoolView.jsp</result>
+			<result name="replyPage">/WEB-INF/model/school/schoolReply.jsp</result>
+		</global-results>
+		<action name="*School" class="cn.gdpu.action.SchoolAction" method="{1}"></action>
+	</package>	
 </struts>    
