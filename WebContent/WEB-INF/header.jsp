@@ -51,7 +51,9 @@ $(document).ready(function() {
 <div class="menuk corner">
 <ul class="menu">
 	<li><a href="<%=path%>/home">首页</a></li>
-	<li><a href="#">学校</a></li>
+	<c:if test="${student != null}">
+		<li><a target="content" href="<%=path %>/school/viewSchool?id=${user.school.id}">学校</a></li>
+	</c:if>
 	<li><a href="#">群组</a></li>
 	<li><a href="#">消息</a></li>
 	<li><a href="#">博客</a></li>
@@ -65,8 +67,9 @@ $(document).ready(function() {
 
 	<c:otherwise>
 		<a href="#">登录</a>
-      | <a onclick="return hs.htmlExpand(this, { objectType: 'iframe' } )" href="<%=path%>/goRegister">注册</a>
-	</c:otherwise>
+      | <!--<a onclick="return hs.htmlExpand(this, { objectType: 'iframe' } )" href="<%=path%>/goRegister">注册</a>	-->
+      <a href="<%=path%>/goRegister">注册</a>
+      </c:otherwise>
 
 </c:choose></div>
 <div id="dialog"></div>

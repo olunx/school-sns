@@ -10,6 +10,28 @@
 什么东东都有。
 </p>
 </div>
+<div id="information">
+<h2>推荐认识</h2>
+	<c:if test="${student != null}">
+		<c:if test="${peoplers != null}">
+			<c:forEach items="${peoplers}" var="peopler">
+				 <li><a target="content" href="<%=path%>/student/viewStudent?id=${peopler.id}">${peopler.name}</a></li>
+			</c:forEach>
+		</c:if>
+		
+		<c:if test="${schoolers != null}">
+			<c:forEach items="${schoolers}" var="schooler">
+				 <li><a target="content" href="<%=path%>/student/viewStudent?id=${schooler.id}">${schooler.name}</a></li>
+			</c:forEach>
+		</c:if>
+		
+		<c:if test="${classesers != null}">
+			<c:forEach items="${classesers}" var="classeser">
+				 <li><a target="content" href="<%=path%>/student/viewStudent?id=${classeser.id}">${classeser.name}</a></li>
+			</c:forEach>
+		</c:if>
+	</c:if>
+</div>
 <div class="mod">
 <h2>参加的小组</h2>
 <ul>

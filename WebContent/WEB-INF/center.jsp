@@ -11,7 +11,8 @@
 	});
 </script>
 <div id="information">
-	<c:if test="${user.permission ==1 }"><a href="">继续完善资料认识找到很多同学</a></c:if> 
+	<c:if test="${student.classes == null}"><a class="letterspacing" target="content" href="<%=path %>/goPerfectReg">继续完善资料认识很多同学</a></c:if> 
+	<c:if test="${student.classes != null and student.permission == 1}">你已申请加入“${student.classes.name}”班级,审核中</c:if>
 </div>
 消息：
 <div id="news">

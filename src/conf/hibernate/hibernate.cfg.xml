@@ -43,6 +43,8 @@
 		<mapping resource="cn/gdpu/vo/GoodsType.hbm.xml"/> 
 		
 		<mapping resource="cn/gdpu/vo/Issue.hbm.xml"/> 
-		<mapping resource="cn/gdpu/vo/IssueType.hbm.xml"/> 
+		<mapping resource="cn/gdpu/vo/IssueType.hbm.xml"/>
+		
+		<mapping resource="cn/gdpu/vo/Visitor.hbm.xml"/>  
 	</session-factory>
 </hibernate-configuration>
