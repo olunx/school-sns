@@ -81,9 +81,6 @@ public class SchoolAction extends BaseAction {
 					if(peo.getUsername().trim().equals(user.getUsername().trim()))
 						isAdmin = true;
 				}
-				System.out.println("user.name = " + user.getUsername());
-				System.out.println("isAddddddddddddddddddddddmin = " + isAdmin);
-
 				getRequest().put("isAdmin", isAdmin);
 				
 				List<Visitor> visitors = (List<Visitor>) school.getVisitor();
@@ -132,10 +129,26 @@ public class SchoolAction extends BaseAction {
 		Object student = this.getSession().get("student");
 		if (student != null) {
 			if (student instanceof Student) {
-				Student user = (Student) student;
+				People user = (Student) student;
 				school = schoolService.getEntity(School.class, id);
+				
 				List<People> admins = school.getAdmin();
-				admins.add(user);
+				
+				boolean ishas =false;         //加入管理员，最多三人
+				for(int i=0; i<admins.size();i++){
+					if(admins.get(i).getId() == user.getId()){
+						admins.set(i, user);
+						ishas=true;
+					}
+				}
+				if(ishas != true){
+					if(admins.size()>=3){
+						admins.remove(0);
+					}
+					admins.add(user);
+				}
+				school.setAdmin(admins);
+				
 				schoolService.updateEntity(school);
 				Log.init(getClass()).info(user.getName() + "成为 " + school.getName() + " 学校管理员");
 			}

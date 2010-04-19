@@ -11,6 +11,7 @@
 			<result name="index">/login.jsp</result>
 			<result name="goLogin">/WEB-INF/model/dialog/login.jsp</result>
 			<result name="login" type="redirect">authLogin?username=${user.username}&amp;password=${user.password}</result>
+			<result name="classes" type="redirect">/classes/viewClasses?id=${classesId}</result>
 		</global-results>
 		<action name="goRegister" class="cn.gdpu.action.RegisterAction" method="goRegister">
 			<result name="goregister">/WEB-INF/model/dialog/register.jsp</result>

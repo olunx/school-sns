@@ -53,8 +53,8 @@ $(document).ready(function() {
 	<li><a href="<%=path%>/home">首页</a></li>
 	<c:if test="${student != null}">
 		<li><a target="content" href="<%=path %>/school/viewSchool?id=${user.school.id}">学校</a></li>
+		<li><a target="content" href="<%=path %>/classes/viewClasses?id=${user.classes == null? -1: user.classes.id}">班级</a></li>
 	</c:if>
-	<li><a href="#">群组</a></li>
 	<li><a href="#">消息</a></li>
 	<li><a href="#">博客</a></li>
 </ul>

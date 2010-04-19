@@ -28,6 +28,10 @@
 </c:choose>
 
 </div>
+<div id="information">
+	<c:if test="${student.classes == null}"><a class="letterspacing" target="content" href="<%=path %>/goPerfectReg">继续完善资料认识很多同学</a></c:if> 
+	<c:if test="${student.classes != null and student.permission == 1}">你已申请加入“ ${student.classes.name} ”班级,审核中</c:if>
+</div>
 <div>
 	这里是给学校Feed的
 </div>
