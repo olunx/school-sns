@@ -27,6 +27,9 @@
 	<p><label>确认：</label>
 	<input type="text" name="repassword" />
 	</p>
+	<p><label>真实姓名：</label>
+	<input type="text" name="realName" />
+	</p>
 	<p><label>性别：</label>
 	<input type="radio" name="user.sex" value="1"/>男
 	<input type="radio" name="user.sex" value="0"/>女

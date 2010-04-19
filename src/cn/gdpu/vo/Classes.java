@@ -10,8 +10,15 @@ public class Classes {
 	private List<Course> course;
 	private int entryYear;
 	private String intro;
+	/**
+	 * 班级状态，添加为1，通过验证为2，禁止为3
+	 */
+	private int status;
 	private Teacher assistant;
 	private Institute institute;
+	private List<People> admins;
+	private List<Visitor> visitors;
+	private List<Topic> replys;
 	private List<ClassFee> classfees;
 
 	
@@ -88,4 +95,35 @@ public class Classes {
 		this.entryYear = entryYear;
 	}
 
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
+	}
+
+	public List<People> getAdmins() {
+		return admins;
+	}
+
+	public void setAdmins(List<People> admins) {
+		this.admins = admins;
+	}
+
+	public List<Visitor> getVisitors() {
+		return visitors;
+	}
+
+	public void setVisitors(List<Visitor> visitors) {
+		this.visitors = visitors;
+	}
+
+	public List<Topic> getReplys() {
+		return replys;
+	}
+
+	public void setReplys(List<Topic> replys) {
+		this.replys = replys;
+	}
 }

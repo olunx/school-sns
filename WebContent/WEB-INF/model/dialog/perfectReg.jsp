@@ -50,15 +50,13 @@
 		<label>选择班级：</label>
 		<select id="first" size="1"><option value="">--</option></select>
 		<select id="second" name="classesId" size="1"><option value="">--</option></select>
+		<a target="content" href="<%=path %>/classes/goAddClasses?id=${user.school.id}">没有我的班级？去创建一个咯~~</a>
 	</div>
 	<p><label>入学年份：</label>
 	<input type="text" name="entryYear" />
 	</p>
 	<p><label>学号：</label>
 	<input type="text" name="sno" />
-	</p>
-	<p><label>真实姓名：</label>
-	<input type="text" name="realName" />
 	</p>
 	<p><label>出生年月：</label>
 	<input id="datepicker" type="text" name="birthday" />
@@ -74,8 +72,5 @@
 		<input id="minFileName" type="hidden" name="image.minFileName" value=""/>
 		<input id="minFileUrl" type="hidden" name="image.minFileUrl" value=""/>
 	</div>
-	<p><label>申请说明：</label>
-	<input type="text" name="describe" />
-	</p>
 	<input type="submit" value="申请加入"/>
 </form>

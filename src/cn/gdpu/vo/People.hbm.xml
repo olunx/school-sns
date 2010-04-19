@@ -21,7 +21,7 @@
 		<property name="regTime" />
 		<many-to-one name="school" column="schoolId" />
 		<many-to-one name="institute" column="instituteId" />
-		<many-to-one name="classes" column="classesId" />
+		<many-to-one name="classes" column="classesId" lazy="false"/>
 		<property name="dorm" />
 		<property name="entryYear" />
 		<property name="nickname" />

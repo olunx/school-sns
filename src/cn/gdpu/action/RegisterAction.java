@@ -79,6 +79,7 @@ public class RegisterAction extends BaseAction {
 				
 				School school = schoolService.getEntity(School.class, schoolId);
 				user.setSchool(school);
+				user.setName(realName);
 				user.setPermission(1);        //普通注册完成是1
 				user.setStatus(1);           //普通用户注册成功状态为1
 				user.setRegTime(new Date());
@@ -91,6 +92,7 @@ public class RegisterAction extends BaseAction {
 					teacher.setUsername(user.getUsername());
 					teacher.setPassword(user.getPassword());
 					teacher.setSchool(user.getSchool());
+					teacher.setName(user.getName());
 					teacher.setSex(user.getSex());
 					teacher.setEmail(user.getEmail());
 					teacher.setPermission(user.getPermission());
@@ -99,7 +101,6 @@ public class RegisterAction extends BaseAction {
 					teacherService.addEntity(teacher);
 				}
 				
-				System.out.println("-----------------------------------------注册成功---" + user.getUsername());
 				Log.init(getClass()).info("用户注册成功：" + user.getUsername());
 				return "login";
 				
@@ -143,8 +144,13 @@ public class RegisterAction extends BaseAction {
 			if (student instanceof Student) {
 				Student user = (Student) student;
 				Classes classes = classesService.getEntity(Classes.class, classesId);
-				System.out.println("-----------------------classes == " + classes.getName());
-				user.setName(realName);
+				List<People> admins = classes.getAdmins();
+				if(admins.size() == 0){       //如果如加入的班级管理员为空，自动成为管理员
+					admins.add(user);
+					classes.setAdmins(admins);
+					classesService.updateEntity(classes);
+					user.setPermission(2);
+				}
 				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 				Date date =sdf.parse(birthday);
 				user.setBirthday(date);
@@ -153,9 +159,10 @@ public class RegisterAction extends BaseAction {
 				user.setEntryYear(entryYear);
 				user.setAvatar(image);
 				studentService.updateEntity(user);
+				return "classes";
 			}
 		}
-		return SUCCESS;
+		return ERROR;
 	}
 
 	

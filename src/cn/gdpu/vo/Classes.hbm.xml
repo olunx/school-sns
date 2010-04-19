@@ -7,9 +7,14 @@
 	private String name;
 	private Set<Student> student;
 	private List<Course> course;
+	private int entryYear;
 	private String intro;
+	private int status;
 	private Teacher assistant;
 	private Institute institute;
+	private List<People> admins;
+	private List<Visitor> visitors;
+	private List<Topic> replys;
 	private List<ClassFee> classfees;
  -->
 	<class name="Classes" table="t_classes">
@@ -18,11 +23,30 @@
 		</id>
 		<property name="name" />
 		<property name="intro" />
-		
+		<property name="status" />
+		<property name="entryYear" />
 		<set name="student" lazy="true">
 			<key column="classesId"/>
 			<one-to-many class="Student" />
 		</set>
+		
+		<list name="replys" cascade="all">
+			<key column="classId"/>
+			<index column="indexId" />
+			<one-to-many class="Topic"/>
+		</list>
+		
+		<list name="visitors" cascade="all">
+			<key column="classId"/>
+			<index column="indexId" />
+			<one-to-many class="Visitor"/>
+		</list>
+		
+		<list name="admins" cascade="all">
+			<key column="classId"/>
+			<index column="indexId" />
+			<one-to-many class="People"/>
+		</list>
 		
 		<list name="course">
 			<key column="classId"/>
@@ -33,7 +57,7 @@
 		 <many-to-one name="assistant" column="assistantId"/>
 		 <many-to-one name="institute" column="instituteId" cascade="save-update"/>
 
-		 <list name="classfees">
+		 <list name="classfees" cascade="all">
 			<key column="classId"/>
 			<index column="indexId" />
 			<one-to-many class="ClassFee"/>
