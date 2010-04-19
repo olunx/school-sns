@@ -5,70 +5,65 @@
 <%
 	String path = request.getContextPath();
 %>
-
-<p>最近访问：<br/>
-		<c:forEach items="${school.visitor}" var="visitor">
-				<img src="<%=path %>/${visitor.people.avatar.minFileUrl}" width="80"></img><br/>
-				<a target="content" href="<%=path%>/student/viewStudent?id=${visitor.people.id }">${visitor.people.name}</a><br/>
-				<fmt:formatDate value="${visitor.time }" pattern="yyyy-MM-dd HH:mm" />	<br />
-				-----------------------------------<br />
+<div>
+<img src="<%=path %>/${school.avatar.minFileUrl}" width="80"></img><br/>
+地区：${school.province.name }<br/>
+学校名称：${school.name} <br/>
+学校简介：${school.content} <br/>
+学校地区：${school.address}<br/>
+管理员:
+		<c:forEach items="${school.admin}" var="admin">
+				<a target="content" href="<%=path%>/student/viewStudent?id=${admin.id }">${admin.name}</a>
 		</c:forEach>
-</p>
-
-
-
-<!--
-
-
-货品名称：${goods.name } <br />
-货品图片：<c:choose>
-			<c:when test="${goods.image != null}">
-			<img src="<%=path %>/${goods.image.minFileUrl }" width="80"/><br />
-			</c:when>
-			<c:otherwise>
-				<img src="" />图片无法显示<br />
-			</c:otherwise>
-		 </c:choose>
-货品描述：${goods.content }	<br />
-货品状态：${goods.state == 1? "正常(可交换)" :"正常(不可交换)" } <br />
-货品价钱：${goods.value } <br />
-货品数量：${goods.quantity } <br />
-拥有者 ：${goods.owner.name } <br />
-货品记录：${goods.record } <br />
-<br />
-<c:if test="${goodslist != null and goods.owner.id == student.id}">
-		这些货品可能对你有用哦~~~~~~~~~^o^~~~~~~~~<br />
-		-----------------------------------<br />
-		<c:forEach items="${goodslist}" var="goodslike">
-				货品名称：<a target="content" href="<%=path%>/goods/viewGoods?id=${goodslike.id }">${goodslike.name}</a><br />
-				货品描述：${goodslike.content }	<br />
-				货品状态：${goodslike.state == 1? "可交换" :"正常" } <br />
-				货品价钱：${goodslike.value } <br />
-				货品数量：${goodslike.quantity } <br />
-				拥有者 ：${goodslike.owner.name } <br />
-				-----------------------------------<br />
-		</c:forEach>
-</c:if>
-<br />
-用户评论：<br />
+		<br/>
+	
 <c:choose>
-	<c:when test="${empty goods.reply}">
-		<a target="content" href="<%=path %>/goods/goReplyGoods?id=${goods.id}&rid=-1">还没有评论哦！我来抢沙发^o^</a> 
+	<c:when test="${isAdmin}">
+		学校管理：<br/>
+		<a target="content" href="<%=path %>/school/goModifySchool?id=${school.id}">修改学校资料</a>
 	</c:when>
 	<c:otherwise>
-			<c:forEach items="${goods.reply}" var="reply">
-				${reply.author.name }： ${reply.content}
-				<fmt:formatDate value="${reply.time }" pattern="yyyy-MM-dd HH:mm" />
-				<a target="content" href="<%=path %>/goods/goReplyGoods?id=${goods.id}&rid=${reply.id != null ? reply.id : -1 }">回复</a> <br />
-					<c:if test="${! empty reply.reply}">
-						<c:forEach items="${reply.reply}" var="subreply">
-							&nbsp;&nbsp;&nbsp;&nbsp; ${subreply.author.name }： ${subreply.content}
-							<fmt:formatDate value="${subreply.time }" pattern="yyyy-MM-dd HH:mm" />
-							<br />
-						</c:forEach>
-					</c:if>
-			</c:forEach>
-		<a target="content" href="<%=path %>/goods/goReplyGoods?id=${goods.id}&rid=-1">我也来说几句</a> 
+		<a target="content" href="<%=path %>/school/joinAdminSchool?id=${school.id}">申请加入学校管理员</a>
 	</c:otherwise>
 </c:choose>
--->
+
+</div>
+<div>
+	这里是给学校Feed的
+</div>
+<div>
+	<p>最近访问：<br/>
+			<c:forEach items="${school.visitor}" var="visitor">
+			<ul>
+				<li>
+					<a target="content" href="<%=path%>/student/viewStudent?id=${visitor.people.id }"><img src="<%=path %>/${visitor.people.avatar.minFileUrl}" width="50"></img></a><br/>
+					<a target="content" href="<%=path%>/student/viewStudent?id=${visitor.people.id }">${visitor.people.name}</a><br/>
+					<fmt:formatDate value="${visitor.time }" pattern="HH:mm MM-dd" />	
+				</li>
+			</ul>
+			</c:forEach>
+	</p>
+</div>
+<div>
+	学校新人：<br/>
+	<c:forEach items="${peoplenew}" var="people">
+		<ul>
+			<li>
+				<a target="content" href="<%=path%>/student/viewStudent?id=${people.id }"><img src="<%=path %>/${people.avatar.minFileUrl}" width="50"></img></a><br/>
+				<a target="content" href="<%=path%>/student/viewStudent?id=${people.id }">${people.name}</a><br/>
+			</li>
+		</ul>
+	</c:forEach>
+</div>
+<div>
+	人气王:<br/>
+	<c:forEach items="${peoplehot}" var="people">
+		<ul>
+			<li>
+				<a target="content" href="<%=path%>/student/viewStudent?id=${people.id }"><img src="<%=path %>/${people.avatar.minFileUrl}" width="50"></img></a><br/>
+				<a target="content" href="<%=path%>/student/viewStudent?id=${people.id }">${people.name}</a><br/>
+			</li>
+		</ul>
+	</c:forEach>
+</div>
+

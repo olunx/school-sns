@@ -13,7 +13,6 @@ public class School {
 	private String address;
 	private List<People> admin;
 	private List<Visitor> visitor;
-	private List<Topic> reply;
 	
 	public int getId() {
 		return id;
@@ -69,11 +68,4 @@ public class School {
 	public void setVisitor(List<Visitor> visitor) {
 		this.visitor = visitor;
 	}
-	public List<Topic> getReply() {
-		return reply;
-	}
-	public void setReply(List<Topic> reply) {
-		this.reply = reply;
-	}
-
 }

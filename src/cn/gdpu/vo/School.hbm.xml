@@ -37,10 +37,5 @@
 			<index column="indexId" />
 			<one-to-many class="Visitor" />
 		</list>
-		<list name="reply" cascade="all">
-			<key column="schoolId" />
-			<index column="indexId" />
-			<one-to-many class="Topic" />
-		</list>
 	</class>
 </hibernate-mapping>
