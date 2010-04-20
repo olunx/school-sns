@@ -52,10 +52,17 @@ ul{ list-style:none;}
 .table th{ background:#eee;}
 /*微博*/
 #topic_list .list{ padding:0 0 5px 0; margin:5px 0 0 0; }
-#topic_list .avatar{ background:#ccc; width:50px; height:50px; float:left;}
-#topic_list .topic_msg{ margin-left:60px;}
-#topic_list .topic_msg p{ line-height:24px; font-size:14px;}
+#topic_list .avatar{ background:#FFF; float:left; padding:2px; border:1px solid #CCC;}
+#topic_list .avatar img{width:50px; height:50px; }
+#topic_list .topic_msg{ margin-left:70px;}
+#topic_list .topic_msg .content{ line-height:24px; font-size:14px;}
 #topic_list .time{ color:#999; float:right;}
+#topic_list .reply{background:#edf4f8; margin:0 50px 0 0;}
+#topic_list .reply_list{padding:5px 5px; border:2px solid #fff;}
+#topic_list .reply_avatar{ float:left;}
+#topic_list .reply_avatar img{width:30px; height:30px; }
+#topic_list .replytime{ padding-left:5px; color:#999; }
+#topic_list .topic_msg .reply_content{ font-size:13px; margin-left:5px;}
 #topic_list .operate{}
 .linedot{ background:url(linedot.gif) center repeat-x; padding:0; margin:0;}
 /*Feed*/
@@ -63,7 +70,7 @@ ul{ list-style:none;}
 .feed .time{ color:#999; float:right;}
 /*侧栏*/
 .mod {clear:both;}
-.mod li{ float:left;white-space:nowrap;}
+#sidebar .mod li{ float:left;white-space:nowrap;}
 .mod a{display:block; padding:0 10px 0 0;}
 .mod a:link,.mod a:visited{color:#f9f4b9;}
 /*底部*/

@@ -93,7 +93,7 @@ public class TopicAction extends BaseAction {
 	@Override
 	public String list() {
 		Log.init(getClass()).info("list ");
-		this.pageBean = this.topicService.queryForPage("from Topic t where t.istopic = '1' and t.type = 'twitter'", 10, page);
+		this.pageBean = this.topicService.queryForPage("from Topic t where t.istopic = '1' and t.type = 'twitter' order by t.time DESC", 10, page);
 		if (pageBean.getList().isEmpty()) {
 			pageBean.setList(null);
 		}
@@ -106,7 +106,7 @@ public class TopicAction extends BaseAction {
 		People author = (People) this.getSession().get("user");
 		if (author != null) {
 			this.pageBean = this.topicService.queryForPage("from Topic t where t.istopic = '1' and t.type = 'twitter' and t.author = '"
-					+ author.getId() + "'", 10, page);
+					+ author.getId() + "' order by t.time DESC", 10, page);
 			if (pageBean.getList().isEmpty()) {
 				pageBean.setList(null);
 			}
@@ -120,7 +120,7 @@ public class TopicAction extends BaseAction {
 	public String listOther() {
 		Log.init(getClass()).info("listOther");
 		this.pageBean = this.topicService.queryForPage("from Topic t where t.istopic = '1' and t.type = 'twitter' and t.author = '"
-				+ otherId + "'", 10, page);
+				+ otherId + "' order by t.time DESC", 10, page);
 		if (pageBean.getList().isEmpty()) {
 			pageBean.setList(null);
 		}
