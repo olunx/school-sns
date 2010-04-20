@@ -105,16 +105,16 @@ public class SchoolAction extends BaseAction {
 				Log.init(getClass()).info(user.getName() + "访问学校: " + school.getName());
 				
 				//人气王
-				String hql = "from People p where p.school.id ='" + school.getId()+ "' order by p.activity DESC limit 10";
-				List<People> peoplehot = peopleService.getEntity(People.class, hql);
+				String hql = "from People p where p.school.id ='" + school.getId()+ "' order by p.activity DESC";
+				List<People> peoplehot = peopleService.queryForLimit(hql, 0, 5);
 				if(peoplehot.isEmpty() || peoplehot.size()==0){
 					peoplehot = null;
 				}
 				getRequest().put("peoplehot", peoplehot);
 				
 				//学校新人
-				hql = "from People p where p.school.id ='" + school.getId()+ "' order by p.regTime DESC limit 10";
-				List<People> peoplenew = peopleService.getEntity(People.class, hql);
+				hql = "from People p where p.school.id ='" + school.getId()+ "' order by p.regTime DESC";
+				List<People> peoplenew = peopleService.queryForLimit(hql, 0, 5);
 				if(peoplenew.isEmpty() || peoplenew.size()==0){
 					peoplenew = null;
 				}

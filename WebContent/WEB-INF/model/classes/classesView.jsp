@@ -17,9 +17,8 @@
 	
 <c:choose>
 	<c:when test="${isAdmin}">
-		班级公告：<br/>
 		<form onSubmit="post(this);return false;" action="<%=path%>/classes/noticeClasses" method="post">
-			<label>回复：</label>
+			<label>发布班级公告：</label>
 			<input type="hidden" name="id" value="${classes.id}" />
 			<div class="paddingmin"><textarea name="content" id="demo" rows="10" cols="50" style="width: 500px; height: 150px"></textarea>
 			</div>

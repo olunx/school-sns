@@ -82,43 +82,38 @@ public class LoginAction extends BaseAction {
 						
 						if(people.getClasses() != null){                    
 							//推荐班级好友    同一班级的
-							hql = "from People p where p.classes.id ='" +people.getClasses().getId() + "'";
-							//hql = "from People p where p.classes.id ='" +people.getClasses().getId() + "' order by rand() limit 10";
-							List<People> cpeos = peopleService.getEntity(People.class, hql);
+							hql = "from People p where p.classes.id ='" +people.getClasses().getId() + "' and p.id <> '" + people.getId() +"' order by rand()";
+							List<People> cpeos = peopleService.queryForLimit(hql, 0, 5);
 							if(cpeos.size() == 0)
 								cpeos = null;
 							getSession().put("classesers", cpeos);
 							
 							 //推荐学校好友不同一班级的
-							hql = "from People p where p.school.id ='" +people.getSchool().getId() + "' and p.classes.id <>'" +people.getClasses().getId() + "'";
-							//hql = "from People p where p.school.id ='" +people.getSchool().getId() + "' order by rand() limit 10";
-							List<People> speos = peopleService.getEntity(People.class, hql);
+							hql = "from People p where p.school.id ='" +people.getSchool().getId() + "' and p.classes.id <>'" +people.getClasses().getId() + "' and p.id <> '" + people.getId() +"' order by rand()";
+							List<People> speos = peopleService.queryForLimit(hql, 0, 5);
 							if(speos.size() == 0)
 								speos = null;
 							getSession().put("schoolers", speos);
 							
 						}
 						else{             //推荐学校好友
-							hql = "from People p where p.school.id ='" +people.getSchool().getId() + "'";
-							//hql = "from People p where p.school.id ='" +people.getSchool().getId() + "' order by rand() limit 10";
-							List<People> speos = peopleService.getEntity(People.class, hql);
+							hql = "from People p where p.school.id ='" +people.getSchool().getId() + "' and p.id <> '" + people.getId() +"' order by rand()";
+							List<People> speos = peopleService.queryForLimit(hql, 0, 5);
 							if(speos.size() == 0)
 								speos = null;
 							getSession().put("schoolers", speos);
 							
 						}
 						 //推荐好友不同一学校的
-						hql = "from People p where p.school.id <>'" +people.getSchool().getId() + "'";   
-						//hql = "from People order by rand() limit 10";
-						List<People> peos = peopleService.getEntity(People.class, hql);
+						hql = "from People p where p.school.id <>'" +people.getSchool().getId() + "' and p.id <> '" + people.getId() +"' order by rand()";   
+						List<People> peos = peopleService.queryForLimit(hql, 0, 5);
 						if(peos.size() == 0)
 							peos = null;
 						getSession().put("peoplers", peos);
 					}
 					else{
-						hql = "from People";    //推荐好友
-						//hql = "from People order by rand() limit 10";
-						List<People> peos = peopleService.getEntity(People.class, hql);
+						hql = "from People where p.id <> '" + people.getId() +"' order by rand()";    //推荐好友
+						List<People> peos = peopleService.queryForLimit(hql, 0, 5);
 						if(peos.size() == 0)
 							peos = null;
 						getSession().put("peoplers", peos);

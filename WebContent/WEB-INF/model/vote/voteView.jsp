@@ -21,14 +21,14 @@
 				defaultSeriesType : 'bar'
 			},
 			title : {
-				text : 'Fruit Consumption'
+				text : '${vote.title }'
 			},
 			xAxis : {
 				categories : []
 			},
 			yAxis : {
 				title : {
-					text : 'Units'
+					text : ''
 				}
 			},
 			series : []

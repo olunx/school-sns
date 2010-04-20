@@ -49,7 +49,7 @@
 			<key column="peopleId" />
 			<many-to-many class="Group" column="groupId" />
 		</set>
-		<set name="votes" table="t_vote_user" lazy="true">
+		<set name="votes" cascade="all" table="t_vote_user" lazy="true">
 			<key column="peopleId" />
 			<many-to-many class="Vote" column="voteId" />
 		</set>
