@@ -10,8 +10,9 @@
 什么东东都有。
 </p>
 </div>
-<div id="information">
+<div id="recommend" class="mod">
 <h2>推荐认识</h2>
+<ul>
 	<c:if test="${student != null}">
 		<c:if test="${peoplers != null}">
 			<c:forEach items="${peoplers}" var="peopler">
@@ -31,6 +32,7 @@
 			</c:forEach>
 		</c:if>
 	</c:if>
+</ul>
 </div>
 <div class="mod">
 <h2>参加的小组</h2>

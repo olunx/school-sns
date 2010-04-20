@@ -5,49 +5,31 @@
 <%
 	String path = request.getContextPath();
 %>
-<script type="text/javascript">
-	$(function() {
-		$("#twitter").load("<%=path%>/topic/goAddTopic", ajax);
-	});
-</script>
-微博：
-<div id="twitter">
-</div>
 
-
-<c:choose>
-
-	<c:when test="${pageBean.list==null}">
-		<a>没有数据</a>
-	</c:when>
-	<c:otherwise>
-	<form onSubmit="post(this);return false;"  action="<%=path%>/topic/deleteManyTopic" method="post">
-	
-		<c:forEach items="${pageBean.list}" var="topic">
-		<div class="box">
-			<div class="left">
-		        <div class="avatar"><img src="<%=path %>${topic.author.avatar.minFileUrl}" /></div>
-		        <div class="name">${topic.author.name}</div>
-		    </div>
-		    <div class="center">
-	        	<div class="text">
-	            	主要内容 : ${topic.content} <br/>时间：<fmt:formatDate value="${topic.time}" pattern="yyyy-MM-dd HH:mm" />
-	            </div>
-	            <c:choose>
-					<c:when test="${topic.reply != null}">
-						<c:forEach items="${topic.reply}" var="reply">
-							<div class="post">${reply.author.name} 回复： ${reply.content}</div>
-						</c:forEach>
-					</c:when>
-				</c:choose>
-		    </div>
-		    <div class="right">
-		        <div class="reply"><a target="content" href="<%=path%>/topic/goReplyTopic?id=${topic.id }">回复</a> </div>
-		        <div class="delete"><a target="content" href="<%=path%>/topic/deleteTopic?id=${topic.id }&page=${page}" class="btn_del">删除</a></div>
-		        <input type="checkbox" name="ids" value="${topic.id }" />
-		    </div>
+<c:choose><c:when test="${pageBean.list==null}">
+<a>没有数据</a>
+</c:when><c:otherwise><div id="topic_list"><c:forEach items="${pageBean.list}" var="topic"><div class="list">
+<div class="avatar"><img src="<%=path %>${topic.author.avatar.minFileUrl}" /></div>
+<div class="topic_msg">
+<div class="time"><fmt:formatDate value="${topic.time}" pattern="yyyy-MM-dd HH:mm" /></div>
+<p><a href="#">${topic.author.name}</a> ${topic.content}</p>
+      		<div class="operate"><a target="content" href="<%=path%>/topic/goReplyTopic?id=${topic.id }">回复</a>
+			<a target="content" href="<%=path%>/topic/deleteTopic?id=${topic.id }&page=${page}" class="btn_del">删除</a></div>
+ 		<div class="reply_list">
+            <c:choose>
+				<c:when test="${topic.reply != null}">
+					<c:forEach items="${topic.reply}" var="reply">
+						<div class="post">${reply.author.name} 回复： ${reply.content}</div>
+					</c:forEach>
+				</c:when>
+			</c:choose>
 		</div>
+</div>
+</div>
+		<div class="clear "></div>
+		<div class="linedot">　</div>
 		</c:forEach>
+		</div>
 		
 		<div id="pagecount" style="margin:5px;float:left;">
 		<p>共 ${pageBean.allRow} 条记录 共 ${pageBean.totalPage} 页 当前第 ${pageBean.currentPage}页</p>
@@ -71,13 +53,6 @@
 			</c:otherwise>
 		</c:choose>
 		</div>
-
-		<select name="cmd">
-			<option value="0" selected="selected">批量操作，请选择</option>
-			<option value="1">删除</option>
-		</select> <input type="submit" value="确定" />
-		
-		</form>
 		
 	</c:otherwise>
 </c:choose>
