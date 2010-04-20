@@ -62,4 +62,11 @@
 		<action name="*Feed" class="cn.gdpu.action.FeedAction" method="{1}"></action>
 	</package>
 	
+	<!-- 微博首页 -->
+	<package name="t" extends="default" namespace="/t">
+		<global-results>
+			<result name="success">/WEB-INF/twitter.jsp</result>
+		</global-results>
+		<action name="*" class="cn.gdpu.action.TwitterAction" ></action>
+	</package>
 </struts>    
