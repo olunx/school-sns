@@ -20,4 +20,9 @@
 		<function-class>cn.gdpu.action.PeopleAction</function-class>
 		<function-signature>boolean isMyGroup(java.util.Set,cn.gdpu.vo.Group)</function-signature>
 	</function>
+	<function>
+		<name>formatDate</name>
+		<function-class>cn.gdpu.util.Functions</function-class>
+		<function-signature>String formatDate(java.util.Date)</function-signature>
+	</function>
 </taglib>

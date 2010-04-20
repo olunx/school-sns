@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="my" uri="http://gdpu.cn/functions"%>
 <%
 	String path = request.getContextPath();
 %>
@@ -12,7 +13,7 @@
 		<div class="feed">
 		<c:forEach items="${pageBean.list}" var="feed">
 			<div class="feed_list">
-				<div class="time"><fmt:formatDate value="${feed.time}" pattern="MM月dd日 HH:mm" /></div>
+				<div class="time" title="${feed.time}">${my:formatDate(feed.time)}</div>
 				<div class="msg"><a href="#">${feed.author.name}</a> 
 				<c:choose>
 					<c:when test="${feed.type ==  'add_twitter'}"> 叽歪的说：${feed.message}。</c:when>
