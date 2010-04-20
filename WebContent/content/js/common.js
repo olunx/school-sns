@@ -3,10 +3,15 @@ $(document).ready(function(){
     //注册事件
     $("a[target='content']").click(function(){
         var href = $(this).attr('href');
+		var rev = $(this).attr('rev');
+		if (rev!=null && rev!="") window.location = rev;
         loadContent(href);
         return false;
     });
     
+    $("#content").ajaxError(function(event, request, settings){
+        $(this).append("<li>出错页面:" + settings.url + "</li>");
+    });
 });
 
 //注册二级事件
@@ -21,12 +26,12 @@ function ajax(){
 //加载数据
 function loadContent(href){
     var content = $('#content');
-		content.html("");
-        onLoading();//打开loading
-        content.load(href, function(){
-            offLoading();//关闭loading
-            content.fadeIn('slow', ajax);
-        });
+    content.html("");
+    onLoading();//打开loading
+    content.load(href, function(){
+        offLoading();//关闭loading
+        content.fadeIn('slow', ajax);
+    });
 }
 
 //打开loading

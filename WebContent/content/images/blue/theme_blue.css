@@ -1,7 +1,9 @@
 @charset "utf-8";
-a:link,a:visited{ color:#666; text-decoration:none;}
+
+a:link,a:visited{ color:#005fbd; text-decoration:none;}
 a:hover{ color:#004080;}
 .menuk{background:#1e90ff;}
+
 /*
 子菜单
 */
