@@ -1,6 +1,8 @@
 package cn.gdpu.action;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -77,47 +79,47 @@ public class LoginAction extends BaseAction {
 							}
 						}
 					}
-					String hql ="";
+					
+					Set<People> maybeMeet =new HashSet<People>();
+					String hql="";
 					if(people.getSchool() != null){                       
-						
 						if(people.getClasses() != null){                    
 							//推荐班级好友    同一班级的
 							hql = "from People p where p.classes.id ='" +people.getClasses().getId() + "' and p.id <> '" + people.getId() +"' order by rand()";
 							List<People> cpeos = peopleService.queryForLimit(hql, 0, 5);
-							if(cpeos.size() == 0)
-								cpeos = null;
-							getSession().put("classesers", cpeos);
-							
+							for(People peo : cpeos){
+								maybeMeet.add(peo);
+							}
 							 //推荐学校好友不同一班级的
 							hql = "from People p where p.school.id ='" +people.getSchool().getId() + "' and p.classes.id <>'" +people.getClasses().getId() + "' and p.id <> '" + people.getId() +"' order by rand()";
 							List<People> speos = peopleService.queryForLimit(hql, 0, 5);
-							if(speos.size() == 0)
-								speos = null;
-							getSession().put("schoolers", speos);
-							
+							for(People peo : speos){
+								maybeMeet.add(peo);
+							}
 						}
 						else{             //推荐学校好友
 							hql = "from People p where p.school.id ='" +people.getSchool().getId() + "' and p.id <> '" + people.getId() +"' order by rand()";
 							List<People> speos = peopleService.queryForLimit(hql, 0, 5);
-							if(speos.size() == 0)
-								speos = null;
-							getSession().put("schoolers", speos);
+							for(People peo : speos){
+								maybeMeet.add(peo);
+							}
 							
 						}
 						 //推荐好友不同一学校的
 						hql = "from People p where p.school.id <>'" +people.getSchool().getId() + "' and p.id <> '" + people.getId() +"' order by rand()";   
 						List<People> peos = peopleService.queryForLimit(hql, 0, 5);
-						if(peos.size() == 0)
-							peos = null;
-						getSession().put("peoplers", peos);
-					}
-					else{
+						for(People peo : peos){
+							maybeMeet.add(peo);
+						}
+					}else{
 						hql = "from People where p.id <> '" + people.getId() +"' order by rand()";    //推荐好友
 						List<People> peos = peopleService.queryForLimit(hql, 0, 5);
-						if(peos.size() == 0)
-							peos = null;
-						getSession().put("peoplers", peos);
+						for(People peo : peos){
+							maybeMeet.add(peo);
+						}
 					}
+					this.getSession().put("maybeMeet", maybeMeet);
+						
 					this.getSession().put("isAccess", "true");
 					return super.SUCCESS;
 				}

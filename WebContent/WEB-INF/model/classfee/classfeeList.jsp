@@ -5,15 +5,15 @@
 <%
 	String path = request.getContextPath();
 %>
-
+<c:if test="${isAdmin}">
+	<a target="content" href="<%=path %>/classfee/goAddClassfee">添加班费记录</a>
+</c:if>
 <c:choose>
-
 	<c:when test="${pageBean.list==null}">
 		<a>没有数据</a>
 	</c:when>
 	<c:otherwise>
-
-		<form onSubmit="post(this);return false;"  action="<%=path%>/classfee/deleteMany" method="post">
+		<form onSubmit="post(this);return false;"  action="<%=path%>/classfee/deleteManyClassfee" method="post">
 		<table class="table">
 			<tr>
 				<th><a rel="checkall">全选</a></th>
@@ -22,8 +22,10 @@
 				<th>费用</th>
 				<th>经手人</th>
 				<th>创建时间</th>
+				<c:if test="${isAdmin}">
 				<th>修改</th>
 				<th>删除</th>
+				</c:if>
 			</tr>
 			<c:forEach items="${pageBean.list}" var="classfee">
 				<tr>
@@ -33,8 +35,10 @@
 					<td>${classfee.fee } 元</td>
 					<td>${classfee.cmaker.name }</td>
 					<td><fmt:formatDate value="${classfee.time}" pattern="yyyy-MM-dd HH:mm" /></td>
+					<c:if test="${isAdmin}">
 					<td><a target="content" href="<%=path%>/classfee/goModifyClassfee?id=${classfee.id }" class="btn_edit">修改</a></td>
 					<td><a target="content" href="<%=path%>/classfee/deleteClassfee?id=${classfee.id }&page=${page}" class="btn_del">删除</a></td>
+					</c:if>
 				</tr>
 			</c:forEach>
 			<tr>

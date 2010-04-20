@@ -42,7 +42,7 @@
 			<one-to-many class="Visitor"/>
 		</list>
 		
-		<list name="admins" cascade="all">
+		<list name="admins" cascade="save-update" lazy="false">
 			<key column="classId"/>
 			<index column="indexId" />
 			<one-to-many class="People"/>

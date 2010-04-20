@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%
 	String path = request.getContextPath();
 %>
@@ -9,7 +10,9 @@
 	<li><a class="letterspacing" target="content" href="<%=path%>/group/listGroup">群组</a> <span><a target="content" href="<%=path%>/group/listMyCreateGroup">我创建的</a></span> <span><a target="content" href="<%=path%>/group/goAddGroup">添加</a></span></li>
 	<li><a class="letterspacing" target="content" href="<%=path%>/people/listPeople">人员</a> <span><a target="content" href="<%=path%>/people/goAddPeople">添加</a></span></li>
 	<li><a class="letterspacing" target="content" href="<%=path%>/student/listStudent">学生</a> <span><a target="content" href="<%=path%>/student/goAddStudent">添加</a></span></li>
-	<li><a class="letterspacing" target="content" href="<%=path%>/classfee/listClassfee">班费</a> <span><a target="content" href="<%=path%>/classfee/goAddClassfee">添加</a></span></li>
+	<c:if test="${student.classes != null && student.permission != 1}">
+	<li><a class="letterspacing" target="content" href="<%=path%>/classfee/listClassfee">班费</a></li>
+	</c:if>
 	<li><a class="letterspacing" target="content" href="<%=path%>/course/listCourse">课程</a> <span><a target="content" href="<%=path%>/course/goAddCourse">添加</a></span></li>
 	<li><a class="letterspacing" target="content" href="<%=path%>/score/queryScore">成绩</a> <span><a target="content" href="<%=path%>/score/goAddScore">添加</a></span></li>
 	<li><a class="letterspacing" target="content" href="<%=path%>/attendance/listAttendance">考勤</a> <span><a target="content" href="<%=path%>/attendance/goAddAttendance">添加</a></span></li>

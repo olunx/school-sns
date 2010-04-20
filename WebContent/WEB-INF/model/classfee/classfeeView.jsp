@@ -3,11 +3,13 @@
 	String path = request.getContextPath();
 %>
 
-<h2 class="caption">新建班费</h2>
-<p><label>班费费用：</label> <input type="text" name="fee" value="${classfee.fee }" /> （例如：支出5元,填写"-5"；收入10元，填写"10"）</p>
-<label>班费事件：</label>
-<div class="paddingmin"><textarea name="classfee.event" id="demo" rows="50" cols="152" style="width: 600px; height: 195px">${classfee.event }</textarea>
-<br />
+查看班费<br />
+<div>
+	<ul>
+		<li>班费事件：${classfee.event }</li>
+		<li>费用：${classfee.fee }</li>
+		<li>备注：${classfee.remarks }</li>
+		<li>经手人：${classfee.cmaker.name }</li>
+		<li>创建时间：${classfee.time }</li>
+	</ul>
 </div>
-<p class="paddingmin"><input type="submit" value="提交" /> <input type="reset" value="重置" /></p>
-<input name="id" type="hidden" value="${classfee.id }" />

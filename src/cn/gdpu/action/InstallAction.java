@@ -10,12 +10,16 @@ import org.apache.struts2.ServletActionContext;
 import cn.gdpu.service.CourseService;
 import cn.gdpu.service.GoodsTypeService;
 import cn.gdpu.service.IssueTypeService;
+import cn.gdpu.service.ProvinceService;
+import cn.gdpu.service.SchoolService;
 import cn.gdpu.service.StudentService;
 import cn.gdpu.util.Log;
 import cn.gdpu.util.excel.StudentExcel;
 import cn.gdpu.vo.Course;
 import cn.gdpu.vo.GoodsType;
 import cn.gdpu.vo.IssueType;
+import cn.gdpu.vo.Province;
+import cn.gdpu.vo.School;
 import cn.gdpu.vo.Student;
 
 @SuppressWarnings("serial")
@@ -25,18 +29,23 @@ public class InstallAction extends BaseAction {
 	private GoodsTypeService<GoodsType, Integer> goodsTypeService;
 	private IssueTypeService<IssueType, Integer> issueTypeService;
 	private CourseService<Course, Integer> courseService;
+	private ProvinceService<Province, Integer> provinceService;
+	private SchoolService<School, Integer> schoolService;
 
 	@Override
 	public String execute() throws Exception {
 
 		// 添加学生
-		addMany("001.xls");
+//		addMany("001.xls");
 		// 添加课程表
 		addCourse("kecheng.xls");
 		// 添加交换类型
 		addGoodType();
 		// 添加提问类型
 		addIssueType();
+		//添加学校与对应学院（简单实现先）
+		addSchool();
+		addInstitute();
 		
 		return super.SUCCESS;
 	}
@@ -65,6 +74,50 @@ public class InstallAction extends BaseAction {
 			c.setClasses(null);// 设置课程表的班级
 			courseService.addEntity(c);
 		}
+	}
+	// 添加学校
+	private void addSchool() {
+		Province province1 = provinceService.getEntity(Province.class, 1);
+		School school1 = new School();
+		school1.setName("广东药学院");
+		school1.setAddress("广东省广州大学城广东药学院");
+		school1.setProvince(province1);
+		schoolService.addEntity(school1);
+		
+		School school2 = new School();
+		school2.setName("中山大学");
+		school2.setAddress("广东省广州大学城中山大学");
+		school2.setProvince(province1);
+		schoolService.addEntity(school2);
+		
+		Province province2 = provinceService.getEntity(Province.class, 2);
+		School school3 = new School();
+		school3.setName("北京大学");
+		school3.setAddress("北京");
+		school3.setProvince(province2);
+		schoolService.addEntity(school3);
+	}
+	// 添加学院
+	private void addInstitute() {
+		Province province1 = provinceService.getEntity(Province.class, 1);
+		School school1 = new School();
+		school1.setName("广东药学院");
+		school1.setAddress("广东省广州大学城广东药学院");
+		school1.setProvince(province1);
+		schoolService.addEntity(school1);
+		
+		School school2 = new School();
+		school2.setName("中山大学");
+		school2.setAddress("广东省广州大学城中山大学");
+		school2.setProvince(province1);
+		schoolService.addEntity(school2);
+		
+		Province province2 = provinceService.getEntity(Province.class, 2);
+		School school3 = new School();
+		school3.setName("北京大学");
+		school3.setAddress("北京");
+		school3.setProvince(province2);
+		schoolService.addEntity(school3);
 	}
 
 	private void addGoodType() {
@@ -141,4 +194,21 @@ public class InstallAction extends BaseAction {
 	public void setCourseService(CourseService<Course, Integer> courseService) {
 		this.courseService = courseService;
 	}
+
+	public ProvinceService<Province, Integer> getProvinceService() {
+		return provinceService;
+	}
+
+	public void setProvinceService(ProvinceService<Province, Integer> provinceService) {
+		this.provinceService = provinceService;
+	}
+
+	public SchoolService<School, Integer> getSchoolService() {
+		return schoolService;
+	}
+
+	public void setSchoolService(SchoolService<School, Integer> schoolService) {
+		this.schoolService = schoolService;
+	}
+	
 }
