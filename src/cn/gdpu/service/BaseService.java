@@ -88,4 +88,13 @@ public interface BaseService<T,ID extends Serializable> {
 	 * @return
 	 */
 	public abstract PageBean queryForPage(final String hql, final int pageSize, final int currentPage);
+	
+	/**
+	 * 根据hql语句来查询数据并取一段数据
+	 * @param hql
+	 * @param offset
+	 * @param length
+	 * @return
+	 */
+	public abstract List<T> queryForLimit(final String hql, final int offset, final int length);
 }  

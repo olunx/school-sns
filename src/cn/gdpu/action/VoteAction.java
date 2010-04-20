@@ -12,6 +12,7 @@ import cn.gdpu.service.VoteService;
 import cn.gdpu.util.PageBean;
 import cn.gdpu.util.VoteItemComparator;
 import cn.gdpu.vo.People;
+import cn.gdpu.vo.Student;
 import cn.gdpu.vo.Vote;
 import cn.gdpu.vo.VoteItem;
 
@@ -114,36 +115,41 @@ public class VoteAction extends BaseAction {
 	}
 
 	public String voting() throws Exception {
-		vote = (Vote) voteService.getEntity(Vote.class, vid);
-		if (viid == null) // 验证投票先是否为空
-			this.addFieldError("viid", "投票选项不能为空");
-		if (hasFieldErrors()) {
-			getRequest().put("vote", vote);
-			return "govoting";
-		}
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		String str1 = sdf.format(new Date());
-		Date toDay = sdf.parse(str1);
-		if (toDay.after(vote.getDeadline())) // 如果投票过期 ，返回timeout
-			return super.view();
-		Set<People> voters = vote.getVoters();
-		People voter = (People) getSession().get("user");
-		if (voter == null)
-			return LIST;
-		for (People stu : voters) {
-			if (stu.getId() == voter.getId()) // 如果投票人已经投票，返回voterexist
+		Object people = this.getSession().get("user");
+		if (people != null) {
+			if (people instanceof People) {
+				People voter = (People) people;
+				vote = (Vote) voteService.getEntity(Vote.class, vid);
+				if (viid == null) // 验证投票先是否为空
+					this.addFieldError("viid", "投票选项不能为空");
+				if (hasFieldErrors()) {
+					getRequest().put("vote", vote);
+					return "govoting";
+				}
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+				String str1 = sdf.format(new Date());
+				Date toDay = sdf.parse(str1);
+				if (toDay.after(vote.getDeadline())) // 如果投票过期 ，返回timeout
+					return super.view();
+				Set<People> voters = vote.getVoters();
+				if (voter == null)
+					return LIST;
+				for (People stu : voters) {
+					if (stu.getId() == voter.getId()) // 如果投票人已经投票，返回voterexist
+						return super.view();
+				}
+				if (!voters.add(voter))
+					return super.view();
+				vote.setVoters(voters);
+				for (int i = 0; i < viid.length; i++) {
+					voteItem = (VoteItem) voteItemService.getEntity(VoteItem.class, viid[i]);
+					voteItem.setNum(voteItem.getNum() + 1);
+				}
+				voteService.updateEntity(vote);
 				return super.view();
+			}
 		}
-		if (!voters.add(voter))
-			return super.view();
-		vote.setVoters(voters);
-		for (int i = 0; i < viid.length; i++) {
-			voteItem = (VoteItem) voteItemService.getEntity(VoteItem.class, viid[i]);
-			System.out.println("test = " + voteItem.getContent());
-			voteItem.setNum(voteItem.getNum() + 1);
-		}
-		voteService.updateEntity(vote);
-		return super.view();
+		return ERROR;
 	}
 
 	@Override

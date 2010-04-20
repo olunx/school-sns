@@ -30,7 +30,7 @@
 		<property name="deadline" />
 		<set name="voters" table="t_vote_user" cascade="save-update" >
 			<key column="voteId" />
-			<many-to-many class="People" column="userId" />
+			<many-to-many class="People" column="peopleId" />
 		</set>
 	</class>
 </hibernate-mapping>

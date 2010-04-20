@@ -94,7 +94,6 @@ public class ClassesAction extends BaseAction {
 		if (student != null) {
 			if (student instanceof Student) {
 				Student user = (Student) student;
-				System.out.println("----------------------id : " + id);
 				if(user.getPermission() == 1){          //未审核通过不能访问
 					return ERROR;
 				}
@@ -131,16 +130,16 @@ public class ClassesAction extends BaseAction {
 				Log.init(getClass()).info(user.getName() + "访问班级: " + classes.getName());
 				
 				//班级人气王
-				String hql = "from People p where p.classes.id ='" + classes.getId()+ "' order by p.activity DESC limit 10";
-				List<People> peoplehot = peopleService.getEntity(People.class, hql);
+				String hql = "from People p where p.classes.id ='" + classes.getId()+ "' and p.permission<>1 order by p.activity DESC";
+				List<People> peoplehot = peopleService.queryForLimit(hql, 0, 5);
 				if(peoplehot.isEmpty() || peoplehot.size()==0){
 					peoplehot = null;
 				}
 				getRequest().put("peoplehot", peoplehot);
 				
 				//班级新人
-				hql = "from People p where p.classes.id ='" + classes.getId()+ "' order by p.regTime DESC limit 10";
-				List<People> peoplenew = peopleService.getEntity(People.class, hql);
+				hql = "from People p where p.classes.id ='" + classes.getId()+ "' and p.permission<>1 order by p.regTime DESC";
+				List<People> peoplenew = peopleService.queryForLimit(hql, 0, 5);
 				if(peoplenew.isEmpty() || peoplenew.size()==0){
 					peoplenew = null;
 				}
@@ -214,7 +213,7 @@ public class ClassesAction extends BaseAction {
 			Log.init(getClass()).info("add subreply finish ");
 		}
 
-		return VIEW_PAGE;
+		return "view";
 	}
 
 	public String joinAdmin(){

@@ -70,6 +70,12 @@ public abstract class BaseServiceImpl<T, ID extends Serializable, GeneralDAO ext
 	}
 	
 	@Override
+	public List<T> queryForLimit(String hql, int offset, int length) {
+		List<T> list = baseDao.queryForPage(hql, offset, length); // "一页"的记录
+		return list;
+	}
+	
+	@Override
 	public void updateEntity(T entity) {
 		baseDao.update(entity);
 	}
