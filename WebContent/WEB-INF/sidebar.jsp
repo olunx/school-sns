@@ -13,39 +13,18 @@
 <div id="recommend" class="mod">
 <h2>推荐认识</h2>
 	<c:if test="${student != null}">
-				<ul>
-		<c:if test="${peoplers != null}">
-		<br /></>可能认识：<br />
-			<c:forEach items="${peoplers}" var="peopler">
+		<c:if test="${maybeMeet != null}">
+			<c:forEach items="${maybeMeet}" var="peopler" end="5">
+			<ul>
 				<li>
 					<a target="content" href="<%=path%>/student/viewStudent?id=${peopler.id }"><img src="<%=path %>/${peopler.avatar.minFileUrl}" width="50"></img></a><br/>
 					<a target="content" href="<%=path%>/student/viewStudent?id=${peopler.id }">${peopler.name}</a><br/>
 				</li>
+			</ul>
 			</c:forEach>
 		</c:if>
 		
-		<c:if test="${schoolers != null}">
-		<br />同校：<br />
-			<c:forEach items="${schoolers}" var="schooler">
-				<li>
-					<a target="content" href="<%=path%>/student/viewStudent?id=${schooler.id }"><img src="<%=path %>/${schooler.avatar.minFileUrl}" width="50"></img></a><br/>
-					<a target="content" href="<%=path%>/student/viewStudent?id=${schooler.id }">${schooler.name}</a><br/>
-				</li>
-			</c:forEach>
-		</c:if>
-		<c:if test="${classesers != null}">
-		<br />同班：<br />
-			<c:forEach items="${classesers}" var="classeser">
-				<li>
-					<a target="content" href="<%=path%>/student/viewStudent?id=${classeser.id }"><img src="<%=path %>/${classeser.avatar.minFileUrl}" width="50"></img></a><br/>
-					<a target="content" href="<%=path%>/student/viewStudent?id=${classeser.id }">${classeser.name}</a><br/>
-				</li>
-			
-			</c:forEach>
-		</c:if>
-			</ul>
-		<br />
-	</c:if>
+</c:if>
 
 </div>
 <div class="mod">

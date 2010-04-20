@@ -30,6 +30,9 @@
 	</c:otherwise>
 </c:choose>
 <div>
+	<a target="content" href="<%=path%>/classfee/listClassfee">查看班费</a>
+</div>
+<div>
 	申请入班级的人：
 	<c:forEach items="${applicant}" var="people">
 		<a target="content" href="<%=path%>/student/viewStudent?id=${people.id }">${people.name}</a>申请加入班级,

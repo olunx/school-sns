@@ -4,37 +4,77 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import cn.gdpu.service.ClassFeeService;
+import cn.gdpu.service.ClassesService;
 import cn.gdpu.util.Log;
 import cn.gdpu.util.PageBean;
 import cn.gdpu.vo.ClassFee;
+import cn.gdpu.vo.Classes;
+import cn.gdpu.vo.People;
+import cn.gdpu.vo.Student;
 
 @SuppressWarnings("serial")
 public class ClassFeeAction extends BaseAction {
 
 	private int id;
 	private String ids;
-	
+	private Classes classes;
 	private ClassFee classfee;
 	
 	private ClassFeeService<ClassFee, Integer> classfeeService;
-	
+	private ClassesService<Classes, Integer> classesService;
 	private int page;
 	private PageBean pageBean;
 
 	@Override
 	public String add() {
-		Log.init(getClass()).info(classfee.getFee());
-		classfee.setTime(new Date());
-		String remarks = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()) + "：" + "，创建班费记录；";
-		classfee.setRemarks(remarks);
-		classfeeService.addEntity(classfee);
-		return super.add();
+		Object people = this.getSession().get("student");
+		if (people != null) {
+			if (people instanceof Student) {
+				Student student = (Student) people;
+				
+				classes = student.getClasses();
+				boolean isAdmin = false;
+				for(People peo : classes.getAdmins()){
+					if(peo.getUsername().trim().equals(student.getUsername().trim()))
+						isAdmin = true;
+				}
+				if(isAdmin){
+					classfee.setTime(new Date());
+					String remarks = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()) + "：" +student.getName() + "，创建班费记录；";
+					classfee.setRemarks(remarks);
+					classfee.setCmaker(student);
+					classfee.setClasses(student.getClasses());
+					classfeeService.addEntity(classfee);
+					Log.init(getClass()).info(student.getName() + " 成功添加班费：" + classfee.getFee());
+					return super.add();
+				}
+				getRequest().put("isAdmin", isAdmin);
+			}
+		}
+		return ERROR;
 	}
 
 	@Override
 	public String delete() {
-		classfeeService.deleteEntity(ClassFee.class, id);
-		return super.delete();
+		Object people = this.getSession().get("student");
+		if (people != null) {
+			if (people instanceof Student) {
+				Student student = (Student) people;
+				
+				classes = student.getClasses();
+				boolean isAdmin = false;
+				for(People peo : classes.getAdmins()){
+					if(peo.getUsername().trim().equals(student.getUsername().trim()))
+						isAdmin = true;
+				}
+				if(isAdmin){
+					classfeeService.deleteEntity(ClassFee.class, id);
+					return super.delete();
+				}
+				getRequest().put("isAdmin", isAdmin);
+			}
+		}
+		return ERROR;
 	}
 
 	@Override
@@ -45,37 +85,101 @@ public class ClassFeeAction extends BaseAction {
 
 	@Override
 	public String goAdd() {
-		return super.goAdd();
+		Object people = this.getSession().get("student");
+		if (people != null) {
+			if (people instanceof Student) {
+				Student student = (Student) people;
+				
+				classes = student.getClasses();
+				boolean isAdmin = false;
+				for(People peo : classes.getAdmins()){
+					if(peo.getUsername().trim().equals(student.getUsername().trim()))
+						isAdmin = true;
+				}
+				if(isAdmin){
+					return super.goAdd();
+				}
+				getRequest().put("isAdmin", isAdmin);
+			}
+		}
+		return ERROR;
 	}
 
 	@Override
 	public String goModify() {
-		classfee = (ClassFee) classfeeService.getEntity(ClassFee.class, id);
-		return super.goModify();
+		Object people = this.getSession().get("student");
+		if (people != null) {
+			if (people instanceof Student) {
+				Student student = (Student) people;
+				
+				classes = student.getClasses();
+				boolean isAdmin = false;
+				for(People peo : classes.getAdmins()){
+					if(peo.getUsername().trim().equals(student.getUsername().trim()))
+						isAdmin = true;
+				}
+				if(isAdmin){
+					classfee = (ClassFee) classfeeService.getEntity(ClassFee.class, id);
+					return super.goModify();
+				}
+				getRequest().put("isAdmin", isAdmin);
+			}
+		}
+		return ERROR;
 	}
 
 	@Override
 	public String list() {
-		this.pageBean = classfeeService.queryForPage(ClassFee.class, 5, page);
-		if (pageBean.getList().isEmpty())
-			pageBean.setList(null);
-		this.getRequest().put("totalMoney", classfeeService.getTotalMoney());
-		return super.list();
+		Object people = this.getSession().get("student");
+			if (people != null) {
+				if (people instanceof Student) {
+					Student student = (Student) people;
+					classes = student.getClasses();
+					boolean isAdmin = false;
+					for(People peo : classes.getAdmins()){
+						if(peo.getUsername().trim().equals(student.getUsername().trim()))
+							isAdmin = true;
+					}
+					getRequest().put("isAdmin", isAdmin);
+					
+					this.pageBean = classfeeService.queryForPage(ClassFee.class, 5, page);
+					if (pageBean.getList().isEmpty())
+						pageBean.setList(null);
+					this.getRequest().put("totalMoney", classfeeService.getTotalMoney());
+					return super.list();
+				}
+			}
+			return ERROR;
 	}
 
 	@Override
 	public String modify() {
-		classfee = (ClassFee) classfeeService.getEntity(ClassFee.class, id);
-		String remarks = classfee.getRemarks() + new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()) + " " + "，fuchal修改了班费记录；";
-		classfee.setRemarks(remarks);
-		classfeeService.updateEntity(classfee);
-
-		return super.modify();
+		Object people = this.getSession().get("student");
+		if (people != null) {
+			if (people instanceof Student) {
+				Student student = (Student) people;
+				classes = student.getClasses();
+				boolean isAdmin = false;
+				for(People peo : classes.getAdmins()){
+					if(peo.getUsername().trim().equals(student.getUsername().trim()))
+						isAdmin = true;
+				}
+				if(isAdmin){
+					String remarks = classfee.getRemarks() + new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()) + " " + "，" + student.getName() +" 修改了班费记录；";
+					classfee.setRemarks(remarks);
+					classfeeService.updateEntity(classfee);
+					Log.init(getClass()).info(student.getName() + " 成功修改班费：" + classfee.getFee());
+					return super.modify();
+				}
+				getRequest().put("isAdmin", isAdmin);
+			}
+		}
+		return ERROR;
 	}
 
 	@Override
 	public String view() {
-		this.setClassfee(classfeeService.getEntity(ClassFee.class, id));
+		classfee = classfeeService.getEntity(ClassFee.class, id);
 		return super.view();
 	}
 
@@ -127,4 +231,19 @@ public class ClassFeeAction extends BaseAction {
 		this.pageBean = pageBean;
 	}
 
+	public Classes getClasses() {
+		return classes;
+	}
+
+	public void setClasses(Classes classes) {
+		this.classes = classes;
+	}
+
+	public ClassesService<Classes, Integer> getClassesService() {
+		return classesService;
+	}
+
+	public void setClassesService(ClassesService<Classes, Integer> classesService) {
+		this.classesService = classesService;
+	}
 }
