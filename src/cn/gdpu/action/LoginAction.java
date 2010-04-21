@@ -112,7 +112,7 @@ public class LoginAction extends BaseAction {
 							maybeMeet.add(peo);
 						}
 					}else{
-						hql = "from People where p.id <> '" + people.getId() +"' order by rand()";    //推荐好友
+						hql = "from People p where p.id <> '" + people.getId() +"' order by rand()";    //推荐好友
 						List<People> peos = peopleService.queryForLimit(hql, 0, 5);
 						for(People peo : peos){
 							maybeMeet.add(peo);
