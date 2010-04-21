@@ -7,7 +7,7 @@
 	<c:forEach items="${targetsFileUrl}" var="image">
 		<img id="photo" src="<%=path%>${image}" />
 		<div>
-			<form rel="validate" action="<%=path %>/avatar/addAvatar" method="post">
+			<form rel="validate" action="<%=path %>/image/uploadImage" method="post">
 			 x1: <input type="text" id="x" name="x" class="validate[required]" />
 			 y1: <input type="text" id="y" name="y" class="validate[required]" />
 			 width: <input type="text" id="width" name="width" class="validate[required]" />

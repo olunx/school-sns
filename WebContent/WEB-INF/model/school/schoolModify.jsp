@@ -24,7 +24,7 @@ $(document).ready(function() {
 <form action="<%=path %>/school/modifySchool" method="post" onSubmit="post(this);return false;"  Class="form" >
 	<input type="hidden" name="id" value="${id }"/>
 	<p><label>上传校徽：</label></p>
-	<a onclick="return hs.htmlExpand(this, { objectType: 'iframe' } )" href="<%=path%>/image/goAddImage">上传图片</a>
+	<a onclick="return hs.htmlExpand(this, { objectType: 'iframe' } )" href="<%=path%>/image/goUploadImage">上传图片</a>
 	<!-- 上传成功后，图片将插到这里。 -->
 	<div id="pic">
 		<img src=""></img>

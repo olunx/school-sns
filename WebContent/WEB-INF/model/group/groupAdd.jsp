@@ -23,7 +23,7 @@ $(document).ready(function() {
 <p><label> 简介： </label> <input type="text" name="group.intro" /></p>
 <p><label> 作品： </label> <input type="text" name="group.works" /></p>
 <p><label> 类型： </label> <input type="text" name="group.type" /></p>
-<a onclick="return hs.htmlExpand(this, { objectType: 'iframe' } )" href="<%=path%>/image/goAddImage">上传群组图片</a>
+<a onclick="return hs.htmlExpand(this, { objectType: 'iframe' } )" href="<%=path%>/image/goUploadImage">上传群组图片</a>
 <!-- 上传成功后，图片将插到这里。 -->
 <div id="pic">
 <img src="<%=path %>${people.avatar.minFileUrl}"></img>

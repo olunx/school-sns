@@ -28,8 +28,11 @@ public class ImageAction extends BaseAction {
 	private int width;
 	private int height;
 
-	@Override
-	public String add() {
+	public String goUpload() {
+		return "uploadPage";
+	}
+	
+	public String upload() {
 		Log.init(getClass()).info("targetsFileUrl " + targetsFileUrl);
 		Log.init(getClass()).info("filesFileName " + filesFileName);
 		Log.init(getClass()).info("targetsFileName " + targetsFileName);
