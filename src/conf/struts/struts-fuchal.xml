@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts 
+	PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.1.dtd" >
+<struts>
+	<!-- 班费管理 -->
+	
+	<package name="classfee" extends="default" namespace="/classfee">
+		<global-results>
+			<result name="list" type="redirect">listClassfee?page=${page}</result>
+			<result name="index">/WEB-INF/model/classfee/classfeeList.jsp</result> 
+			<result name="addPage">/WEB-INF/model/classfee/classfeeAdd.jsp</result>
+			<result name="modifyPage">/WEB-INF/model/classfee/classfeeModify.jsp</result>
+			<result name="viewPage">/WEB-INF/model/classfee/classfeeView.jsp</result>
+			<result name="error" type="redirect">listClassfee?page=1</result>
+		</global-results>
+		<action name="*Classfee" class="cn.gdpu.action.ClassFeeAction" method="{1}"></action>
+	</package>
+	
+	<!-- 成绩Action -->
+	<package name="score" extends="default" namespace="/score">
+		<global-results>
+			<result name="list" type="redirect">listScore?page=${page}</result>
+			<result name="index">/WEB-INF/model/score/scoreList.jsp</result>
+			<result name="success" type="chain">addScore</result>
+			<result name="addPage">/WEB-INF/model/score/scoreAdd.jsp</result>
+			<result name="listall">/WEB-INF/model/score/scoreListAll.jsp</result>
+		</global-results>
+		<action name="*Score" class="cn.gdpu.action.ScoreAction" method="{1}"></action>
+		<action name="scoreUpload" class="cn.gdpu.action.FileUploadAction" method="score">
+			<!-- Action中的savePath属性的值 -->
+			<param name="savePath">/upload</param>
+		</action>
+	</package>	
+	
+	<!-- 投票管理 -->
+	<package name="vote" extends="default" namespace="/vote">
+		<global-results>
+			<result name="list" type="redirect">listVote?page=${page}</result>
+			<result name="viewPage" type="redirect">viewVote?vid=${vid}</result>
+			<result name="index">/WEB-INF/model/vote/voteList.jsp</result> 
+			<result name="addPage">/WEB-INF/model/vote/voteAdd.jsp</result>
+			<result name="view">/WEB-INF/model/vote/voteView.jsp</result>
+			<result name="govoting">/WEB-INF/model/vote/voteLink.jsp</result>
+		</global-results>
+		<action name="*Vote" class="cn.gdpu.action.VoteAction" method="{1}"></action>
+	</package>
+	
+	<!-- 货品Action -->
+	<package name="goods" extends="default" namespace="/goods">
+		<global-results>
+			<result name="list" type="redirect">listmeGoods?page=${page}</result>
+			<result name="index">/WEB-INF/model/goods/goodsList.jsp</result>
+			<result name="success" type="chain">addGoods</result>
+			<result name="addPage">/WEB-INF/model/goods/goodsAdd.jsp</result>
+			<result name="listall">/WEB-INF/model/goods/goodsListAll.jsp</result>
+			<result name="viewPage">/WEB-INF/model/goods/goodsView.jsp</result>
+			<result name="replyPage">/WEB-INF/model/goods/goodsReply.jsp</result>
+		</global-results>
+		<action name="*Goods" class="cn.gdpu.action.GoodsAction" method="{1}"></action>
+		<action name="goodsUpload" class="cn.gdpu.action.FileUploadAction" method="goods">
+			<!-- Action中的savePath属性的值 -->
+			<param name="savePath">/upload/goods</param>
+		</action>
+	</package>	
+	
+	<!-- 问答Action -->
+	<package name="issue" extends="default" namespace="/issue">
+		<global-results>
+			<result name="list" type="redirect">listmeIssue?page=${page}</result>
+			<result name="index">/WEB-INF/model/issue/issueList.jsp</result>
+			<result name="success" type="chain">addIssue</result>
+			<result name="addPage">/WEB-INF/model/issue/issueAdd.jsp</result>
+			<result name="listall">/WEB-INF/model/issue/issueListAll.jsp</result>
+			<result name="viewPage">/WEB-INF/model/issue/issueView.jsp</result>
+			<result name="replyPage">/WEB-INF/model/issue/issueReply.jsp</result>
+		</global-results>
+		<action name="*Issue" class="cn.gdpu.action.IssueAction" method="{1}"></action>
+	</package>	
+	
+	<!-- 学校Action -->
+	<package name="school" extends="default" namespace="/school">
+		<global-results>
+			<result name="list" type="redirect">listSchool?page=${page}</result>
+			<result name="view" type="redirect">viewSchool?id=${school.id}</result>
+			<result name="admin" type="redirect">/admin/viewAdmin</result>
+			<result name="modifyPage">/WEB-INF/model/school/schoolModify.jsp</result>
+			<result name="index">/WEB-INF/model/school/schoolList.jsp</result>
+			<result name="addPage">/WEB-INF/model/school/schoolAdd.jsp</result>
+			<result name="viewPage">/WEB-INF/model/school/schoolView.jsp</result>
+		</global-results>
+		<action name="*School" class="cn.gdpu.action.SchoolAction" method="{1}"></action>
+	</package>	
+	
+	<!-- 班级Action -->
+	<package name="classes" extends="default" namespace="/classes">
+		<global-results>
+			<result name="list" type="redirect">listmeClasses?page=${page}</result>
+			<result name="view" type="redirect">viewClasses?id=${classes.id}</result>
+			<result name="add" type="redirect">/goPerfectReg</result>
+			<result name="error" type="redirect">/center</result>
+			<result name="modifyPage">/WEB-INF/model/classes/classesModify.jsp</result>
+			<result name="index">/WEB-INF/model/classes/classesList.jsp</result>
+			<result name="addPage">/WEB-INF/model/classes/classesAdd.jsp</result>
+			<result name="listall">/WEB-INF/model/classes/classesListAll.jsp</result>
+			<result name="viewPage">/WEB-INF/model/classes/classesView.jsp</result>
+			<result name="replyPage">/WEB-INF/model/classes/classesReply.jsp</result>
+		</global-results>
+		<action name="*Classes" class="cn.gdpu.action.ClassesAction" method="{1}"></action>
+	</package>	
+</struts>    
