@@ -57,7 +57,7 @@
 		</select>
 	</p>
 	<label>货品图片：</label>
-	<a onclick="return hs.htmlExpand(this, { objectType: 'iframe' } )" href="<%=path%>/image/goAddImage">上传图片</a>
+	<a onclick="return hs.htmlExpand(this, { objectType: 'iframe' } )" href="<%=path%>/image/goUploadImage">上传图片</a>
 	<!-- 上传成功后，图片将插到这里。 -->
 	<div id="pic">
 		<img src=""></img>

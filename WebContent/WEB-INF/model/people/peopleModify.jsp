@@ -28,7 +28,7 @@ $(document).ready(function() {
 <p><label> 手机： </label> <input type="text" name="people.phoneNo" value="${people.phoneNo}" /></p>
 <p><label> QQ： </label> <input type="text" name="people.qq" value="${people.qq}" /></p>
 <p><label> 邮箱： </label> <input type="text" name="people.email" value="${people.email}" /></p>
-<a onclick="return hs.htmlExpand(this, { objectType: 'iframe' } )" href="<%=path%>/image/goAddImage">上传头像</a>
+<a onclick="return hs.htmlExpand(this, { objectType: 'iframe' } )" href="<%=path%>/image/goUploadImage">上传头像</a>
 <!-- 上传成功后，图片将插到这里。 -->
 <div id="pic">
 <img src="<%=path %>${people.avatar.minFileUrl}"></img>
