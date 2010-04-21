@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
 <%
 	String path = request.getContextPath();
 %>
@@ -36,11 +35,11 @@ $(document).ready(function() {
 <!-- 上传成功后，图片将插到这里。 -->
 <div id="pic">
 <img src="<%=path %>${people.avatar.minFileUrl}"></img>
-<input id="oriFileName" type="hidden" name="image.oriFileName" value="${people.avatar.oriFileName}"/>
-<input id="bigFileName" type="hidden" name="image.bigFileName" value="${people.avatar.bigFileName}"/>
-<input id="bigFileUrl" type="hidden" name="image.bigFileUrl" value="${people.avatar.bigFileUrl}"/>
-<input id="minFileName" type="hidden" name="image.minFileName" value="${people.avatar.minFileName}"/>
-<input id="minFileUrl" type="hidden" name="image.minFileUrl" value="${people.avatar.minFileUrl}"/>
+<input id="oriFileName" type="hidden" name="image.oriFileName" value="${group.pic.oriFileName}"/>
+<input id="bigFileName" type="hidden" name="image.bigFileName" value="${group.pic.bigFileName}"/>
+<input id="bigFileUrl" type="hidden" name="image.bigFileUrl" value="${group.pic.bigFileUrl}"/>
+<input id="minFileName" type="hidden" name="image.minFileName" value="${group.pic.minFileName}"/>
+<input id="minFileUrl" type="hidden" name="image.minFileUrl" value="${group.pic.minFileUrl}"/>
 </div>
 <p class="paddingmin"><input type="submit" value="提交" /> <input type="reset" value="重置" /></p>
 <input type="hidden" name="group.id" value="${group.id}"/>

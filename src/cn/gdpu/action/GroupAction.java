@@ -38,9 +38,11 @@ public class GroupAction extends BaseAction {
 		People author = (People) this.getSession().get("user");
 		if (author != null) {
 			group.setAdmin(author);
+			imageService.addEntity(image);
+			group.setPic(image);
+			groupService.addEntity(group);
+			FeedAction.init().add(group, author, FeedAction.ADD_GROUP);
 		}
-		groupService.addEntity(group);
-		FeedAction.init().add(group, author, FeedAction.ADD_GROUP);
 		return super.add();
 	}
 
@@ -172,12 +174,15 @@ public class GroupAction extends BaseAction {
 	@Override
 	public String modify() {
 		Log.init(getClass()).info("ids: " + ids);
-		Set<People> members = new HashSet<People>();
-		for (int i = 0; i < ids.length; i++) {
-			members.add(peopleService.getEntity(People.class, ids[i]));
+		if(ids != null) {
+			Set<People> members = new HashSet<People>();
+			for (int i = 0; i < ids.length; i++) {
+				members.add(peopleService.getEntity(People.class, ids[i]));
+			}
+			Log.init(getClass()).info("members: " + members);
+			group.setMembers(members);
 		}
-		Log.init(getClass()).info("members: " + members);
-		group.setMembers(members);
+		
 		imageService.addEntity(image);
 		group.setPic(image);
 		groupService.updateEntity(group);
