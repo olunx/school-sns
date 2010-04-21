@@ -4,7 +4,7 @@
 	"http://struts.apache.org/dtds/struts-2.1.dtd" >
 <struts>
 	<!-- 全局权限验证拦截器 -->
-	<package name="default" extends="struts-default">
+	<package name="default" extends="struts-default" >
 		<interceptors>
 			<interceptor-stack name="customInterceptor">
 				<interceptor-ref name="defaultStack"></interceptor-ref>
@@ -15,7 +15,7 @@
 		<default-interceptor-ref name="customInterceptor"></default-interceptor-ref>
 		<global-results>
 			<result name="login" type="redirect">/</result>
-			<result name="cookieauth" type="chain">cookieAuthLogin</result>
+			<result name="cookieauth" type="redirectAction">/cookieAuthLogin</result>
 		</global-results>
 	</package>
 

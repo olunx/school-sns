@@ -16,13 +16,16 @@
 <script type="text/javascript" src="<%=path%>/content/js/jquery-1.4.2.min.js"></script>
 
 <script type="text/javascript" src="<%=path%>/content/js/jquery.corner.js"></script>
+<!-- AjaxUpload库 -->
+<script type="text/javascript" src="<%=path%>/content/jq-ajaxupload/ajaxupload.js"></script>
+<!-- highslide -->
+<link type="text/css" rel="stylesheet" href="<%=path%>/content/jq-highslide/highslide.css" />
+<script type="text/javascript" src="<%=path%>/content/jq-highslide/highslide-full.min.js"></script>
+
 
 <!-- 常用库，确保这段代码在最下方 -->
 <script type="text/javascript" src="<%=path%>/content/js/common.js"></script>
 
-<!-- highslide -->
-<link type="text/css" rel="stylesheet" href="<%=path%>/content/jq-highslide/highslide.css" />
-<script type="text/javascript" src="<%=path%>/content/jq-highslide/highslide-full.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
     //class为corner时为圆角

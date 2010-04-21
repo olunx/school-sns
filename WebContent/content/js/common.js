@@ -13,6 +13,11 @@ $(document).ready(function(){
     $("#content").ajaxError(function(event, request, settings){
         $(this).append("<li>出错页面:" + settings.url + "</li>");
     });
+	
+	$("a[rel='ajaxupload']").each(function (i){
+		var ajaxinfo = eval('('+$(this).attr("rev")+')');
+		myAjaxUploadSetup(this,ajaxinfo.upload,ajaxinfo.complete,ajaxinfo.allowtype);
+	});
 });
 
 //注册二级事件
@@ -65,6 +70,42 @@ function post(obj){
         });
     });
 }
+
+//配置ajaxUpload
+function myAjaxUploadSetup(btnobj,uploadUrl,completeUrl,allowType){
+	var button = $(btnobj),interval;
+	var button_txt = button.text();
+	new AjaxUpload(button,{
+		action: uploadUrl, 
+		name: 'files',
+		onSubmit : function(file, ext){
+			
+            if (! (ext && allowType.test(ext))){
+                alert('不允许的文件格式！');
+                return false;
+       		}
+      		 
+			button.text('上传中');
+			this.disable();
+			// Uploding -> Uploading. -> Uploading...
+			interval = window.setInterval(function(){
+				var text = button.text();
+				if (text.length < 6){
+					button.text(text + '.');
+				} else {
+					button.text('上传中');	
+				}
+			}, 200);
+		},
+		onComplete: function(){
+			this.enable();
+			$('#content').load(completeUrl, ajax);
+			clearInterval(interval);
+			button.text(button_txt);
+			
+		}
+	});
+};
 
 /**
  * 获得当前的日期

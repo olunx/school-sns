@@ -13,8 +13,8 @@
 	<c:if test="${student.classes != null && student.permission != 1}">
 	<li><a class="letterspacing" target="content" href="<%=path%>/classfee/listClassfee">班费</a></li>
 	</c:if>
-	<li><a class="letterspacing" target="content" href="<%=path%>/course/listCourse">课程</a> <span><a target="content" href="<%=path%>/course/goAddCourse">添加</a></span></li>
-	<li><a class="letterspacing" target="content" href="<%=path%>/score/queryScore">成绩</a> <span><a target="content" href="<%=path%>/score/goAddScore">添加</a></span></li>
+	<li><a class="letterspacing" target="content" href="<%=path%>/course/listCourse">课程</a> <span><a rel="ajaxupload" rev="{upload:'<%=path %>/course/courseUpload',complete:'<%=path %>/course/listCourse',allowtype:/^(xls)$/i}" href="javascript:void()">添加</a></span></li>
+	<li><a class="letterspacing" target="content" href="<%=path%>/score/queryScore">成绩</a> <span><a rel="ajaxupload" rev="{upload:'<%=path%>/score/scoreUpload',complete:'<%=path%>/score/listScore',allowtype:/^(xls)$/i}" href="javascript:void()">添加</a></span></li>
 	<li><a class="letterspacing" target="content" href="<%=path%>/attendance/listAttendance">考勤</a> <span><a target="content" href="<%=path%>/attendance/goAddAttendance">添加</a></span></li>
 	<li><a class="letterspacing" target="content" href="<%=path%>/vote/listVote">投票</a> <span><a target="content" href="<%=path%>/vote/goAddVote">添加</a></span></li>
 	<li><a class="letterspacing" target="content" href="<%=path%>/goods/listmeGoods">交换</a> <span><a target="content" href="<%=path%>/goods/goAddGoods">添加</a></span></li>
