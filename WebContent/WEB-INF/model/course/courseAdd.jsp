@@ -19,11 +19,9 @@ $(document).ready(function() {
        		}
       		 
 			button.text('正在上传');
-			
 			this.disable();
-			
 			// Uploding -> Uploading. -> Uploading...
-			interval = window.setInterval(function(){
+			window.setInterval(function(){
 				var text = button.text();
 				if (text.length < 13){
 					button.text(text + '.');
@@ -41,6 +39,6 @@ $(document).ready(function() {
 
 
 <div id="dialogbox">
-	<h2 class="caption">上传学生：</h2>
+	<h2 class="caption">上传课程：</h2>
 	<div id="button" class="button">上传</div> 
 </div>

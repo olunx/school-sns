@@ -64,6 +64,7 @@ public abstract  class BaseDaoImpl<T, ID extends Serializable> extends Hibernate
 				query.setFirstResult(offset);
 				query.setMaxResults(length);
 				List items = query.list();
+				//if (items.size() == 0) items = null;
 				return items;
 			}
 		}, true);
