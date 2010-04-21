@@ -7,7 +7,7 @@ public class Group {
 	private int id;
 	private String name;
 	private String intro;
-	private String pic;
+	private Image pic;
 	private String works;
 	private String type;
 	private People admin;
@@ -38,11 +38,11 @@ public class Group {
 		this.intro = intro;
 	}
 
-	public String getPic() {
+	public Image getPic() {
 		return pic;
 	}
 
-	public void setPic(String pic) {
+	public void setPic(Image pic) {
 		this.pic = pic;
 	}
 

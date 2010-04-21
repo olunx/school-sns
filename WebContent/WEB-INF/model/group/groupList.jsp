@@ -38,7 +38,7 @@
 					 </a>
 					</td>
 					<td>${group.intro}</td>
-					<td>${group.pic}</td>
+					<td><img src="<%=path %>${group.pic.minFileUrl}" /></td>
 					<td>${group.works}</td>
 					<td>${group.type}</td>
 					<td>${group.admin.name}</td>

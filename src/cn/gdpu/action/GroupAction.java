@@ -1,15 +1,19 @@
 package cn.gdpu.action;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 import cn.gdpu.service.GroupService;
+import cn.gdpu.service.ImageService;
 import cn.gdpu.service.PeopleService;
 import cn.gdpu.service.TopicService;
 import cn.gdpu.util.Log;
 import cn.gdpu.util.PageBean;
 import cn.gdpu.vo.Group;
+import cn.gdpu.vo.Image;
 import cn.gdpu.vo.People;
 import cn.gdpu.vo.Topic;
 
@@ -18,6 +22,7 @@ public class GroupAction extends BaseAction {
 
 	private int id;
 	private Integer[] ids;
+	private int topicId;
 	private Group group;
 	private GroupService<Group, Integer> groupService;
 	private PeopleService<People, Integer> peopleService;
@@ -25,6 +30,8 @@ public class GroupAction extends BaseAction {
 	private Topic topic;
 	private PageBean pageBean;
 	private int page;
+	private Image image;
+	private ImageService<Image, Integer> imageService;
 
 	@Override
 	public String add() {
@@ -74,17 +81,42 @@ public class GroupAction extends BaseAction {
 			group.setPost(post);
 			groupService.updateEntity(group);
 		}
-		return "list";
+		return "viewPage";
 	}
 
 	public String goReply() {
-
 		return "replyPage";
 	}
 
 	public String reply() {
 
-		return "list";
+		People author = (People) this.getSession().get("user");
+		if (author != null) {
+			Log.init(getClass()).info("people name " + author.getName());
+			topic.setAuthor(author);
+			topic.setTime(new Date());
+			topic.setIstopic(false);
+			topicService.addEntity(topic);
+
+			Topic parent = topicService.getEntity(Topic.class, topicId);
+			List<Topic> list = parent.getReply();
+			if (list == null) {
+				list = new ArrayList<Topic>();
+			}
+			list.add(topic);
+			parent.setReply(list);
+			parent.setHasreply(true);
+			topicService.updateEntity(parent);
+
+			FeedAction.init().add(topic, FeedAction.REPLY);
+
+			group = groupService.getEntity(Group.class, id);
+		}
+
+		Log.init(getClass()).info("reply finish ");
+		Log.init(getClass()).info("reply finish groupId" + id);
+
+		return "viewPage";
 	}
 
 	@Override
@@ -139,6 +171,15 @@ public class GroupAction extends BaseAction {
 
 	@Override
 	public String modify() {
+		Log.init(getClass()).info("ids: " + ids);
+		Set<People> members = new HashSet<People>();
+		for (int i = 0; i < ids.length; i++) {
+			members.add(peopleService.getEntity(People.class, ids[i]));
+		}
+		Log.init(getClass()).info("members: " + members);
+		group.setMembers(members);
+		imageService.addEntity(image);
+		group.setPic(image);
 		groupService.updateEntity(group);
 		return super.modify();
 	}
@@ -221,4 +262,27 @@ public class GroupAction extends BaseAction {
 		this.topic = topic;
 	}
 
+	public int getTopicId() {
+		return topicId;
+	}
+
+	public void setTopicId(int topicId) {
+		this.topicId = topicId;
+	}
+
+	public Image getImage() {
+		return image;
+	}
+
+	public void setImage(Image image) {
+		this.image = image;
+	}
+
+	public ImageService<Image, Integer> getImageService() {
+		return imageService;
+	}
+
+	public void setImageService(ImageService<Image, Integer> imageService) {
+		this.imageService = imageService;
+	}
 }

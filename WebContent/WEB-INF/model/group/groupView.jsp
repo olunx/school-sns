@@ -7,7 +7,7 @@
 <h2 class="caption">查看群组</h2>
 <p><label> 小组名称： </label> <input type="text" name="group.name" value="${group.name}" /></p>
 <p><label> 简介： </label> <input type="text" name="group.intro" value="${group.intro}" /></p>
-<p><label> 图片： </label> <input type="text" name="group.pic" value="${group.pic}" /></p>
+<p><label> 图片： </label> <img src="<%=path %>${group.pic.minFileUrl}" /></p>
 <p><label> 作品： </label> <input type="text" name="group.works" value="${group.works}" /></p>
 <p><label> 类型： </label> <input type="text" name="group.type" value="${group.type}" /></p>
 <p><label> 管理员： </label> <input type="text" name="group.admin" value="${group.admin.name}" /></p>
@@ -45,8 +45,7 @@
 						</c:choose>
 				    </div>
 				    <div class="right">
-				        <div class="reply"><a target="content" href="<%=path %>/topic/goReplyTopic?id=${post.id}">回复</a></div>
-				        <input type="checkbox" name="ids" value="" />
+				        <div class="reply"><a target="content" href="<%=path %>/group/goReplyGroup?topicId=${post.id}&id=${group.id}">回复</a></div>
 				    </div>
 				</div>
 			</c:forEach>

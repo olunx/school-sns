@@ -18,7 +18,7 @@
 		</id>
 		<property name="name" />
 		<property name="intro" />
-		<property name="pic" />
+		<many-to-one name="pic" column="picId" class="Image" lazy="false" cascade="all" unique="true" />
 		<property name="works" />
 		<property name="type" />
 		<many-to-one name="admin"/>
