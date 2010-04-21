@@ -81,11 +81,12 @@
 	<!-- 学校Action -->
 	<package name="school" extends="default" namespace="/school">
 		<global-results>
+			<result name="list" type="redirect">listSchool?page=${page}</result>
 			<result name="view" type="redirect">viewSchool?id=${school.id}</result>
+			<result name="admin" type="redirect">/admin/viewAdmin</result>
 			<result name="modifyPage">/WEB-INF/model/school/schoolModify.jsp</result>
 			<result name="index">/WEB-INF/model/school/schoolList.jsp</result>
 			<result name="addPage">/WEB-INF/model/school/schoolAdd.jsp</result>
-			<result name="listall">/WEB-INF/model/school/schoolListAll.jsp</result>
 			<result name="viewPage">/WEB-INF/model/school/schoolView.jsp</result>
 		</global-results>
 		<action name="*School" class="cn.gdpu.action.SchoolAction" method="{1}"></action>

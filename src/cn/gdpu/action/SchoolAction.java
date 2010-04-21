@@ -4,36 +4,73 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
+import cn.gdpu.service.InstituteService;
 import cn.gdpu.service.PeopleService;
+import cn.gdpu.service.ProvinceService;
 import cn.gdpu.service.SchoolService;
 import cn.gdpu.util.Log;
+import cn.gdpu.util.PageBean;
+import cn.gdpu.vo.Admin;
 import cn.gdpu.vo.Goods;
 import cn.gdpu.vo.Image;
+import cn.gdpu.vo.Institute;
 import cn.gdpu.vo.People;
+import cn.gdpu.vo.Province;
 import cn.gdpu.vo.School;
 import cn.gdpu.vo.Student;
 import cn.gdpu.vo.Visitor;
 
 @SuppressWarnings("serial")
 public class SchoolAction extends BaseAction {
+	private ProvinceService<Province, Integer> provinceService;
 	private SchoolService<School, Integer> schoolService;
+	private InstituteService<Institute, Integer> instituteService;
 	private PeopleService<People, Integer> peopleService;
 	private School school;
+	private Province province;
 	private Image image;
 	private String content;
 	private String address;
 	private int id;
-
+	private String[] names;
+	private PageBean pageBean;
+	private int page;
+	
 	@Override
 	public String add() {
-		// TODO Auto-generated method stub
-		return super.add();
+		Object people = this.getSession().get("user");
+		if (people != null) {
+			if (people instanceof Admin) {
+				school.setAvatar(image);
+				province = provinceService.getEntity(Province.class, id);
+				school.setProvince(province);
+				schoolService.addEntity(school);
+				
+				for(int i=0; i<names.length; i++){
+					Institute institute = new Institute();
+					System.out.println("institute.name = " + names[i]);
+					institute.setName(names[i]);
+					institute.setSchool(school);
+					instituteService.addEntity(institute);
+					Log.init(getClass()).info(school.getName() + "学校创建 " + institute.getName() + "成功");
+				}
+				Log.init(getClass()).info(school.getName() + "学校创建成功");
+				return "admin";
+			}
+		}
+		return ERROR;
 	}
 
 	@Override
 	public String delete() {
-		// TODO Auto-generated method stub
-		return super.delete();
+		Object people = this.getSession().get("user");
+		if (people != null) {
+			if (people instanceof Admin) {
+				schoolService.deleteEntity(School.class, id);
+				return super.delete();
+			}
+		}
+		return ERROR;
 	}
 
 	@Override
@@ -44,8 +81,15 @@ public class SchoolAction extends BaseAction {
 
 	@Override
 	public String goAdd() {
-		// TODO Auto-generated method stub
-		return super.goAdd();
+		Object people = this.getSession().get("user");
+		if (people != null) {
+			if (people instanceof Admin) {
+				List<Province> provinces = provinceService.getAllEntity(Province.class);
+				getRequest().put("provinces", provinces);
+				return super.goAdd();
+			}
+		}
+		return ERROR;
 	}
 
 	@Override
@@ -55,8 +99,10 @@ public class SchoolAction extends BaseAction {
 
 	@Override
 	public String list() {
-		// TODO Auto-generated method stub
-		return super.list();
+		pageBean = schoolService.queryForPage(School.class, 30, page);
+		if(pageBean.getList().isEmpty())
+    		pageBean.setList(null);
+		return INDEX;
 	}
 
 	@Override
@@ -71,10 +117,10 @@ public class SchoolAction extends BaseAction {
 
 	@Override
 	public String view() {
-		Object student = this.getSession().get("student");
-		if (student != null) {
-			if (student instanceof Student) {
-				Student user = (Student) student;
+		Object people = this.getSession().get("user");
+		if (people != null) {
+			if (people instanceof People) {
+				People user = (People) people;
 				school = schoolService.getEntity(School.class, id);
 				boolean isAdmin = false;
 				for(People peo : school.getAdmin()){
@@ -126,10 +172,10 @@ public class SchoolAction extends BaseAction {
 	}
 	
 	public String joinAdmin(){
-		Object student = this.getSession().get("student");
-		if (student != null) {
-			if (student instanceof Student) {
-				People user = (Student) student;
+		Object people = this.getSession().get("user");
+		if (people != null) {
+			if (people instanceof People) {
+				People user = (Student) people;
 				school = schoolService.getEntity(School.class, id);
 				
 				List<People> admins = school.getAdmin();
@@ -137,7 +183,6 @@ public class SchoolAction extends BaseAction {
 				boolean ishas =false;         //加入管理员，最多三人
 				for(int i=0; i<admins.size();i++){
 					if(admins.get(i).getId() == user.getId()){
-						admins.set(i, user);
 						ishas=true;
 					}
 				}
@@ -148,7 +193,7 @@ public class SchoolAction extends BaseAction {
 					admins.add(user);
 				}
 				school.setAdmin(admins);
-				
+				System.out.println("---------------------------");
 				schoolService.updateEntity(school);
 				Log.init(getClass()).info(user.getName() + "成为 " + school.getName() + " 学校管理员");
 			}
@@ -212,5 +257,52 @@ public class SchoolAction extends BaseAction {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	
+
+	public ProvinceService<Province, Integer> getProvinceService() {
+		return provinceService;
+	}
+
+	public void setProvinceService(ProvinceService<Province, Integer> provinceService) {
+		this.provinceService = provinceService;
+	}
+
+	public InstituteService<Institute, Integer> getInstituteService() {
+		return instituteService;
+	}
+
+	public void setInstituteService(InstituteService<Institute, Integer> instituteService) {
+		this.instituteService = instituteService;
+	}
+
+	public Province getProvince() {
+		return province;
+	}
+
+	public void setProvince(Province province) {
+		this.province = province;
+	}
+
+	public String[] getNames() {
+		return names;
+	}
+
+	public void setNames(String[] names) {
+		this.names = names;
+	}
+
+	public PageBean getPageBean() {
+		return pageBean;
+	}
+
+	public void setPageBean(PageBean pageBean) {
+		this.pageBean = pageBean;
+	}
+
+	public int getPage() {
+		return page;
+	}
+
+	public void setPage(int page) {
+		this.page = page;
+	}
 }

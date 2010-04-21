@@ -27,7 +27,7 @@
 			<one-to-many class="Institute"/>
 		</set>
 		<property name="address" />
-		<list name="admin" cascade="all">
+		<list name="admin" >
 			<key column="schooladminId" />
 			<index column="indexId" />
 			<one-to-many class="People" />
