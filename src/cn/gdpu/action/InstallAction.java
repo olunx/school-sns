@@ -345,4 +345,13 @@ public class InstallAction extends BaseAction {
 	public void setClassesService(ClassesService<Classes, Integer> classesService) {
 		this.classesService = classesService;
 	}
+
+	public AdminService<Admin, Integer> getAdminService() {
+		return adminService;
+	}
+
+	public void setAdminService(AdminService<Admin, Integer> adminService) {
+		this.adminService = adminService;
+	}
+	
 }

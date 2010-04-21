@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.struts2.ServletActionContext;
+import org.apache.struts2.interceptor.validation.SkipValidation;
+
 import cn.gdpu.service.AdminService;
 import cn.gdpu.service.PeopleService;
 import cn.gdpu.service.ProvinceService;
@@ -135,6 +137,7 @@ public class LoginAction extends BaseAction {
 		return super.INDEX;
 	}
 	
+	@SkipValidation
 	private void cookieClean(){
 		// 清除cookies
 		Cookie[] cookies = hsrequest.getCookies();
@@ -149,6 +152,7 @@ public class LoginAction extends BaseAction {
 		}
 	}
 	
+	@SkipValidation
 	public String cookieAuth(){
 		//检查cookies
 		Cookie[] cookies = hsrequest.getCookies();
@@ -161,6 +165,7 @@ public class LoginAction extends BaseAction {
 		return auth();
 	}
 
+	@SkipValidation
 	public String logout() {
 		this.getSession().remove("isAccess");
 		this.getSession().remove("user");
@@ -171,10 +176,12 @@ public class LoginAction extends BaseAction {
 		return super.INDEX;
 	}
 
+	@SkipValidation
 	public String go() {
 		return "goLogin";
 	}
 	
+	@SkipValidation
 	public String login() {
 		Cookie[] cookies = hsrequest.getCookies();
 		if (cookies!=null) {

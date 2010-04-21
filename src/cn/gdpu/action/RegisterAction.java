@@ -1,6 +1,5 @@
 package cn.gdpu.action;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.LinkedHashMap;
@@ -8,8 +7,14 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.struts2.ServletActionContext;
+import org.apache.struts2.interceptor.validation.SkipValidation;
+
+import com.opensymphony.xwork2.Preparable;
+
 import net.sf.json.JSONObject;
-import cn.gdpu.service.AdminService;
 import cn.gdpu.service.ClassesService;
 import cn.gdpu.service.InstituteService;
 import cn.gdpu.service.PeopleService;
@@ -18,7 +23,6 @@ import cn.gdpu.service.SchoolService;
 import cn.gdpu.service.StudentService;
 import cn.gdpu.service.TeacherService;
 import cn.gdpu.util.Log;
-import cn.gdpu.vo.Admin;
 import cn.gdpu.vo.Classes;
 import cn.gdpu.vo.Image;
 import cn.gdpu.vo.Institute;
@@ -29,7 +33,7 @@ import cn.gdpu.vo.Student;
 import cn.gdpu.vo.Teacher;
 
 @SuppressWarnings("serial")
-public class RegisterAction extends BaseAction {
+public class RegisterAction extends BaseAction implements Preparable {
 
 	private PeopleService<People, Integer> peopleService;
 	private StudentService<Student, Integer> studentService;
@@ -50,6 +54,33 @@ public class RegisterAction extends BaseAction {
 	private int protocol;
 	private int identity;
 
+	
+	@Override
+	public void prepare() throws Exception {
+		HttpServletRequest httpRequest = (HttpServletRequest) ServletActionContext.getRequest();
+		String action=  httpRequest.getServletPath().split("/")[1];
+		String[] uri=action.split("\\.");
+		if(uri[0].equals("register")){
+			List<Province> provinces = provinceService.getAllEntity(Province.class);
+			
+			Map<String, Map<String, Object>> map = new LinkedHashMap<String, Map<String, Object>>();
+			for(Province province: provinces){
+				Map<String, Object> promap = new LinkedHashMap<String, Object>();
+				Map<String, Integer> sclmap = new LinkedHashMap<String, Integer>();
+				promap.put("key", province.getId());
+				promap.put("defaultvalue", province.getSchools().iterator().next().getId());
+				for(School school : province.getSchools()){
+					sclmap.put(school.getName(), school.getId());
+				}
+				
+				promap.put("values", sclmap);
+				map.put(province.getName(), promap);
+			}
+	        JSONObject jo = JSONObject.fromObject(map);
+			getRequest().put("schoolmap", jo);
+		}
+	}
+	@SkipValidation
 	public String goRegister(){
 		List<Province> provinces = provinceService.getAllEntity(Province.class);
 		
@@ -79,7 +110,6 @@ public class RegisterAction extends BaseAction {
 				
 				School school = schoolService.getEntity(School.class, schoolId);
 				user.setSchool(school);
-				user.setName(realName);
 				user.setPermission(1);        //普通注册完成是1
 				user.setStatus(1);           //普通用户注册成功状态为1
 				user.setRegTime(new Date());
@@ -109,6 +139,7 @@ public class RegisterAction extends BaseAction {
 		return INDEX;
 	}
 	
+	@SkipValidation
 	public String goPerfectReg(){
 		Object student = this.getSession().get("student");
 		if (student != null) {
@@ -311,4 +342,5 @@ public class RegisterAction extends BaseAction {
 	public void setClassesService(ClassesService<Classes, Integer> classesService) {
 		this.classesService = classesService;
 	}
+
 }
