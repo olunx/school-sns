@@ -75,9 +75,10 @@ $(document).ready(function() {
 			validate();
 		}
 	});
+
 });
 </script>
 <div id="dialogbox">
-	<h2 class="caption">上传头像：</h2>
+	<h2 class="caption">上传图片：</h2>
 	<div id="button" class="button">上传</div> 
 </div>

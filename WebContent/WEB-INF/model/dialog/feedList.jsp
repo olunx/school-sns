@@ -16,7 +16,18 @@
 				<div class="time" title="${feed.time}">${my:formatDate(feed.time)}</div>
 				<div class="msg"><a href="#">${feed.author.name}</a> 
 				<c:choose>
-					<c:when test="${feed.type ==  'add_twitter'}"> 叽歪的说：${feed.message}。</c:when>
+					<c:when test="${feed.type ==  'add_twitter'}">
+					叽叽歪歪的说：${feed.message}。
+					</c:when>
+					<c:when test="${feed.type == 'reply_twitter'}">
+						回复了微博   ${feed.message}。
+					</c:when>
+					<c:when test="${feed.type ==  'add_topic'}">
+					 发表了主题：${feed.message}。
+					</c:when>
+					<c:when test="${feed.type == 'reply_topic'}">
+						回复了   ${feed.message}  主题。
+					</c:when>
 					<c:when test="${feed.type == 'add_group'}">
 						创建了群组  
 						<a target="content" href="<%=path %>/group/viewGroup?id=${feed.msgId}">${feed.message}</a> 。
@@ -24,9 +35,6 @@
 					<c:when test="${feed.type == 'join_group'}">
 						加入了   
 						<a target="content" href="<%=path %>/group/viewGroup?id=${feed.msgId}">${feed.message}</a>   小组。
-					</c:when>
-					<c:when test="${feed.type == 'reply_topic'}">
-						回复了   ${feed.message}  帖子。
 					</c:when>
 					<c:when test="${feed.type == 'add_friend'}">
 						添加 了  

@@ -6,5 +6,6 @@ function initHighslide(path, width, height) {
     hs.transitions = ['expand', 'crossfade'];
 	hs.useBox = true;
 	hs.width = width;
-	hs.height = height;
+	hs.height = height; 
 }
+

@@ -32,6 +32,14 @@
 		<property name="baseDao" ref="topicDaoImpl" />
 	</bean>
 
+	<!-- 微博 -->
+	<bean name="twitterDaoImpl" class="cn.gdpu.dao.impl.TwitterDaoImpl" scope="prototype">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean name="twitterService" class="cn.gdpu.service.impl.TwitterServiceImpl" scope="prototype">
+		<property name="baseDao" ref="twitterDaoImpl" />
+	</bean>
+
 	<!-- 邮件 -->
 	<bean name="mailDaoImpl" class="cn.gdpu.dao.impl.MailDaoImpl" scope="prototype">
 		<property name="sessionFactory" ref="sessionFactory" />

@@ -15,7 +15,6 @@ public class TopicAction extends BaseAction {
 
 	private int id;
 	private Integer[] ids;
-	private int otherId;
 	private Topic topic;
 	private TopicService<Topic, Integer> topicService;
 	private PageBean pageBean;
@@ -27,13 +26,12 @@ public class TopicAction extends BaseAction {
 		if (author != null) {
 			Log.init(getClass()).info("people name " + author.getName());
 			topic.setAuthor(author);
-			topic.setType("twitter");
 			topic.setTime(new Date());
 			topic.setIstopic(true);
 			topicService.addEntity(topic);
 		}
 
-		FeedAction.init().add(topic, FeedAction.ADD_TWITTER);
+		FeedAction.init().add(topic, FeedAction.ADD_TOPIC);
 
 		Log.init(getClass()).info("add finish ");
 
@@ -69,7 +67,7 @@ public class TopicAction extends BaseAction {
 			parent.setHasreply(true);
 			topicService.updateEntity(parent);
 
-			FeedAction.init().add(topic, FeedAction.REPLY);
+			FeedAction.init().add(topic, FeedAction.REPLY_TOPIC);
 		}
 
 		Log.init(getClass()).info("add finish ");
@@ -93,7 +91,8 @@ public class TopicAction extends BaseAction {
 	@Override
 	public String list() {
 		Log.init(getClass()).info("list ");
-		this.pageBean = this.topicService.queryForPage("from Topic t where t.istopic = '1' and t.type = 'twitter' order by t.time DESC", 10, page);
+		this.pageBean = this.topicService.queryForPage("from Topic t where t.istopic = '1' order by t.time DESC",
+				10, page);
 		if (pageBean.getList().isEmpty()) {
 			pageBean.setList(null);
 		}
@@ -105,7 +104,7 @@ public class TopicAction extends BaseAction {
 		Log.init(getClass()).info("listMy");
 		People author = (People) this.getSession().get("user");
 		if (author != null) {
-			this.pageBean = this.topicService.queryForPage("from Topic t where t.istopic = '1' and t.type = 'twitter' and t.author = '"
+			this.pageBean = this.topicService.queryForPage("from Topic t where t.istopic = '1' and t.author = '"
 					+ author.getId() + "' order by t.time DESC", 10, page);
 			if (pageBean.getList().isEmpty()) {
 				pageBean.setList(null);
@@ -117,18 +116,7 @@ public class TopicAction extends BaseAction {
 		return super.list();
 	}
 
-	public String listOther() {
-		Log.init(getClass()).info("listOther");
-		this.pageBean = this.topicService.queryForPage("from Topic t where t.istopic = '1' and t.type = 'twitter' and t.author = '"
-				+ otherId + "' order by t.time DESC", 10, page);
-		if (pageBean.getList().isEmpty()) {
-			pageBean.setList(null);
-		}
-
-		Log.init(getClass()).info("listOther finish");
-		return super.list();
-	}
-
+	
 	public int getId() {
 		return id;
 	}
@@ -177,11 +165,4 @@ public class TopicAction extends BaseAction {
 		this.page = page;
 	}
 
-	public int getOtherId() {
-		return otherId;
-	}
-
-	public void setOtherId(int otherId) {
-		this.otherId = otherId;
-	}
 }

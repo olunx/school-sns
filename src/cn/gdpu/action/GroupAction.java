@@ -82,6 +82,8 @@ public class GroupAction extends BaseAction {
 			post.add(topic);
 			group.setPost(post);
 			groupService.updateEntity(group);
+			
+			FeedAction.init().add(topic, FeedAction.ADD_TOPIC);
 		}
 		return "viewPage";
 	}
@@ -110,7 +112,7 @@ public class GroupAction extends BaseAction {
 			parent.setHasreply(true);
 			topicService.updateEntity(parent);
 
-			FeedAction.init().add(topic, FeedAction.REPLY);
+			FeedAction.init().add(topic, FeedAction.REPLY_TOPIC);
 
 			group = groupService.getEntity(Group.class, id);
 		}
