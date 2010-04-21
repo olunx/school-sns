@@ -3,18 +3,9 @@
 <%
 	String path = request.getContextPath();
 %>
-<link type="text/css" rel="stylesheet" href="<%=path%>/content/jq-highslide/highslide.css" />
-<script type="text/javascript" src="<%=path%>/content/jq-highslide/highslide-full.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
-    hs.graphicsDir = '<%=path%>/content/jq-highslide/graphics/';
-    hs.align = 'center';
-    hs.outlineType = 'rounded-white';
-    hs.wrapperClassName = 'draggable-header';
-    hs.transitions = ['expand', 'crossfade'];
-	hs.useBox = true;
-	hs.width = 680;
-	hs.height = 450;
+	initHighslide("<%=path%>", "840", "640");
 });
 </script>
 <h2 class="caption">添加群组</h2>

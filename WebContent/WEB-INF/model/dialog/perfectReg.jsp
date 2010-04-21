@@ -16,20 +16,6 @@
 			var classesselect = ${classesmap};
 		    $('#first').doubleSelect('second', classesselect);      
 	        
-	 });
-	 $(document).ready(function() {
-		    hs.graphicsDir = '<%=path%>/content/jq-highslide/graphics/';
-		    hs.align = 'center';
-		    hs.outlineType = 'rounded-white';
-		    hs.wrapperClassName = 'draggable-header';
-		    hs.transitions = ['expand', 'crossfade'];
-			hs.useBox = true;
-			hs.width = 680;
-			hs.height = 450;
-		});
-		
-	 $(document).ready(function() {
-
 			$("#datepicker").datepicker( {
 				
 				dateFormat : 'yy-mm-dd',
@@ -43,7 +29,8 @@
 				defaultDate: new Date(1986, 1, 1)
 			});
 
-		});
+				initHighslide("<%=path%>", "840", "640");
+	});
 </script>
 <form  action="<%=path %>/perfectReg" method="post" onSubmit="post(this);return false;"  Class="form" >
 	<div id="select">

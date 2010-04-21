@@ -4,21 +4,10 @@
 <%
 	String path = request.getContextPath();
 %>
-<!-- JQuery库 -->
-<script type="text/javascript" src="<%=path%>/content/js/jquery-1.4.2.min.js"></script>
-<link type="text/css" rel="stylesheet" href="<%=path%>/content/jq-highslide/highslide.css" />
-<script type="text/javascript" src="<%=path%>/content/jq-highslide/highslide-full.min.js"></script>
 <script language="javascript" type="text/javascript">
 	
 	$(document).ready(function() {
-	    hs.graphicsDir = '<%=path%>/content/jq-highslide/graphics/';
-	    hs.align = 'center';
-	    hs.outlineType = 'rounded-white';
-	    hs.wrapperClassName = 'draggable-header';
-	    hs.transitions = ['expand', 'crossfade'];
-		hs.useBox = true;
-		hs.width = 680;
-		hs.height = 450;
+		initHighslide("<%=path%>", "840", "640");
 	});
 
 	function addNewGoods(obj) {

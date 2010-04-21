@@ -53,6 +53,13 @@ public class ImageAction extends BaseAction {
 
 		return super.INDEX;
 	}
+	
+	@Override
+	public String add() {
+		Log.init(getClass()).info(image.getOriFileName());
+		imageService.addEntity(image);
+		return super.add();
+	}
 
 	public List<String> getFilesFileName() {
 		return filesFileName;
