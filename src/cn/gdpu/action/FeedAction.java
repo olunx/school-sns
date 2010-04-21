@@ -16,6 +16,7 @@ import cn.gdpu.vo.Group;
 import cn.gdpu.vo.Issue;
 import cn.gdpu.vo.People;
 import cn.gdpu.vo.Topic;
+import cn.gdpu.vo.Twitter;
 import cn.gdpu.vo.Vote;
 
 @SuppressWarnings("serial")
@@ -29,7 +30,9 @@ public class FeedAction extends BaseAction {
 	private int page;
 
 	public final static String ADD_TWITTER = "add_twitter";
-	public final static String REPLY = "reply_topic";
+	public final static String REPLY_TWITTER = "reply_twitter";
+	public final static String ADD_TOPIC = "add_topic";
+	public final static String REPLY_TOPIC = "reply_topic";
 	public final static String ADD_FRIEND = "add_friend";
 	public final static String DEL_FRIEND = "del_friend";
 	public final static String ADD_GROUP = "add_group";
@@ -55,6 +58,23 @@ public class FeedAction extends BaseAction {
 		return feedAction;
 	}
 
+	// 话题
+	public String add(Twitter twitter, String type) {
+
+		Log.init(getClass()).info("FeedAction add");
+		Log.init(getClass()).info("FeedService " + feedService);
+
+		Feed feed = new Feed();
+		feed.setAuthor(twitter.getAuthor());
+		feed.setType(type);
+		feed.setMessage(twitter.getContent());
+		feed.setMsgId(twitter.getId());
+		feed.setTime(twitter.getTime());
+		service.addEntity(feed);
+
+		return super.add();
+	}
+	
 	// 话题
 	public String add(Topic topic, String type) {
 

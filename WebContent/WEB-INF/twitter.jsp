@@ -8,7 +8,7 @@
 <div id="main" class="corner">
 <script type="text/javascript">
 $(function() {
-	$("#content").load("<%=path%>/topic/listOtherTopic?otherId=${id}", ajax);
+	$("#content").load("<%=path%>/twitter/listOtherTwitter?otherId=${id}", ajax);
 });
 </script>
 <div id="content">

@@ -1,7 +1,11 @@
 package cn.gdpu.action;
 
+import com.opensymphony.xwork2.ActionContext;
+
 import cn.gdpu.service.GroupService;
+import cn.gdpu.service.PeopleService;
 import cn.gdpu.service.StudentService;
+import cn.gdpu.util.Log;
 import cn.gdpu.vo.Group;
 import cn.gdpu.vo.People;
 import cn.gdpu.vo.Student;
@@ -9,6 +13,8 @@ import cn.gdpu.vo.Student;
 @SuppressWarnings("serial")
 public class HomeAction extends BaseAction {
 
+	private int id;
+	private PeopleService<People, Integer> peopleService;
 	private StudentService<Student, Integer> studentService;
 	private GroupService<Group, Integer> groupService;
 	private Student student;
@@ -26,6 +32,22 @@ public class HomeAction extends BaseAction {
 		return "center";
 	}
 
+	@Override
+	public String execute() throws Exception {
+		
+		String username = ActionContext.getContext().getName();
+		
+		Log.init(getClass()).info("TwitterAction username: " + username);
+		
+		People people = peopleService.getPeopleByUsername(username);
+		
+		this.id = people.getId();
+		
+		Log.init(getClass()).info("TwitterAction id: " + id);
+		
+		return super.SUCCESS;
+	}
+	
 	public StudentService<Student, Integer> getStudentService() {
 		return studentService;
 	}
@@ -48,6 +70,22 @@ public class HomeAction extends BaseAction {
 
 	public void setStudent(Student student) {
 		this.student = student;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public PeopleService<People, Integer> getPeopleService() {
+		return peopleService;
+	}
+
+	public void setPeopleService(PeopleService<People, Integer> peopleService) {
+		this.peopleService = peopleService;
 	}
 
 }

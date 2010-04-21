@@ -38,7 +38,7 @@
 		</action>
 	</package>
 
-	<!-- 微博-->
+	<!-- 话题-->
 	<package name="topic" extends="default" namespace="/topic">
 		<global-results>
 			<result name="list" type="redirect">listTopic?page=${page}</result>
@@ -50,6 +50,18 @@
 		<action name="*Topic" class="cn.gdpu.action.TopicAction" method="{1}"></action>
 	</package>
 
+	<!-- 微博-->
+	<package name="twitter" extends="default" namespace="/twitter">
+		<global-results>
+			<result name="list" type="redirect">listTwitter?page=${page}</result>
+			<result name="listMy" type="redirect">listMyTwitter?page=${page}</result>
+			<result name="index">/WEB-INF/model/twitter/twitterList.jsp</result>
+			<result name="addPage">/WEB-INF/model/twitter/twitterAdd.jsp</result>
+			<result name="replyPage">/WEB-INF/model/twitter/twitterReply.jsp</result>
+		</global-results>
+		<action name="*Twitter" class="cn.gdpu.action.TwitterAction" method="{1}"></action>
+	</package>
+	
 	<!-- 邮件-->
 	<package name="mail" extends="default" namespace="/mail">
 		<global-results>
