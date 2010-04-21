@@ -1,12 +1,14 @@
 package cn.gdpu.action;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 import org.apache.struts2.ServletActionContext;
 
+import cn.gdpu.service.AdminService;
 import cn.gdpu.service.ClassesService;
 import cn.gdpu.service.CourseService;
 import cn.gdpu.service.GoodsTypeService;
@@ -17,6 +19,7 @@ import cn.gdpu.service.SchoolService;
 import cn.gdpu.service.StudentService;
 import cn.gdpu.util.Log;
 import cn.gdpu.util.excel.StudentExcel;
+import cn.gdpu.vo.Admin;
 import cn.gdpu.vo.Classes;
 import cn.gdpu.vo.Course;
 import cn.gdpu.vo.GoodsType;
@@ -37,6 +40,7 @@ public class InstallAction extends BaseAction {
 	private SchoolService<School, Integer> schoolService;
 	private InstituteService<Institute, Integer> instituteService;
 	private ClassesService<Classes, Integer> classesService;
+	private AdminService<Admin, Integer> adminService;
 
 	@Override
 	public String execute() throws Exception {
@@ -55,6 +59,8 @@ public class InstallAction extends BaseAction {
 		addInstitute();
 		addClasses();
 		
+		//添加个管理员
+		addAdmin();
 		return super.SUCCESS;
 	}
 
@@ -82,6 +88,17 @@ public class InstallAction extends BaseAction {
 			c.setClasses(null);// 设置课程表的班级
 			courseService.addEntity(c);
 		}
+	}
+	
+	//添加管理员
+	private void addAdmin(){
+		Admin admin = new Admin();
+		admin.setUsername("admin");
+		admin.setPassword("admin");
+		admin.setName("管理员");
+		admin.setRegTime(new Date());
+		adminService.addEntity(admin);
+		Log.init(getClass()).info("管理员添加完成.......");
 	}
 	
 	//添加地区
@@ -219,6 +236,7 @@ public class InstallAction extends BaseAction {
 		classes7.setInstitute(institute6);
 		
 		classesService.addEntity(classes7);
+		Log.init(getClass()).info("班级初始化完成.......");
 	}
 
 	private void addGoodType() {

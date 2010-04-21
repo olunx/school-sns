@@ -227,7 +227,6 @@ public class ClassesAction extends BaseAction {
 				boolean ishas =false;         //加入管理员，最多三人
 				for(int i=0; i<admins.size();i++){
 					if(admins.get(i).getId() == user.getId()){
-						admins.set(i, user);
 						ishas=true;
 					}
 				}

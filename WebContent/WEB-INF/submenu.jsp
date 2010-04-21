@@ -20,6 +20,8 @@
 	<li><a class="letterspacing" target="content" href="<%=path%>/goods/listmeGoods">交换</a> <span><a target="content" href="<%=path%>/goods/goAddGoods">添加</a></span></li>
 	<li><a class="letterspacing" target="content" href="<%=path%>/issue/listmeIssue">问答</a> <span><a target="content" href="<%=path%>/issue/goAddIssue">添加</a></span></li>
 	<li><a target="content" href="<%=path%>/chat/pubChat">聊天室</a> <a target="content" href="<%=path%>/chat/priChat">匿名聊天</a></li>
-
+	<c:if test="${admin != null }">
+	<li><a class="letterspacing" target="content" href="<%=path%>/admin/viewAdmin">管理面板</a></li>
+	</c:if>
 </ul>
 </div>
