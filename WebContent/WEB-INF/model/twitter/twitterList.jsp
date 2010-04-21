@@ -18,7 +18,9 @@
 </div>
 <div class="topic_msg">
 <div class="time" title="${twitter.time }">${my:formatDate(twitter.time)}</div>
-<p class="content"><a href="#">${twitter.author.name}</a> ${twitter.content}</p>
+<p class="content"><a href="#">${twitter.author.name}</a> ${twitter.content}
+<c:if test="${twitter.image != null}"><img src="<%=path %>${twitter.image.minFileUrl}" /></c:if>
+</p>
       		<div class="operate">
 			<a target="content" href="<%=path%>/twitter/deleteTwitter?id=${twitter.id }&page=${page}" class="btn_del">删除</a> <a target="content" href="<%=path%>/twitter/goReplyTwitter?id=${twitter.id }">回复</a>
 			</div>
