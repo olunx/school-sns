@@ -47,7 +47,7 @@ ul{ list-style:none;}
 #showmsg .chat_time{ color:#999; font-size:10px; padding-left:10px;}
 #showmsg p{line-height:20px;}
 /*表格*/
-.table { border-collapse:collapse;}
+.table { margin-bottom:10px; border-collapse:collapse;}
 .table td,.table th{ text-align:center; border:1px #eee solid; padding:5px;}
 .table th{ background:#eee;}
 /*微博*/
@@ -68,6 +68,49 @@ ul{ list-style:none;}
 /*Feed*/
 .feed .feed_list{ padding:5px 0 5px 0; border-bottom:1px dashed #ccc;}
 .feed .time{ color:#999; float:right;}
+/*添加表单样式*/
+.form p{ margin-bottom:8px;}
+.form p .textarea{ width:510px; height:150px; vertical-align:top;}
+.form p label{ color:#444;}
+.form .w_small{width:100px;}
+.form .w_middle{width:200px;}
+.form .w_long{width:510px;}
+.form .h_middle{height:100px;}
+.form .h_long{height:200px;}
+.form .m_min{margin-left:10px;}
+.form .m_small{margin-left:70px;}
+/*投票*/
+#voteitem label{ width:70px; color:#444; display:inline-block;}
+#voteitem div{ margin-bottom:5px;}
+/*分页*/
+#pagecount {float: right;}
+#pagecount p {
+    float: left;
+    line-height: 21px;
+    padding-right: 5px;
+    font-size: 13px;
+    font-weight: bold;
+    color: #295568;
+}
+
+#pagecount a {
+    background: transparent url(btn_page_r.gif) no-repeat scroll top right;
+    color: #295568;
+    float: left;
+    display: block;
+    height: 21px;
+    margin-right: 6px;
+    padding-right: 5px; /* sliding doors padding */
+    text-decoration: none;
+    font-size: 13px;
+}
+
+#pagecount span {
+    background: transparent url(btn_page_l.gif) no-repeat;
+    display: block;
+    line-height: 14px;
+    padding: 5px 0 5px 5px;
+}
 /*侧栏*/
 .mod {clear:both;}
 #sidebar .mod li{ float:left;white-space:nowrap;}
