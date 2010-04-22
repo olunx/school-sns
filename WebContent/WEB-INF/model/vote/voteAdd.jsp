@@ -37,6 +37,7 @@
 		$(obj).parent().remove();
 		return false;
 	};
+
 </script>
 
 <form onSubmit="post(this);return false;" class="form" action="<%=path %>/vote/addVote" method="post">
