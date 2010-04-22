@@ -1,0 +1,50 @@
+@charset "utf-8";
+/* CSS Document */
+#twitter {
+	width:540px;
+	padding:5px;
+}
+#options {
+	line-height:30px;
+	height:40px;
+}
+#text {
+	float:left;
+}
+#text a{
+	font-size:13px;
+	font-weight:bold;
+	color:#2276BB;
+	text-decoration:none;
+}
+#submit {
+	float:right;
+}
+.inputarea {
+	background: #fff;
+	border: 1px solid #ccc;
+	margin: 5px 0px 5px 0px;
+	padding: 2px 3px 2px 3px;
+	width: 530px;
+	height: 80px;
+	outline: 0;
+	color:#666666;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	font-size:18px;
+}
+
+.inputbtn {
+	background: #DDEEF6;
+	border: 1px solid #ccc;
+	width: 100px;
+	height: 30px;
+	padding: 0;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	font-size:15px;
+	color: #999;
+	font-weight: bold;
+}
