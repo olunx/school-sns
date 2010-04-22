@@ -9,11 +9,11 @@ $(document).ready(function() {
 });
 </script>
 <h2 class="caption">添加群组</h2>
-<form onSubmit="post(this);return false;" action="<%=path%>/group/addGroup" method="post">
+<form class="form" onSubmit="post(this);return false;" action="<%=path%>/group/addGroup" method="post">
 <p><label> 小组名称： </label> <input type="text" name="group.name" /></p>
-<p><label> 简介： </label> <input type="text" name="group.intro" /></p>
-<p><label> 作品： </label> <input type="text" name="group.works" /></p>
-<p><label> 类型： </label> <input type="text" name="group.type" /></p>
+<p><label> 小组简介： </label> <input type="text" name="group.intro" /></p>
+<p><label> 小组作品： </label> <input type="text" name="group.works" /></p>
+<p><label> 小组类型： </label> <input type="text" name="group.type" /></p>
 <a onclick="return hs.htmlExpand(this, { objectType: 'iframe' } )" href="<%=path%>/image/goUploadImage">上传群组图片</a>
 <!-- 上传成功后，图片将插到这里。 -->
 <div id="pic">
