@@ -71,6 +71,24 @@ function post(obj){
     });
 }
 
+//提交表单数据返回指定页面
+function commit(obj, url){
+    var content = $('#content');
+    var urlStr = $(obj).attr('action');
+    var dataStr = decodeURIComponent($(obj).serialize());
+    content.slideUp('fast', function(){
+        onLoading();//打开loading
+        $.ajax({
+            url: urlStr,
+            data: dataStr,
+            type: 'POST',
+            success: function(){
+                location.href = url;
+            }
+        });
+    });
+}
+
 //配置ajaxUpload
 function myAjaxUploadSetup(btnobj,uploadUrl,completeUrl,allowType){
 	var button = $(btnobj),interval;

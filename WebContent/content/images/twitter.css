@@ -1,31 +1,23 @@
 @charset "utf-8";
 /* CSS Document */
 #twitter {
-	width:540px;
+	display:block;
+	width:550px;
 	padding:5px;
 }
-#options {
-	line-height:30px;
-	height:40px;
+#twitter p {
+	padding:10px 0;
 }
-#text {
-	float:left;
+#input {
+	background:#E7F7F8;
+	padding:5px;
 }
-#text a{
-	font-size:13px;
-	font-weight:bold;
-	color:#2276BB;
-	text-decoration:none;
-}
-#submit {
-	float:right;
-}
-.inputarea {
+#inputarea {
 	background: #fff;
 	border: 1px solid #ccc;
 	margin: 5px 0px 5px 0px;
-	padding: 2px 3px 2px 3px;
-	width: 530px;
+	padding: 5px;
+	width: 528px;
 	height: 80px;
 	outline: 0;
 	color:#666666;
@@ -34,13 +26,30 @@
 	border-radius: 5px;
 	font-size:18px;
 }
-
+#options {
+	height:50px;
+}
+#text {
+	width:200px;
+	float:left;
+	line-height:30px;
+	margin:5px 0;
+}
+#twitter, #twitter a:link, #twitter a:visited{
+	font-size:13px;
+	font-weight:bold;
+	color:#2276BB;
+	text-decoration:none;
+}
+#submit {
+	float:right;
+	margin:5px 0;
+}
 .inputbtn {
 	background: #DDEEF6;
 	border: 1px solid #ccc;
 	width: 100px;
 	height: 30px;
-	padding: 0;
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
 	border-radius: 5px;
