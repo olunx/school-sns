@@ -6,6 +6,14 @@
 <%
 	String path = request.getContextPath();
 %>
+<script type="text/javascript">
+<!--
+$(function(){
+	updateSidebar();
+	updateSidebar($("#class_sidebar").html(),true);
+});
+//-->
+</script>
 <div class="form">
 <ul class="nav">
 	<li><a target="content" href="<%=path%>/classes/viewClasses?id=${id}">班级首页</a></li>
@@ -25,8 +33,8 @@
 <c:choose>
 	<c:when test="${isAdmin}">
 		<form class="form" onSubmit="post(this);return false;" action="<%=path%>/classes/noticeClasses" method="post">
-		<p><label>发布公告：</label><textarea class="textarea" name="content" id="demo" rows="10" cols="50"></textarea><input type="hidden" name="id" value="${classes.id}" /></p>
-		<input type="submit" value="发布" />
+		<p><label>发布公告：</label><input class="w_middle" type="text" name="content"/><input type="hidden" name="id" value="${classes.id}" /><input type="submit" value="发布" /></p>
+		
 		</form>
 	</c:when>
 	<c:otherwise>
@@ -69,13 +77,16 @@
 			</div>
 			<div class="msg">
 				<p class="text">${reply.author.name }： ${reply.content}</p>
+				
 				<c:if test="${! empty reply.reply}">
+				<div class="reply">
 					<c:forEach items="${reply.reply}" var="subreply">
 					<p>
-						&nbsp;&nbsp;&nbsp;&nbsp; ${subreply.author.name }： ${subreply.content}
+						${subreply.author.name }： ${subreply.content}
 						${my:formatDate(subreply.time)}
 					</p>
 					</c:forEach>
+				</div>
 				</c:if>
 			</div>
 		<div class="clear"></div>
@@ -90,39 +101,44 @@
 <div>
 	这里是给班级Feed的
 </div>
-<div>
-<h2>最近访问：</h2>
-			<c:forEach items="${classes.visitors}" var="visitor">
-			<ul>
-				<li>
-					<a target="content" href="<%=path%>/student/viewStudent?id=${visitor.people.id }"><img src="<%=path %>/${visitor.people.avatar.minFileUrl}" width="50"></img></a><br/>
-					<a target="content" href="<%=path%>/student/viewStudent?id=${visitor.people.id }">${visitor.people.name}</a><br/>
-					<fmt:formatDate value="${visitor.time }" pattern="HH:mm MM-dd" />	
-				</li>
-			</ul>
-			</c:forEach>
 
+<div id="class_sidebar" style="display: none;">
+<div class="mod">
+<h2>最近访问：</h2>
+	<ul>
+	<c:forEach items="${classes.visitors}" var="visitor">
+		<li>
+			<a target="content" href="<%=path%>/student/viewStudent?id=${visitor.people.id }"><img src="<%=path %>/${visitor.people.avatar.minFileUrl}" width="50"></img></a>
+			<a target="content" href="<%=path%>/student/viewStudent?id=${visitor.people.id }">${visitor.people.name}</a>
+			<fmt:formatDate value="${visitor.time }" pattern="MM-dd" />	
+		</li>
+	</c:forEach>
+	</ul>
+<div class="clear"></div>
 </div>
-<div>
+<div class="mod">
 <h2>班级新人：</h2>
+	<ul>
 	<c:forEach items="${peoplenew}" var="people">
-		<ul>
-			<li>
-				<a target="content" href="<%=path%>/student/viewStudent?id=${people.id }"><img src="<%=path %>/${people.avatar.minFileUrl}" width="50"></img></a><br/>
-				<a target="content" href="<%=path%>/student/viewStudent?id=${people.id }">${people.name}</a><br/>
-			</li>
-		</ul>
+		<li>
+			<a target="content" href="<%=path%>/student/viewStudent?id=${people.id }"><img src="<%=path %>/${people.avatar.minFileUrl}" width="50"></img></a>
+			<a target="content" href="<%=path%>/student/viewStudent?id=${people.id }">${people.name}</a>
+		</li>
 	</c:forEach>
+	</ul>
+	<div class="clear"></div>
 </div>
-<div>
+<div class="mod">
 	<h2>人气王:</h2>
+	<ul>
 	<c:forEach items="${peoplehot}" var="people">
-		<ul>
-			<li>
-				<a target="content" href="<%=path%>/student/viewStudent?id=${people.id }"><img src="<%=path %>/${people.avatar.minFileUrl}" width="50"></img></a><br/>
-				<a target="content" href="<%=path%>/student/viewStudent?id=${people.id }">${people.name}</a><br/>
-			</li>
-		</ul>
+		<li>
+			<a target="content" href="<%=path%>/student/viewStudent?id=${people.id }"><img src="<%=path %>/${people.avatar.minFileUrl}" width="50"></img></a>
+			<a target="content" href="<%=path%>/student/viewStudent?id=${people.id }">${people.name}</a>
+		</li>
 	</c:forEach>
+	</ul>
+	<div class="clear"></div>
+</div>
 </div>
 

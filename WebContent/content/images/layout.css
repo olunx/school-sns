@@ -49,6 +49,8 @@ img{ border:none;}
 .table { margin-bottom:10px; border-collapse:collapse;}
 .table td,.table th{ text-align:center; border:1px #eee solid; padding:5px;}
 .table th{ background:#eee;}
+/*ul*/
+.ul li{ float:left; margin-left:10px;}
 /*微博*/
 #topic_list .list{ padding:0 0 5px 0; margin:5px 0 0 0; }
 #topic_list .avatar{ background:#FFF; float:left; padding:2px; border:1px solid #CCC;}
@@ -85,9 +87,11 @@ img{ border:none;}
 .class_msg_list { border:1px solid #ccc; }
 .class_msg_list .class_msg{border-bottom:1px solid #ccc;padding:5px;}
 .class_msg_list .class_msg .avatar{ float:left;}
-.class_msg_list .class_msg .avatar img{ width:50px; height:50px;}
+.class_msg_list .class_msg .avatar img{ width:50px; height:50px; padding:5px;}
 .class_msg_list .class_msg .msg{ float:right; width:360px;}
-.class_msg_list .class_msg .operate{ float:right; width:140px; text-align:right;}
+.class_msg_list .class_msg .reply{ background:#e8f3ff; margin-left:20px;}
+.class_msg_list .class_msg .reply p{ margin-bottom:5px; border-bottom:2px solid #fff; padding:5px;}
+.class_msg_list .class_msg .operate{ float:right; width:120px; text-align:right;}
 /*内页导航链接*/
 .nav {clear:both; padding-bottom:22px;}
 .nav li {float:left;margin-right:10px;}
