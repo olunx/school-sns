@@ -13,19 +13,19 @@
     $("#content").ajaxError(function(event, request, settings){
         $(this).append("<li>出错页面:" + settings.url + "</li>");
     });
-	
-	$("a[rel='ajaxupload']").each(function (i){
-		var ajaxinfo = eval('('+$(this).attr("rev")+')');
-		myAjaxUploadSetup(this,ajaxinfo.upload,ajaxinfo.complete,ajaxinfo.allowtype);
-	});
+    
+    $("a[rel='ajaxupload']").each(function(i){
+        var ajaxinfo = eval('(' + $(this).attr("rev") + ')');
+        myAjaxUploadSetup(this, ajaxinfo.upload, ajaxinfo.complete, ajaxinfo.allowtype);
+    });
 });
 
 //注册二级事件
 function ajax(){
-	$("a[rel='ajaxupload']").each(function (i){
-		var ajaxinfo = eval('('+$(this).attr("rev")+')');
-		myAjaxUploadSetup(this,ajaxinfo.upload,ajaxinfo.complete,ajaxinfo.allowtype);
-	});
+    $("a[rel='ajaxupload']").each(function(i){
+        var ajaxinfo = eval('(' + $(this).attr("rev") + ')');
+        myAjaxUploadSetup(this, ajaxinfo.upload, ajaxinfo.complete, ajaxinfo.allowtype);
+    });
     $("#content a[target='content']").click(function(){
         var href = $(this).attr('href');
         loadContent(href);
@@ -46,7 +46,8 @@ function loadContent(href){
 
 //打开loading
 function onLoading(){
-    $('#content').append('<span id="loading">加载中...</span>');
+	//$('#content').html("");
+    $('#content').prepend('<span id="loading">加载中...</span>');
     $('#loading').fadeIn('fast');
 }
 
@@ -60,19 +61,19 @@ function post(obj){
     var content = $('#content');
     var urlStr = $(obj).attr('action');
     var dataStr = decodeURIComponent($(obj).serialize());
-    content.slideUp('fast', function(){
         onLoading();//打开loading
         $.ajax({
             url: urlStr,
             data: dataStr,
             type: 'POST',
             success: function(result){
-                content.html(result);
-                offLoading();//关闭loading
-                content.slideDown('normal', ajax);
+				content.slideUp('normal',function(){
+	                content.html(result);
+	                offLoading();//关闭loading
+	                content.slideDown('normal', ajax);
+				});
             }
         });
-    });
 }
 
 //提交表单数据返回指定页面
@@ -80,7 +81,6 @@ function commit(obj, url){
     var content = $('#content');
     var urlStr = $(obj).attr('action');
     var dataStr = decodeURIComponent($(obj).serialize());
-    content.slideUp('fast', function(){
         onLoading();//打开loading
         $.ajax({
             url: urlStr,
@@ -90,44 +90,62 @@ function commit(obj, url){
                 location.href = url;
             }
         });
-    });
 }
 
 //配置ajaxUpload
-function myAjaxUploadSetup(btnobj,uploadUrl,completeUrl,allowType){
-	var button = $(btnobj),interval;
-	var button_txt = button.text();
-	new AjaxUpload(button,{
-		action: uploadUrl, 
-		name: 'files',
-		onSubmit : function(file, ext){
-			
-            if (! (ext && allowType.test(ext))){
+function myAjaxUploadSetup(btnobj, uploadUrl, completeUrl, allowType){
+    var button = $(btnobj), interval;
+    var button_txt = button.text();
+    new AjaxUpload(button, {
+        action: uploadUrl,
+        name: 'files',
+        onSubmit: function(file, ext){
+        
+            if (!(ext && allowType.test(ext))) {
                 alert('不允许的文件格式！');
                 return false;
-       		}
-      		 
-			button.text('上传中');
-			this.disable();
-			// Uploding -> Uploading. -> Uploading...
-			interval = window.setInterval(function(){
-				var text = button.text();
-				if (text.length < 6){
-					button.text(text + '.');
-				} else {
-					button.text('上传中');	
-				}
-			}, 200);
-		},
-		onComplete: function(){
-			this.enable();
-			$('#content').load(completeUrl, ajax);
-			clearInterval(interval);
-			button.text(button_txt);
-			
-		}
-	});
+            }
+            
+            button.text('上传中');
+            this.disable();
+            // Uploding -> Uploading. -> Uploading...
+            interval = window.setInterval(function(){
+                var text = button.text();
+                if (text.length < 6) {
+                    button.text(text + '.');
+                }
+                else {
+                    button.text('上传中');
+                }
+            }, 200);
+        },
+        onComplete: function(){
+            this.enable();
+            $('#content').load(completeUrl, ajax);
+            clearInterval(interval);
+            button.text(button_txt);
+            
+        }
+    });
 };
+
+//更新侧边栏
+function updateSidebar(){
+	//使用方法updateSidebar(内容,是否在后面添加);或updateSidebar(内容);
+	var html = arguments[0] || "";
+	var isappend = arguments[1] || 0;//默认是覆盖
+    if (isappend) {
+    	$("#widget").append(html);
+    }
+    else {
+        $("#widget").html(html);
+    }
+    $("#widget a[target='content']").click(function(){
+        var href = $(this).attr('href');
+        loadContent(href);
+        return false;
+    });
+}
 
 /**
  * 获得当前的日期

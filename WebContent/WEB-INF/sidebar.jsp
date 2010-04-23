@@ -10,6 +10,7 @@
 什么东东都有。
 </p>
 </div>
+<div id="widget"></div>
 <div id="recommend" class="mod">
 <h2>推荐认识</h2>
 	<c:if test="${student != null}">
