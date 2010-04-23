@@ -26,5 +26,7 @@
 	</div>
 </div>
 
+<jsp:include page="submenu.jsp"></jsp:include>
+
 <h2>好友动态：</h2>
 <div id="feed"></div>
