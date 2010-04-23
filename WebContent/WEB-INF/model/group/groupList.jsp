@@ -5,6 +5,7 @@
 <%
 	String path = request.getContextPath();
 %>
+<a target="content" href="<%=path%>/group/listMyCreateGroup">我创建的群组</a>
 <c:choose>
 	<c:when test="${pageBean.list == null}">
 					没有数据！

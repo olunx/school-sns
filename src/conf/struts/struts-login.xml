@@ -15,7 +15,10 @@
 		<default-interceptor-ref name="customInterceptor"></default-interceptor-ref>
 		<global-results>
 			<result name="login" type="redirect">/</result>
-			<result name="cookieauth" type="redirectAction">/cookieAuthLogin</result>
+			<result name="cookieauth" type="redirectAction">
+				<param name="actionName">cookieAuthLogin</param>
+				<param name="namespace">/</param>
+			</result>
 		</global-results>
 	</package>
 

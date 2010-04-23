@@ -5,9 +5,6 @@
 	String path = request.getContextPath();
 %>
 
-<script type="text/javascript" src="<%=path%>/content/js/jquery-1.4.2.min.js"></script>
-<link type="text/css" rel="stylesheet" href="<%=path%>/content/jq-highslide/highslide.css" />
-<script type="text/javascript" src="<%=path%>/content/jq-highslide/highslide-full.min.js"></script>
 <script type="text/javascript" src="<%=path%>/content/jq-ui/jquery-ui-1.8.custom.min.js"></script>
 <script type="text/JavaScript">
 $(document).ready(function() {

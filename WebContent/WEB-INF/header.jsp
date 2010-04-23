@@ -15,7 +15,6 @@
 <!-- JQuery库 -->
 <script type="text/javascript" src="<%=path%>/content/js/jquery-1.4.2.min.js"></script>
 
-<script type="text/javascript" src="<%=path%>/content/js/jquery.corner.js"></script>
 <!-- AjaxUpload库 -->
 <script type="text/javascript" src="<%=path%>/content/jq-ajaxupload/ajaxupload.js"></script>
 
@@ -28,13 +27,6 @@
 <script type="text/javascript" src="<%=path%>/content/js/highslide-init.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
-    //class为corner时为圆角
-	if (!$.browser.msie) {
-        $(".corner").corner("8px");
-        $("#submenu").corner("left 8px");
-        $("#content").corner("right bottom 8px");
-    }
-    
 	initHighslide("<%=path%>", "640", "480");
 });
 </script>
@@ -46,13 +38,13 @@ $(document).ready(function() {
 <div class="logo"><a href="">LOGO</a></div>
 <div class="menuk corner">
 <ul class="menu">
-	<li><a href="<%=path%>/home">首页</a></li>
+	<li><a href="<%=path%>/home">我的大厅</a></li>
 	<c:if test="${student != null}">
 		<li><a target="content" href="<%=path %>/school/viewSchool?id=${user.school.id}">学校</a></li>
 		<li><a target="content" href="<%=path %>/classes/viewClasses?id=${user.classes == null? -1: user.classes.id}">班级</a></li>
 	</c:if>
-	<li><a href="#">消息</a></li>
-	<li><a href="#">博客</a></li>
+	<li><a href="#">操场</a></li>
+	<li><a target="content" href="<%=path%>/chat/pubChat">聊天馆</a></li>
 </ul>
 <div class="nav_account"><c:choose>
 	<c:when test="${isAccess!=null}">

@@ -3,12 +3,11 @@
 <%
 	String path = request.getContextPath();
 %>
-<div id="submenu">
 <ul>
 	<li class="on"><a target="content" href="<%=path%>/center">我的大厅</a></li>
 	<li><a target="content" href="<%=path%>/twitter/listTwitter">微博</a>  <span><a rev="<%=path%>/home#${user.id}" target="content" href="<%=path%>/twitter/listMyTwitter">我的</a></span> <span><a rev="<%=path%>/home#2" target="content" href="<%=path%>/twitter/listOtherTwitter?otherId=2">某人的</a></span></li>
 	<li><a target="content" href="<%=path%>/topic/listTopic">主题</a>  <span><a rev="<%=path%>/home#${user.id}" target="content" href="<%=path%>/topic/listMyTopic">我的</a></span> </li>
-	<li><a class="letterspacing" target="content" href="<%=path%>/group/listGroup">群组</a> <span><a target="content" href="<%=path%>/group/listMyCreateGroup">我创建的</a></span> <span><a target="content" href="<%=path%>/group/goAddGroup">添加</a></span></li>
+	<li><a class="letterspacing" target="content" href="<%=path%>/group/listGroup">群组</a> <span><a target="content" href="<%=path%>/group/goAddGroup">添加</a></span></li>
 	<li><a class="letterspacing" target="content" href="<%=path%>/people/listPeople">人员</a> <span><a target="content" href="<%=path%>/people/goAddPeople">添加</a></span></li>
 	<li><a class="letterspacing" target="content" href="<%=path%>/student/listStudent">学生</a> <span><a target="content" href="<%=path%>/student/goAddStudent">添加</a></span></li>
 	<c:if test="${student.classes != null && student.permission != 1}">
@@ -25,4 +24,3 @@
 	<li><a class="letterspacing" target="content" href="<%=path%>/admin/viewAdmin">管理面板</a></li>
 	</c:if>
 </ul>
-</div>

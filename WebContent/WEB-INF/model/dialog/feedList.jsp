@@ -29,7 +29,7 @@
 						回复了   ${feed.message}  主题。
 					</c:when>
 					<c:when test="${feed.type == 'add_group'}">
-						创建了群组  
+						创建了小组  
 						<a target="content" href="<%=path %>/group/viewGroup?id=${feed.msgId}">${feed.message}</a> 。
 					</c:when>
 					<c:when test="${feed.type == 'join_group'}">
@@ -50,7 +50,7 @@
 					</c:when>
 					<c:when test="${feed.type == 'add_vote'}">
 						发起投票  
-						<a target="content" href="<%=path %>/issue/viewIssue?id=${feed.msgId}">${feed.message}</a>  。
+						<a target="content" href="<%=path %>/vote/goVotingVote?vid=${feed.msgId}">${feed.message}</a>  。
 					</c:when>
 					<c:otherwise>
 						${feed.author.name} ${feed.type} ${feed.message}
