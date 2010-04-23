@@ -37,11 +37,11 @@
 
 <form onSubmit="post(this);return false;" class="form" action="<%=path %>/goods/addGoods" method="post">
 	<p><label>货品名称：</label>
-	<input type="text" name="goods.name" />
+	<input class="w_long" type="text" name="goods.name" />
 	<s:fielderror><s:param>goods.name</s:param></s:fielderror>
 	</p>
 	<p><label>货品类型：</label>
-		<select name="gtid">  
+		<select class="w_middle" name="gtid">  
 			<c:forEach items="${goodsType}" var="gst">
 				<option value="${gst.id}">${gst.name}</option>
 			</c:forEach>
@@ -51,7 +51,8 @@
 	<a onclick="return hs.htmlExpand(this, { objectType: 'iframe' } )" href="<%=path%>/image/goUploadImage">上传图片</a>
 	<!-- 上传成功后，图片将插到这里。 -->
 	<div id="pic">
-		<img src=""></img>
+	<p>
+		<img class="m_small" src="<%=path %>/content/images/nopic.jpg" style = "width:150px;height:150px;" />
 		<input id="oriFileName" type="hidden" name="image.oriFileName" value=""/>
 		<input id="bigFileName" type="hidden" name="image.bigFileName" value=""/>
 		<input id="bigFileUrl" type="hidden" name="image.bigFileUrl" value=""/>
@@ -60,16 +61,17 @@
 		<s:fielderror><s:param>image.oriFileName</s:param></s:fielderror>
 	</div>
 	<p><label>描述内容：</label>
-	<textarea name="goods.content" id="demo" rows="50" cols="150" style="width: 600px; height: 150px"></textarea>
+	<textarea class="textarea" name="goods.content" rows="5" cols="50"></textarea>
 	</p>
-	货品数量：
-	<input type="text" name="goods.quantity" value="1"/>
-	交换单价：
-	<input type="text" name="goods.value" value="0"/>
+	<p>	货品数量：
+	<input class="w_small" type="text" name="goods.quantity" value="1"/>
+	<span class="m_min"> 交换单价：<input class="w_small" type="text" name="goods.value" value="0"/></span>
+	</p>
 	<s:fielderror><s:param>goods.quantity</s:param></s:fielderror>
 	<s:fielderror><s:param>goods.value</s:param></s:fielderror>
 	<p id="addone">
-	<input type="checkbox" name="goods.state" value="1" onclick="return addNewGoods('exchange');"/>我还想用来交换
+	
+	<input id="chk_exchange" type="checkbox" name="goods.state" value="1" onclick="return addNewGoods('exchange');"/> <label for="chk_exchange">我还想用来交换</label>
 	</p>
 	<div id="exchange"></div>
 	<input type="submit" value="添加"/>

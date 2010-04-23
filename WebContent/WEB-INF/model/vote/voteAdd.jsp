@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@	taglib uri="/struts-tags" prefix="s" %>
 
@@ -25,7 +25,7 @@
 	});
 	
 	function addNewVote(obj) {
-		var html = '<div><label>选项：</label><input class="inputmid" type="text" name="content" /> <a href="#" class="btn_del" onclick="return delVote(this)">删除</a></div>';
+		var html = '<div><label>选项：</label><input class="w_middle" type="text" name="content" /> <a href="#" class="btn_del" onclick="return delVote(this)">删除</a></div>';
 		
 		for ( var i = 0; i < 3; i++) {
 		 $("#" + obj).append(html);
@@ -37,24 +37,24 @@
 		$(obj).parent().remove();
 		return false;
 	};
+
 </script>
 
 <form onSubmit="post(this);return false;" class="form" action="<%=path %>/vote/addVote" method="post">
-	<p><label>投票主题：</label>
-	<input type="text" name="vote.title" />
+	<p><label>投票主题：</label><input class="w_long" type="text" name="vote.title" /></p>
+	<p>
 	<s:fielderror><s:param>vote.title</s:param></s:fielderror>
+	<textarea class="textarea" name="vote.summary" id="demo" rows="10" cols="60"></textarea>
 	</p>
-	<label>描述内容：</label>
-	<textarea name="vote.summary" id="demo" rows="50" cols="152" style="width: 600px; height: 150px"></textarea>
 	<p><label>投票方式：</label>
 	<input type="radio" name="vote.type" value="0" checked="checked"/>单选
 	<input type="radio" name="vote.type" value="1" />多选
 	</p>
 	<s:fielderror><s:param>content</s:param></s:fielderror>
 	<div id="voteitem">
-		<div><label>选项：</label><input class="inputmid" type="text" name="content" /> <a href="#" class="btn_del" onclick="return delVote(this)">删除</a></div>
-		<div><label>选项：</label><input class="inputmid" type="text" name="content" /> <a href="#" class="btn_del" onclick="return delVote(this)">删除</a></div>
-		<div><label>选项：</label><input class="inputmid" type="text" name="content" /> <a href="#" class="btn_del" onclick="return delVote(this)">删除</a></div>
+		<div><label>选项：</label><input class="w_middle" type="text" name="content" /> <a href="#" class="btn_del" onclick="return delVote(this)">删除</a></div>
+		<div><label>选项：</label><input class="w_middle" type="text" name="content" /> <a href="#" class="btn_del" onclick="return delVote(this)">删除</a></div>
+		<div><label>选项：</label><input class="w_middle" type="text" name="content" /> <a href="#" class="btn_del" onclick="return delVote(this)">删除</a></div>
 	</div>
 	<p class="paddingmin">
 	<a href="#" class="btn_add" onclick="return addNewVote('voteitem');">再添加三项</a>

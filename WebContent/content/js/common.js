@@ -1,4 +1,4 @@
-$(document).ready(function(){
+﻿$(document).ready(function(){
 
     //注册事件
     $("a[target='content']").click(function(){
@@ -22,6 +22,10 @@ $(document).ready(function(){
 
 //注册二级事件
 function ajax(){
+	$("a[rel='ajaxupload']").each(function (i){
+		var ajaxinfo = eval('('+$(this).attr("rev")+')');
+		myAjaxUploadSetup(this,ajaxinfo.upload,ajaxinfo.complete,ajaxinfo.allowtype);
+	});
     $("#content a[target='content']").click(function(){
         var href = $(this).attr('href');
         loadContent(href);
@@ -66,6 +70,24 @@ function post(obj){
                 content.html(result);
                 offLoading();//关闭loading
                 content.slideDown('normal', ajax);
+            }
+        });
+    });
+}
+
+//提交表单数据返回指定页面
+function commit(obj, url){
+    var content = $('#content');
+    var urlStr = $(obj).attr('action');
+    var dataStr = decodeURIComponent($(obj).serialize());
+    content.slideUp('fast', function(){
+        onLoading();//打开loading
+        $.ajax({
+            url: urlStr,
+            data: dataStr,
+            type: 'POST',
+            success: function(){
+                location.href = url;
             }
         });
     });

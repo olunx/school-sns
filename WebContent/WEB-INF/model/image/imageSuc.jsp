@@ -13,6 +13,7 @@ $(document).ready(function() {
 		setTimeout(function() {
 			//想返回什么数据到前端，可以写到这里。
 			parent.$("#pic img").attr("src", "<%=path%>${image.minFileUrl}");
+			parent.$("#pic").slideDown("normal");
 			parent.$("#oriFileName").attr("value", "${image.oriFileName}");
 			parent.$("#bigFileName").attr("value", "${image.bigFileName}");
 			parent.$("#bigFileUrl").attr("value", "${image.bigFileUrl}");

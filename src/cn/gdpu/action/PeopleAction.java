@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import org.apache.commons.beanutils.BeanUtils;
+
 import cn.gdpu.service.ImageService;
 import cn.gdpu.service.PeopleService;
 import cn.gdpu.util.Log;
@@ -120,11 +122,16 @@ public class PeopleAction extends BaseAction {
 
 	@Override
 	public String modify() {
+		People onepeople = peopleService.getEntity(People.class, people.getId());
 		Log.init(getClass()).info(image);
 		Log.init(getClass()).info("image.getMinFileUrl()" + image.getMinFileUrl());
 		imageService.addEntity(image);
-		people.setAvatar(image);
-		peopleService.updateEntity(people);
+		onepeople.setAvatar(image);
+		onepeople.setUsername(people.getUsername());
+		onepeople.setPassword(people.getPassword());
+		onepeople.setName(people.getName());
+		onepeople.setDorm(people.getDorm());
+		peopleService.updateEntity(onepeople);
 		return super.modify();
 	}
 

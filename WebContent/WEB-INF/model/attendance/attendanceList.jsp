@@ -5,7 +5,7 @@
 <%
 	String path = request.getContextPath();
 %>
-
+<a target="content" href="<%=path%>/attendance/goAddAttendance">添加</a>
 <c:choose>
 	<c:when test="${pageBean.list==null}">
 			没有数据	
