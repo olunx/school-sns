@@ -41,9 +41,7 @@
 </script>
 
 <form onSubmit="post(this);return false;" class="form" action="<%=path %>/vote/addVote" method="post">
-	<p><label>投票主题：</label>
-	<input class="w_long" type="text" name="vote.title" />
-	</p>
+	<p><label>投票主题：</label><input class="w_long" type="text" name="vote.title" /></p>
 	<p>
 	<label>描述内容：</label>
 	<textarea class="textarea" name="vote.summary" id="demo" rows="10" cols="60"></textarea>
