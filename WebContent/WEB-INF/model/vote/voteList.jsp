@@ -56,16 +56,6 @@
 					</td>
 				</tr>
 			</c:forEach>
-			<tr>
-				<td></td>
-				<td></td>
-				<td>总计：</td>
-				<td>${totalMoney }元</td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-			</tr>
 		</table>
 		
 		<div id="pagecount">

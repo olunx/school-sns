@@ -79,6 +79,32 @@ public class RegisterAction extends BaseAction implements Preparable {
 	        JSONObject jo = JSONObject.fromObject(map);
 			getRequest().put("schoolmap", jo);
 		}
+		if(uri[0].equals("perfectReg")){
+			Object student = this.getSession().get("student");
+			if (student != null) {
+				if (student instanceof Student) {
+					Student user = (Student) student;
+					School school = schoolService.getEntity(School.class, user.getSchool().getId());
+					Set<Institute> institutes=  school.getInstitute();
+			
+					Map<String, Map<String, Object>> map = new LinkedHashMap<String, Map<String, Object>>();
+					for(Institute institute: institutes){
+						Map<String, Object> insmap = new LinkedHashMap<String, Object>();
+						Map<String, Integer> clamap = new LinkedHashMap<String, Integer>();
+						insmap.put("key", institute.getId());
+						insmap.put("defaultvalue", institute.getClasses().iterator().next().getId());
+						for(Classes classes: institute.getClasses()){
+							clamap.put(classes.getName(), classes.getId());
+						}
+						
+						insmap.put("values", clamap);
+						map.put(institute.getName(), insmap);
+					}
+			        JSONObject jo1 = JSONObject.fromObject(map);
+					getRequest().put("classesmap", jo1);
+				}
+			}
+		}
 	}
 	@SkipValidation
 	public String goRegister(){

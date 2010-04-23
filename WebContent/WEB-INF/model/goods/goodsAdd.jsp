@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="s" uri="/struts-tags" %>
 
 <%
 	String path = request.getContextPath();
@@ -37,6 +38,7 @@
 <form onSubmit="post(this);return false;" class="form" action="<%=path %>/goods/addGoods" method="post">
 	<p><label>货品名称：</label>
 	<input type="text" name="goods.name" />
+	<s:fielderror><s:param>goods.name</s:param></s:fielderror>
 	</p>
 	<p><label>货品类型：</label>
 		<select name="gtid">  
@@ -55,6 +57,7 @@
 		<input id="bigFileUrl" type="hidden" name="image.bigFileUrl" value=""/>
 		<input id="minFileName" type="hidden" name="image.minFileName" value=""/>
 		<input id="minFileUrl" type="hidden" name="image.minFileUrl" value=""/>
+		<s:fielderror><s:param>image.oriFileName</s:param></s:fielderror>
 	</div>
 	<p><label>描述内容：</label>
 	<textarea name="goods.content" id="demo" rows="50" cols="150" style="width: 600px; height: 150px"></textarea>
@@ -63,6 +66,8 @@
 	<input type="text" name="goods.quantity" value="1"/>
 	交换单价：
 	<input type="text" name="goods.value" value="0"/>
+	<s:fielderror><s:param>goods.quantity</s:param></s:fielderror>
+	<s:fielderror><s:param>goods.value</s:param></s:fielderror>
 	<p id="addone">
 	<input type="checkbox" name="goods.state" value="1" onclick="return addNewGoods('exchange');"/>我还想用来交换
 	</p>

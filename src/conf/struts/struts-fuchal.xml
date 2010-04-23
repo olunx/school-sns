@@ -43,7 +43,9 @@
 			<result name="view">/WEB-INF/model/vote/voteView.jsp</result>
 			<result name="govoting">/WEB-INF/model/vote/voteLink.jsp</result>
 		</global-results>
-		<action name="*Vote" class="cn.gdpu.action.VoteAction" method="{1}"></action>
+		<action name="*Vote" class="cn.gdpu.action.VoteAction" method="{1}">
+			<result name="input">/WEB-INF/model/vote/voteAdd.jsp</result>
+		</action>
 	</package>
 	
 	<!-- 货品Action -->
@@ -57,7 +59,9 @@
 			<result name="viewPage">/WEB-INF/model/goods/goodsView.jsp</result>
 			<result name="replyPage">/WEB-INF/model/goods/goodsReply.jsp</result>
 		</global-results>
-		<action name="*Goods" class="cn.gdpu.action.GoodsAction" method="{1}"></action>
+		<action name="*Goods" class="cn.gdpu.action.GoodsAction" method="{1}">
+			<result name="input">/WEB-INF/model/goods/goodsAdd.jsp</result>
+		</action>
 		<action name="goodsUpload" class="cn.gdpu.action.FileUploadAction" method="goods">
 			<!-- Action中的savePath属性的值 -->
 			<param name="savePath">/upload/goods</param>
@@ -75,7 +79,9 @@
 			<result name="viewPage">/WEB-INF/model/issue/issueView.jsp</result>
 			<result name="replyPage">/WEB-INF/model/issue/issueReply.jsp</result>
 		</global-results>
-		<action name="*Issue" class="cn.gdpu.action.IssueAction" method="{1}"></action>
+		<action name="*Issue" class="cn.gdpu.action.IssueAction" method="{1}">
+			<result name="input">/WEB-INF/model/issue/issueAdd.jsp</result>
+		</action>
 	</package>	
 	
 	<!-- 学校Action -->
@@ -106,6 +112,8 @@
 			<result name="viewPage">/WEB-INF/model/classes/classesView.jsp</result>
 			<result name="replyPage">/WEB-INF/model/classes/classesReply.jsp</result>
 		</global-results>
-		<action name="*Classes" class="cn.gdpu.action.ClassesAction" method="{1}"></action>
+		<action name="*Classes" class="cn.gdpu.action.ClassesAction" method="{1}">
+			<result name="input">/WEB-INF/model/classes/classesAdd.jsp</result>
+		</action>
 	</package>	
 </struts>    

@@ -3,8 +3,18 @@ package cn.gdpu.action;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
+
+import javax.servlet.http.HttpServletRequest;
+
+import net.sf.json.JSONObject;
+
+import org.apache.struts2.ServletActionContext;
+
+import com.opensymphony.xwork2.Preparable;
 
 import cn.gdpu.service.ClassesService;
 import cn.gdpu.service.InstituteService;
@@ -15,13 +25,14 @@ import cn.gdpu.util.Log;
 import cn.gdpu.vo.Classes;
 import cn.gdpu.vo.Institute;
 import cn.gdpu.vo.People;
+import cn.gdpu.vo.Province;
 import cn.gdpu.vo.School;
 import cn.gdpu.vo.Student;
 import cn.gdpu.vo.Topic;
 import cn.gdpu.vo.Visitor;
 
 @SuppressWarnings("serial")
-public class ClassesAction extends BaseAction {
+public class ClassesAction extends BaseAction implements Preparable{
 	private SchoolService<School, Integer> schoolService;
 	private InstituteService<Institute, Integer> instituteService;
 	private ClassesService<Classes, Integer> classesService;
@@ -36,6 +47,24 @@ public class ClassesAction extends BaseAction {
 	private int rid;
 	private int audit;
 
+	@Override
+	public void prepare() throws Exception {
+		HttpServletRequest httpRequest = (HttpServletRequest) ServletActionContext.getRequest();
+		String action=  httpRequest.getServletPath().split("/")[2];
+		String[] uri=action.split("\\.");
+		if(uri[0].equals("addClasses")){
+			Object student = this.getSession().get("student");
+			if (student != null) {
+				if (student instanceof Student) {
+					People user = (People) student;
+					school = user.getSchool();
+					Set<Institute> institutes = school.getInstitute();
+					getRequest().put("institutes", institutes);
+				}
+			}
+		}
+	}
+	
 	@Override
 	public String add() {
 		institute = instituteService.getEntity(Institute.class, id);
@@ -61,7 +90,8 @@ public class ClassesAction extends BaseAction {
 		Object student = this.getSession().get("student");
 		if (student != null) {
 			if (student instanceof Student) {
-				school = schoolService.getEntity(School.class, id);
+				People user = (People) student;
+				school = user.getSchool();
 				Set<Institute> institutes = school.getInstitute();
 				getRequest().put("institutes", institutes);
 				return super.goAdd();
@@ -374,4 +404,5 @@ public class ClassesAction extends BaseAction {
 	public void setAudit(int audit) {
 		this.audit = audit;
 	}
+
 }

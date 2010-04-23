@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="s" uri="/struts-tags" %>
 
 <%
 	String path = request.getContextPath();
@@ -17,9 +18,11 @@
 	</p>
 	<p><label>班级名称：</label>
 	<input type="text" name="classes.name" />
+	<s:fielderror><s:param>classes.name</s:param></s:fielderror>
 	</p>
 	<p><label>入学年份：</label>
 	<input type="text" name="classes.entryYear" />
+	<s:fielderror><s:param>classes.entryYear</s:param></s:fielderror>
 	</p>
 	<input type="submit" value="提交"/>
 </form>

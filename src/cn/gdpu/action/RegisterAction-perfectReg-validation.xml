@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE validators PUBLIC 
+          "-//OpenSymphony Group//XWork Validator 1.0//EN" 
+          "http://www.opensymphony.com/xwork/xwork-validator-1.0.dtd" >
+<validators>
+
+	<field name="classesId">
+		<field-validator type="fieldexpression">
+            <param name="expression">classesId != -1</param>
+            <message>请选择正确的班级</message>
+        </field-validator>
+	</field>
+	
+	<field name="entryYear">
+	   <field-validator type="int">
+		    <param name="min">1700</param>
+		    <param name="max">2010</param>
+		    <message>请输入正确的入学年份如2007</message>
+	   </field-validator>
+	</field>
+	
+	<field name="sno">
+		<field-validator type="requiredstring">
+			<param name="trim">true</param>
+			<message>学号不能为空</message>
+		</field-validator>
+		
+		<field-validator type="regex">
+            <param name="expression">^([0-9]+)</param>
+            <message>学号只能为数字</message>
+        </field-validator>
+	</field>
+	
+	<field name="birthday">
+		<field-validator type="requiredstring">
+			<param name="trim">true</param>
+			<message>请选择出生日期</message>
+		</field-validator>
+	</field>
+	
+	<field name="image.oriFileName">
+       <field-validator type="requiredstring" >
+           <param name="trim">true</param>
+           <message>头像还没有上传</message>
+       </field-validator>
+    </field>
+
+</validators>

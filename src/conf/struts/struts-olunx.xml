@@ -100,6 +100,8 @@
 			<result name="modifyPage">/WEB-INF/model/group/groupModify.jsp</result>
 			<result name="replyPage">/WEB-INF/model/group/groupReply.jsp</result>
 		</global-results>
-		<action name="*Group" class="cn.gdpu.action.GroupAction" method="{1}"></action>
+		<action name="*Group" class="cn.gdpu.action.GroupAction" method="{1}">
+			<result name="input">/WEB-INF/model/group/groupAdd.jsp</result>
+		</action>
 	</package>
 </struts>    

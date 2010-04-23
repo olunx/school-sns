@@ -9,7 +9,7 @@ public class Issue {
 	private String content;
 	private People owner;
 	private int state;
-	private double value;        
+	private int value;        
 	private List<Topic> reply;
 	private Topic answer;
 	private IssueType issueType;
@@ -53,10 +53,10 @@ public class Issue {
 	public void setReply(List<Topic> reply) {
 		this.reply = reply;
 	}
-	public double getValue() {
+	public int getValue() {
 		return value;
 	}
-	public void setValue(double value) {
+	public void setValue(int value) {
 		this.value = value;
 	}
 	public int getHot() {
