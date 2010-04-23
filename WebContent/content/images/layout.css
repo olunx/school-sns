@@ -16,6 +16,7 @@ a:hover{ color:#004080;}
 table{width:100%;}
 td,th{padding:2px 5px;}
 ul{ list-style:none;}
+img{ border:none;}
 /* 头部*/
 #header{width:800px;height:100px;margin:0 auto;color:#FFF;}
 #header a{color:#FFF;text-decoration:none;}
@@ -36,6 +37,7 @@ ul{ list-style:none;}
 #main{width:800px;padding:0;float:left;background:#1e90ff;}
 
 #content{width:565px;float:left; min-height:400px; _height:400px;/*ie6 min-height hack*/ background:#FFF; margin:0px 0 0 0; padding:10px;}
+#content h2{ font-size:14px; padding:5px 0;}
 #sidebar{width:200px;float:left; padding:0px;}
 
 /*chat*/
@@ -67,11 +69,11 @@ ul{ list-style:none;}
 .feed .time{ color:#999; float:right;}
 /*添加表单样式*/
 .form p{ margin-bottom:8px;}
-.form p .textarea{ width:510px; height:150px; vertical-align:top;}
+.form p .textarea{ width:490px; height:150px; vertical-align:top;}
 .form p label{ color:#444;}
 .form .w_small{width:100px;}
 .form .w_middle{width:200px;}
-.form .w_long{width:510px;}
+.form .w_long{width:480px;}
 .form .h_middle{height:100px;}
 .form .h_long{height:200px;}
 .form .m_min{margin-left:10px;}
@@ -79,6 +81,17 @@ ul{ list-style:none;}
 /*投票*/
 #voteitem label{ width:70px; color:#444; display:inline-block;}
 #voteitem div{ margin-bottom:5px;}
+/*班级*/
+.class_msg_list { border:1px solid #ccc; }
+.class_msg_list .class_msg{border-bottom:1px solid #ccc;padding:5px;}
+.class_msg_list .class_msg .avatar{ float:left;}
+.class_msg_list .class_msg .avatar img{ width:50px; height:50px;}
+.class_msg_list .class_msg .msg{ float:right; width:360px;}
+.class_msg_list .class_msg .operate{ float:right; width:140px; text-align:right;}
+/*内页导航链接*/
+.nav {clear:both; padding-bottom:22px;}
+.nav li {float:left;margin-right:10px;}
+.nav li a{}
 /*分页*/
 #pagecount {float: right;}
 #pagecount p {

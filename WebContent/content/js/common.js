@@ -1,4 +1,4 @@
-$(document).ready(function(){
+﻿$(document).ready(function(){
 
     //注册事件
     $("a[target='content']").click(function(){
@@ -22,6 +22,10 @@ $(document).ready(function(){
 
 //注册二级事件
 function ajax(){
+	$("a[rel='ajaxupload']").each(function (i){
+		var ajaxinfo = eval('('+$(this).attr("rev")+')');
+		myAjaxUploadSetup(this,ajaxinfo.upload,ajaxinfo.complete,ajaxinfo.allowtype);
+	});
     $("#content a[target='content']").click(function(){
         var href = $(this).attr('href');
         loadContent(href);
