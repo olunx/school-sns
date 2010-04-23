@@ -5,6 +5,13 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
+
+import org.apache.struts2.ServletActionContext;
+
+import com.opensymphony.xwork2.Preparable;
+
 import cn.gdpu.service.GoodsService;
 import cn.gdpu.service.GoodsTypeService;
 import cn.gdpu.service.ImageService;
@@ -19,7 +26,7 @@ import cn.gdpu.vo.Student;
 import cn.gdpu.vo.Topic;
 
 @SuppressWarnings("serial")
-public class GoodsAction extends BaseAction {
+public class GoodsAction extends BaseAction implements Preparable{
 
 	private GoodsService<Goods, Integer> goodsService;
 	private TopicService<Topic, Integer> topicService;
@@ -37,6 +44,17 @@ public class GoodsAction extends BaseAction {
 	private String gsType[];
 	private String search;
 
+	@Override
+	public void prepare() throws Exception {
+		HttpServletRequest httpRequest = (HttpServletRequest) ServletActionContext.getRequest();
+		String action=  httpRequest.getServletPath().split("/")[2];
+		String[] uri=action.split("\\.");
+		if(uri[0].equals("addGoods")){
+			List<GoodsType> list = goodsTypeService.getAllEntity(GoodsType.class);
+			getRequest().put("goodsType", list);
+		}
+	}
+	
 	@Override
 	public String add() {
 		Object people = this.getSession().get("user");

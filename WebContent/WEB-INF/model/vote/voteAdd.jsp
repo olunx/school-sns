@@ -42,6 +42,7 @@
 <form onSubmit="post(this);return false;" class="form" action="<%=path %>/vote/addVote" method="post">
 	<p><label>投票主题：</label>
 	<input type="text" name="vote.title" />
+	<s:fielderror><s:param>vote.title</s:param></s:fielderror>
 	</p>
 	<label>描述内容：</label>
 	<textarea name="vote.summary" id="demo" rows="50" cols="152" style="width: 600px; height: 150px"></textarea>
@@ -49,6 +50,7 @@
 	<input type="radio" name="vote.type" value="0" checked="checked"/>单选
 	<input type="radio" name="vote.type" value="1" />多选
 	</p>
+	<s:fielderror><s:param>content</s:param></s:fielderror>
 	<div id="voteitem">
 		<div><label>选项：</label><input class="inputmid" type="text" name="content" /> <a href="#" class="btn_del" onclick="return delVote(this)">删除</a></div>
 		<div><label>选项：</label><input class="inputmid" type="text" name="content" /> <a href="#" class="btn_del" onclick="return delVote(this)">删除</a></div>
@@ -59,7 +61,8 @@
 	</p>
 	<p>
 	<label>投票期限：</label>
-	<input type="text" id="datepicker" name="time" />
+	<input type="text" id="datepicker" name="time" readonly="readonly"/>
+	<s:fielderror><s:param>time</s:param></s:fielderror>
 	</p>
 	<input type="submit" value="发布投票"/>
 </form>

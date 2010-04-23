@@ -6,6 +6,12 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.struts2.ServletActionContext;
+
+import com.opensymphony.xwork2.Preparable;
+
 import net.sf.json.JSONObject;
 
 import cn.gdpu.service.IssueService;
@@ -19,7 +25,7 @@ import cn.gdpu.vo.People;
 import cn.gdpu.vo.Topic;
 
 @SuppressWarnings("serial")
-public class IssueAction extends BaseAction {
+public class IssueAction extends BaseAction implements Preparable {
 
 	private IssueService<Issue, Integer> issueService;
 	private TopicService<Topic, Integer> topicService;
@@ -36,6 +42,31 @@ public class IssueAction extends BaseAction {
 	private String isType[];
 	private String search;
 
+	@Override
+	public void prepare() throws Exception {
+		HttpServletRequest httpRequest = (HttpServletRequest) ServletActionContext.getRequest();
+		String action=  httpRequest.getServletPath().split("/")[2];
+		String[] uri=action.split("\\.");
+		if(uri[0].equals("addIssue")){
+			String hql = "from IssueType it where it.isleaf = '0'";
+			List<IssueType> its = issueTypeService.getEntity(IssueType.class, hql);
+			Map<String, Map<String, Object>> map = new LinkedHashMap<String, Map<String, Object>>();
+			for(IssueType it : its){
+				Map<String, Object> itmap = new LinkedHashMap<String, Object>();
+				Map<String, Integer> itcmap = new LinkedHashMap<String, Integer>();
+				itmap.put("key", it.getId());
+				itmap.put("defaultvalue", it.getChildType().iterator().next().getId());
+				for(IssueType itc : it.getChildType()){
+					itcmap.put(itc.getName(), itc.getId());
+				}
+				itmap.put("values", itcmap);
+				map.put(it.getName(), itmap);
+			}
+	        JSONObject jo = JSONObject.fromObject(map);
+			getRequest().put("jsonmap", jo);
+		}
+	}
+	
 	@Override
 	public String add() {
 		Object people = this.getSession().get("user");

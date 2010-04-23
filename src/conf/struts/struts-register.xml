@@ -23,6 +23,7 @@
 			<result name="goPerfectReg">/WEB-INF/model/dialog/perfectReg.jsp</result>
 		</action>
 		<action name="perfectReg" class="cn.gdpu.action.RegisterAction" method="perfectReg">
+			<result name="input">/WEB-INF/model/dialog/perfectReg.jsp</result>
 		</action>
 	</package>
 </struts>    

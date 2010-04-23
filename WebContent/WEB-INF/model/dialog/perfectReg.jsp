@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="s" uri="/struts-tags" %>
 
 <%
 	String path = request.getContextPath();
@@ -35,18 +36,22 @@
 <form  action="<%=path %>/perfectReg" method="post" onSubmit="post(this);return false;"  Class="form" >
 	<div id="select">
 		<label>选择班级：</label>
-		<select id="first" size="1"><option value="">--</option></select>
+		<select id="first" size="1"><option value="-1">--</option></select>
 		<select id="second" name="classesId" size="1"><option value="">--</option></select>
-		<a target="content" href="<%=path %>/classes/goAddClasses?id=${user.school.id}">没有我的班级？去创建一个咯~~</a>
+		<a target="content" href="<%=path %>/classes/goAddClasses">没有我的班级？去创建一个咯~~</a>
+		<s:fielderror><s:param>classesId</s:param></s:fielderror>
 	</div>
 	<p><label>入学年份：</label>
 	<input type="text" name="entryYear" />
+	<s:fielderror><s:param>entryYear</s:param></s:fielderror>
 	</p>
 	<p><label>学号：</label>
 	<input type="text" name="sno" />
+	<s:fielderror><s:param>sno</s:param></s:fielderror>
 	</p>
 	<p><label>出生年月：</label>
-	<input id="datepicker" type="text" name="birthday" />
+	<input id="datepicker" type="text" name="birthday" readonly="readonly"/>
+	<s:fielderror><s:param>birthday</s:param></s:fielderror>
 	</p>
 	<label>上传头像：</label>
 	<a onclick="return hs.htmlExpand(this, { objectType: 'iframe' } )" href="<%=path%>/image/goUploadImage">上传图片</a>
@@ -58,6 +63,7 @@
 		<input id="bigFileUrl" type="hidden" name="image.bigFileUrl" value=""/>
 		<input id="minFileName" type="hidden" name="image.minFileName" value=""/>
 		<input id="minFileUrl" type="hidden" name="image.minFileUrl" value=""/>
+		<s:fielderror><s:param>image.oriFileName</s:param></s:fielderror>
 	</div>
 	<input type="submit" value="申请加入"/>
 </form>

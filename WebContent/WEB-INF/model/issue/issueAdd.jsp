@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <%
 	String path = request.getContextPath();
 %>
@@ -16,6 +17,7 @@
 <form action="<%=path %>/issue/addIssue" method="post" onsubmit="post(this);return false;" Class="form" >
 	<p><label>你的提问：</label>
 	<input type="text" name="issue.name" />
+	<s:fielderror><s:param>issue.name</s:param></s:fielderror>
 	</p>
 	<p><label>补充说明：</label>
 	<textarea name="issue.content" id="demo" rows="50" cols="150" style="width: 600px; height: 150px"></textarea>
@@ -27,6 +29,7 @@
 	</p>
 	悬赏财富：
 	<input type="text" name="issue.value" value="0"/>
+	<s:fielderror><s:param>issue.value</s:param></s:fielderror>
 	<p>
 	匿名提问：<input type="checkbox" name="issue.state" value="1" />
 	</p>
