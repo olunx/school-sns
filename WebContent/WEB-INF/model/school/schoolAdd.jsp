@@ -4,10 +4,6 @@
 <%
 	String path = request.getContextPath();
 %>
-<!-- JQuery库 -->
-<script type="text/javascript" src="<%=path%>/content/js/jquery-1.4.2.min.js"></script>
-<link type="text/css" rel="stylesheet" href="<%=path%>/content/jq-highslide/highslide.css" />
-<script type="text/javascript" src="<%=path%>/content/jq-highslide/highslide-full.min.js"></script>
 <script language="javascript" type="text/javascript">
 	
 	$(document).ready(function() {
