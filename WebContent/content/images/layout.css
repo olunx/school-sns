@@ -37,7 +37,7 @@ img{ border:none;}
 /*中间*/
 #container{width:800px;padding:0;margin:0 auto;}
 
-#main{width:800px;padding:0;float:left;background:#1e90ff;}
+#main{width:800px;padding:0;float:left;background:#FFF;}
 
 #content{width:565px;float:left; min-height:400px; _height:400px;/*ie6 min-height hack*/ background:#FFF; margin:0px 0 0 0; padding:10px;}
 #content h2{ font-size:14px; padding:5px 0; clear:both;}
@@ -51,7 +51,9 @@ img{ border:none;}
 /*表格*/
 .table { margin-bottom:10px; border-collapse:collapse;}
 .table td,.table th{ text-align:center; border:1px #eee solid; padding:5px;}
-.table th{ background:#eee;}
+.table th{ background:#eee; color:#999;}
+.table .ta_left{ text-align:left;}
+.table .ta_right{ text-align:right;}
 /*ul*/
 .ul li{ float:left; margin-left:10px; width:60px; text-align:center; overflow:hidden;}
 /*微博*/
@@ -91,6 +93,9 @@ img{ border:none;}
 .voteul li span{ float:right;}
 .vote p{ margin-bottom:5px;}
 .vote .desc{ color:#666;}
+/*交换*/
+.goods p{ padding-bottom:5px;}
+.goods .desc{ color:#666;}
 /*学校*/
 .school .school_pic{ float:right;}
 .school .school_pic img{ width:150px; height:150px;}
@@ -99,10 +104,10 @@ img{ border:none;}
 .class_msg_list .class_msg{border-bottom:1px solid #ccc;padding:5px;}
 .class_msg_list .class_msg .avatar{ float:left;}
 .class_msg_list .class_msg .avatar img{ width:50px; height:50px; padding:5px;}
-.class_msg_list .class_msg .msg{ float:right; width:360px;}
-.class_msg_list .class_msg .reply{ background:#e8f3ff; margin-left:20px;}
+.class_msg_list .class_msg .msg{ float:right; width:480px;}
+.class_msg_list .class_msg .reply{ background:#e8f3ff; margin:0 20px 0 20px;}
 .class_msg_list .class_msg .reply p{ margin-bottom:5px; border-bottom:2px solid #fff; padding:5px;}
-.class_msg_list .class_msg .operate{ float:right; width:120px; text-align:right;}
+.class_msg_list .class_msg .operate{ float:right; text-align:right;}
 /*内页导航链接*/
 .nav {clear:both; padding-bottom:22px;}
 .nav li {float:left;margin-right:10px;}

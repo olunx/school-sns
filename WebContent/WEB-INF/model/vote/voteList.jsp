@@ -2,6 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib uri="http://gdpu.cn/functions" prefix="my"%>
 <%
 	String path = request.getContextPath();
 %>
@@ -15,18 +16,16 @@
 
 		<table class="table">
 			<tr>
-				<th>投票主题</th>
+				<th class="ta_left">投票主题</th>
 				<th>投票描述</th>
 				<th>创建人</th>
 				<th>创建日期</th>
-				<th>结束日期</th>
 				<th>删除</th>
-				<th>看图</th>
 			</tr>
 			<c:forEach items="${pageBean.list}" var="vote">
 				<tr>						
 					
-					<td>
+					<td class="ta_left">
 						<a target="content" href="<%=path %>/vote/goVotingVote?vid=${vote.id}" >${fn:substring(fn:replace(vote.title,"<","&lt;"),0,20)}</a>
 					</td>
 					<td>
@@ -36,16 +35,10 @@
 						${vote.author.name }
 					</td>
 					<td>
-						<fmt:formatDate value="${vote.airTime}" pattern="yyyy-MM-dd HH:mm"/>
-					</td>
-					<td>
-						<fmt:formatDate value="${vote.deadline}" pattern="yyyy-MM-dd HH:mm"/>
+						${my:formatDate(vote.airTime) }
 					</td>
 					<td>
 						<a target="content" href="<%=path %>/vote/deleteVote?vid=${vote.id}" class="btn_del">删除</a>
-					</td>
-					<td>
-						<a target="content" href="<%=path %>/vote/viewVote?vid=${vote.id}" >看图</a>
 					</td>
 				</tr>
 			</c:forEach>

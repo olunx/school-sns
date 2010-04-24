@@ -14,7 +14,7 @@
  });
 </script>
 
-<a target="content" href="<%=path %>/issue/listIssue" >全部学生的提问</a>>我的提问<br />
+<a target="content" href="<%=path %>/issue/listIssue" >全部学生的提问</a>我的提问<br />
 <c:choose>
 	<c:when test="${pageBean.list == null}">
 					没有该学生的提问数据！
