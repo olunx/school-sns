@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%
 	String path = request.getContextPath();
@@ -28,6 +28,12 @@
 <script type="text/javascript">
 $(document).ready(function() {
 	initHighslide("<%=path%>", "640", "480");
+	$(".menu li[rel=submenu]").mouseover(function(){
+		$(this).addClass("menu_hover");
+	});
+	$(".menu li[rel=submenu]").mouseout(function(){
+		$(this).removeClass("menu_hover");
+	});	
 });
 </script>
 
@@ -36,7 +42,7 @@ $(document).ready(function() {
 
 <div id="header">
 <div class="logo"><a href="">LOGO</a></div>
-<div class="menuk corner">
+<div class="menuk">
 <ul class="menu">
 	<li><a href="<%=path%>/home">我的大厅</a></li>
 	<c:if test="${student != null}">
@@ -44,8 +50,12 @@ $(document).ready(function() {
 		<li><a target="content" href="<%=path %>/classes/viewClasses?id=${user.classes == null? -1: user.classes.id}">班级</a></li>
 	</c:if>
 	<li><a href="#">操场</a></li>
-	<li><a href="#">小组</a></li>
-	<li><a target="content" href="<%=path%>/chat/pubChat">聊天馆</a></li>
+	<li rel="submenu"><a href="javascript:void()">聊天馆</a>
+		<dl>
+		<dt><a target="content" href="<%=path%>/chat/pubChat">公共聊天室</a></dt>
+		<dt><a target="content" href="<%=path%>/chat/priChat">匿名聊天室</a></dt>
+		</dl>
+	</li>
 </ul>
 <div class="nav_account"><c:choose>
 	<c:when test="${isAccess!=null}">
