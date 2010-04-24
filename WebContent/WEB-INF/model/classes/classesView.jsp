@@ -73,10 +73,10 @@ $(function(){
 					<c:otherwise><img src="<%=path%>/content/images/avatar.jpg" /></c:otherwise>
 				</c:choose>
 			</div>
+			<div class="msg">
 			<div class="operate">
 			<p class="time" title="${reply.time }"><a target="content" href="<%=path %>/classes/goReplyClasses?id=${classes.id}&rid=${reply.id != null ? reply.id : -1 }">回复</a> ${my:formatDate(reply.time)}</p>
 			</div>
-			<div class="msg">
 				<p class="text">${reply.author.name }： ${reply.content}</p>
 				
 				<c:if test="${! empty reply.reply}">

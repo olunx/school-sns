@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib uri="http://gdpu.cn/functions" prefix="my"%>
 <%
 	String path = request.getContextPath();
 %>
@@ -14,13 +15,13 @@
 	<c:otherwise>
 		<table class="table">
 			<tr>
-				<td>名称</td>
-				<td>描述</td>
-				<td>数量</td>
-				<td>状态</td>
-				<td>单价</td>
-				<td>时间</td>
-				<td>删除</td>
+				<th>名称</th>
+				<th>描述</th>
+				<th>数量</th>
+				<th>状态</th>
+				<th>单价</th>
+				<th>时间</th>
+				<th>删除</th>
 			</tr>
 			<c:forEach items="${pageBean.list}" var="goods">
 				<tr>

@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib uri="http://gdpu.cn/functions" prefix="my"%>
 <%
 	String path = request.getContextPath();
 %>
@@ -13,23 +14,19 @@
 	<c:otherwise>
 		<table class="table">
 			<tr>
-				<td>名称</td>
-				<td>描述</td>
-				<td>数量</td>
-				<td>状态</td>
-				<td>价值</td>
-				<td>拥有者</td>
-				<td>时间 </td>
+				<th class="ta_left">名称</th>
+				<th>状态</th>
+				<th>价值</th>
+				<th>拥有者</th>
+				<th class="ta_right">时间 </th>
 			</tr>
 			<c:forEach items="${pageBean.list}" var="goods">
 				<tr>
-					<td><a target="content" href="<%=path %>/goods/viewGoods?id=${goods.id }">${goods.name}</a></td>
-					<td>${fn:substring(fn:replace(goods.content,"<","&lt;"),0,20)}...</td>
-					<td>${goods.quantity}</td>
+					<td class="ta_left"><a target="content" href="<%=path %>/goods/viewGoods?id=${goods.id }">${goods.name}</a></td>
 					<td>${goods.state == 1? "可交换" :"正常" }</td>
 					<td>${goods.value}</td>
 					<td>${goods.owner.name }</td>
-					<td><fmt:formatDate value="${goods.airTime}" pattern="yyyy-MM-dd HH:mm" /></td>
+					<td class="ta_right">${my:formatDate(goods.airTime) }</td>
 				</tr>
 			</c:forEach>
 		</table>

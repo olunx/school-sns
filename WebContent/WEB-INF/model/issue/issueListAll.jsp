@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib uri="http://gdpu.cn/functions" prefix="my"%>
 <%
 	String path = request.getContextPath();
 %>
@@ -13,21 +14,21 @@
 	<c:otherwise>
 		<table class="table">
 			<tr>
-					<td>提问</td>
-					<td>描述</td>
-					<td>状态</td>
-					<td>悬赏</td>
-					<td>拥有者</td>
-					<td>时间</td>
+					<th class="ta_left">提问</th>
+					<th>描述</th>
+					<th>状态</th>
+					<th>悬赏</th>
+					<th>提问人</th>
+					<th class="ta_right">时间</th>
 			</tr>
 		<c:forEach items="${pageBean.list}" var="issue">
 				<tr>
-					<td><a target="content" href="<%=path%>/issue/viewIssue?id=${issue.id }">${issue.name}</a></td>
+					<td class="ta_left"><a target="content" href="<%=path%>/issue/viewIssue?id=${issue.id }">${issue.name}</a></td>
 					<td>${fn:substring(fn:replace(issue.content,"<","&lt;"),0,20)}...</td>
 					<td>${issue.answer == null? "未解决" :"已解决" }</td>
 					<td>${issue.value }</td>
 					<td>${issue.owner.name }</td>
-					<td><fmt:formatDate value="${issue.airTime}" pattern="yyyy-MM-dd HH:mm" /></td>
+					<td class="ta_right">${my:formatDate(issue.airTime)}</td>
 				</tr>
 			</c:forEach>
 		</table>
