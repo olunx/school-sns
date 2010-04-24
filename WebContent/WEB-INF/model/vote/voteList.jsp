@@ -13,12 +13,8 @@
 	</c:when>
 	<c:otherwise>
 
-		<form onSubmit="post(this);return false;"  action="<%=path%>/vote/deleteMany" method="post">
 		<table class="table">
 			<tr>
-				<th>
-				<a rel="checkall" >全选</a>
-				</th>
 				<th>投票主题</th>
 				<th>投票描述</th>
 				<th>创建人</th>
@@ -29,9 +25,6 @@
 			</tr>
 			<c:forEach items="${pageBean.list}" var="vote">
 				<tr>						
-					<td>
-						<input type="checkbox" name="ids" value="${vote.id }" />
-					</td>
 					
 					<td>
 						<a target="content" href="<%=path %>/vote/goVotingVote?vid=${vote.id}" >${fn:substring(fn:replace(vote.title,"<","&lt;"),0,20)}</a>
@@ -49,7 +42,7 @@
 						<fmt:formatDate value="${vote.deadline}" pattern="yyyy-MM-dd HH:mm"/>
 					</td>
 					<td>
-						<a target="content" href="<%=path %>/vote/deleteVote?vid=${vote.id}" class="btn_del"></a>
+						<a target="content" href="<%=path %>/vote/deleteVote?vid=${vote.id}" class="btn_del">删除</a>
 					</td>
 					<td>
 						<a target="content" href="<%=path %>/vote/viewVote?vid=${vote.id}" >看图</a>
@@ -80,11 +73,6 @@
 			</c:otherwise>
 		</c:choose></div>
 
-		<select name="cmd">
-			<option value="0" selected="selected">批量操作，请选择</option>
-			<option value="1">删除</option>
-		</select> <input type="submit" value="确定" />
-		
-		</form>
+
 	</c:otherwise>
 </c:choose>

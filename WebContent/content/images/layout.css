@@ -25,7 +25,7 @@ img{ border:none;}
 .menuk{float:right;background:#1e90ff; width:500px; margin:31px 0 0 0; padding:5px 0; color:#999;}
 .menu li{font-size:12px;float:left;padding:5px 10px; position:relative;}
 .menu li a:link,.menu li a:visited{ color:#FFF;}
-.menu li dl{position:absolute; left:0; top:25px;width:100px;display:none;}
+.menu li dl{position:absolute; left:0; top:24px;width:100px;display:none;}
 .menu li dt{padding-bottom:5px; }
 .menu li.menu_hover{background:#ccc; background:#1567B7;}
 .menu li.menu_hover dl{display:block; background:#1567B7; padding:5px 10px 0px 10px;}
@@ -40,7 +40,7 @@ img{ border:none;}
 #main{width:800px;padding:0;float:left;background:#1e90ff;}
 
 #content{width:565px;float:left; min-height:400px; _height:400px;/*ie6 min-height hack*/ background:#FFF; margin:0px 0 0 0; padding:10px;}
-#content h2{ font-size:14px; padding:5px 0;}
+#content h2{ font-size:14px; padding:5px 0; clear:both;}
 #sidebar{width:200px;float:left; padding:0px;}
 
 /*chat*/
@@ -86,6 +86,11 @@ img{ border:none;}
 /*投票*/
 #voteitem label{ width:70px; color:#444; display:inline-block;}
 #voteitem div{ margin-bottom:5px;}
+.voteul{ background:#eee; padding:10px 10px 5px 10px; margin:10px 0;}
+.voteul li { padding-bottom:5px;}
+.voteul li span{ float:right;}
+.vote p{ margin-bottom:5px;}
+.vote .desc{ color:#666;}
 /*学校*/
 .school .school_pic{ float:right;}
 .school .school_pic img{ width:150px; height:150px;}

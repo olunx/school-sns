@@ -26,6 +26,7 @@ function ajax(){
         var ajaxinfo = eval('(' + $(this).attr("rev") + ')');
         myAjaxUploadSetup(this, ajaxinfo.upload, ajaxinfo.complete, ajaxinfo.allowtype);
     });
+	$("#content a[target='content']").unbind("click"); 
     $("#content a[target='content']").click(function(){
         var href = $(this).attr('href');
         loadContent(href);
