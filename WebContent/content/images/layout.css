@@ -1,4 +1,4 @@
-@charset utf-8;
+﻿@charset utf-8;
 /*全局*/
 *{ padding:0; margin:0;}
 .clear{
@@ -19,15 +19,18 @@ ul{ list-style:none;}
 img{ border:none;}
 /* 头部*/
 #header{width:800px;height:100px;margin:0 auto;color:#FFF;}
-#header a{color:#FFF;text-decoration:none;}
 #header .logo{float:left;padding:6px 0 0 10px;margin:0;}
 #header .logo a{width:80px;display:block;background:none;overflow:hidden;height:auto;}
 #header .logo a img{margin:0;}
-.menuk{float:right;background:#1e90ff; width:550px; margin:31px 0 0 0; padding:10px 0; color:#999;}
-.menu li{font-size:12px;float:left;padding:0 10px;}
-.menu li a{}
-.menu li a:hover{color:#fff;text-decoration:none;}
-.nav_account{float:right;padding:0 10px;}
+.menuk{float:right;background:#1e90ff; width:500px; margin:31px 0 0 0; padding:5px 0; color:#999;}
+.menu li{font-size:12px;float:left;padding:5px 10px; position:relative;}
+.menu li a:link,.menu li a:visited{ color:#FFF;}
+.menu li dl{position:absolute; left:0; top:25px;width:100px;display:none;}
+.menu li dt{padding-bottom:5px; }
+.menu li.menu_hover{background:#ccc; background:#1567B7;}
+.menu li.menu_hover dl{display:block; background:#1567B7; padding:5px 10px 0px 10px;}
+.menu li a:hover{color:#000;text-decoration:underline;}
+.nav_account{float:right;padding:5px 10px;}
 .nav_account a:link,.nav_account a:visited{color:#666;}
 .nav_account a:hover{color:#fff;}
 .loginName{color:#CDEB8B;font-size:13px;padding-left:10px;padding-right:5px;}
@@ -50,7 +53,7 @@ img{ border:none;}
 .table td,.table th{ text-align:center; border:1px #eee solid; padding:5px;}
 .table th{ background:#eee;}
 /*ul*/
-.ul li{ float:left; margin-left:10px;}
+.ul li{ float:left; margin-left:10px; width:60px; text-align:center; overflow:hidden;}
 /*微博*/
 #topic_list .list{ padding:0 0 5px 0; margin:5px 0 0 0; }
 #topic_list .avatar{ background:#FFF; float:left; padding:2px; border:1px solid #CCC;}
@@ -83,6 +86,9 @@ img{ border:none;}
 /*投票*/
 #voteitem label{ width:70px; color:#444; display:inline-block;}
 #voteitem div{ margin-bottom:5px;}
+/*学校*/
+.school .school_pic{ float:right;}
+.school .school_pic img{ width:150px; height:150px;}
 /*班级*/
 .class_msg_list { border:1px solid #ccc; }
 .class_msg_list .class_msg{border-bottom:1px solid #ccc;padding:5px;}
