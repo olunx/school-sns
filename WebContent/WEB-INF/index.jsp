@@ -10,7 +10,6 @@
 		$(function() {
 			$("#topic_list").load("<%=path%>/feed/listFeed", list);
 			initHighslide("<%=path%>", "480", "400");
-
 		});
 
 		function list(){
@@ -29,6 +28,8 @@
 		        
 		        return false;
 		    });
+
+		    ajax();
 	    }
 	</script>
 
