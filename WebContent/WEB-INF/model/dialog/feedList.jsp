@@ -20,7 +20,7 @@
 			</div>
 			<div class="topic_msg">
 				<div class="time" title="${feed.time}">${my:formatDate(feed.time)}</div>
-				<p class="content"><a href="#">${feed.author.name}</a> 
+				<p class="content"><a target="content" href="<%=path%>/t/${feed.author.username}">${feed.author.name}</a> 
 				<c:choose>
 					<c:when test="${feed.type ==  'add_twitter'}">
 					叽叽歪歪的说：${feed.message}。

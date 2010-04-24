@@ -49,15 +49,15 @@ $(function() {
 	 
 	 <div>
 	 <p>最近访问：<br/>
-			<c:forEach items="${people.visitors}" var="visitor">
-			<ul>
-				<li>
-					<a target="content" href="<%=path%>/student/viewStudent?id=${visitor.people.id }"><img src="<%=path %>/${visitor.people.avatar.minFileUrl}" width="50"></img></a><br/>
-					<a target="content" href="<%=path%>/student/viewStudent?id=${visitor.people.id }">${visitor.people.name}</a><br/>
-					<fmt:formatDate value="${visitor.time }" pattern="HH:mm MM-dd" />	
-				</li>
-			</ul>
-			</c:forEach>
+		<c:forEach items="${people.visitors}" var="visitor">
+		<ul>
+			<li>
+				<a target="content" href="<%=path%>/student/viewStudent?id=${visitor.people.id }"><img src="<%=path %>/${visitor.people.avatar.minFileUrl}" width="50"></img></a><br/>
+				<a target="content" href="<%=path%>/student/viewStudent?id=${visitor.people.id }">${visitor.people.name}</a><br/>
+				<fmt:formatDate value="${visitor.time }" pattern="HH:mm MM-dd" />	
+			</li>
+		</ul>
+		</c:forEach>
 	 </p>
 	</div>
 </div>
