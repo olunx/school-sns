@@ -10,7 +10,12 @@
 什么东东都有。
 </p>
 </div>
-<div id="widget"></div>
+<div id="widget">
+	<div id="information">
+		<c:if test="${student.classes == null}"><a target="content" href="<%=path %>/goPerfectReg">继续完善资料认识很多同学</a></c:if> 
+		<c:if test="${student.classes != null and student.permission == 1}">你已申请加入“${student.classes.name}”班级,审核中</c:if>
+	</div>
+</div>
 <div id="recommend" class="mod">
 <h2>推荐认识</h2>
 	<c:if test="${student != null}">

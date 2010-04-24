@@ -10,11 +10,17 @@
 					没有数据！
 	</c:when>
 	<c:otherwise>
-		<div class="feed">
 		<c:forEach items="${pageBean.list}" var="feed">
-			<div class="feed_list">
+		<div class="list">
+			<div class="avatar">
+				<c:choose>
+					<c:when test="${feed.author.avatar.minFileUrl!=null}"><img src="<%=path%>${feed.author.avatar.minFileUrl}" /></c:when>
+					<c:otherwise><img src="<%=path%>/content/images/avatar.jpg" /></c:otherwise>
+				</c:choose>
+			</div>
+			<div class="topic_msg">
 				<div class="time" title="${feed.time}">${my:formatDate(feed.time)}</div>
-				<div class="msg"><a href="#">${feed.author.name}</a> 
+				<p class="content"><a href="#">${feed.author.name}</a> 
 				<c:choose>
 					<c:when test="${feed.type ==  'add_twitter'}">
 					叽叽歪歪的说：${feed.message}。
@@ -56,30 +62,20 @@
 						${feed.author.name} ${feed.type} ${feed.message}
 					</c:otherwise>
 				</c:choose>
-				</div>
+				</p>
 			</div>
-		</c:forEach>
 		</div>
-		<div id="pagecount">
-		<p>共  ${pageBean.allRow} 条记录 共 ${pageBean.totalPage} 页 当前第 ${pageBean.currentPage}页</p>
-		<c:choose>
-			<c:when test="${pageBean.currentPage == 1}">
-				<a><span>首页</span></a>
-				<a><span>上一页</span></a>
-			</c:when>
-			<c:otherwise>
-				<a target="content" href="<%=path%>/feed/listFeed?page=1"><span>首页</span></a>
-				<a target="content" href="<%=path%>/feed/listFeed?page=${pageBean.currentPage-1}"><span>上一页</span></a>
-			</c:otherwise>
-		</c:choose>
+		<div class="clear "></div>
+		<div class="linedot">　</div>
+		</c:forEach>
+		
+		<div id="more_feed">
 		<c:choose>
 			<c:when test="${pageBean.currentPage != pageBean.totalPage}">
-				<a target="content" href="<%=path%>/feed/listFeed?page=${pageBean.currentPage+1}"><span>下一页</span></a>
-				<a target="content" href="<%=path%>/feed/listFeed?page=${pageBean.totalPage}"><span>尾页</span></a>
+				<a target="list" href="<%=path%>/feed/listFeed?page=${pageBean.currentPage+1}"><span>更多...</span></a>
 			</c:when>
 			<c:otherwise>
-				<a><span>下一页</span></a>
-				<a><span>尾页</span></a>
+				<a><span>没有更多最近的动态了！</span></a>
 			</c:otherwise>
 		</c:choose>
 		</div>

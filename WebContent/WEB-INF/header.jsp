@@ -44,6 +44,7 @@ $(document).ready(function() {
 		<li><a target="content" href="<%=path %>/classes/viewClasses?id=${user.classes == null? -1: user.classes.id}">班级</a></li>
 	</c:if>
 	<li><a href="#">操场</a></li>
+	<li><a href="#">小组</a></li>
 	<li><a target="content" href="<%=path%>/chat/pubChat">聊天馆</a></li>
 </ul>
 <div class="nav_account"><c:choose>
