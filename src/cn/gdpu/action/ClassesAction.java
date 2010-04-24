@@ -145,7 +145,9 @@ public class ClassesAction extends BaseAction implements Preparable{
 				boolean ishas =false;
 				for(int i=0; i<visitors.size();i++){
 					if(visitors.get(i).getPeople().getId() == user.getId()){
-						visitors.set(i, visitor);
+						Visitor old = visitors.get(i);
+						old.setTime(new Date());
+						visitors.set(i, old);
 						ishas=true;
 					}
 				}

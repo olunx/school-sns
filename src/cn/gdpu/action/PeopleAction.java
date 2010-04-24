@@ -21,6 +21,7 @@ public class PeopleAction extends BaseAction {
 
 	private int id;
 	private Integer[] ids;
+	private String search;
 	private People people;
 	private PeopleService<People, Integer> peopleService;
 	private PageBean pageBean;
@@ -64,6 +65,8 @@ public class PeopleAction extends BaseAction {
 		if (friend != null && me != null) {
 			me = peopleService.getEntity(People.class, me.getId());
 			Set<People> myFriends = me.getFriends();
+			Set<People> followers = friend.getFollower();
+			
 			if (myFriends.contains(friend)) {// 如果是朋友就删除
 				myFriends.remove(friend);
 				FeedAction.init().add(me, friend, FeedAction.DEL_FRIEND);
@@ -71,8 +74,18 @@ public class PeopleAction extends BaseAction {
 				myFriends.add(friend);
 				FeedAction.init().add(me, friend, FeedAction.ADD_FRIEND);
 			}
+			
+			if (followers.contains(me)) {// 如果已经被关注就删除
+				followers.remove(me);
+			} else {
+				followers.add(me);
+			}
+			
 			me.setFriends(myFriends);
 			peopleService.updateEntity(me);
+			
+			friend.setFollower(followers);
+			peopleService.updateEntity(friend);
 		}
 		return "list";
 	}
@@ -142,6 +155,22 @@ public class PeopleAction extends BaseAction {
 		return super.view();
 	}
 
+	public String search() {
+		Object author = this.getSession().get("user");
+		if (author != null) {
+			if (author instanceof People) {
+				People people = (People) author;
+				String hql = "from People p where p.id<>'" + people.getId() + "' and ( p.name like '%" + search + "%' or p.username like '%" + search + "%' or p.sno like '%" + search + "%' ) order by p.activity DESC";
+				System.out.println("------------------------------" + hql);
+				this.pageBean = this.peopleService.queryForPage(hql, 30, page);
+				if(pageBean.getList().isEmpty())
+		    		pageBean.setList(null);
+			}
+		}
+		return super.list();
+
+	}
+	
 	public int getId() {
 		return id;
 	}
@@ -204,6 +233,14 @@ public class PeopleAction extends BaseAction {
 
 	public void setImageService(ImageService<Image, Integer> imageService) {
 		this.imageService = imageService;
+	}
+
+	public String getSearch() {
+		return search;
+	}
+
+	public void setSearch(String search) {
+		this.search = search;
 	}
 
 }

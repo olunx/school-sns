@@ -40,8 +40,8 @@
 			<c:forEach items="${school.visitor}" var="visitor">
 			<ul>
 				<li>
-					<a target="content" href="<%=path%>/student/viewStudent?id=${visitor.people.id }"><img src="<%=path %>/${visitor.people.avatar.minFileUrl}" width="50"></img></a><br/>
-					<a target="content" href="<%=path%>/student/viewStudent?id=${visitor.people.id }">${visitor.people.name}</a><br/>
+					<a target="content" href="<%=path%>/t/${visitor.people.username }"><img src="<%=path %>/${visitor.people.avatar.minFileUrl}" width="50"></img></a><br/>
+					<a target="content" href="<%=path%>/t/${visitor.people.username }">${visitor.people.name}</a><br/>
 					<fmt:formatDate value="${visitor.time }" pattern="HH:mm MM-dd" />	
 				</li>
 			</ul>
@@ -53,8 +53,8 @@
 	<c:forEach items="${peoplenew}" var="people">
 		<ul>
 			<li>
-				<a target="content" href="<%=path%>/student/viewStudent?id=${people.id }"><img src="<%=path %>/${people.avatar.minFileUrl}" width="50"></img></a><br/>
-				<a target="content" href="<%=path%>/student/viewStudent?id=${people.id }">${people.name}</a><br/>
+				<a target="content" href="<%=path%>/t/${people.username }"><img src="<%=path %>/${people.avatar.minFileUrl}" width="50"></img></a><br/>
+				<a target="content" href="<%=path%>/t/${people.username }">${people.name}</a><br/>
 			</li>
 		</ul>
 	</c:forEach>
@@ -64,8 +64,8 @@
 	<c:forEach items="${peoplehot}" var="people">
 		<ul>
 			<li>
-				<a target="content" href="<%=path%>/student/viewStudent?id=${people.id }"><img src="<%=path %>/${people.avatar.minFileUrl}" width="50"></img></a><br/>
-				<a target="content" href="<%=path%>/student/viewStudent?id=${people.id }">${people.name}</a><br/>
+				<a target="content" href="<%=path%>/t/${people.username }"><img src="<%=path %>/${people.avatar.minFileUrl}" width="50"></img></a><br/>
+				<a target="content" href="<%=path%>/t/${people.username }">${people.name}</a><br/>
 			</li>
 		</ul>
 	</c:forEach>
