@@ -9,19 +9,23 @@ String path = request.getContextPath();
 <form onSubmit="post(this);return false;" action="<%=path %>/vote/votingVote" method="post">
 	<c:choose>
 		<c:when test="${!voterexist && !timeout}">
-			<input type="hidden" name="vid" value="${vote.id}">	<br	/>			
-			投票主题：${vote.title }<br />
-			描述内容：${vote.summary }<br />		
+		<div class="vote">
+			<input type="hidden" name="vid" value="${vote.id}">	
+			<h2>${vote.title }</h2>
+			<span class="desc">${vote.summary }</span>
+			<ul class="voteul">
 			<c:forEach items="${vote.items}" var="voteItem" varStatus="i">
-				<input type="${vote.type==0 ? 'radio' : 'checkbox'}" name="viid" value="${voteItem.id}" />${i.count}:${voteItem.content } <br />
-			</c:forEach>	<br />		
-			<input type="submit" value="投票" >	<br	/>
+			<li><input type="${vote.type==0 ? 'radio' : 'checkbox'}" name="viid" value="${voteItem.id}" id="vitem${i.count}" /> <label for="vitem${i.count}">${i.count}.${voteItem.content}</label></li>
+			</c:forEach>
+			</ul>
+			<input type="submit" value="投票" >
+		</div>
 		</c:when>	
 
 		<c:otherwise>						
 			<div>
                      <c:if test="${timeout}">投票已经结束了。结束日期：${vote.deadline }</c:if>
-				<ul class="ul">
+				<ul>
 					<li>投票主题：${vote.title }</li>
 					<c:forEach items="${vote.items}" var="voteItem" varStatus="i">
 							<li>投票选项${i.count}：${voteItem.content } (${voteItem.num }) <br /></li>

@@ -2,7 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
+<%@ taglib uri="http://gdpu.cn/functions" prefix="my"%>
 <%
 	String path = request.getContextPath();
 %>
@@ -70,22 +70,20 @@
 
 		});
 </script>
-<ul class="ul">
-	<li>投票主题：${vote.title }</li>
-	<li>描述内容：${vote.summary }</li>
-	<li>投票类型：${vote.type==0 ? "单选" : "多选" }</li>
+<div class="vote">
+	<h2>${vote.title }(${vote.author.name })</h2>
+	<p class="desc">${vote.summary }</p>
+	<p>创建日期：${my:formatDate(vote.airTime) }</p>
+	<p>结束日期：${vote.deadline }</p>
+	<ul class="voteul">
 	<c:forEach items="${vote.items}" var="voteItem" varStatus="i">
-		<li>投票选项${i.count}：${voteItem.content } 票数：${voteItem.num } <br />
-		</li>
+		<li><span class="desc">票数：${voteItem.num }</span>${i.count}.${voteItem.content }</li>
 	</c:forEach>
-	<li>创建人：${vote.author.name }</li>
-	<li>创建日期：${vote.airTime }</li>
-	<li>结束日期：${vote.deadline }</li>
-	<li>参与人： <c:forEach items="${vote.voters}" var="voter"
-		varStatus="i">
-							${voter.name } ;
-					</c:forEach></li>
-</ul>
-<a target="content" href="<%=path%>/vote/deleteVote?vid=${vote.id}"
-	class="btn_del">删除</a>
+	</ul>
+	参与人：
+	<c:forEach items="${vote.voters}" var="voter" varStatus="i">
+	${voter.name }，
+	</c:forEach>
+	<h2>图表</h2>
+</div>
 <div id="chart" style=""></div>
