@@ -47,11 +47,12 @@ $(function(){
 <c:choose>
 <c:when test="${applicant!=null}">
 	<div>
-		申请入班级的人：
+		申请入班级的人：<br />
 		<c:forEach items="${applicant}" var="people">
 			<a target="content" href="<%=path%>/student/viewStudent?id=${people.id }">${people.name}</a>申请加入班级,
 			<a target="content" href="<%=path%>/classes/auditClasses?id=${people.id }&audit=1">通过申请</a>，
 			<a target="content" href="<%=path%>/classes/auditClasses?id=${people.id }&audit=0">拒绝申请</a>
+			<br/>
 		</c:forEach>
 	</div>
 </c:when>
@@ -108,8 +109,8 @@ $(function(){
 	<ul>
 	<c:forEach items="${classes.visitors}" var="visitor">
 		<li>
-			<a target="content" href="<%=path%>/student/viewStudent?id=${visitor.people.id }"><img src="<%=path %>/${visitor.people.avatar.minFileUrl}" width="50"></img></a>
-			<a target="content" href="<%=path%>/student/viewStudent?id=${visitor.people.id }">${visitor.people.name}</a>
+			<a target="content" href="<%=path%>/t/${visitor.people.username }"><img src="<%=path %>/${visitor.people.avatar.minFileUrl}" width="50"></img></a>
+			<a target="content" href="<%=path%>/t/${visitor.people.username }">${visitor.people.name}</a>
 			<fmt:formatDate value="${visitor.time }" pattern="MM-dd" />	
 		</li>
 	</c:forEach>
@@ -121,8 +122,8 @@ $(function(){
 	<ul>
 	<c:forEach items="${peoplenew}" var="people">
 		<li>
-			<a target="content" href="<%=path%>/student/viewStudent?id=${people.id }"><img src="<%=path %>/${people.avatar.minFileUrl}" width="50"></img></a>
-			<a target="content" href="<%=path%>/student/viewStudent?id=${people.id }">${people.name}</a>
+			<a target="content" href="<%=path%>/t/${people.username }"><img src="<%=path %>/${people.avatar.minFileUrl}" width="50"></img></a>
+			<a target="content" href="<%=path%>/t/${people.username }">${people.name}</a>
 		</li>
 	</c:forEach>
 	</ul>
@@ -133,8 +134,8 @@ $(function(){
 	<ul>
 	<c:forEach items="${peoplehot}" var="people">
 		<li>
-			<a target="content" href="<%=path%>/student/viewStudent?id=${people.id }"><img src="<%=path %>/${people.avatar.minFileUrl}" width="50"></img></a>
-			<a target="content" href="<%=path%>/student/viewStudent?id=${people.id }">${people.name}</a>
+			<a target="content" href="<%=path%>/t/${people.username }"><img src="<%=path %>/${people.avatar.minFileUrl}" width="50"></img></a>
+			<a target="content" href="<%=path%>/t/${people.username }">${people.name}</a>
 		</li>
 	</c:forEach>
 	</ul>

@@ -45,6 +45,10 @@
 			<key column="peopleId" />
 			<one-to-many class="Student" />
 		</set>
+		<set name="follower" lazy="true">
+			<key column="peopleId" />
+			<one-to-many class="Student" />
+		</set>
 		<set name="groups" table="t_group_people" lazy="true">
 			<key column="peopleId" />
 			<many-to-many class="Group" column="groupId" />
@@ -65,6 +69,12 @@
 			<key column="peopleId" />
 			<one-to-many class="Excel" />
 		</set>
+		
+		<list name="visitors" cascade="save-update">
+			<key column="visitorId" />
+			<index column="indexId" />
+			<one-to-many class="Visitor" />
+		</list>
 		<!--
 			学生
 		-->

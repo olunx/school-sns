@@ -1,6 +1,7 @@
 package cn.gdpu.vo;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 public class People {
@@ -64,6 +65,8 @@ public class People {
 	private Set<Group> groups;
 	private Set<Achievement> achievement;
 	private Set<People> friends;
+	private Set<People> follower;
+	private List<Visitor> visitors;
 
 	public int getId() {
 		return id;
@@ -312,4 +315,21 @@ public class People {
 	public void setRegTime(Date regTime) {
 		this.regTime = regTime;
 	}
+
+	public List<Visitor> getVisitors() {
+		return visitors;
+	}
+
+	public void setVisitors(List<Visitor> visitors) {
+		this.visitors = visitors;
+	}
+
+	public Set<People> getFollower() {
+		return follower;
+	}
+
+	public void setFollower(Set<People> follower) {
+		this.follower = follower;
+	}
+	
 }

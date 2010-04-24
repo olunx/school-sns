@@ -5,6 +5,12 @@
 %>
 <div id="sidebar">
 <div class="mod">
+<div>
+<form action="<%=path %>/people/searchPeople" method="post" onSubmit="post(this);return false;"  Class="form" >
+	<input type="text" name="search">
+	<input type="submit" value="查找">
+</form>
+</div>
 <h2>个人信息</h2>
 <p>
 什么东东都有。
@@ -23,8 +29,8 @@
 			<c:forEach items="${maybeMeet}" var="peopler" end="5">
 			<ul>
 				<li>
-					<a target="content" href="<%=path%>/student/viewStudent?id=${peopler.id }"><img src="<%=path %>/${peopler.avatar.minFileUrl}" width="50"></img></a><br/>
-					<a target="content" href="<%=path%>/student/viewStudent?id=${peopler.id }">${peopler.name}</a><br/>
+					<a target="content" href="<%=path%>/t/${peopler.username }"><img src="<%=path %>/${peopler.avatar.minFileUrl}" width="50"></img></a><br/>
+					<a target="content" href="<%=path%>/t/${peopler.username }">${peopler.name}</a><br/>
 				</li>
 			</ul>
 			</c:forEach>
