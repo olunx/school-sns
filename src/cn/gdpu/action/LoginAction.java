@@ -39,7 +39,7 @@ public class LoginAction extends BaseAction {
 	private People user;
 	private String repassword;
 	private String birthday;
-	private String referUrl = "";//Cookies登陆后跳转的地址
+	private String referUrl = "";// Cookies登陆后跳转的地址
 	private int schoolId;
 	private int protocol;
 	HttpServletResponse hsresponse = ServletActionContext.getResponse();
@@ -82,48 +82,52 @@ public class LoginAction extends BaseAction {
 							}
 						}
 					}
-					
-					Set<People> maybeMeet =new HashSet<People>();
-					String hql="";
-					if(people.getSchool() != null){                       
-						if(people.getClasses() != null){                    
-							//推荐班级好友    同一班级的
-							hql = "from People p where p.classes.id ='" +people.getClasses().getId() + "' and p.id <> '" + people.getId() +"' order by rand()";
+
+					Set<People> maybeMeet = new HashSet<People>();
+					String hql = "";
+					if (people.getSchool() != null) {
+						if (people.getClasses() != null) {
+							// 推荐班级好友 同一班级的
+							hql = "from People p where p.classes.id ='" + people.getClasses().getId() + "' and p.id <> '" + people.getId()
+									+ "' order by rand()";
 							List<People> cpeos = peopleService.queryForLimit(hql, 0, 5);
-							for(People peo : cpeos){
+							for (People peo : cpeos) {
 								maybeMeet.add(peo);
 							}
-							 //推荐学校好友不同一班级的
-							hql = "from People p where p.school.id ='" +people.getSchool().getId() + "' and p.classes.id <>'" +people.getClasses().getId() + "' and p.id <> '" + people.getId() +"' order by rand()";
+							// 推荐学校好友不同一班级的
+							hql = "from People p where p.school.id ='" + people.getSchool().getId() + "' and p.classes.id <>'"
+									+ people.getClasses().getId() + "' and p.id <> '" + people.getId() + "' order by rand()";
 							List<People> speos = peopleService.queryForLimit(hql, 0, 5);
-							for(People peo : speos){
+							for (People peo : speos) {
 								maybeMeet.add(peo);
 							}
-						}
-						else{             //推荐学校好友
-							hql = "from People p where p.school.id ='" +people.getSchool().getId() + "' and p.id <> '" + people.getId() +"' order by rand()";
+						} else { // 推荐学校好友
+							hql = "from People p where p.school.id ='" + people.getSchool().getId() + "' and p.id <> '" + people.getId()
+									+ "' order by rand()";
 							List<People> speos = peopleService.queryForLimit(hql, 0, 5);
-							for(People peo : speos){
+							for (People peo : speos) {
 								maybeMeet.add(peo);
 							}
-							
+
 						}
-						 //推荐好友不同一学校的
-						hql = "from People p where p.school.id <>'" +people.getSchool().getId() + "' and p.id <> '" + people.getId() +"' order by rand()";   
+						// 推荐好友不同一学校的
+						hql = "from People p where p.school.id <>'" + people.getSchool().getId() + "' and p.id <> '" + people.getId()
+								+ "' order by rand()";
 						List<People> peos = peopleService.queryForLimit(hql, 0, 5);
-						for(People peo : peos){
+						for (People peo : peos) {
 							maybeMeet.add(peo);
 						}
-					}else{
-						hql = "from People p where p.id <> '" + people.getId() +"' order by rand()";    //推荐好友
+					} else {
+						hql = "from People p where p.id <> '" + people.getId() + "' order by rand()"; // 推荐好友
 						List<People> peos = peopleService.queryForLimit(hql, 0, 5);
-						for(People peo : peos){
+						for (People peo : peos) {
 							maybeMeet.add(peo);
 						}
 					}
 					this.getSession().put("maybeMeet", maybeMeet);
 					this.getSession().put("isAccess", "true");
-					if (!referUrl.equals("")) return "redirect";
+					if (referUrl != null && !referUrl.equals(""))
+						return "redirect";
 					return super.SUCCESS;
 				}
 			} else {
@@ -133,13 +137,13 @@ public class LoginAction extends BaseAction {
 		}
 
 		// 绕过验证
-		//this.getSession().put("isAccess", "true");
-		//return super.SUCCESS;
+		// this.getSession().put("isAccess", "true");
+		// return super.SUCCESS;
 		return super.INDEX;
 	}
-	
+
 	@SkipValidation
-	private void cookieClean(){
+	private void cookieClean() {
 		// 清除cookies
 		Cookie[] cookies = hsrequest.getCookies();
 		if (cookies != null && cookies.length > 0) {
@@ -152,15 +156,17 @@ public class LoginAction extends BaseAction {
 			}
 		}
 	}
-	
+
 	@SkipValidation
-	public String cookieAuth(){
-		//检查cookies
+	public String cookieAuth() {
+		// 检查cookies
 		Cookie[] cookies = hsrequest.getCookies();
-		if (cookies!=null) {  
-			for (Cookie c : cookies){
-				if (c.getName().equals("username")) username = c.getValue();
-				if (c.getName().equals("password")) password = c.getValue();
+		if (cookies != null) {
+			for (Cookie c : cookies) {
+				if (c.getName().equals("username"))
+					username = c.getValue();
+				if (c.getName().equals("password"))
+					password = c.getValue();
 			}
 		}
 		referUrl = (String) this.getSession().get("referurl");
@@ -183,16 +189,15 @@ public class LoginAction extends BaseAction {
 	public String go() {
 		return "goLogin";
 	}
-	
+
 	@SkipValidation
 	public String login() {
 		Cookie[] cookies = hsrequest.getCookies();
-		if (cookies!=null) {
+		if (cookies != null) {
 			return cookieAuth();
 		}
 		return super.INDEX;
 	}
-
 
 	public String getUsername() {
 		return username;
