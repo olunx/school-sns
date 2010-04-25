@@ -5,6 +5,7 @@ import java.util.List;
 
 import cn.gdpu.dao.BaseDao;
 import cn.gdpu.service.BaseService;
+import cn.gdpu.util.Log;
 import cn.gdpu.util.PageBean;
 
 public abstract class BaseServiceImpl<T, ID extends Serializable, GeneralDAO extends BaseDao<T, ID>> implements BaseService<T, ID> {
@@ -48,7 +49,7 @@ public abstract class BaseServiceImpl<T, ID extends Serializable, GeneralDAO ext
 
 	@Override
 	public PageBean queryForPage(String hql, int pageSize, int page) {
-		System.out.println("hql--------" + hql);
+		Log.init(getClass()).info("queryForPagehql---" + hql);
 		int allRow = baseDao.getAllRowCount(hql); // 总记录数
 		int totalPage = PageBean.countTotalPage(pageSize, allRow); // 总页数
 		page = page > totalPage ? totalPage : page; // 防止删除最后一条记录，不能向上一页返回
