@@ -68,10 +68,7 @@ $(function(){
 		<c:forEach items="${classes.replys}" var="reply">
 		<div class="class_msg">
 			<div class="avatar">
-				<c:choose>
-					<c:when test="${reply.author.avatar.minFileUrl!=null}"><img src="<%=path %>/${reply.author.avatar.minFileUrl}" /></c:when>
-					<c:otherwise><img src="<%=path%>/content/images/avatar.jpg" /></c:otherwise>
-				</c:choose>
+				<img src="<%=path %>/avatar/${reply.author.id}" />
 			</div>
 			<div class="msg">
 			<div class="operate">
@@ -109,7 +106,7 @@ $(function(){
 	<ul>
 	<c:forEach items="${classes.visitors}" var="visitor">
 		<li>
-			<a target="content" href="<%=path%>/t/${visitor.people.username }"><img src="<%=path %>/${visitor.people.avatar.minFileUrl}" width="50"></img></a>
+			<a target="content" href="<%=path%>/t/${visitor.people.username }"><img src="<%=path %>/avatar/${visitor.people.id}" width="50"></img></a>
 			<a target="content" href="<%=path%>/t/${visitor.people.username }">${visitor.people.name}</a>
 			<fmt:formatDate value="${visitor.time }" pattern="MM-dd" />	
 		</li>
@@ -122,7 +119,7 @@ $(function(){
 	<ul>
 	<c:forEach items="${peoplenew}" var="people">
 		<li>
-			<a target="content" href="<%=path%>/t/${people.username }"><img src="<%=path %>/${people.avatar.minFileUrl}" width="50"></img></a>
+			<a target="content" href="<%=path%>/t/${people.username }"><img src="<%=path %>/avatar/${people.id}" width="50"></img></a>
 			<a target="content" href="<%=path%>/t/${people.username }">${people.name}</a>
 		</li>
 	</c:forEach>
@@ -134,7 +131,7 @@ $(function(){
 	<ul>
 	<c:forEach items="${peoplehot}" var="people">
 		<li>
-			<a target="content" href="<%=path%>/t/${people.username }"><img src="<%=path %>/${people.avatar.minFileUrl}" width="50"></img></a>
+			<a target="content" href="<%=path%>/t/${people.username }"><img src="<%=path %>/avatar/${people.id}" width="50"></img></a>
 			<a target="content" href="<%=path%>/t/${people.username }">${people.name}</a>
 		</li>
 	</c:forEach>

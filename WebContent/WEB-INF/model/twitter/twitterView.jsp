@@ -7,7 +7,7 @@
 	String path = request.getContextPath();
 %>
 	<div>
-		<a href="<%=path %>/t/${people.username}"><img src="<%=path %>/${people.avatar.minFileUrl}" width="124"></img><br/></a>
+		<a href="<%=path %>/t/${people.username}"><img src="<%=path%>/avatar/${people.id}" width="124"></img><br/></a>
 		${people.name }<br>
 		<a href="<%=path %>/t/${people.username}"><%=path %>/t/${people.username}</a><br/>
 		他广播的：${fn:length(pageBean.list)}条 |
@@ -31,15 +31,12 @@
 		<c:otherwise>
 			<div id="topic_list"><c:forEach items="${pageBean.list}" var="twitter"><div class="list">
 			<div class="avatar">
-			<c:choose>
-				<c:when test="${twitter.author.avatar.minFileUrl!=null}"><img src="<%=path%>${twitter.author.avatar.minFileUrl}" /></c:when>
-				<c:otherwise><img src="<%=path%>/content/images/avatar.jpg" /></c:otherwise>
-			</c:choose>
+				<img src="<%=path%>/avatar/${twitter.author.id}" />
 			</div>
 			<div class="topic_msg">
 			<div class="time" title="${twitter.time }">${my:formatDate(twitter.time)}</div>
 			<p class="content"><a href="#">${twitter.author.name}</a> ${twitter.content}
-			<c:if test="${twitter.image != null}"><img src="<%=path %>${twitter.image.minFileUrl}" /></c:if>
+			<c:if test="${!empty twitter.image && !empty twitter.image.minFileUrl}"><img src="<%=path %>${twitter.image.minFileUrl}" /></c:if>
 			</p>
 			      		<div class="operate">
 						<a target="content" href="<%=path%>/twitter/deleteTwitter?id=${twitter.id }&page=${page}" class="btn_del">删除</a> <a target="content" href="<%=path%>/twitter/goReplyTwitter?id=${twitter.id }">回复</a>
@@ -48,14 +45,9 @@
 							<c:when test="${twitter.reply != null && fn:length(twitter.reply)>0}">
 			 				<div class="reply"><c:forEach items="${twitter.reply}" var="reply">
 									<div class="reply_list">
-									<div class="reply_avatar"><c:choose>
-										<c:when test="${reply.author.avatar.minFileUrl!=null}">
-											<img src="<%=path%>${reply.author.avatar.minFileUrl}" />
-										</c:when>
-										<c:otherwise>
-											<img src="<%=path%>/content/images/avatar.jpg" />
-										</c:otherwise>
-									</c:choose></div>
+									<div class="reply_avatar">
+										<img src="<%=path%>/avatar/${reply.author.id}" />
+									</div>
 									<p class="reply_content"><a href="#">${reply.author.name}</a> ${reply.content}<br />
 									<span class="replytime">${my:formatDate(reply.time)}</span></p>
 									</div>
@@ -104,7 +96,7 @@
 			<c:forEach items="${people.friends}" var="friends">
 			<ul>
 				<li>
-					<a target="content" href="<%=path%>/student/viewStudent?id=${friends.id }"><img src="<%=path %>/${friends.avatar.minFileUrl}" width="50"></img></a><br/>
+					<a target="content" href="<%=path%>/student/viewStudent?id=${friends.id }"><img src="<%=path %>/avatar/${friends.id}" width="50"></img></a><br/>
 					<a target="content" href="<%=path%>/student/viewStudent?id=${friends.id }">${friends.name}</a><br/>
 				</li>
 			</ul>
@@ -117,7 +109,7 @@
 			<c:forEach items="${people.visitors}" var="visitor">
 			<ul>
 				<li>
-					<a target="content" href="<%=path%>/student/viewStudent?id=${visitor.people.id }"><img src="<%=path %>/${visitor.people.avatar.minFileUrl}" width="50"></img></a><br/>
+					<a target="content" href="<%=path%>/student/viewStudent?id=${visitor.people.id }"><img src="<%=path %>/avatar/${visitor.people.id}" width="50"></img></a><br/>
 					<a target="content" href="<%=path%>/student/viewStudent?id=${visitor.people.id }">${visitor.people.name}</a><br/>
 					<fmt:formatDate value="${visitor.time }" pattern="HH:mm MM-dd" />	
 				</li>

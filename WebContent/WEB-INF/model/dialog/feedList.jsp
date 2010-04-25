@@ -13,10 +13,7 @@
 		<c:forEach items="${pageBean.list}" var="feed">
 		<div class="list">
 			<div class="avatar">
-				<c:choose>
-					<c:when test="${feed.author.avatar.minFileUrl!=null}"><img src="<%=path%>${feed.author.avatar.minFileUrl}" /></c:when>
-					<c:otherwise><img src="<%=path%>/content/images/avatar.jpg" /></c:otherwise>
-				</c:choose>
+				<img src="<%=path%>/avatar/${feed.author.id}" />
 			</div>
 			<div class="topic_msg">
 				<div class="time" title="${feed.time}">${my:formatDate(feed.time)}</div>

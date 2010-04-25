@@ -42,10 +42,7 @@
 		<c:forEach items="${goods.reply}" var="reply">
 		<div class="class_msg">
 			<div class="avatar">
-				<c:choose>
-					<c:when test="${reply.author.avatar.minFileUrl!=null}"><img src="<%=path %>/${reply.author.avatar.minFileUrl}" /></c:when>
-					<c:otherwise><img src="<%=path%>/content/images/avatar.jpg" /></c:otherwise>
-				</c:choose>
+				<img src="<%=path %>/avatar/${reply.author.id}" />
 			</div>
 			<div class="msg">
 			<div class="operate">

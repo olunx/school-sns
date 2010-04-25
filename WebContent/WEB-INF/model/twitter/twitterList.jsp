@@ -11,10 +11,7 @@
 <a>没有数据</a>
 </c:when><c:otherwise><div id="topic_list"><c:forEach items="${pageBean.list}" var="twitter"><div class="list">
 <div class="avatar">
-<c:choose>
-	<c:when test="${twitter.author.avatar.minFileUrl!=null}"><img src="<%=path%>${twitter.author.avatar.minFileUrl}" /></c:when>
-	<c:otherwise><img src="<%=path%>/content/images/avatar.jpg" /></c:otherwise>
-</c:choose>
+<img src="<%=path%>/avatar/${twitter.author.id}" />
 </div>
 <div class="topic_msg">
 <div class="time" title="${twitter.time }">${my:formatDate(twitter.time)}</div>
@@ -28,14 +25,9 @@
 				<c:when test="${twitter.reply != null && fn:length(twitter.reply)>0}">
  				<div class="reply"><c:forEach items="${twitter.reply}" var="reply">
 						<div class="reply_list">
-						<div class="reply_avatar"><c:choose>
-							<c:when test="${reply.author.avatar.minFileUrl!=null}">
-								<img src="<%=path%>${reply.author.avatar.minFileUrl}" />
-							</c:when>
-							<c:otherwise>
-								<img src="<%=path%>/content/images/avatar.jpg" />
-							</c:otherwise>
-						</c:choose></div>
+						<div class="reply_avatar">
+						<img src="<%=path%>/avatar/${reply.author.id}" />
+						</div>
 						<p class="reply_content"><a href="#">${reply.author.name}</a> ${reply.content}<br />
 						<span class="replytime">${my:formatDate(reply.time)}</span></p>
 						</div>

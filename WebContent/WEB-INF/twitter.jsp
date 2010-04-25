@@ -10,7 +10,7 @@
 <jsp:include page="submenu.jsp"></jsp:include>
 <div id="main" class="corner">
 	<div>
-		<a href="<%=path %>/t/${people.username}"><img src="<%=path %>/${people.avatar.minFileUrl}" width="124"></img><br/></a>
+		<a href="<%=path %>/t/${people.username}"><img src="<%=path %>/avatar/${people.id}" width="124"></img><br/></a>
 		${people.name }<br>
 		<a href="<%=path %>/t/${people.username}"><%=path %>/t/${people.username}</a><br/>
 		他广播的：00xx |
@@ -39,7 +39,7 @@ $(function() {
 			<c:forEach items="${people.friends}" var="friends">
 			<ul>
 				<li>
-					<a target="content" href="<%=path%>/student/viewStudent?id=${friends.id }"><img src="<%=path %>/${friends.avatar.minFileUrl}" width="50"></img></a><br/>
+					<a target="content" href="<%=path%>/student/viewStudent?id=${friends.id }"><img src="<%=path %>/avatar/${friends.id}" width="50"></img></a><br/>
 					<a target="content" href="<%=path%>/student/viewStudent?id=${friends.id }">${friends.name}</a><br/>
 				</li>
 			</ul>
@@ -52,7 +52,7 @@ $(function() {
 		<c:forEach items="${people.visitors}" var="visitor">
 		<ul>
 			<li>
-				<a target="content" href="<%=path%>/student/viewStudent?id=${visitor.people.id }"><img src="<%=path %>/${visitor.people.avatar.minFileUrl}" width="50"></img></a><br/>
+				<a target="content" href="<%=path%>/student/viewStudent?id=${visitor.people.id }"><img src="<%=path %>/avatar/${visitor.people.id}" width="50"></img></a><br/>
 				<a target="content" href="<%=path%>/student/viewStudent?id=${visitor.people.id }">${visitor.people.name}</a><br/>
 				<fmt:formatDate value="${visitor.time }" pattern="HH:mm MM-dd" />	
 			</li>
