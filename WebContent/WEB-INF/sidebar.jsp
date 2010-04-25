@@ -29,7 +29,7 @@
 			<c:forEach items="${maybeMeet}" var="peopler" end="5">
 			<ul>
 				<li>
-					<a target="content" href="<%=path%>/t/${peopler.username }"><img src="<%=path %>/${peopler.avatar.minFileUrl}" width="50"></img></a><br/>
+					<a target="content" href="<%=path%>/t/${peopler.username }"><img src="<%=path %>/avatar/${peopler.id}" width="50"></img></a><br/>
 					<a target="content" href="<%=path%>/t/${peopler.username }">${peopler.name}</a><br/>
 				</li>
 			</ul>

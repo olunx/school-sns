@@ -13,7 +13,7 @@
 <p><label> 手机： </label> <input type="text" name="people.phoneNo" value="${people.phoneNo}" /></p>
 <p><label> QQ： </label> <input type="text" name="people.qq" value="${people.qq}" /></p>
 <p><label> 邮箱： </label> <input type="text" name="people.email" value="${people.email}" /></p>
-<p><label> 头像： </label> <img src="<%=path %>${people.avatar.minFileUrl}"></img></p>
+<p><label> 头像： </label> <img src="<%=path %>/avatar/${people.id}"></img></p>
 <p><label> 参加的小组： </label>
 <c:if test="${people.groups != null}">
 	<c:forEach items="${people.groups}" var="group">
