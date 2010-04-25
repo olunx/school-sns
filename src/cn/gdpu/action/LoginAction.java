@@ -39,6 +39,7 @@ public class LoginAction extends BaseAction {
 	private People user;
 	private String repassword;
 	private String birthday;
+	private String referUrl = "";//Cookies登陆后跳转的地址
 	private int schoolId;
 	private int protocol;
 	HttpServletResponse hsresponse = ServletActionContext.getResponse();
@@ -121,8 +122,8 @@ public class LoginAction extends BaseAction {
 						}
 					}
 					this.getSession().put("maybeMeet", maybeMeet);
-						
 					this.getSession().put("isAccess", "true");
+					if (!referUrl.equals("")) return "redirect";
 					return super.SUCCESS;
 				}
 			} else {
@@ -162,6 +163,8 @@ public class LoginAction extends BaseAction {
 				if (c.getName().equals("password")) password = c.getValue();
 			}
 		}
+		referUrl = (String) this.getSession().get("referurl");
+		this.getSession().remove("referurl");
 		return auth();
 	}
 
@@ -293,5 +296,13 @@ public class LoginAction extends BaseAction {
 
 	public void setSchoolId(int schoolId) {
 		this.schoolId = schoolId;
+	}
+
+	public String getReferUrl() {
+		return referUrl;
+	}
+
+	public void setReferUrl(String referUrl) {
+		this.referUrl = referUrl;
 	}
 }

@@ -4,6 +4,7 @@ import java.util.Map;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.struts2.StrutsStatics;
 
@@ -23,6 +24,7 @@ public class AuthInterceptor extends AbstractInterceptor {
 	public String intercept(ActionInvocation invocation) throws Exception {
 		ActionContext actionContext = invocation.getInvocationContext();
 		HttpServletRequest request = (HttpServletRequest) actionContext.get(StrutsStatics.HTTP_REQUEST);
+		HttpServletResponse response = (HttpServletResponse) actionContext.get(StrutsStatics.HTTP_RESPONSE);
 		session = actionContext.getSession();
 
 		Log.init(getClass()).info("session isAccess: " + session.get("isAccess"));
@@ -39,20 +41,34 @@ public class AuthInterceptor extends AbstractInterceptor {
 			Log.init(getClass()).info("验证成功。");
 			return invocation.invoke();
 		}
-		
-		//检查cookies
+
+		// 检查cookies
 		Cookie[] cookies = request.getCookies();
 		String username = "";
 		String password = "";
-		if (cookies!=null) {  
-			for (Cookie c : cookies){
-				if (c.getName().equals("username")) username = c.getValue();
-				if (c.getName().equals("password")) password = c.getValue();
+		if (cookies != null) {
+			for (Cookie c : cookies) {
+				if (c.getName().equals("username"))
+					username = c.getValue();
+				if (c.getName().equals("password"))
+					password = c.getValue();
 			}
 		}
-		if (!username.equals("") && !password.equals("")){
-			Log.init(getClass()).info("Cookies存在，重新验证。username:"+username+" password:"+password);
-			return "cookieauth";//重新登陆
+
+		if (!username.equals("") && !password.equals("")) {
+			Log.init(getClass()).info("Cookies存在，重新验证。username:" + username + " password:" + password);
+			String url = "";
+			String namespace = invocation.getProxy().getNamespace();
+			String actionName = invocation.getProxy().getActionName();
+			if (!namespace.equals("") && !namespace.equals("/")) {
+				url = url + namespace;
+			}
+			if (!actionName.equals(""))
+				url = url + "/" + actionName;
+				Log.init(getClass()).info("url:"+url);
+				session.put("referurl", url);
+			// return invocation.invoke();//跳过验证
+			return "cookieauth";// 重新登陆
 		}
 
 		Log.init(getClass()).info("验证失败。");

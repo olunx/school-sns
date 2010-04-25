@@ -34,6 +34,7 @@
 	<package name="login" extends="struts-default" namespace="/">
 		<global-results>
 			<result name="success" type="redirectAction">home</result>
+			<result name="redirect" type="redirect">${referUrl}</result>
 			<result name="index">/login.jsp</result>
 			<result name="goLogin">/WEB-INF/model/dialog/login.jsp</result>
 		</global-results>
@@ -71,6 +72,14 @@
 			<result name="index">/WEB-INF/model/dialog/feedList.jsp</result>
 		</global-results>
 		<action name="*Feed" class="cn.gdpu.action.FeedAction" method="{1}"></action>
+	</package>
+	
+	<!-- 地址返回头像 -->
+	<package name="avatar" extends="default" namespace="/avatar">
+		<global-results>
+			<result name="index">/WEB-INF/model/image/avatar.jsp</result>
+		</global-results>
+		<action name="*" class="cn.gdpu.action.AvatarAction"></action>
 	</package>
 	
 </struts>    
