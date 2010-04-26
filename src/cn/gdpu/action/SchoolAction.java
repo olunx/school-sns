@@ -35,6 +35,7 @@ public class SchoolAction extends BaseAction {
 	private String[] names;
 	private PageBean pageBean;
 	private int page;
+	private String search;
 	
 	@Override
 	public String add() {
@@ -203,6 +204,15 @@ public class SchoolAction extends BaseAction {
 		
 		return "view";
 	}
+	
+	public String search() {
+		String hql = "from School s where s.name like '%" + search + "%'";
+		this.pageBean = this.schoolService.queryForPage(hql, 30, page);
+		if(pageBean.getList().isEmpty())
+    		pageBean.setList(null);
+		return super.list();
+
+	}
 
 	public SchoolService<School, Integer> getSchoolService() {
 		return schoolService;
@@ -307,4 +317,13 @@ public class SchoolAction extends BaseAction {
 	public void setPage(int page) {
 		this.page = page;
 	}
+
+	public String getSearch() {
+		return search;
+	}
+
+	public void setSearch(String search) {
+		this.search = search;
+	}
+	
 }

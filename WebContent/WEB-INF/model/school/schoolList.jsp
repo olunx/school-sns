@@ -5,9 +5,13 @@
 <%
 	String path = request.getContextPath();
 %>
-
+<div>
+<form action="<%=path %>/school/searchSchool" method="post" onSubmit="post(this);return false;"  Class="form" >
+	<input type="text" name="search">
+	<input type="submit" value="搜索">
+</form>
+</div>
 <c:choose>
-
 	<c:when test="${pageBean.list==null}">
 		<a>没有数据</a>
 	</c:when>
@@ -23,8 +27,10 @@
 				<th>学校</th>
 				<th>学院个数</th>
 				<th>管理员个数</th>
+				<c:if test="${admin != null}">
 				<th>修改</th>
 				<th>删除</th>
+				</c:if>
 			</tr>
 			<c:forEach items="${pageBean.list}" var="school">
 				<tr>						

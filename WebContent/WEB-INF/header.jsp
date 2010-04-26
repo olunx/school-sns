@@ -65,8 +65,8 @@ $(document).ready(function() {
 
 	<c:otherwise>
 		<a href="#">登录</a>
-      | <!--<a onclick="return hs.htmlExpand(this, { objectType: 'iframe' } )" href="<%=path%>/goRegister">注册</a>	-->
-      <a href="<%=path%>/goRegister">注册</a>
+      | <a onclick="return hs.htmlExpand(this, { objectType: 'iframe' } )" href="<%=path%>/goRegister">注册</a>
+     <!-- <a href="<%=path%>/goRegister">注册</a>	-->
       </c:otherwise>
 
 </c:choose></div>

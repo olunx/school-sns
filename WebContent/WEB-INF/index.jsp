@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="my" uri="http://gdpu.cn/functions"%>
 <%
 	String path = request.getContextPath();
 %>
@@ -39,11 +42,11 @@
 		</div>
 	</div>
 	
-	<h2>最新动态：</h2>
+	<h2>好友动态：</h2>
 	<div id="feed">
 		<div id="topic_list"></div>
-	</div>
-</div>
+		</div>
+    </div>
 <jsp:include page="sidebar.jsp"></jsp:include>
 </div>
 <jsp:include page="footer.jsp"></jsp:include>

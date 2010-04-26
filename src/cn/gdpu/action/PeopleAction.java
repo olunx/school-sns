@@ -6,24 +6,32 @@ import java.util.Set;
 
 import org.apache.commons.beanutils.BeanUtils;
 
+import cn.gdpu.service.ClassesService;
 import cn.gdpu.service.ImageService;
 import cn.gdpu.service.PeopleService;
+import cn.gdpu.service.SchoolService;
 import cn.gdpu.util.Log;
 import cn.gdpu.util.PageBean;
 import cn.gdpu.util.excel.StudentExcel;
+import cn.gdpu.vo.Classes;
 import cn.gdpu.vo.Group;
 import cn.gdpu.vo.Image;
 import cn.gdpu.vo.People;
+import cn.gdpu.vo.School;
 import cn.gdpu.vo.Student;
 
 @SuppressWarnings("serial")
 public class PeopleAction extends BaseAction {
 
 	private int id;
+	private int schoolId;
+	private int classesId;
 	private Integer[] ids;
 	private String search;
 	private People people;
 	private PeopleService<People, Integer> peopleService;
+	private SchoolService<School, Integer> schoolService;
+	private ClassesService<Classes, Integer> classesService;
 	private PageBean pageBean;
 	private int page;
 	private Image image;
@@ -161,12 +169,36 @@ public class PeopleAction extends BaseAction {
 			if (author instanceof People) {
 				People people = (People) author;
 				String hql = "from People p where p.id<>'" + people.getId() + "' and ( p.name like '%" + search + "%' or p.username like '%" + search + "%' or p.sno like '%" + search + "%' ) order by p.activity DESC";
-				System.out.println("------------------------------" + hql);
 				this.pageBean = this.peopleService.queryForPage(hql, 30, page);
 				if(pageBean.getList().isEmpty())
 		    		pageBean.setList(null);
 			}
 		}
+		return super.list();
+
+	}
+	
+	/**
+	 *查找学校的所以成员
+	 */
+	public String school() {
+		School school = schoolService.getEntity(School.class, id);
+		String hql = "from People p where p.school.id ='" + school.getId() + "' order by p.activity DESC";
+		this.pageBean = this.peopleService.queryForPage(hql, 30, page);
+		if(pageBean.getList().isEmpty())
+    		pageBean.setList(null);
+		return super.list();
+	}
+	
+	/**
+	 *查找班级的所以成员
+	 */
+	public String classes() {
+		Classes classes= classesService.getEntity(Classes.class, id);
+		String hql = "from People p where p.classes.id ='" + classes.getId() + "' order by p.activity DESC";
+		this.pageBean = this.peopleService.queryForPage(hql, 30, page);
+		if(pageBean.getList().isEmpty())
+    		pageBean.setList(null);
 		return super.list();
 
 	}
@@ -241,6 +273,38 @@ public class PeopleAction extends BaseAction {
 
 	public void setSearch(String search) {
 		this.search = search;
+	}
+
+	public SchoolService<School, Integer> getSchoolService() {
+		return schoolService;
+	}
+
+	public void setSchoolService(SchoolService<School, Integer> schoolService) {
+		this.schoolService = schoolService;
+	}
+
+	public int getSchoolId() {
+		return schoolId;
+	}
+
+	public void setSchoolId(int schoolId) {
+		this.schoolId = schoolId;
+	}
+
+	public int getClassesId() {
+		return classesId;
+	}
+
+	public void setClassesId(int classesId) {
+		this.classesId = classesId;
+	}
+
+	public ClassesService<Classes, Integer> getClassesService() {
+		return classesService;
+	}
+
+	public void setClassesService(ClassesService<Classes, Integer> classesService) {
+		this.classesService = classesService;
 	}
 
 }

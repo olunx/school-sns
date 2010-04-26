@@ -13,12 +13,15 @@ import cn.gdpu.service.GroupService;
 import cn.gdpu.service.IssueTypeService;
 import cn.gdpu.service.PeopleService;
 import cn.gdpu.service.StudentService;
+import cn.gdpu.service.TwitterService;
 import cn.gdpu.util.Log;
+import cn.gdpu.util.PageBean;
 import cn.gdpu.vo.GoodsType;
 import cn.gdpu.vo.Group;
 import cn.gdpu.vo.IssueType;
 import cn.gdpu.vo.People;
 import cn.gdpu.vo.Student;
+import cn.gdpu.vo.Twitter;
 
 @SuppressWarnings("serial")
 public class HomeAction extends BaseAction {
@@ -29,12 +32,21 @@ public class HomeAction extends BaseAction {
 	private GroupService<Group, Integer> groupService;
 	private IssueTypeService<IssueType, Integer> issueTypeService;
 	private GoodsTypeService<GoodsType, Integer> goodsTypeService;
+	private TwitterService<Twitter, Integer> twitterService;
 	private Student student;
+	private PageBean pageBean;
+	private int page;
 
 	public String home() {
 		People user = (People) this.getSession().get("user");
 		if (user instanceof Student) {
 			student = studentService.getEntity(Student.class, user.getId());
+			this.pageBean = this.twitterService.queryForPage("from Twitter t where t.istopic = '1' and t.author.id = '" + user.getId()
+					+ "' order by t.time DESC", 10, page);
+			if (pageBean.getList().isEmpty()) {
+				pageBean.setList(null);
+			}
+			
 		}
 		
 		//获取问答类型
@@ -136,6 +148,30 @@ public class HomeAction extends BaseAction {
 
 	public void setGoodsTypeService(GoodsTypeService<GoodsType, Integer> goodsTypeService) {
 		this.goodsTypeService = goodsTypeService;
+	}
+
+	public TwitterService<Twitter, Integer> getTwitterService() {
+		return twitterService;
+	}
+
+	public void setTwitterService(TwitterService<Twitter, Integer> twitterService) {
+		this.twitterService = twitterService;
+	}
+
+	public PageBean getPageBean() {
+		return pageBean;
+	}
+
+	public void setPageBean(PageBean pageBean) {
+		this.pageBean = pageBean;
+	}
+
+	public int getPage() {
+		return page;
+	}
+
+	public void setPage(int page) {
+		this.page = page;
 	}
 
 }
