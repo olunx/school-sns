@@ -59,7 +59,7 @@
 	<!-- 个人微博首页 -->
 	<package name="t" extends="default" namespace="/t">
 		<global-results>
-			<result name="success">/WEB-INF/model/twitter/twitterView.jsp</result>
+			<result name="success">/WEB-INF/twitter.jsp</result>
 		</global-results>
 		<action name="*" class="cn.gdpu.action.TAction" ></action>
 	</package>
@@ -69,6 +69,8 @@
 		<global-results>
 			<result name="list" type="redirect">listFeed?page=${page}</result>
 			<result name="index">/WEB-INF/model/dialog/feedList.jsp</result>
+			<result name="schoolIndex">/WEB-INF/model/dialog/feedSchoolList.jsp</result>
+			<result name="classIndex">/WEB-INF/model/dialog/feedClassList.jsp</result>
 		</global-results>
 		<action name="*Feed" class="cn.gdpu.action.FeedAction" method="{1}"></action>
 	</package>

@@ -5,29 +5,9 @@
 %>
 <script type="text/javascript">
 	$(function() {
-		$("#topic_list").load("<%=path%>/feed/listFeed", list);
+		$("#topic_list").load("<%=path%>/feed/listFeed");
 		initHighslide("<%=path%>", "480", "400");
 	});
-
-	function list(){
-	    $("a[target='list']").click(function(){
-	    	var href = $(this).attr('href');
-		    $("#more_feed").remove();
-
-	        $.ajax({
-	            url: href,
-	            type: 'GET',
-	            success: function(result){
-	        		$("#topic_list").append(result);
-	        		list();
-	            }
-	        });
-	        
-	        return false;
-	    });
-
-	    ajax();
-    }
 </script>
 
 <div id="news">

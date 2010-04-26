@@ -10,7 +10,7 @@
 <div id="main">
 <div id="content">
 <jsp:include page="center.jsp"></jsp:include>
-    </div>
+</div>
 <jsp:include page="sidebar.jsp"></jsp:include>
 </div>
 <jsp:include page="footer.jsp"></jsp:include>

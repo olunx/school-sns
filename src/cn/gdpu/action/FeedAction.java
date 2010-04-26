@@ -198,6 +198,31 @@ public class FeedAction extends BaseAction {
 
 		return super.list();
 	}
+	
+	public String listSchool() {
+		
+		People user = (People) this.getSession().get("user");
+		user = peopleService.getEntity(People.class, user.getId());
+		
+		pageBean = feedService.queryForPage("from Feed f where f.author.school = '" + user.getSchool().getId() + "' order by f.time desc", 10, page);
+		if (pageBean.getList().isEmpty()) {
+			pageBean.setList(null);
+		}
+		
+		return "schoolIndex";
+	}
+	
+	public String listClass() {
+		People user = (People) this.getSession().get("user");
+		user = peopleService.getEntity(People.class, user.getId());
+		
+		pageBean = feedService.queryForPage("from Feed f where f.author.classes = '" + user.getClasses() + "' order by f.time desc", 10, page);
+		if (pageBean.getList().isEmpty()) {
+			pageBean.setList(null);
+		}
+		
+		return "classIndex";
+	}
 
 	public FeedService<Feed, Integer> getFeedService() {
 		return feedService;
