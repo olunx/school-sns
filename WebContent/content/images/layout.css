@@ -108,39 +108,29 @@ img{ border:none;}
 .class_msg_list .class_msg .reply{ background:#e8f3ff; margin:0 20px 0 20px;}
 .class_msg_list .class_msg .reply p{ margin-bottom:5px; border-bottom:2px solid #fff; padding:5px;}
 .class_msg_list .class_msg .operate{ float:right; text-align:right;}
+/*问答*/
+.issue_question{ background:#eee; padding:5px; margin-bottom:10px;}
+.issue_question .q_user{ float:right;}
+.issue_question .time,.issue_otherans .time,.issue_best .time{ color:#666;}
+.issue_question .content{ font-size:14px; margin:10px 5px; line-height:25px;}
+.issue_question .money{ color:#e97516;}
+
+.issue_otherans { background:#dff3be; padding:5px; margin-bottom:10px;}
+.issue_otherans .list{ border-bottom:1px dashed #ccc; padding:5px 0;}
+.issue_otherans .list p{ font-size:14px; line-height:25px;}
+.issue_otherans .avatar { float:left; padding:0 5px 5px 5px;}
+.issue_otherans .avatar img{ width:40px; height:40px;}
+.issue_otherans .time{ float:right;}
+.issue_best{ background:#fef9d3; padding:5px; margin-bottom:10px;}
 /*内页导航链接*/
 .nav {clear:both; padding-bottom:22px;}
 .nav li {float:left;margin-right:10px;}
 .nav li a{}
 /*分页*/
-#pagecount {float: right;}
-#pagecount p {
-    float: left;
-    line-height: 21px;
-    padding-right: 5px;
-    font-size: 13px;
-    font-weight: bold;
-    color: #295568;
-}
-
-#pagecount a {
-    background: transparent url(btn_page_r.gif) no-repeat scroll top right;
-    color: #295568;
-    float: left;
-    display: block;
-    height: 21px;
-    margin-right: 6px;
-    padding-right: 5px; /* sliding doors padding */
-    text-decoration: none;
-    font-size: 13px;
-}
-
-#pagecount span {
-    background: transparent url(btn_page_l.gif) no-repeat;
-    display: block;
-    line-height: 14px;
-    padding: 5px 0 5px 5px;
-}
+#pagecount{float:right;}
+#pagecount p{float:left;line-height:21px;padding-right:5px;font-size:13px;font-weight:700;color:#295568;}
+#pagecount a{background:transparent url(btn_page_r.gif) no-repeat scroll top right;color:#295568;float:left;display:block;height:21px;margin-right:6px;padding-right:5px;/* sliding doors padding */text-decoration:none;font-size:13px;}
+#pagecount span{background:transparent url(btn_page_l.gif) no-repeat;display:block;line-height:14px;padding:5px 0 5px 5px;}
 /*侧栏*/
 .mod {clear:both;}
 #sidebar .mod li{ float:left;white-space:nowrap;}

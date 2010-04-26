@@ -21,8 +21,10 @@ public class Functions {
 			return hour + "小时前";
 		else if (longtime > 60)
 			return min + "分钟前";
-		else if (sec > 0)
+		else if (sec > 10)
 			return sec + "秒前";
+		else if (sec >= 0)
+			return "刚刚";
 		else
 			return new SimpleDateFormat("yyyy-MM-dd hh:mm").format(date);
 	};
