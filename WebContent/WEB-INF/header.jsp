@@ -43,7 +43,7 @@ $(document).ready(function() {
 <div class="logo"><a href="">LOGO</a></div>
 <div class="menuk">
 <ul class="menu">
-	<li><a href="<%=path%>/home">我的大厅</a></li>
+	<li><a target="content" href="<%=path%>/center">我的大厅</a></li>
 	<c:if test="${student != null}">
 		<li><a target="content" href="<%=path %>/school/viewSchool?id=${user.school.id}">学校</a></li>
 		<li><a target="content" href="<%=path %>/classes/viewClasses?id=${user.classes == null? -1: user.classes.id}">班级</a></li>

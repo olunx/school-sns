@@ -11,6 +11,9 @@
 	color:#2276BB;
 	text-decoration:none;
 }
+label.error {
+	color:red;
+}
 #twitter p {
 	padding:10px 0;
 }

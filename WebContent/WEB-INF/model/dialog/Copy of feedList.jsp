@@ -10,29 +10,27 @@
 					没有数据！
 	</c:when>
 	<c:otherwise>
+		<div id="topic_list">
 		<c:forEach items="${pageBean.list}" var="feed">
 		<div class="list">
 			<div class="avatar">
-				<img src="<%=path%>/avatar/${feed.author.id}" />
+				<c:choose>
+					<c:when test="${feed.author.avatar.minFileUrl!=null}"><img src="<%=path%>${feed.author.avatar.minFileUrl}" /></c:when>
+					<c:otherwise><img src="<%=path%>/content/images/avatar.jpg" /></c:otherwise>
+				</c:choose>
 			</div>
 			<div class="topic_msg">
 				<div class="time" title="${feed.time}">${my:formatDate(feed.time)}</div>
-				<p class="content"><a target="content" href="<%=path%>/t/${feed.author.username}">${feed.author.name}</a> 
+				<p class="content"><a href="#">${feed.author.name}</a> 
 				<c:choose>
 					<c:when test="${feed.type ==  'add_twitter'}">
-						叽叽歪歪的说：${feed.message}。
-					</c:when>
-					<c:when test="${feed.type ==  'add_link'}">
-						分享了链接：${feed.link}<br/>并叽歪的说：${feed.message}
-					</c:when>
-					<c:when test="${feed.type ==  'add_video'}">
-						分享了视频：${feed.link}<br/>并叽歪的说：${feed.message}
+					叽叽歪歪的说：${feed.message}。
 					</c:when>
 					<c:when test="${feed.type == 'reply_twitter'}">
 						回复了微博   ${feed.message}。
 					</c:when>
 					<c:when test="${feed.type ==  'add_topic'}">
-						 发表了主题：${feed.message}。
+					 发表了主题：${feed.message}。
 					</c:when>
 					<c:when test="${feed.type == 'reply_topic'}">
 						回复了   ${feed.message}  主题。
@@ -71,14 +69,28 @@
 		<div class="clear "></div>
 		<div class="linedot">　</div>
 		</c:forEach>
+		</div>
 		
-		<div id="more_feed">
+		<div id="pagecount">
+		<p>共  ${pageBean.allRow} 条记录 共 ${pageBean.totalPage} 页 当前第 ${pageBean.currentPage}页</p>
 		<c:choose>
-			<c:when test="${pageBean.currentPage != pageBean.totalPage}">
-				<a target="list" href="<%=path%>/feed/listFeed?page=${pageBean.currentPage+1}"><span>更多...</span></a>
+			<c:when test="${pageBean.currentPage == 1}">
+				<a><span>首页</span></a>
+				<a><span>上一页</span></a>
 			</c:when>
 			<c:otherwise>
-				<a><span>没有更多最近的动态了！</span></a>
+				<a target="content" href="<%=path%>/feed/listFeed?page=1"><span>首页</span></a>
+				<a target="content" href="<%=path%>/feed/listFeed?page=${pageBean.currentPage-1}"><span>上一页</span></a>
+			</c:otherwise>
+		</c:choose>
+		<c:choose>
+			<c:when test="${pageBean.currentPage != pageBean.totalPage}">
+				<a target="content" href="<%=path%>/feed/listFeed?page=${pageBean.currentPage+1}"><span>下一页</span></a>
+				<a target="content" href="<%=path%>/feed/listFeed?page=${pageBean.totalPage}"><span>尾页</span></a>
+			</c:when>
+			<c:otherwise>
+				<a><span>下一页</span></a>
+				<a><span>尾页</span></a>
 			</c:otherwise>
 		</c:choose>
 		</div>

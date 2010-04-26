@@ -5,12 +5,14 @@
 <%
 	String path = request.getContextPath();
 %>
-<!-- 验证插件 -->
-<link type="text/css" rel="stylesheet" href="<%=path%>/content/jq-validate/jquery.validationEngine.css" />
-<script type="text/javascript" src="<%=path%>/content/jq-validate/jquery.validationEngine-cn.js"></script>
-<script type="text/javascript" src="<%=path%>/content/jq-validate/jquery.validationEngine.js"></script>
+<!-- JQ验证插件 -->
+<script type="text/javascript" src="<%=path%>/content/jq-validate/jquery.form.js" ></script>
+<script type="text/javascript" src="<%=path%>/content/jq-validate/jquery.validate.pack.js" ></script>
+<script type="text/javascript" src="<%=path%>/content/jq-validate/messages_cn.js" ></script>
+
 <link type="text/css" rel="stylesheet" href="<%=path%>/content/images/twitter.css" />
 <script type="text/javascript" src="<%=path %>/content/js/jquery.doubleSelect.min.js"></script>
+
 <!-- JQuery UI 插件 -->
 <link type="text/css" rel="stylesheet" href="<%=path%>/content/jq-ui/jquery-ui-1.8.custom.css" />
 <script type="text/javascript" src="<%=path%>/content/jq-ui/jquery-ui-1.8.custom.min.js" ></script>
@@ -18,15 +20,18 @@
 	$(document).ready(function() {
 		initHighslide("<%=path%>", "840", "640");
 		
-		displayAll();
-
-		$("form[id='inputform']").validationEngine({
-			failure : function() {}
+		$('#inputform').validate({
+			submitHandler: function() {
+				commit($('#inputform'), '<%=path%>/home');
+			}
 		});
-
+        
 		var selectoptions = ${jsonmap};
 	    $('#first').doubleSelect('second', selectoptions);   
 	    
+	});
+
+	function initDatePicker() {
 		$("#datepicker").datepicker( {
 			dateFormat : 'yy-mm-dd',
 			dayNamesMin : [ '日', '一', '二', '三', '四', '五', '六' ],
@@ -35,8 +40,7 @@
 			showMonthAfterYear: true,
 			minDate : new Date()
 		});
-
-	});
+	}
 	
 	function addNewVote(obj, no) {
 		var html = '<li><label>选项：</label><input class="w_middle" type="text" name="content" /> <a href="#" class="btn_del" onclick="return delVote(this)">删除</a></li>';
@@ -62,6 +66,7 @@
 		else{
 			$("#" + obj).find("div").remove();
 			$("#addone").find("a").remove();
+			$("#exchange").find("p").remove();
 		}
 	};
 	
@@ -77,10 +82,8 @@
 
 	//新添加的方法
 	function displayAll(){
-		$("#vote").slideUp("normal");
-		$("#issue").slideUp("normal");
-		$("#goods").slideUp("normal");
-		
+		$("#addition").slideUp("fast");
+		$("#addition").html("");
 		//清空图片信息
 		$("#pic").slideUp("normal");
 		$("#oriFileName").attr("value", "");
@@ -90,30 +93,6 @@
 		$("#minFileUrl").attr("value", "");
 	}
 
-	function showVote() {
-		displayAll();
-		$("#vote").slideDown("slow");
-		$("#inputtitle").html("投票说明：");
-		$("#inputform").attr("action", "<%=path%>/vote/addVote");
-		$("#inputarea").attr("name", "vote.summary");
-	}
-	
-	function showIssue() {
-		displayAll();
-		$("#issue").slideDown("slow");
-		$("#inputtitle").html("问题描述：");
-		$("#inputform").attr("action", "<%=path %>/issue/addIssue");
-		$("#inputarea").attr("name", "issue.content");
-	}
-	
-	function showGoods() {
-		displayAll();
-		$("#goods").slideDown("slow");
-		$("#inputtitle").html("物品描述：");
-		$("#inputform").attr("action", "<%=path %>/goods/addGoods");
-		$("#inputarea").attr("name", "goods.content");
-	}
-	
 	function cancel() {
 		displayAll();
 		$("#inputform").attr("action", "<%=path%>/twitter/addTwitter");
@@ -121,62 +100,51 @@
 		$("#inputarea").attr("value", "");
 		$("#inputarea").attr("name", "twitter.content");
 	}
+
+	//分享链接
+	function showLink() {
+		cancel();
+		$("#addition").html($("#links").html());
+		$("#addition").slideDown("normal");
+		$("#links").append("<input id='twittertype' type='hidden' name='twitter.type' value='link' />");
+	}
+	
+	function showVote() {
+		displayAll();
+		$("#addition").html($("#vote").html());
+		$("#addition").slideDown("normal");
+		initDatePicker();//重新初始化日期选择器
+		$("#inputtitle").html("投票说明：");
+		$("#inputform").attr("action", "<%=path%>/vote/addVote");
+		$("#inputarea").attr("name", "vote.summary");
+	}
+	
+	function showIssue() {
+		displayAll();
+		$("#addition").html($("#issue").html());
+		$("#addition").slideDown("normal");
+		$("#inputtitle").html("问题描述：");
+		$("#inputform").attr("action", "<%=path %>/issue/addIssue");
+		$("#inputarea").attr("name", "issue.content");
+	}
+	
+	function showGoods() {
+		displayAll();
+		$("#addition").html($("#goods").html());
+		$("#addition").slideDown("normal");
+		$("#inputtitle").html("物品描述：");
+		$("#inputform").attr("action", "<%=path %>/goods/addGoods");
+		$("#inputarea").attr("name", "goods.content");
+	}
+	
 </script>
 <body>
 <div id="twitter">
     <h2><a id="inputtitle">大家一起来叽歪一下吧！</a></h2>
-	<form id="inputform" onSubmit="commit(this, '<%=path%>/home');return false;" action="<%=path%>/twitter/addTwitter" method="post">
-    <div id="input" >
-      <textarea id="inputarea" class="validate[required,length[0,140]]" name="twitter.content"></textarea>
-      <!-- 投票 -->
-        <div id="vote">
-            <p><label>投票标题：</label><input id="vt1" class="validate[required]" type="text" name="vote.title" /></p>
-            <p><label>投票方式：</label>
-            <input type="radio" name="vote.type" value="0" checked="checked"/>单选
-            <input type="radio" name="vote.type" value="1" />多选
-            </p>
-            <div id="voteitem">
-                <li><label>选项：</label><input class="validate[required]]" id="vt2" type="text" name="content" /> <a href="#" onclick="return delVote(this)">删除</a></li>
-                <li><label>选项：</label><input class="validate[required]]" id="vt3" type="text" name="content" /> <a href="#" onclick="return delVote(this)">删除</a></li>
-                <li><label>选项：</label><input class="validate[required]]" id="vt4" type="text" name="content" /> <a href="#" onclick="return delVote(this)">删除</a></li>
-            </div>
-            <p>
-            <a href="#" onclick="return addNewVote('voteitem', '1');">再添加一项</a>
-             | <a href="#" onclick="return addNewVote('voteitem', '3');">再添加三项</a>
-            </p>
-            <p><label>投票期限：</label><input id="datepicker" class="validate[required,custom[date]]" type="text" name="time" /></p>
-      </div>
-        <!-- 投票结束 -->
-        <!-- 问答 -->
-        <div id="issue">
-        	<p><label>问题名称：</label><input id="is1"  class="validate[required]" type="text" name="issue.name" /></p>
-            <p><label>提问类型：</label>
-            <select id="first" size="1"><option value="">--</option></select>
-            <select id="second" name="itid" size="1"><option value="">--</option></select>
-            </p>
-            <p><label>悬赏财富：</label><input  id="is2" class="validate[required,custom[onlyNumber]]" type="text" name="issue.value" value="0"/></p>
-            <p><label>匿名提问：</label><input type="checkbox" name="issue.state" value="1" /><label> 需要匿名提问请打钩</label></p>
-      </div>
-        <!-- 问答结束 -->
-        <!-- 交换 -->
-        <div id="goods">
-            <p><label>货品名称：</label><input id="gd1" class="validate[required]" type="text" name="goods.name" /></p>
-            <p><label>货品类型：</label>
-            <select name="gtid"><c:forEach items="${goodsType}" var="gst"><option value="${gst.id}">${gst.name}</option></c:forEach></select>
-            </p>
-            <p>	货品数量：<input id="gd2" class="validate[required,custom[onlyNumber]]" type="text" name="goods.quantity" value="1"/></p>
-            <p>	物品估价：<input id="gd3" class="validate[required,custom[onlyNumber]]" type="text" name="goods.value" value="0"/></p>
-            <p id="addone">
-            <input id="chk_exchange" type="checkbox" name="goods.state" value="1" onclick="return addNewGoods('exchange');"/>
-            <label for="chk_exchange">我还想用来交换</label>
-            </p>
-            <div id="exchange"></div>
-            <p>
-            <label>货品图片：</label>
-            <a onclick="return hs.htmlExpand(this, { objectType: 'iframe' } )" href="<%=path%>/image/goUploadImage">上传图片</a>
-        	</p>
-        </div>
-        <!-- 交换结束 -->
+	<form id="inputform" action="<%=path%>/twitter/addTwitter" method="post">
+	<div id="input" >
+		<textarea id="inputarea" class="required" minlength="2" maxlength="140" name="twitter.content"></textarea>
+		<div id="addition"></div>
         <div id="pic" style="display:none;">
             <img src=""></img>
             <!-- 上传成功后，图片将插到这里。 -->
@@ -189,15 +157,74 @@
     </div>
 	<div id="options" >
 		<div id="text">
+		<a onclick="showLink();" href="#">分享链接</a>
 		<a onclick="displayAll();return hs.htmlExpand(this, { objectType: 'iframe' } );" href="<%=path%>/image/goUploadImage">图片</a>
 		<a onclick="showVote();" href="#">投票</a>
 		<a onclick="showIssue();" href="#">问答</a>
 		<a onclick="showGoods();" href="#">交换</a>
 		</div>
 		<div id="submit">
-		    <a onclick="cancel();" href="#">重置</a>
+		    <a onclick="cancel();" href="#">微博</a>
 			<input class="inputbtn" type="submit" value="发表">
 		</div>
     </div>
 	</form>
+	
+	<div id="temp" style="display:none;">
+		<!-- 链接 -->
+		<div id="links">
+			<label>链接地址：</label><input class="required url" id="lk1" type="text" name="twitter.link" />
+		</div>
+		<!-- 投票 -->
+		<div id="vote">
+            <p><label>投票标题：</label><input id="vt1" class="required" type="text" name="vote.title" /></p>
+            <p><label>投票方式：</label>
+            <input type="radio" name="vote.type" value="0" checked="checked"/>单选
+            <input type="radio" name="vote.type" value="1" />多选
+            </p>
+            <div id="voteitem">
+                <li><label>选项：</label><input class="required" id="vt2" type="text" name="content" /> <a href="#" onclick="return delVote(this)">删除</a></li>
+                <li><label>选项：</label><input class="required" id="vt3" type="text" name="content" /> <a href="#" onclick="return delVote(this)">删除</a></li>
+                <li><label>选项：</label><input class="required" id="vt4" type="text" name="content" /> <a href="#" onclick="return delVote(this)">删除</a></li>
+            </div>
+            <p>
+            <a href="#" onclick="return addNewVote('voteitem', '1');">再添加一项</a>
+             | <a href="#" onclick="return addNewVote('voteitem', '3');">再添加三项</a>
+            </p>
+            <p><label>投票期限：</label><input id="datepicker" class="required date" type="text" name="time" /></p>
+		</div>
+        <!-- 投票结束 -->
+        <!-- 问答 -->
+        <div id="issue">
+        	<p><label>问题名称：</label><input id="is1"  class="required" type="text" name="issue.name" /></p>
+            <p><label>提问类型：</label>
+            <select id="first" size="1"><option value="">--</option></select>
+            <select id="second" name="itid" size="1"><option value="">--</option></select>
+            </p>
+            <p><label>悬赏财富：</label><input  id="is2" class="required number" type="text" name="issue.value" value="0"/></p>
+            <p><label>匿名提问：</label><input type="checkbox" name="issue.state" value="1" /><label> 需要匿名提问请打钩</label></p>
+		</div>
+        <!-- 问答结束 -->
+        <!-- 交换 -->
+        <div id="goods">
+            <p><label>货品名称：</label><input id="gd1" class="required" type="text" name="goods.name" /></p>
+            <p><label>货品类型：</label>
+            <select name="gtid"><c:forEach items="${goodsType}" var="gst"><option value="${gst.id}">${gst.name}</option></c:forEach></select>
+            </p>
+            <p>	货品数量：<input id="gd2" class="required number" type="text" name="goods.quantity" value="1"/></p>
+            <p>	物品估价：<input id="gd3" class="required number" type="text" name="goods.value" value="0"/></p>
+            <p id="addone">
+            <input id="chk_exchange" type="checkbox" name="goods.state" value="1" onclick="return addNewGoods('exchange');"/>
+            <label for="chk_exchange">我想用来和别人交换 | </label>
+            </p>
+            <div id="exchange"></div>
+            <p>
+            <label>货品图片：</label>
+            <a onclick="return hs.htmlExpand(this, { objectType: 'iframe' } )" href="<%=path%>/image/goUploadImage">上传图片</a>
+        	</p>
+        </div>
+        <!-- 交换结束 -->	
+	</div>
+	<!-- end of temp -->
+	
 </div>

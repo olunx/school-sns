@@ -30,6 +30,8 @@ public class FeedAction extends BaseAction {
 	private int page;
 
 	public final static String ADD_TWITTER = "add_twitter";
+	public final static String ADD_LINK = "add_link";
+	public final static String ADD_VIDEO = "add_video";
 	public final static String REPLY_TWITTER = "reply_twitter";
 	public final static String ADD_TOPIC = "add_topic";
 	public final static String REPLY_TOPIC = "reply_topic";
@@ -58,7 +60,7 @@ public class FeedAction extends BaseAction {
 		return feedAction;
 	}
 
-	// 话题
+	// 微博
 	public String add(Twitter twitter, String type) {
 
 		Log.init(getClass()).info("FeedAction add");
@@ -66,10 +68,22 @@ public class FeedAction extends BaseAction {
 
 		Feed feed = new Feed();
 		feed.setAuthor(twitter.getAuthor());
-		feed.setType(type);
 		feed.setMessage(twitter.getContent());
 		feed.setMsgId(twitter.getId());
 		feed.setTime(twitter.getTime());
+		
+		if(twitter.getType() != null) {
+			if(twitter.getType().equalsIgnoreCase("link")) {
+				feed.setType(FeedAction.ADD_LINK);
+				feed.setLink(twitter.getLink());
+			}else if(twitter.getType().equalsIgnoreCase("video")) {
+				feed.setType(FeedAction.ADD_VIDEO);
+				feed.setLink(twitter.getLink());
+			}
+		}else {
+			feed.setType(type);
+		}
+		
 		service.addEntity(feed);
 
 		return super.add();

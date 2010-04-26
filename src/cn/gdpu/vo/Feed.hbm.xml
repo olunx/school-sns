@@ -8,6 +8,7 @@
 		</id>
 		<many-to-one name="author" />
 		<property name="type" />
+		<property name="link" />
 		<property name="message" />
 		<property name="msgId" />
 		<property name="time" />
