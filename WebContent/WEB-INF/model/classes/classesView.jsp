@@ -20,6 +20,7 @@ $(function(){
 	<li><a target="content" href="<%=path%>/classfee/listClassfee">查看班费</a></li>
 	<li><a class="letterspacing" target="content" href="<%=path%>/course/listCourse">课程表</a></li>
 	<li><a class="letterspacing" target="content" href="<%=path%>/attendance/listAttendance">考勤记录</a></li>
+	<li><a class="letterspacing" target="content" href="<%=path%>/people/classesPeople?id=${classes.id}">班级成员</a></li>
 </ul>
 <div class="clear"></div>
 <p><label>班级名称：</label>${classes.name} <label>入学年份：</label>${classes.entryYear}</p>

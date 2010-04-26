@@ -35,6 +35,9 @@ $(function(){
 		<a target="content" href="<%=path %>/school/joinAdminSchool?id=${school.id}">申请加入学校管理员</a>
 	</c:otherwise>
 </c:choose>
+| <a target="content" href="<%=path%>/classes/viewClasses?id=${student.classes.id}">我的班级</a>
+| <a target="content" href="<%=path%>/school/listSchool">访问其它学校</a>
+| <a target="content" href="<%=path%>/people/schoolPeople?id=${school.id}">学校成员</a>
 </p>
 </div>
 <div id="information">
@@ -49,8 +52,8 @@ $(function(){
 	<ul class="ul">
 	<c:forEach items="${school.visitor}" var="visitor">
 		<li>
-					<a target="content" href="<%=path%>/t/${visitor.people.username }"><img src="<%=path %>/avatar/${visitor.people.id}" width="50"></img></a><br/>
-					<a target="content" href="<%=path%>/t/${visitor.people.username }">${visitor.people.name}</a><br/>
+			<a target="content" href="<%=path%>/t/${visitor.people.username }"><img src="<%=path %>/avatar/${visitor.people.id}" width="50"></img></a><br/>
+			<a target="content" href="<%=path%>/t/${visitor.people.username }">${visitor.people.name}</a><br/>
 			<fmt:formatDate value="${visitor.time }" pattern="MM-dd" />	
 		</li>
 	</c:forEach>

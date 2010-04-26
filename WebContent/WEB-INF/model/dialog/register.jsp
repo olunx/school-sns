@@ -24,11 +24,11 @@
 	<s:fielderror><s:param>user.username</s:param></s:fielderror>
 	</p>
 	<p><label>密码：</label>
-	<input type="text" name="user.password" />
+	<input type="password" name="user.password" />
 	<s:fielderror><s:param>user.password</s:param></s:fielderror>
 	</p>
 	<p><label>确认：</label>
-	<input type="text" name="repassword" />
+	<input type="password" name="repassword" />
 	<s:fielderror><s:param>repassword</s:param></s:fielderror>
 	</p>
 	<p><label>真实姓名：</label>
