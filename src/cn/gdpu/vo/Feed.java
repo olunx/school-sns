@@ -7,6 +7,7 @@ public class Feed {
 	private int id;
 	private People author;
 	private String type;
+	private String link;
 	private String message;
 	private int msgId;
 	private Date time;
@@ -33,6 +34,14 @@ public class Feed {
 
 	public void setType(String type) {
 		this.type = type;
+	}
+
+	public String getLink() {
+		return link;
+	}
+
+	public void setLink(String link) {
+		this.link = link;
 	}
 
 	public String getMessage() {

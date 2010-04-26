@@ -10,13 +10,6 @@
 		</field-validator>
 	</field>
 	
-	<field name="image.oriFileName">
-		<field-validator type="requiredstring">
-			<param name="trim">true</param>
-			<message>货品图片不能为空</message>
-		</field-validator>
-	</field>
-	
 	<field name="goods.quantity">
 		<field-validator type="int">
 		    <param name="min">1</param>

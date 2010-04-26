@@ -53,8 +53,7 @@
 			<result name="home">/WEB-INF/index.jsp</result>
 			<result name="center">/WEB-INF/center.jsp</result>
 		</global-results>
-		<action name="home" class="cn.gdpu.action.HomeAction" method="home"></action>
-		<action name="center" class="cn.gdpu.action.HomeAction" method="center"></action>
+		<action name="*" class="cn.gdpu.action.HomeAction" method="{1}"></action>
 	</package>	
 	
 	<!-- 个人微博首页 -->

@@ -75,6 +75,7 @@ public class HomeAction extends BaseAction {
 	}
 	
 	public String center() {
+		home();
 		return "center";
 	}
 
