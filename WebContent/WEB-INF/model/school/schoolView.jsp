@@ -44,9 +44,7 @@ $(function(){
 	<c:if test="${student.classes == null}"><a class="letterspacing" target="content" href="<%=path %>/goPerfectReg">继续完善资料认识很多同学</a></c:if> 
 	<c:if test="${student.classes != null and student.permission == 1}">你已申请加入“ ${student.classes.name} ”班级,审核中</c:if>
 </div>
-<div>
-	这里是给学校Feed的
-</div>
+
 <div>
 <h2>最近访问：</h2>
 	<ul class="ul">
@@ -84,4 +82,14 @@ $(function(){
 		</ul>
 <div class="clear"></div>
 </div>
+
+<!-- 学校的Feed -->
+<script type="text/javascript">
+<!--
+	$(function(){
+		$("#topic_list").load("<%=path%>/feed/listSchoolFeed");
+	});
+//-->
+</script>
+<div id="topic_list"></div>
 

@@ -8,9 +8,9 @@
 	String url = request.getServerName();
 %>
 	<div>
-		<a href="<%=path %>/t/${people.username}"><img src="<%=path%>/avatar/${people.id}" width="124"></img><br/></a>
+		<a target="content" href="<%=path %>/t/${people.username}"><img src="<%=path%>/avatar/${people.id}" width="124"></img><br/></a>
 		${people.name }<br>
-		<a href="<%=path %>/t/${people.username}">http://<%=url %>/t/${people.username}</a><br/>
+		<a target="content" href="<%=path %>/t/${people.username}">http://<%=url %>/t/${people.username}</a><br/>
 		他广播的：<a target="content" href="<%=path %>/twitter/listOtherTwitter?otherId=${people.id}">${fn:length(pageBean.list)}</a>条 |
 		他关注的：${fn:length(people.friends)}人 |
 		关注他的：${fn:length(people.follower)}人 |

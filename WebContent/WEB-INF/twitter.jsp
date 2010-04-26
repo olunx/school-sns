@@ -5,39 +5,44 @@
 <%@ taglib prefix="my" uri="http://gdpu.cn/functions"%>
 <%
 	String path = request.getContextPath();
+	String url = request.getServerName();
 %>
-<jsp:include page="header.jsp"></jsp:include>
-<jsp:include page="submenu.jsp"></jsp:include>
-<div id="main" class="corner">
 	<div>
-		<a href="<%=path %>/t/${people.username}"><img src="<%=path %>/avatar/${people.id}" width="124"></img><br/></a>
+		<a target="content" href="<%=path %>/t/${people.username}"><img src="<%=path%>/avatar/${people.id}" width="124"></img><br/></a>
 		${people.name }<br>
-		<a href="<%=path %>/t/${people.username}"><%=path %>/t/${people.username}</a><br/>
-		他广播的：00xx |
+		<a target="content" href="<%=path %>/t/${people.username}">http://<%=url %>/t/${people.username}</a><br/>
+		他广播的：<a target="content" href="<%=path %>/twitter/listOtherTwitter?otherId=${people.id}">${fn:length(pageBean.list)}</a>条 |
 		他关注的：${fn:length(people.friends)}人 |
 		关注他的：${fn:length(people.follower)}人 |
 		最近来访：${fn:length(people.visitors)}人
 		<br />
-		
-		 <c:choose>
-		 	<c:when test="${my:isMyFriend(friends,people)}">取消关注</c:when>
-		 	<c:otherwise>设为关注</c:otherwise>
-		 </c:choose>
+	 	<a target="content" href="<%=path%>/people/followPeople?id=${people.id}">
+		 	<c:choose>
+			 	<c:when test="${my:isMyFriend(friends,people)}">取消关注</c:when>
+			 	<c:otherwise>设为关注</c:otherwise>
+		 	</c:choose>
+	 	</a>
 	</div>
-
-<script type="text/javascript">
-$(function() {
-	$("#content").load("<%=path%>/twitter/listOtherTwitter?otherId=${id}", ajax);
-});
-</script>
-<div id="content">
-
-</div>
-
- 	<div>
+	
+	<script type="text/javascript">
+	$(function() {
+		$("#topic_list").load("<%=path%>/twitter/listOtherTwitter?otherId=${people.id}");
+	});
+	</script>
+	<div id="myTopic">
+		<h2>他的广播：</h2>
+		<div id="box">
+			<div id="topic_list"></div>
+		</div>
+	</div>
+	
+	<br />
+	
+	 <div>
+	 <br />
 	 <p>他关注的：<br/>
 			<c:forEach items="${people.friends}" var="friends">
-			<ul>
+			<ul class="ul">
 				<li>
 					<a target="content" href="<%=path%>/student/viewStudent?id=${friends.id }"><img src="<%=path %>/avatar/${friends.id}" width="50"></img></a><br/>
 					<a target="content" href="<%=path%>/student/viewStudent?id=${friends.id }">${friends.name}</a><br/>
@@ -46,19 +51,21 @@ $(function() {
 			</c:forEach>
 	 </p>
 	 </div>
-	 
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
 	 <div>
 	 <p>最近访问：<br/>
-		<c:forEach items="${people.visitors}" var="visitor">
-		<ul>
-			<li>
-				<a target="content" href="<%=path%>/student/viewStudent?id=${visitor.people.id }"><img src="<%=path %>/avatar/${visitor.people.id}" width="50"></img></a><br/>
-				<a target="content" href="<%=path%>/student/viewStudent?id=${visitor.people.id }">${visitor.people.name}</a><br/>
-				<fmt:formatDate value="${visitor.time }" pattern="HH:mm MM-dd" />	
-			</li>
-		</ul>
-		</c:forEach>
+			<c:forEach items="${people.visitors}" var="visitor">
+			<ul class="ul">
+				<li>
+					<a target="content" href="<%=path%>/t/${visitor.people.username }"><img src="<%=path %>/avatar/${visitor.people.id}" width="50"></img></a><br/>
+					<a target="content" href="<%=path%>/t/${visitor.people.username }">${visitor.people.name}</a><br/>
+					<fmt:formatDate value="${visitor.time }" pattern="MM-dd" />	
+				</li>
+			</ul>
+			</c:forEach>
 	 </p>
 	</div>
-</div>
-<jsp:include page="footer.jsp"></jsp:include>

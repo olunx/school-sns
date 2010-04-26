@@ -97,9 +97,6 @@ $(function(){
 </c:choose>
 </div>
 </div>
-<div>
-	这里是给班级Feed的
-</div>
 
 <div id="class_sidebar" style="display: none;">
 <div class="mod">
@@ -141,3 +138,12 @@ $(function(){
 </div>
 </div>
 
+<!-- 班级的Feed -->
+<script type="text/javascript">
+<!--
+	$(function(){
+		$("#topic_list").load("<%=path%>/feed/listClassFeed");
+	});
+//-->
+</script>
+<div id="topic_list"></div>
