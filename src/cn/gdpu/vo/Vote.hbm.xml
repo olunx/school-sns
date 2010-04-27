@@ -12,6 +12,7 @@
 		private Date airTime;	
 		private Date deadline;
 		private Set<People> voters;
+		private List<Topic> reply;
 	-->
 	<class name="Vote" table="t_vote" >
 		<id name="id" column="id">
@@ -32,5 +33,10 @@
 			<key column="voteId" />
 			<many-to-many class="People" column="peopleId" />
 		</set>
+		<list name="reply" cascade="all">
+			<key column="voteId" />
+			<index column="indexId" />
+			<one-to-many class="Topic" />
+		</list>
 	</class>
 </hibernate-mapping>

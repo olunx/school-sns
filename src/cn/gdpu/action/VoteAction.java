@@ -2,17 +2,23 @@ package cn.gdpu.action;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
+import cn.gdpu.service.TopicService;
 import cn.gdpu.service.VoteItemService;
 import cn.gdpu.service.VoteService;
+import cn.gdpu.util.Log;
 import cn.gdpu.util.PageBean;
 import cn.gdpu.util.VoteItemComparator;
+import cn.gdpu.vo.Goods;
 import cn.gdpu.vo.People;
 import cn.gdpu.vo.Student;
+import cn.gdpu.vo.Topic;
 import cn.gdpu.vo.Vote;
 import cn.gdpu.vo.VoteItem;
 
@@ -21,11 +27,14 @@ public class VoteAction extends BaseAction {
 
 	private VoteService<Vote, Integer> voteService;
 	private VoteItemService<VoteItem, Integer> voteItemService;
+	private TopicService<Topic, Integer> topicService;
 	private Vote vote;
+	private Topic reply;
 	private VoteItem voteItem;
 	private String[] content;
 	private String time;
 	private int vid;
+	private int rid;
 	private int[] vids;
 	private int[] viid;
 
@@ -145,6 +154,18 @@ public class VoteAction extends BaseAction {
 					voteItem = (VoteItem) voteItemService.getEntity(VoteItem.class, viid[i]);
 					voteItem.setNum(voteItem.getNum() + 1);
 				}
+				if(!reply.getContent().trim().equals("")){
+					reply.setAuthor(voter);
+					reply.setTime(new Date());
+					reply.setIstopic(true);
+		
+					List<Topic> replys = vote.getReply();
+					if (replys == null) {
+						replys = new ArrayList<Topic>();
+					}
+					replys.add(reply);
+					vote.setReply(replys);
+				}
 				voteService.updateEntity(vote);
 				return super.view();
 			}
@@ -176,6 +197,63 @@ public class VoteAction extends BaseAction {
 		return "view";
 	}
 
+	public String goReply() {
+		return "replyPage";
+	}
+
+	public String reply() {
+		if(rid == -1){
+			Object author = this.getSession().get("user");
+			if (author != null) {
+				if (author instanceof People) {
+					People people = (People) author;
+					Log.init(getClass()).info("people name " + people.getName());
+					reply.setAuthor(people);
+				}
+				reply.setTime(new Date());
+				reply.setIstopic(true);
+	
+				vote = voteService.getEntity(Vote.class, vid);
+				List<Topic> replys = vote.getReply();
+				if (replys == null) {
+					replys = new ArrayList<Topic>();
+				}
+				replys.add(reply);
+				vote.setReply(replys);
+				voteService.updateEntity(vote);
+			}
+	
+			Log.init(getClass()).info("add reply finish ");
+		}
+		else{
+			Object author = this.getSession().get("user");
+			if (author != null) {
+				if (author instanceof People) {
+					People people = (People) author;
+					Log.init(getClass()).info("people name " + people.getName());
+					reply.setAuthor(people);
+				}
+				reply.setTime(new Date());
+				reply.setIstopic(false);
+				topicService.addEntity(reply);
+
+				Topic parent = topicService.getEntity(Topic.class, rid);
+				List<Topic> list = parent.getReply();
+				if (list == null) {
+					list = new ArrayList<Topic>();
+				}
+				list.add(reply);
+				parent.setReply(list);
+				parent.setHasreply(true);
+				topicService.updateEntity(parent);
+			}
+			vote = voteService.getEntity(Vote.class, vid);
+			Log.init(getClass()).info("add subreply finish ");
+		}
+
+		return VIEW_PAGE;
+	}
+	
 	// setter and getter
 	public VoteService<Vote, Integer> getVoteService() {
 		return voteService;
@@ -263,6 +341,30 @@ public class VoteAction extends BaseAction {
 
 	public void setViid(int[] viid) {
 		this.viid = viid;
+	}
+
+	public TopicService<Topic, Integer> getTopicService() {
+		return topicService;
+	}
+
+	public void setTopicService(TopicService<Topic, Integer> topicService) {
+		this.topicService = topicService;
+	}
+
+	public Topic getReply() {
+		return reply;
+	}
+
+	public void setReply(Topic reply) {
+		this.reply = reply;
+	}
+
+	public int getRid() {
+		return rid;
+	}
+
+	public void setRid(int rid) {
+		this.rid = rid;
 	}
 
 }

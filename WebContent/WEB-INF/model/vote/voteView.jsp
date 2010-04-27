@@ -87,3 +87,42 @@
 	<h2>图表</h2>
 </div>
 <div id="chart" style=""></div>
+
+<div>
+<h2>用户评论</h2>
+<c:choose>
+	<c:when test="${empty vote.reply}">
+		<a target="content" href="<%=path %>/vote/goReplyVote?vid=${vote.id}&rid=-1">还没有评论哦！我来抢沙发^o^</a> 
+	</c:when>
+	<c:otherwise>
+		<div class="class_msg_list">
+		<c:forEach items="${vote.reply}" var="reply">
+		<div class="class_msg">
+			<div class="avatar">
+				<img src="<%=path %>/avatar/${reply.author.id}" />
+			</div>
+			<div class="msg">
+			<div class="operate">
+			<p class="time" title="${reply.time }"><a target="content" href="<%=path %>/vote/goReplyVote?vid=${vote.id}&rid=${reply.id != null ? reply.id : -1 }">回复</a> ${my:formatDate(reply.time)}</p>
+			</div>
+				<p class="text">${reply.author.name }： ${reply.content}</p>
+				
+				<c:if test="${! empty reply.reply}">
+				<div class="reply">
+					<c:forEach items="${reply.reply}" var="subreply">
+					<p>
+						${subreply.author.name }： ${subreply.content}
+						${my:formatDate(subreply.time)}
+					</p>
+					</c:forEach>
+				</div>
+				</c:if>
+			</div>
+		<div class="clear"></div>
+		</div>
+		</c:forEach>
+		</div>
+		<a target="content" href="<%=path %>/vote/goReplyVote?vid=${vote.id}&rid=-1">我也来说几句</a> 
+	</c:otherwise>
+</c:choose>
+</div>

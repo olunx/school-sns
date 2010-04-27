@@ -18,6 +18,9 @@ String path = request.getContextPath();
 			<li><input type="${vote.type==0 ? 'radio' : 'checkbox'}" name="viid" value="${voteItem.id}" id="vitem${i.count}" /> <label for="vitem${i.count}">${i.count}.${voteItem.content}</label></li>
 			</c:forEach>
 			</ul>
+			<label>我还要说些什么：</label>
+			<div class="paddingmin"><textarea name="reply.content" id="demo" rows="10" cols="50" style="width: 500px; height: 150px"></textarea>
+			</div>
 			<input type="submit" value="投票" >
 		</div>
 		</c:when>	

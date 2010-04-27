@@ -1,6 +1,7 @@
 package cn.gdpu.vo;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 public class Vote {
@@ -41,6 +42,11 @@ public class Vote {
 	 * 投票人 多个投票可以由多个人投票(many-to-many)
 	 */
 	private Set<People> voters;
+	
+	/**
+	 * 投票的评论
+	 */
+	private List<Topic> reply;
 
 	public int getId() {
 		return id;
@@ -120,6 +126,14 @@ public class Vote {
 
 	public void setVoters(Set<People> voters) {
 		this.voters = voters;
+	}
+
+	public List<Topic> getReply() {
+		return reply;
+	}
+
+	public void setReply(List<Topic> reply) {
+		this.reply = reply;
 	}
 
 }

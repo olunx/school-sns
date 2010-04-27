@@ -42,6 +42,7 @@
 			<result name="addPage">/WEB-INF/model/vote/voteAdd.jsp</result>
 			<result name="view">/WEB-INF/model/vote/voteView.jsp</result>
 			<result name="govoting">/WEB-INF/model/vote/voteLink.jsp</result>
+			<result name="replyPage">/WEB-INF/model/vote/voteReply.jsp</result>
 		</global-results>
 		<action name="*Vote" class="cn.gdpu.action.VoteAction" method="{1}">
 			<result name="input">/WEB-INF/model/vote/voteAdd.jsp</result>
