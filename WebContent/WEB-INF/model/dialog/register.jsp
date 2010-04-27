@@ -5,34 +5,54 @@
 <%
 	String path = request.getContextPath();
 %>
-
+<!-- JQuery库 -->
 <script type="text/javascript" src="<%=path%>/content/js/jquery-1.4.2.min.js"></script>
+
+<!-- JQ验证插件 -->
+<script type="text/javascript" src="<%=path%>/content/jq-validate/jquery.form.js" ></script>
+<script type="text/javascript" src="<%=path%>/content/jq-validate/jquery.validate.pack.js" ></script>
+<script type="text/javascript" src="<%=path%>/content/jq-validate/messages_cn.js" ></script>
+
 <link type="text/css" rel="stylesheet" href="<%=path%>/content/jq-ui/jquery-ui-1.8.custom.css" />
 <script type="text/javascript" src="<%=path%>/content/jq-ui/jquery-ui-1.8.custom.min.js"></script>
 <script type="text/javascript" src="<%=path %>/content/js/jquery.doubleSelect.min.js"></script>
+
+<!-- 常用库，确保这段代码在最下方 -->
+<script type="text/javascript" src="<%=path%>/content/js/common.js"></script>
+
 <script type="text/JavaScript">
-	 $(document).ready(function()
-	 {		
-			var schoolselect = ${schoolmap};
-		    $('#first').doubleSelect('second', schoolselect);      
-	        
+	 $(document).ready(function(){
+		$('#inputform').validate({
+			submitHandler: function() {
+				commit($('#inputform'),'');
+				if (parent.window.hs) {
+					parent.$('#username').val($('#username').val());
+					parent.$('#password').val($('#password').val());
+					parent.$('#submit').click();
+					parent.window.hs.close();
+				}
+			}
+		});
+			
+		var schoolselect = ${schoolmap};
+	    $('#first').doubleSelect('second', schoolselect);      
 	 });
 </script>
-<form action="<%=path %>/register" method="post"  Class="form" >
+<form id="inputform" action="<%=path %>/register" method="post"  class="form" >
 	<p><label>账号：</label>
-	<input type="text" name="user.username" /> 
+	<input class="required" id="username" minlength="5" maxlength="13" type="text" name="user.username" /> 
 	<s:fielderror><s:param>user.username</s:param></s:fielderror>
 	</p>
 	<p><label>密码：</label>
-	<input type="password" name="user.password" />
+	<input class="required" id="password" type="password" name="user.password" />
 	<s:fielderror><s:param>user.password</s:param></s:fielderror>
 	</p>
 	<p><label>确认：</label>
-	<input type="password" name="repassword" />
+	<input class="required" type="password" name="repassword" />
 	<s:fielderror><s:param>repassword</s:param></s:fielderror>
 	</p>
 	<p><label>真实姓名：</label>
-	<input type="text" name="user.name" />
+	<input class="required" minlength="2" maxlength="13" type="text" name="user.name" />
 	<s:fielderror><s:param>user.name</s:param></s:fielderror>
 	</p>
 	<p><label>性别：</label>
@@ -40,7 +60,7 @@
 	<input type="radio" name="user.sex" value="2"/>女
 	</p>
 	<p><label>电子邮箱：</label>
-	<input type="text" name="user.email" />
+	<input class="required email" minlength="3" maxlength="32" type="text" name="user.email" />
 	<s:fielderror><s:param>user.email</s:param></s:fielderror>
 	</p>
 	<div id="select">

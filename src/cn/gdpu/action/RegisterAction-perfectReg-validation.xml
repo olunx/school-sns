@@ -38,11 +38,4 @@
 		</field-validator>
 	</field>
 	
-	<field name="image.oriFileName">
-       <field-validator type="requiredstring" >
-           <param name="trim">true</param>
-           <message>头像还没有上传</message>
-       </field-validator>
-    </field>
-
 </validators>
