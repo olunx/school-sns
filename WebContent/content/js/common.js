@@ -88,7 +88,9 @@ function commit(obj, url){
             data: dataStr,
             type: 'POST',
             success: function(){
-                location.href = url;
+        		if(url != null) {
+        			location.href = url;
+        		}
             }
         });
 }
