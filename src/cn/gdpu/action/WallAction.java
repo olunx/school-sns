@@ -1,6 +1,6 @@
 package cn.gdpu.action;
 
-public class PlaygroundAction extends BaseAction {
+public class WallAction extends BaseAction {
 	private static final long serialVersionUID = 1L;
 
 	@Override

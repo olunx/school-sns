@@ -83,4 +83,12 @@
 		<action name="*" class="cn.gdpu.action.AvatarAction"></action>
 	</package>
 	
+	<!-- 广场的Action -->
+	<package name="wall" extends="default" namespace="/wall">
+		<global-results>
+			<result name="list" type="redirect">listWall</result>
+			<result name="index">/WEB-INF/model/wall/wallList.jsp</result>
+		</global-results>
+		<action name="*Wall" class="cn.gdpu.action.WallAction" method="{1}"></action>
+	</package>
 </struts>    

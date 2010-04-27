@@ -6,66 +6,59 @@
 <%
 	String path = request.getContextPath();
 %>
+<script type="text/javascript">
+	$(function() {
+		list("#vote_list");
+	});
 
+	function list(target) {
+		$("a[target='list']").click(function() {
+			var href = $(this).attr('href');
+			$("#vote_more_list").remove();
+			
+			$.ajax( {
+				url : href,
+				type : 'GET',
+				success : function(result) {
+					$(target).append(result);
+				}
+			});
+
+			return false;
+		});
+
+		ajax();
+	}
+</script>
 <c:choose>
-
-	<c:when test="${pageBean.list==null}">
-		<a>没有数据</a>
+	<c:when test="${pageBean.list == null}">
+					没有数据！
 	</c:when>
 	<c:otherwise>
+		<c:forEach items="${pageBean.list}" var="vote">
+			<div class="ilist">
+			<div class="iavatar"><img src="<%=path %>" /></div>
+			<div class="imsg">
+			<div class="iname">发起者：${vote.author.name }</div>
+			<p class="icontent">投票主题：
+			<a target="content" href="<%=path %>/vote/goVotingVote?vid=${vote.id}" >${fn:substring(fn:replace(vote.title,"<","&lt;"),0,20)}</a>
+			<br/>  简介：${fn:substring(fn:replace(vote.summary,"<","&lt;"),0,50)}
+			</p>
+			<div class="ioperate">
+			 创建时间：${my:formatDate(vote.airTime) }
+			</div>
+			</div>
+			</div>
+			<div class="clear "></div>
+			<div class="linedot"></div>
+		</c:forEach>
 
-		<table class="table">
-			<tr>
-				<th class="ta_left">投票主题</th>
-				<th>投票描述</th>
-				<th>创建人</th>
-				<th>创建日期</th>
-				<th>删除</th>
-			</tr>
-			<c:forEach items="${pageBean.list}" var="vote">
-				<tr>						
-					
-					<td class="ta_left">
-						<a target="content" href="<%=path %>/vote/goVotingVote?vid=${vote.id}" >${fn:substring(fn:replace(vote.title,"<","&lt;"),0,20)}</a>
-					</td>
-					<td>
-						${fn:substring(fn:replace(vote.summary,"<","&lt;"),0,20)}...
-					</td>
-					<td>
-						${vote.author.name }
-					</td>
-					<td>
-						${my:formatDate(vote.airTime) }
-					</td>
-					<td>
-						<a target="content" href="<%=path %>/vote/deleteVote?vid=${vote.id}" class="btn_del">删除</a>
-					</td>
-				</tr>
-			</c:forEach>
-		</table>
-		
-		<div id="pagecount">
-		<p>共 ${pageBean.allRow} 条记录 共 ${pageBean.totalPage} 页 当前第 ${pageBean.currentPage}页</p>
-		<c:choose>
-			<c:when test="${pageBean.currentPage == 1}">
-				<a><span>首页</span></a>
-				<a><span>上一页</span></a>
-			</c:when>
-			<c:otherwise>
-				<a target="content" href="<%=path%>/vote/listVote?page=1"><span>首页</span></a>
-				<a target="content" href="<%=path%>/vote/listVote?page=${pageBean.currentPage-1}"><span>上一页</span></a>
-			</c:otherwise>
-		</c:choose> <c:choose>
+		<div id="vote_more_list"><c:choose>
 			<c:when test="${pageBean.currentPage != pageBean.totalPage}">
-				<a target="content" href="<%=path%>/vote/listVote?page=${pageBean.currentPage+1}"><span>下一页</span></a>
-				<a target="content" href="<%=path%>/vote/listVote?page=${pageBean.totalPage}"><span>尾页</span></a>
+				<br/><a target="list" href="<%=path%>/vote/listVote?page=${pageBean.currentPage+1}"><span>更多...</span></a>
 			</c:when>
-			<c:otherwise>
-				<a><span>下一页</span></a>
-				<a><span>尾页</span></a>
-			</c:otherwise>
-		</c:choose></div>
-
+		</c:choose>
+		</div>
 
 	</c:otherwise>
 </c:choose>
