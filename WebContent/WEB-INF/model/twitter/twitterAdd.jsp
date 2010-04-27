@@ -22,7 +22,9 @@
 		
 		$('#inputform').validate({
 			submitHandler: function() {
-				commit($('#inputform'), '<%=path%>/home');
+				post($('#inputform'),"#topic_list","<%=path%>/feed/listFeed");
+				cancel();
+				//commit($('#inputform'), '<%=path%>/home');
 			}
 		});
         
@@ -157,14 +159,14 @@
     </div>
 	<div id="options" >
 		<div id="text">
-		<a onclick="showLink();" href="#">分享链接</a>
+		<a onclick="cancel();" href="javascript:;">微博</a>
+		<a onclick="showLink();" href="javascript:;">链接</a>
 		<a onclick="displayAll();return hs.htmlExpand(this, { objectType: 'iframe' } );" href="<%=path%>/image/goUploadImage">图片</a>
-		<a onclick="showVote();" href="#">投票</a>
-		<a onclick="showIssue();" href="#">问答</a>
-		<a onclick="showGoods();" href="#">交换</a>
+		<a onclick="showVote();" href="javascript:;">投票</a>
+		<a onclick="showIssue();" href="javascript:;">问答</a>
+		<a onclick="showGoods();" href="javascript:;">交换</a>
 		</div>
 		<div id="submit">
-		    <a onclick="cancel();" href="#">微博</a>
 			<input class="inputbtn" type="submit" value="发表">
 		</div>
     </div>
@@ -182,10 +184,13 @@
             <input type="radio" name="vote.type" value="0" checked="checked"/>单选
             <input type="radio" name="vote.type" value="1" />多选
             </p>
+            
             <div id="voteitem">
+            <ul>
                 <li><label>选项：</label><input class="required" id="vt2" type="text" name="content" /> <a href="#" onclick="return delVote(this)">删除</a></li>
                 <li><label>选项：</label><input class="required" id="vt3" type="text" name="content" /> <a href="#" onclick="return delVote(this)">删除</a></li>
                 <li><label>选项：</label><input class="required" id="vt4" type="text" name="content" /> <a href="#" onclick="return delVote(this)">删除</a></li>
+            </ul>
             </div>
             <p>
             <a href="#" onclick="return addNewVote('voteitem', '1');">再添加一项</a>
