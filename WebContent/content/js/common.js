@@ -22,12 +22,13 @@
 
 //注册二级事件
 function ajax(){
+	var divid = arguments[0] || '#content';//更新目标id
     $("a[rel='ajaxupload']").each(function(i){
         var ajaxinfo = eval('(' + $(this).attr("rev") + ')');
         myAjaxUploadSetup(this, ajaxinfo.upload, ajaxinfo.complete, ajaxinfo.allowtype);
     });
-	$("#content a[target='content']").unbind("click"); 
-    $("#content a[target='content']").click(function(){
+	$(divid+" a[target='content']").unbind("click"); 
+    $(divid+" a[target='content']").click(function(){
         var href = $(this).attr('href');
         loadContent(href);
         return false;
@@ -59,7 +60,8 @@ function offLoading(){
 
 //提交表单数据
 function post(obj){
-    var content = $('#content');
+	var divid = arguments[1] || '#content';//更新目标id
+    var content = $(divid);
     var urlStr = $(obj).attr('action');
     var dataStr = decodeURIComponent($(obj).serialize());
         onLoading();//打开loading
@@ -71,7 +73,7 @@ function post(obj){
 				content.slideUp('normal',function(){
 	                content.html(result);
 	                offLoading();//关闭loading
-	                content.slideDown('normal', ajax);
+	                content.slideDown('normal', ajax(divid));
 				});
             }
         });

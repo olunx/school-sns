@@ -29,6 +29,46 @@
 
 		ajax();
 	}
+
+	$(function(){
+		//回复按钮
+		$("span[rel=replybtn]").unbind("click").click(function(){
+			var id = $(this).attr("rev");
+
+			var editorid = "#reply_editor_"+id;
+			if ($(this).parent().find(editorid).size()==0){
+				$(this).parent().append('<div id="reply_editor_'+id+'"><form onSubmit="post(this,\'#topic_list\');return false;" action="<%=path%>/twitter/replyTwitter" method="post"><textarea name="twitter.content" onblur="onEditorBlur('+id+')"></textarea><input type="hidden" name="id" value="'+id+'" /><input type="submit" value="确定" />取消</div></form>');
+			};
+
+			switchEditor(1,id);
+		});
+
+		$(".reply").each(function(){
+			var list = $(this).find(".reply_list");
+			$(this).find('.morereply').remove();
+			var num = list.size()-3;
+			if (num > 0) {
+				$(this).prepend("<a class='morereply' href='javascript:;' onclick='$(this).parent().find(\".reply_list\").css(\"display\",\"block\");$(this).remove();'>展开更多"+num+"条回复</a>");
+				$(this).find(".reply_list:lt("+num+")").css("display","none");
+			};
+		});
+	});
+	
+	function switchEditor(isenable,id){
+		if (isenable){
+			$("#replybtn_"+id).css("display","none");
+			$("#reply_editor_"+id).css("display","block");
+			$("#reply_editor_"+id).find("textarea").focus();
+		} else {
+			$("#replybtn_"+id).css("display","block");
+			$("#reply_editor_"+id).css("display","none");
+		}
+	}
+	
+	function onEditorBlur(id){
+		if ($("#reply_editor_"+id).find("textarea").val().trim()=="")
+		setTimeout("switchEditor(0,"+id+");",200);
+	};
 </script>
 
 <c:choose>
@@ -41,23 +81,29 @@
 			<div class="avatar"><img src="<%=path%>/avatar/${twitter.author.id}" /></div>
 			<div class="topic_msg">
 			<div class="time" title="${twitter.time }">${my:formatDate(twitter.time)}</div>
-			<p class="content"><a href="#">${twitter.author.name}</a> ${twitter.content} <c:if test="${twitter.image != null}">
+			<p class="content"><a href="#">${twitter.author.name}</a> ${twitter.content} <c:if test="${!empty twitter.image && !empty twitter.image.minFileUrl}">
 				<img src="<%=path%>${twitter.image.minFileUrl}" />
 			</c:if></p>
-			<div class="operate"><a target="content" href="<%=path%>/twitter/deleteTwitter?id=${twitter.id }&page=${page}" class="btn_del">删除</a>
-			<a target="content" href="<%=path%>/twitter/goReplyTwitter?id=${twitter.id }">回复</a></div>
-			<c:choose>
-				<c:when test="${twitter.reply != null && fn:length(twitter.reply)>0}">
-					<div class="reply"><c:forEach items="${twitter.reply}" var="reply">
-						<div class="reply_list">
-						<div class="reply_avatar"><img src="<%=path%>/avatar/${reply.author.id}" /></div>
-						<p class="reply_content"><a href="#">${reply.author.name}</a> ${reply.content}<br />
-						<span class="replytime">${my:formatDate(reply.time)}</span></p>
-						</div>
-						<div class="clear"></div>
-					</c:forEach></div>
-				</c:when>
-			</c:choose></div>
+			<div class="operate"><a target="content" href="<%=path%>/twitter/deleteTwitter?id=${twitter.id }&page=${page}" class="btn_del">删除</a></div>
+			<div class="reply">
+				<c:choose>
+					<c:when test="${twitter.reply != null && fn:length(twitter.reply)>0}">
+						<c:forEach items="${twitter.reply}" var="reply">
+							<div class="reply_list">
+							<div class="reply_avatar"><img src="<%=path%>/avatar/${reply.author.id}" /></div>
+							<p class="reply_content"><a href="#">${reply.author.name}</a> ${reply.content}<br />
+							<span class="replytime">${my:formatDate(reply.time)}</span></p>
+							</div>
+							<div class="clear"></div>
+						</c:forEach>
+					</c:when>
+				</c:choose>
+				<div class="reply_list">
+					<span id="replybtn_${twitter.id }" class="replybtn textinput" rel="replybtn" rev="${twitter.id }">我也说一句...</span>
+				</div>
+				<div class="clear"></div>
+			</div>
+			</div>
 			</div>
 			<div class="clear "></div>
 			<div class="linedot"></div>
