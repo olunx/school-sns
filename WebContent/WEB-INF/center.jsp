@@ -5,7 +5,10 @@
 %>
 <script type="text/javascript">
 	$(function() {
-		$("#topic_list").load("<%=path%>/feed/listFeed");
+		onLoading("#feed");
+		$("#topic_list").load("<%=path%>/feed/listFeed", function() {
+			offLoading();
+		});
 		initHighslide("<%=path%>", "480", "400");
 	});
 </script>
