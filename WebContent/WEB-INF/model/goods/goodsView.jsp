@@ -8,8 +8,8 @@
 %>
 <div class="goods">
 <h2>${goods.name }${goods.state == 1? "(可交换)" :"(不可交换)" }</h2>
-<p class="desc">${goods.content }</p>
-<p>货品价钱：${goods.value }</p>
+<p class="desc">${goods.content }   <c:if test="${goods.owner.id == student.id}"><a target="content" href="<%=path %>/goods/deleteGoods?id=${goods.id}">注销该货品</a></c:if> </p>
+<p>货品价钱：${goods.value } 元</p>
 <p>货品数量：${goods.quantity }</p>
 <p>拥有者 ：${goods.owner.name }</p>
 <c:choose>

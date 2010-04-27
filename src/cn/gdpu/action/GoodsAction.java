@@ -92,8 +92,18 @@ public class GoodsAction extends BaseAction implements Preparable{
 
 	@Override
 	public String delete() {
-		goodsService.deleteEntity(Goods.class, id);
-		return super.delete();
+		Object people = this.getSession().get("user");
+		if (people != null) {
+			if (people instanceof People) {
+				People user = (People) people;
+				goods = goodsService.getEntity(Goods.class, id);
+				if(user.getId() == goods.getOwner().getId()){
+					goodsService.deleteEntity(Goods.class, id);
+				}
+				return super.delete();
+			}
+		}
+		return ERROR;
 	}
 
 	@Override
@@ -168,6 +178,8 @@ public class GoodsAction extends BaseAction implements Preparable{
 			if (author instanceof People) {
 				user = (Student) author;
 				goods = goodsService.getEntity(Goods.class, id);
+				if(goods == null)
+					return LIST;
 				goods.setHot(goods.getHot() + 1);
 				goodsService.updateEntity(goods);
 				

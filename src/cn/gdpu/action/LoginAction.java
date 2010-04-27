@@ -85,6 +85,7 @@ public class LoginAction extends BaseAction {
 					}
 
 					Set<People> maybeMeet = new HashSet<People>();
+					Set<People> friends = people.getFriends();
 					String hql = "";
 					if (people.getSchool() != null) {
 						if (people.getClasses() != null) {
@@ -93,21 +94,27 @@ public class LoginAction extends BaseAction {
 									+ "' order by rand()";
 							List<People> cpeos = peopleService.queryForLimit(hql, 0, 5);
 							for (People peo : cpeos) {
-								maybeMeet.add(peo);
+								if(!friends.contains(peo)){
+									maybeMeet.add(peo);
+								}
 							}
 							// 推荐学校好友不同一班级的
 							hql = "from People p where p.school.id ='" + people.getSchool().getId() + "' and p.classes.id <>'"
 									+ people.getClasses().getId() + "' and p.id <> '" + people.getId() + "' order by rand()";
 							List<People> speos = peopleService.queryForLimit(hql, 0, 5);
 							for (People peo : speos) {
-								maybeMeet.add(peo);
+								if(!friends.contains(peo)){
+									maybeMeet.add(peo);
+								}
 							}
 						} else { // 推荐学校好友
 							hql = "from People p where p.school.id ='" + people.getSchool().getId() + "' and p.id <> '" + people.getId()
 									+ "' order by rand()";
 							List<People> speos = peopleService.queryForLimit(hql, 0, 5);
 							for (People peo : speos) {
-								maybeMeet.add(peo);
+								if(!friends.contains(peo)){
+									maybeMeet.add(peo);
+								}
 							}
 
 						}
@@ -116,13 +123,17 @@ public class LoginAction extends BaseAction {
 								+ "' order by rand()";
 						List<People> peos = peopleService.queryForLimit(hql, 0, 5);
 						for (People peo : peos) {
-							maybeMeet.add(peo);
+							if(!friends.contains(peo)){
+								maybeMeet.add(peo);
+							}
 						}
 					} else {
 						hql = "from People p where p.id <> '" + people.getId() + "' order by rand()"; // 推荐好友
 						List<People> peos = peopleService.queryForLimit(hql, 0, 5);
 						for (People peo : peos) {
-							maybeMeet.add(peo);
+							if(!friends.contains(peo)){
+								maybeMeet.add(peo);
+							}
 						}
 					}
 					this.getSession().put("maybeMeet", maybeMeet);
