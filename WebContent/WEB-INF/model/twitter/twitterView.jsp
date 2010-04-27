@@ -9,12 +9,18 @@
 %>
 	<div>
 		<a target="content" href="<%=path %>/t/${people.username}"><img src="<%=path%>/avatar/${people.id}" width="124"></img><br/></a>
-		${people.name }<br>
+		${people.name }
+		性别：<c:choose><c:when test="people.sex == 1">男</c:when><c:otherwise>女</c:otherwise></c:choose>
+		所在地：${people.school.province.name }
+		<br>
+		上回登陆：<fmt:formatDate value="${people.lastlogin }" pattern="yyyy-MM-dd" />	
+		<br/>
 		<a target="content" href="<%=path %>/t/${people.username}">http://<%=url %>/t/${people.username}</a><br/>
+		<a target="content" href="<%=path %>/people/viewPeople?id=${people.id}">查看个人资料</a><br />
 		他广播的：<a target="content" href="<%=path %>/twitter/listOtherTwitter?otherId=${people.id}">${fn:length(pageBean.list)}</a>条 |
-		他关注的：${fn:length(people.friends)}人 |
-		关注他的：${fn:length(people.follower)}人 |
-		最近来访：${fn:length(people.visitors)}人
+		他关注的：<a target="content" href="<%=path %>/people/listFriendPeople?id=${people.id}">${fn:length(people.friends)}</a>人 |
+		关注他的：<a target="content" href="<%=path %>/people/listFollowerPeople?id=${people.id}">${fn:length(people.follower)}</a>人 |
+		最近来访：<a target="content" href="<%=path %>/people/listVisitorPeople?id=${people.id}">${fn:length(people.visitors)}</a>人
 		<br />
 	 	<a target="content" href="<%=path%>/people/followPeople?id=${people.id}">
 		 	<c:choose>

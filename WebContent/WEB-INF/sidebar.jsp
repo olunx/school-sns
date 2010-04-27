@@ -17,17 +17,22 @@
 <br/>
 <div class="mod">
 		<a target="content" href="<%=path %>/t/${student.username}"><img src="<%=path%>/avatar/${student.id}" width="104"></img><br/></a>
-		${student.name }<br>
+		${student.name }  
+		性别：<c:choose><c:when test="student.sex == 1">男</c:when><c:otherwise>女</c:otherwise></c:choose>
+		所在地：${student.school.province.name }
+		<br>
+		上回登陆：<fmt:formatDate value="${student.lastlogin }" pattern="yyyy-MM-dd" />	
+		<br/>
 		<a target="content" href="<%=path %>/t/${student.username}">http://<%=url %>/t/${student.username}</a><br/>
 		他广播的：<a target="content" href="<%=path %>/twitter/listMyTwitter">${fn:length(pageBean.list)}</a>条 |
-		他关注的：${fn:length(student.friends)}人 |
-		关注他的：${fn:length(student.follower)}人 |
-		最近来访：${fn:length(student.visitors)}人
+		他关注的：<a target="content" href="<%=path %>/people/listFriendPeople">${fn:length(student.friends)}</a>人 |
+		关注他的：<a target="content" href="<%=path %>/people/listFollowerPeople">${fn:length(student.follower)}</a>人 |
+		最近来访：<a target="content" href="<%=path %>/people/listVisitorPeople">${fn:length(student.visitors)}</a>人
 		<br />
+		<br />
+		<a target="content" href="<%=path %>/people/viewPeople?id=${student.id}">查看个人资料</a>
+		|<a target="content" href="<%=path %>/people/goModifyPeople?id=${student.id}">修改个人资料</a>
 </div>
-<p>
-什么东东都有。
-</p>
 </div>
 <div id="widget">
 	<div id="information">

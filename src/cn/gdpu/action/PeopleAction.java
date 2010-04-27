@@ -179,7 +179,7 @@ public class PeopleAction extends BaseAction {
 	}
 	
 	/**
-	 *查找学校的所以成员
+	 *查找学校的所有成员
 	 */
 	public String school() {
 		School school = schoolService.getEntity(School.class, id);
@@ -191,7 +191,7 @@ public class PeopleAction extends BaseAction {
 	}
 	
 	/**
-	 *查找班级的所以成员
+	 *查找班级的所有成员
 	 */
 	public String classes() {
 		Classes classes= classesService.getEntity(Classes.class, id);
@@ -201,6 +201,69 @@ public class PeopleAction extends BaseAction {
     		pageBean.setList(null);
 		return super.list();
 
+	}
+	
+	public String listFriend(){
+		Object author = this.getSession().get("user");
+		if (author != null) {
+			if (author instanceof People) {
+				People people;
+				if(id == 0){
+					people = (People) author;
+				}
+				else{
+					people = peopleService.getEntity(People.class, id);
+				}
+				String hql = "select friends from People p where p.id = '" + people.getId() + "' order by p.activity DESC";
+				this.pageBean = this.peopleService.queryForPage(hql, 30, page);
+				if(pageBean.getList().isEmpty())
+		    		pageBean.setList(null);
+				return super.list();
+			}
+		}
+		return ERROR;
+	}
+	
+	public String listFollower(){
+		Object author = this.getSession().get("user");
+		if (author != null) {
+			if (author instanceof People) {
+				People people;
+				if(id == 0){
+					people = (People) author;
+				}
+				else{
+					people = peopleService.getEntity(People.class, id);
+				}
+				String hql = "select follower from People p where p.id = '" + people.getId() + "' order by p.activity DESC";
+				this.pageBean = this.peopleService.queryForPage(hql, 30, page);
+				if(pageBean.getList().isEmpty())
+		    		pageBean.setList(null);
+				return super.list();
+			}
+		}
+		return ERROR;
+	}
+	
+	public String listVisitor(){
+		Object author = this.getSession().get("user");
+		if (author != null) {
+			if (author instanceof People) {
+				People people;
+				if(id == 0){
+					people = (People) author;
+				}
+				else{
+					people = peopleService.getEntity(People.class, id);
+				}
+				String hql = "select visitors from People p where p.id = '" + people.getId() + "' order by p.activity DESC";
+				this.pageBean = this.peopleService.queryForPage(hql, 30, page);
+				if(pageBean.getList().isEmpty())
+		    		pageBean.setList(null);
+				return "listvisitor";
+			}
+		}
+		return ERROR;
 	}
 	
 	public int getId() {
