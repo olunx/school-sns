@@ -143,15 +143,12 @@ img{ border:none;}
 #footer{width:800px; clear:both; margin:0 auto; padding:5px; border-bottom:8px solid #999;color:#333;text-align:center;}
 #footer p{font:#FFF;}
 
-
-/*临时列表样式
-.box{width:580px;float:left;border:black solid 1px;margin:5px;}
-.left{width:80px;float:left;margin:5px;border:black solid 1px;}
-	.avatar{width:64px;height:64px;overflow:hidden;margin:0 auto;border:black solid 1px;}
-	.name{width:64px;margin:0 auto;border:black solid 1px;}
-.center{width:400px;float:left;margin:5px;border:black solid 1px;}
-	.post{width:90%;float:right;margin:5px;border:black solid 1px;}
-.right{width:60px;float:left;margin:5px;border:black solid 1px;}
-	.reply{height:30px;margin:5px;text-align:center;font:20px bold;border:black solid 1px;}
-	.delete{margin:5px;text-align:center;font:12px;border:black solid 1px;}
-*/
+/*列表页*/
+.ilist{ padding:0 0 5px 0; margin:5px 0 0 0; border-bottom:#09F dashed 1px;}
+.iavatar{ background:#FFF; float:left; padding:2px; border:1px solid #CCC;}
+.iavatar img{width:50px; height:50px; }
+.imsg { margin-left:70px; padding-left:5px;}
+.imsg { font-size:13px;}
+.imsg .content{ line-height:24px; font-size:14px;}
+.iname{ color:#999; float:right;}
+.ioperate{text-align:right;}
