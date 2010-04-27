@@ -59,7 +59,7 @@
 	<!-- 个人微博首页 -->
 	<package name="t" extends="default" namespace="/t">
 		<global-results>
-			<result name="success">/WEB-INF/twitter.jsp</result>
+			<result name="success">/WEB-INF/model/twitter/twitterView.jsp</result>
 		</global-results>
 		<action name="*" class="cn.gdpu.action.TAction" ></action>
 	</package>

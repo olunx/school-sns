@@ -21,8 +21,10 @@
 				<th>加为好友</th>
 				<th>宿舍</th>
 				<th>状态</th>
+				<c:if test="${admin != null}">
 				<th>编辑</th>
 				<th>删除</th>
+				</c:if>
 			</tr>
 			<c:forEach items="${pageBean.list}" var="people">
 				<tr>
@@ -38,8 +40,10 @@
 					<td>${people.name}</td>
 					<td>${people.dorm}</td>
 					<td>${people.status}</td>
+					<c:if test="${admin != null}">
 					<td><a target="content" href="<%=path%>/people/goModifyPeople?id=${people.id }&page=${page}" class="btn_edit">编辑</a></td>
 					<td><a target="content" href="<%=path%>/people/deletePeople?id=${people.id }&page=${page}" class="btn_del">删除</a></td>
+					</c:if>
 				</tr>
 			</c:forEach>
 		</table>

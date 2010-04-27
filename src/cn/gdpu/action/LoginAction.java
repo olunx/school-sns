@@ -1,5 +1,6 @@
 package cn.gdpu.action;
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -125,6 +126,10 @@ public class LoginAction extends BaseAction {
 						}
 					}
 					this.getSession().put("maybeMeet", maybeMeet);
+					
+					people.setLastlogin(new Date());
+					peopleService.updateEntity(people);
+					
 					this.getSession().put("isAccess", "true");
 					if (referUrl != null && !referUrl.equals(""))
 						return "redirect";
