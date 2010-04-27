@@ -51,7 +51,7 @@ function loadContent(href){
 //打开loading
 function onLoading(){
 	//$('#content').html("");
-    $('#content').prepend('<span id="loading">加载中...</span>');
+    $('#content').prepend('<span id="loading"><img src="./content/images/loading.gif" /> ::>_<:: 努力处理中......</span>');
     $('#loading').fadeIn('fast');
 }
 
