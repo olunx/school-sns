@@ -1,0 +1,4 @@
+1.0
+运行junit的时候老是报告：Invalid project specified错误，到网上查了，原来是项目的名称前加了一个空格！！！
+删掉空格即ok。
+

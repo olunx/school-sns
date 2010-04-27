@@ -1,0 +1,103 @@
+<link type="text/css" rel="stylesheet" href="<%=path%>/content/images/reset.css" />
+<link type="text/css" rel="stylesheet" href="<%=path%>/content/images/layout.css" />
+<link type="text/css" rel="stylesheet" href="<%=path%>/content/images/header.css" />
+<link type="text/css" rel="stylesheet" href="<%=path%>/content/images/login.css" />
+<link type="text/css" rel="stylesheet" href="<%=path%>/content/images/footer.css" />
+
+<script type="text/javascript" src="<%=path%>/content/js/jquery-1.4.2.min.js"></script>
+
+类似lightbox的东西
+使用帮助
+http://colorpowered.com/colorbox/
+<!-- colorbox -->
+<link type="text/css" rel="stylesheet" href="<%=path%>/content/jq-colorbox/colorbox.css" />
+<script type="text/javascript" src="<%=path%>/content/jq-colorbox/jquery.colorbox-min.js"></script>
+
+
+验证框架
+
+使用帮助
+http://www.position-relative.net/creation/formValidator/
+<!-- 验证插件 -->
+<link type="text/css" rel="stylesheet" href="<%=path%>/content/jq-validate/jquery.validationEngine.css" />
+<script type="text/javascript" src="<%=path%>/content/jq-validate/jquery.validationEngine-cn.js"></script>
+<script type="text/javascript" src="<%=path%>/content/jq-validate/jquery.validationEngine.js"></script>
+
+
+图表引用文件
+
+使用帮助
+http://www.highcharts.com/documentation/how-to-use
+
+<script type="text/javascript" src="<%=path%>/content/jq-highcharts/highcharts.js"></script>
+<script type="text/javascript" src="<%=path%>/content/jq-highcharts/highcharts-gridtheme.js"></script>
+<!--[if IE]> 
+		<script type="text/javascript" src="<%=path%>/content/jq-highcharts/highcharts-ie.js"></script> 
+<![endif]-->
+
+JQ UI
+<!-- JQuery UI 插件 -->
+<link type="text/css" rel="stylesheet" href="<%=path%>/content/jq-ui/jquery-ui-1.8.custom.css" />
+<script type="text/javascript" src="<%=path%>/content/jq-ui/jquery-ui-1.8.custom.min.js"></script>
+
+上传插件
+http://valums.com/ajax-upload/
+
+<link type="text/css" rel="stylesheet" href="<%=path%>/content/jq-ajaxupload/ajaxupload.css" />
+<script type="text/javascript" src="<%=path%>/content/jq-ajaxupload/ajaxupload.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+	var button = $('#button'), interval;
+	new AjaxUpload(button,{
+		action: '<%=path%>/avatar/avatarUpload', 
+		name: 'files',
+		onSubmit : function(file, ext){
+			
+            if (! (ext && /^(jpg|png|jpeg|gif)$/i.test(ext))){
+                alert('不允许的文件格式！');
+                return false;
+       		}
+      		 
+			button.text('正在上传');
+			
+			this.disable();
+			
+			// Uploding -> Uploading. -> Uploading...
+			interval = window.setInterval(function(){
+				var text = button.text();
+				if (text.length < 13){
+					button.text(text + '.');
+				} else {
+					button.text('正在上传');	
+				}
+			}, 200);
+		},
+		onComplete: function(){
+			//$('#dialogbox').load('<%=path%>/avatar/goModifyAvatar', ajax);
+			location.href = '<%=path%>/avatar/goModifyAvatar';
+		}
+	});
+});
+</script>
+
+
+<div id="dialogbox">
+	<h2 class="caption">上传头像：</h2>
+	<div id="button" class="button">上传</div> 
+</div>
+
+
+JQ 图片选择
+http://odyniec.net/projects/imgareaselect/
+
+<!-- JQuery 图片选择 插件 -->
+<link type="text/css" rel="stylesheet" href="<%=path%>/content/jq-imgareaselect/css/imgareaselect-default.css.css" />
+<script type="text/javascript" src="<%=path%>/content/jq-imgareaselect/jquery.imgareaselect.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function () {
+    $('img#photo').imgAreaSelect({
+        handles: true,
+        onSelectEnd: someFunction
+    });
+});
+</script>

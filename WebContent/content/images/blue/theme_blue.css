@@ -1,0 +1,14 @@
+@charset "utf-8";
+
+a:link,a:visited{ color:#005fbd; text-decoration:none;}
+a:hover{ color:#004080;}
+.menuk{background:#1e90ff;}
+
+#main{background:#1e90ff;}
+
+/*
+右侧栏
+*/
+#sidebar {padding:10px 5px;width:200px;}
+#sidebar .mod{margin-bottom:10px;}
+#sidebar h2{ font-size:14px; color:#FFF; border-bottom:1px solid #fff; padding-bottom:5px; margin-bottom:5px;}
