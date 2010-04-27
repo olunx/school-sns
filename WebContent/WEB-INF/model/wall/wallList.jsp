@@ -6,14 +6,14 @@
 <%
 	String path = request.getContextPath();
 %>
-<!-- codaslide -->
-<link type="text/css" rel="stylesheet" href="<%=path%>/content/jq-codaslide/coda-slider-2.0.css" />
-<script type="text/javascript" src="<%=path%>/content/jq-codaslide/jquery.easing.1.3.js"></script>
-<script type="text/javascript" src="<%=path%>/content/jq-codaslide/jquery.coda-slider-2.0.js"></script>
+<script type="text/javascript" src="<%=path%>/content/js/jquery-1.4.2.min.js"></script>
 
 <script type="text/javascript">
 	$(function(){
 		updateSidebar();
+
+		diaplayAll();
+		
 		$("#vote_list").load("<%=path%>/vote/listVote",function(){
 			ajax('#content');
 		});
@@ -27,49 +27,43 @@
 			ajax('#content');
 		});
 
-		$('#coda-slider-1').codaSlider({
-			dynamicArrows: false,
-			dynamicTabs: false
-		});
 	});
+
+	function diaplayAll() {
+		$('#pvote').slideUp('normal');
+		$('#pissue').slideUp('normal');
+		$('#pgoods').slideUp('normal');
+		$('#pgroup').slideUp('normal');
+	}
+
+	function show(target) {
+		diaplayAll();
+		$(target).slideDown('normal');
+	}
 </script>
 
 <h2>欢迎来到操场，操场这里可热闹呢~</h2>
 
-<div id="coda-nav-1" >
-<ul>
-<li class="tab1"><a href="#1">投票</a></li>
-<li class="tab2"><a href="#2">问答</a></li>
-<li class="tab3"><a href="#3">交换</a></li>
-<li class="tab4"><a href="#4">群组</a></li>
-</ul>
-</div>
+<p>
+<a onclick="show('#pvote');" href="#">投票</a>
+ <a onclick="show('#pissue');" href="#">问答</a>
+ <a onclick="show('#pgoods');" href="#">交换</a>
+ <a onclick="show('#pgroup');" href="#">群组</a>
+</p>
 
-<div class="coda-slider" id="coda-slider-1">
-	<div class="panel_container" >
-		<div class="panel" >
-			<div class="panel-wrapper">
-				<h2>投票</h2>
-				<div id="vote_list"></div>
-			</div>
-		</div>
-		<div class="panel" >
-			<div class="panel-wrapper">
-				<h2>问答</h2>
-				<div id="issue_list"></div>
-			</div>
-		</div>
-		<div class="panel" >
-			<div class="panel-wrapper">
-				<h2>交换</h2>
-				<div id="goods_list"></div>
-			</div>
-		</div>
-		<div class="panel" >
-			<div class="panel-wrapper">
-				<h2>群组</h2>
-				<div id="group_list"></div>
-			</div>
-		</div>
-	</div>
+<div id="pvote">
+<h2>投票</h2>
+<div id="vote_list"></div>
+</div>
+<div id="pissue">
+<h2>问答</h2>
+<div id="issue_list"></div>
+</div>
+<div id="pgoods">
+<h2>交换</h2>
+<div id="goods_list"></div>
+</div>
+<div id="pgroup">
+<h2>群组</h2>
+<div id="group_list"></div>
 </div>
