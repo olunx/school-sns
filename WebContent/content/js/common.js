@@ -63,8 +63,9 @@ function offLoading(){
 //提交表单数据
 function post(obj){
 	var divid = arguments[1] || '#content';//更新目标id
+	var returl = arguments[2] || '';//返回
     var content = $(divid);
-    var urlStr = $(obj).attr('action')+"?cachetime="+new Date().getTime();
+    var urlStr = $(obj).attr('action');
     var dataStr = decodeURIComponent($(obj).serialize());
         onLoading();//打开loading
         $.ajax({
@@ -74,11 +75,16 @@ function post(obj){
 			cache:false,
             success: function(result){
 				content.slideUp('normal',function(){
-	                content.html(result);
-	                offLoading();//关闭loading
-	                content.slideDown('normal', function(){
+					if (returl == "") {
+						content.html(result);
 						ajax(divid);
-					});
+					} else {
+						content.load(returl,function(){
+							ajax(divid);
+						});
+					};
+	                offLoading();//关闭loading
+	                content.slideDown('normal');
 				});
             },
 			error: function(){
