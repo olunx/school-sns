@@ -1,5 +1,7 @@
 ﻿$(document).ready(function(){
-
+	$.ajaxSetup ({
+	    cache: false //关闭AJAX相应的缓存
+	});
     //注册事件
     $("a[target='content']").click(function(){
         var href = $(this).attr('href');
@@ -62,20 +64,26 @@ function offLoading(){
 function post(obj){
 	var divid = arguments[1] || '#content';//更新目标id
     var content = $(divid);
-    var urlStr = $(obj).attr('action');
+    var urlStr = $(obj).attr('action')+"?cachetime="+new Date().getTime();
     var dataStr = decodeURIComponent($(obj).serialize());
         onLoading();//打开loading
         $.ajax({
             url: urlStr,
             data: dataStr,
             type: 'POST',
+			cache:false,
             success: function(result){
 				content.slideUp('normal',function(){
 	                content.html(result);
 	                offLoading();//关闭loading
-	                content.slideDown('normal', ajax(divid));
+	                content.slideDown('normal', function(){
+						ajax(divid);
+					});
 				});
-            }
+            },
+			error: function(){
+				alert("AJAX出错啦！");
+			}
         });
 }
 

@@ -58,6 +58,10 @@ img{ border:none;}
 .table .ta_right{ text-align:right;}
 /*ul*/
 .ul li{ float:left; margin-left:10px; width:60px; text-align:center; overflow:hidden;}
+/*回复样式*/
+.replybtn{ border:1px solid #b9dcff; padding:2px; display:block; color:#666;}
+.reply_editor textarea{ width:426px; height:80px;}
+
 /*微博*/
 #topic_list .list{ padding:0 0 5px 0; margin:5px 0 0 0; }
 #topic_list .avatar{ background:#FFF; float:left; padding:2px; border:1px solid #CCC;}
@@ -72,7 +76,6 @@ img{ border:none;}
 #topic_list .replytime{ padding-left:5px; color:#999; }
 #topic_list .topic_msg .reply_content{ font-size:13px; margin-left:5px;}
 #topic_list .operate{}
-#topic_list .replybtn{ border:1px solid #b9dcff; padding:2px; display:block; color:#666;}
 .linedot{ background:url(linedot.gif) center repeat-x; padding:0; margin:0;}
 /*Feed*/
 .feed .feed_list{ padding:5px 0 5px 0; border-bottom:1px dashed #ccc;}
