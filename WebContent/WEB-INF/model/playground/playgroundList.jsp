@@ -9,10 +9,18 @@
 <script type="text/javascript">
 $(function(){
 	updateSidebar();
-	$("#pvote").load("<%=path%>/vote/listVote",ajax);
-	$("#pgoods").load("<%=path%>/goods/listGoods",ajax);
-	$("#pissue").load("<%=path%>/issue/listIssue",ajax);
-	$("#pgroup").load("<%=path%>/group/listGroup",ajax);
+	$("#pvote").load("<%=path%>/vote/listVote",function(){
+		ajax('#content');
+	});
+	$("#pgoods").load("<%=path%>/goods/listGoods",function(){
+		ajax('#content');
+	});
+	$("#pissue").load("<%=path%>/issue/listIssue",function(){
+		ajax('#content');
+	});
+	$("#pgroup").load("<%=path%>/group/listGroup",function(){
+		ajax('#content');
+	});
 	
 });
 
