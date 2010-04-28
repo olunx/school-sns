@@ -22,7 +22,7 @@ visibility:hidden;
 display:inline-block;
 }
 
-body{ font-family:Arial, Helvetica, sans-serif,"宋体"; font-size:13px; background:#ccc url(bg.jpg) top center no-repeat fixed;}
+body{ font-family:Arial, Helvetica, sans-serif,"宋体"; font-size:13px; background:#CCC;}
 a:link,a:visited{ color:#2e8ca0; text-decoration:none;}
 a:hover{ color:#004080;}
 table{width:100%;}
@@ -32,30 +32,31 @@ img{ border:none;}
 .textinput{background:#FFF url(input_bg_70.png) repeat-x;}
 
 /* 头部*/
-#header{width:800px;height:100px;margin:0 auto;color:#FFF;}
-#header .logo{float:left;padding:6px 0 0 10px;margin:0;}
-#header .logo a{width:80px;display:block;background:none;overflow:hidden;height:auto;}
-#header .logo a img{margin:0;}
-.menuk{float:right;background:#1e90ff; width:500px; margin:31px 0 0 0; padding:5px 0; color:#999;}
-.menu li{font-size:12px;float:left;padding:5px 10px; position:relative;}
-.menu li a:link,.menu li a:visited{ color:#FFF;}
+#header{width:800px;height:70px;margin:0 auto;color:#FFF; background:url(logoarrow.gif) no-repeat 40px bottom;}
+#header .logo{float:left;padding:15px 0 0 10px;margin:0;}
+#header .logo img{margin:0;}
+.menuk{float:right;background:#FFF; width:400px; margin:18px 0 0 0; padding:0px 10px; color:#999;}
+.menu li{float:left;position:relative;}
+.menu li a{ display:block; margin-right:8px; padding:5px 0;}
+/*.menu li a:link,.menu li a:visited{ color:#FFF;}*/
 .menu li dl{position:absolute; left:0; top:24px;width:100px;display:none;}
 .menu li dt{padding-bottom:5px; }
-.menu li.menu_hover{background:#ccc; background:#1567B7;}
-.menu li.menu_hover dl{display:block; background:#1567B7; padding:5px 10px 0px 10px;}
-.menu li a:hover{color:#000;text-decoration:underline;}
-.nav_account{float:right;padding:5px 10px;}
-.nav_account a:link,.nav_account a:visited{color:#666;}
-.nav_account a:hover{color:#fff;}
+.menu li.menu_hover{background:#eaeaea;}
+.menu li.menu_hover dl{display:block; background:#eaeaea; padding:5px 0 0 15px;}
+.menu li.menu_hover dl a{ padding:0;}
+.nav_account{float:right;padding:5px 0;}
+.nav_account a{}
+/*.nav_account a:link,.nav_account a:visited{color:#666;}
+.nav_account a:hover{color:#fff;}*/
 .loginName{color:#CDEB8B;font-size:13px;padding-left:10px;padding-right:5px;}
 /*中间*/
 #container{width:800px;padding:0;margin:0 auto;}
 
-#main{width:800px;padding:0;float:left;background:#FFF;}
+#main{width:800px;padding:0; margin-bottom:10px; float:left;background:#FFF;}
 
-#content{width:570px;float:left; min-height:400px; _height:400px;/*ie6 min-height hack*/ background:#FFF; padding:10px;}
+#content{width:570px; overflow:hidden; float:left;background:#FFF; padding:10px;}
 #content h2{ font-size:14px; padding:5px 0; clear:both;}
-#sidebar{padding:10px 0px;width:210px; float:left; }
+#sidebar{padding:10px 0px;width:210px; overflow:hidden; float:left; }
 
 /*chat*/
 #showmsg { overflow-y:scroll; height:350px;}
@@ -196,7 +197,7 @@ font-size:20px;
 .mod .imglist li img{ width:50px; height:50px; padding:2px; border:1px solid #d2d2d2; background:#fff;}
 
 /*底部*/
-#footer{width:800px; clear:both; margin:0 auto; padding:5px; border-bottom:8px solid #999;color:#333;text-align:center;}
+#footer{width:790px; background:#ffffff; clear:both; margin:10px auto; padding:5px; text-align:center;}
 #footer p{font:#FFF;}
 
 /*列表页*/
