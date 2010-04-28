@@ -30,7 +30,6 @@
 	});
 
 	function diaplayAll() {
-		$('#pvote').slideUp('normal');
 		$('#pissue').slideUp('normal');
 		$('#pgoods').slideUp('normal');
 		$('#pgroup').slideUp('normal');
@@ -38,19 +37,19 @@
 
 	function show(target) {
 		diaplayAll();
+		$('#pvote').slideUp('normal');
 		$(target).slideDown('normal');
 	}
 </script>
 
-<h2>欢迎来到操场，操场这里可热闹呢~</h2>
+<div class="buttons">
+<a onclick="show('#pvote');" href="#" class="regular">投票</a>
+ <a onclick="show('#pissue');" href="#" class="regular">问答</a>
+ <a onclick="show('#pgoods');" href="#" class="regular">交换</a>
+ <a onclick="show('#pgroup');" href="#" class="regular">群组</a>
+</div>
 
-<p>
-<a onclick="show('#pvote');" href="#">投票</a>
- <a onclick="show('#pissue');" href="#">问答</a>
- <a onclick="show('#pgoods');" href="#">交换</a>
- <a onclick="show('#pgroup');" href="#">群组</a>
-</p>
-
+<p><br/></p>
 <div id="pvote">
 <h2>投票</h2>
 <div id="vote_list"></div>

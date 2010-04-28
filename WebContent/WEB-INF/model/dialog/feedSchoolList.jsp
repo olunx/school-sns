@@ -94,7 +94,10 @@
 
 		<div id="more_list"><c:choose>
 			<c:when test="${pageBean.currentPage != pageBean.totalPage}">
-				<br/><a target="list" rel="${pageBean.currentPage+1}" href="<%=path%>/feed/listSchoolFeed?page=${pageBean.currentPage+1}"><span>更多...</span></a>
+				<br/>
+				<div class="buttons">
+				<a class="regular long center" target="list" href="<%=path%>/feed/listSchoolFeed?page=${pageBean.currentPage+1}" >更多...</a>
+				</div>
 			</c:when>
 			<c:otherwise>
 				<br/><a><span>没有更多最近的动态了！</span></a>
