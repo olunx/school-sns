@@ -91,5 +91,6 @@ $(function(){
 	});
 //-->
 </script>
+<h2>最新动态：</h2>
 <div id="topic_list"></div>
 

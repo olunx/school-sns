@@ -1,5 +1,7 @@
 ﻿$(document).ready(function(){
-
+	$.ajaxSetup ({
+	    cache: false //关闭AJAX相应的缓存
+	});
     //注册事件
     $("a[target='content']").click(function(){
         var href = $(this).attr('href');
@@ -39,7 +41,7 @@ function ajax(){
 function loadContent(href){
     var content = $('#content');
     content.html("");
-    onLoading();//打开loading
+    onLoading(content);//打开loading
     content.load(href, function(){
         offLoading();//关闭loading
         content.fadeIn('slow', ajax);
@@ -47,9 +49,9 @@ function loadContent(href){
 }
 
 //打开loading
-function onLoading(){
+function onLoading(target){
 	//$('#content').html("");
-    $('#content').prepend('<span id="loading">加载中...</span>');
+    $(target).prepend('<span id="loading"><img src="./content/images/loading.gif" /> ::>_<:: 努力处理中......</span>');
     $('#loading').fadeIn('fast');
 }
 
@@ -61,6 +63,7 @@ function offLoading(){
 //提交表单数据
 function post(obj){
 	var divid = arguments[1] || '#content';//更新目标id
+	var returl = arguments[2] || '';//返回
     var content = $(divid);
     var urlStr = $(obj).attr('action');
     var dataStr = decodeURIComponent($(obj).serialize());
@@ -69,13 +72,24 @@ function post(obj){
             url: urlStr,
             data: dataStr,
             type: 'POST',
+			cache:false,
             success: function(result){
 				content.slideUp('normal',function(){
-	                content.html(result);
+					if (returl == "") {
+						content.html(result);
+						ajax(divid);
+					} else {
+						content.load(returl,function(){
+							ajax(divid);
+						});
+					};
 	                offLoading();//关闭loading
-	                content.slideDown('normal', ajax(divid));
+	                content.slideDown('normal');
 				});
-            }
+            },
+			error: function(){
+				alert("AJAX出错啦！");
+			}
         });
 }
 

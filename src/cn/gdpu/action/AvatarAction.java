@@ -32,7 +32,7 @@ public class AvatarAction extends BaseAction {
 			People peo = peopleService.getEntity(People.class, id);
 			if (peo != null) {
 				Image avatar = peo.getAvatar();
-				if (avatar != null) {
+				if (avatar != null && !avatar.getMinFileUrl().equals("")) {
 					filename = context.getRealPath(avatar.getMinFileUrl());
 				}
 				Log.init(getClass()).info("avatar filename:" + filename);

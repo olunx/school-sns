@@ -17,6 +17,15 @@
     <filter-name>encoding</filter-name>
     <url-pattern>/*</url-pattern>
   </filter-mapping>
+ 	<!-- 配置取消缓存 -->
+	<filter>
+		<filter-name>cachefilter</filter-name>
+		<filter-class>cn.gdpu.util.NoCacheFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>cachefilter</filter-name>
+		<url-pattern>/*</url-pattern>  
+	</filter-mapping> 
    <!-- 配置Spring -->
   <listener>
     <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>

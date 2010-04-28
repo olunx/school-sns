@@ -30,7 +30,7 @@
 	 	</a>
 	</div>
 	
-	<div id="myTopic">
+	<div id="topic_list">
 		<h2>他的广播：</h2>
 		<div id="box">
 			<jsp:include page="./twitterList.jsp"></jsp:include>
