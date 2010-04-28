@@ -24,7 +24,71 @@
 	</filter>
 	<filter-mapping>
 		<filter-name>cachefilter</filter-name>
-		<url-pattern>/*</url-pattern>  
+		<url-pattern>/admin/*</url-pattern>  
+	</filter-mapping> 
+	<filter-mapping>
+		<filter-name>cachefilter</filter-name>
+		<url-pattern>/course/*</url-pattern>  
+	</filter-mapping> 
+	<filter-mapping>
+		<filter-name>cachefilter</filter-name>
+		<url-pattern>/attendance/*</url-pattern>  
+	</filter-mapping> 
+	<filter-mapping>
+		<filter-name>cachefilter</filter-name>
+		<url-pattern>/chat/*</url-pattern>  
+	</filter-mapping> 
+	<filter-mapping>
+		<filter-name>cachefilter</filter-name>
+		<url-pattern>/classfee/*</url-pattern>  
+	</filter-mapping> 
+	<filter-mapping>
+		<filter-name>cachefilter</filter-name>
+		<url-pattern>/score/*</url-pattern>  
+	</filter-mapping> 
+	<filter-mapping>
+		<filter-name>cachefilter</filter-name>
+		<url-pattern>/vote/*</url-pattern>  
+	</filter-mapping> 
+	<filter-mapping>
+		<filter-name>cachefilter</filter-name>
+		<url-pattern>/goods/*</url-pattern>  
+	</filter-mapping> 
+	<filter-mapping>
+		<filter-name>cachefilter</filter-name>
+		<url-pattern>/issue/*</url-pattern>  
+	</filter-mapping> 
+	<filter-mapping>
+		<filter-name>cachefilter</filter-name>
+		<url-pattern>/school/*</url-pattern>  
+	</filter-mapping> 
+	<filter-mapping>
+		<filter-name>cachefilter</filter-name>
+		<url-pattern>/classes/*</url-pattern>  
+	</filter-mapping> 
+	<filter-mapping>
+		<filter-name>cachefilter</filter-name>
+		<url-pattern>/t/*</url-pattern>  
+	</filter-mapping> 
+	<filter-mapping>
+		<filter-name>cachefilter</filter-name>
+		<url-pattern>/feed/*</url-pattern>  
+	</filter-mapping> 
+	<filter-mapping>
+		<filter-name>cachefilter</filter-name>
+		<url-pattern>/wall/*</url-pattern>  
+	</filter-mapping> 
+	<filter-mapping>
+		<filter-name>cachefilter</filter-name>
+		<url-pattern>/twitter/*</url-pattern>  
+	</filter-mapping> 
+	<filter-mapping>
+		<filter-name>cachefilter</filter-name>
+		<url-pattern>/mail/*</url-pattern>  
+	</filter-mapping> 
+	<filter-mapping>
+		<filter-name>cachefilter</filter-name>
+		<url-pattern>/group/*</url-pattern>  
 	</filter-mapping> 
    <!-- 配置Spring -->
   <listener>

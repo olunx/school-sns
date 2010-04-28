@@ -44,7 +44,7 @@ function loadContent(href){
     onLoading(content);//打开loading
     content.load(href, function(){
         offLoading();//关闭loading
-        content.fadeIn('slow', ajax);
+        //content.fadeIn('slow', ajax);
     });
 }
 
@@ -52,7 +52,7 @@ function loadContent(href){
 function onLoading(target){
 	//$('#content').html("");
     $(target).prepend('<span id="loading"><img src="./content/images/loading.gif" /> ::>_<:: 努力处理中......</span>');
-    $('#loading').fadeIn('fast');
+    $('#loading').show();
 }
 
 //关闭loading

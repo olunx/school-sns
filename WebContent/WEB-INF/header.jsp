@@ -53,7 +53,7 @@ $(document).ready(function() {
 		<li><a target="content" href="<%=path %>/classes/viewClasses?id=${user.classes == null? -1: user.classes.id}">班级</a></li>
 	</c:if>
 	<li><a target="content" href="<%=path%>/wall/listWall">广场</a></li>
-	<li rel="submenu"><a href="javascript:void()">聊天馆</a>
+	<li rel="submenu"><a href="javascript:;">聊天馆</a>
 		<dl>
 		<dt><a target="content" href="<%=path%>/chat/pubChat">公共聊天室</a></dt>
 		<dt><a target="content" href="<%=path%>/chat/priChat">匿名聊天室</a></dt>
