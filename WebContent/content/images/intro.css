@@ -5,13 +5,12 @@
 	overflow:hidden
 }
 #LUI ul {
-	width:550px;
-	margin:0 auto
+	margin:0 auto;
+	overflow:hidden;
 }
 #LUI .pic {
 	float:left;
 	width:130px;
-	margin-right:10px
 }
 #LUI .pic img {
 	width:120px;
@@ -21,8 +20,8 @@
 	background:#fff
 }
 #LUI .detail {
-	float:left;
-	width:380px
+	float:right;
+	width:430px
 }
 #LUI .detail h4 {
 	line-height:25px;
