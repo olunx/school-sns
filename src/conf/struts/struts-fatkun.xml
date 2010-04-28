@@ -39,12 +39,4 @@
 		<action name="*Chat" class="cn.gdpu.action.ChatAction" method="{1}"></action>
 	</package>
 	
-	<!-- 操场的Action -->
-	<package name="playground" extends="default" namespace="/playground">
-		<global-results>
-			<result name="list" type="redirect">listPlayground</result>
-			<result name="index">/WEB-INF/model/playground/playgroundList.jsp</result>
-		</global-results>
-		<action name="*Playground" class="cn.gdpu.action.PlaygroundAction" method="{1}"></action>
-	</package>
 </struts>    

@@ -1,6 +1,7 @@
 <%@ page info="Random Image Show" pageEncoding="UTF-8" contentType="image/jpg" autoFlush="true" buffer="16kb" session="false"
 	import="java.io.FileInputStream"%>
 <%
+try{
 	ServletOutputStream sos = null;
 	if (sos == null) sos = response.getOutputStream();
 	FileInputStream fis = new FileInputStream((String) request.getAttribute("filename"));
@@ -14,4 +15,8 @@
 	fis.close();
 	out.clear();
 	out = pageContext.pushBody();
+}catch(Exception e){
+	out.clear();
+	out = pageContext.pushBody();
+}
 %>

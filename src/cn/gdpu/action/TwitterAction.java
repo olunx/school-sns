@@ -2,21 +2,13 @@ package cn.gdpu.action;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 
-import net.sf.json.JSONObject;
-
-import cn.gdpu.service.GoodsTypeService;
 import cn.gdpu.service.ImageService;
-import cn.gdpu.service.IssueTypeService;
 import cn.gdpu.service.TwitterService;
 import cn.gdpu.util.Log;
 import cn.gdpu.util.PageBean;
-import cn.gdpu.vo.GoodsType;
 import cn.gdpu.vo.Image;
-import cn.gdpu.vo.IssueType;
 import cn.gdpu.vo.People;
 import cn.gdpu.vo.Twitter;
 
@@ -30,40 +22,8 @@ public class TwitterAction extends BaseAction {
 	private Image image;
 	private ImageService<Image, Integer> imageService;
 	private TwitterService<Twitter, Integer> twitterService;
-	private IssueTypeService<IssueType, Integer> issueTypeService;
-	private GoodsTypeService<GoodsType, Integer> goodsTypeService;
 	private PageBean pageBean;
 	private int page;
-
-	
-	@Override
-	public String goAdd() {
-		
-		//获取问答类型
-		String hql = "from IssueType it where it.isleaf = '0'";
-		List<IssueType> its = issueTypeService.getEntity(IssueType.class, hql);
-		Map<String, Map<String, Object>> map = new LinkedHashMap<String, Map<String, Object>>();
-		for(IssueType it : its){
-			Map<String, Object> itmap = new LinkedHashMap<String, Object>();
-			Map<String, Integer> itcmap = new LinkedHashMap<String, Integer>();
-			itmap.put("key", it.getId());
-			itmap.put("defaultvalue", it.getChildType().iterator().next().getId());
-			for(IssueType itc : it.getChildType()){
-				itcmap.put(itc.getName(), itc.getId());
-			}
-			itmap.put("values", itcmap);
-			map.put(it.getName(), itmap);
-		}
-        JSONObject jo = JSONObject.fromObject(map);
-		getRequest().put("jsonmap", jo);
-
-		//获取物品类型
-		List<GoodsType> list = goodsTypeService.getAllEntity(GoodsType.class);
-		getRequest().put("goodsType", list);
-
-		
-		return super.goAdd();
-	}
 
 	@Override
 	public String add() {
@@ -81,7 +41,7 @@ public class TwitterAction extends BaseAction {
 			}
 
 			twitterService.addEntity(twitter);
-			
+
 			FeedAction.init().add(twitter, FeedAction.ADD_TWITTER);
 		}
 
@@ -249,22 +209,6 @@ public class TwitterAction extends BaseAction {
 
 	public void setPage(int page) {
 		this.page = page;
-	}
-
-	public IssueTypeService<IssueType, Integer> getIssueTypeService() {
-		return issueTypeService;
-	}
-
-	public void setIssueTypeService(IssueTypeService<IssueType, Integer> issueTypeService) {
-		this.issueTypeService = issueTypeService;
-	}
-
-	public GoodsTypeService<GoodsType, Integer> getGoodsTypeService() {
-		return goodsTypeService;
-	}
-
-	public void setGoodsTypeService(GoodsTypeService<GoodsType, Integer> goodsTypeService) {
-		this.goodsTypeService = goodsTypeService;
 	}
 
 }
