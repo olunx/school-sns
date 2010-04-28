@@ -128,6 +128,8 @@ public class VoteAction extends BaseAction {
 		if (people != null) {
 			if (people instanceof People) {
 				People voter = (People) people;
+				if (voter == null)
+					return LIST;
 				vote = (Vote) voteService.getEntity(Vote.class, vid);
 				if (viid == null) // 验证投票先是否为空
 					this.addFieldError("viid", "投票选项不能为空");
@@ -141,11 +143,11 @@ public class VoteAction extends BaseAction {
 				if (toDay.after(vote.getDeadline())) // 如果投票过期 ，返回timeout
 					return super.view();
 				Set<People> voters = vote.getVoters();
-				if (voter == null)
-					return LIST;
+			
 				for (People stu : voters) {
-					if (stu.getId() == voter.getId()) // 如果投票人已经投票，返回voterexist
+					if (stu.getId() == voter.getId())// 如果投票人已经投票，返回voterexist
 						return super.view();
+					
 				}
 				if (!voters.add(voter))
 					return super.view();

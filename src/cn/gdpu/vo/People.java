@@ -28,7 +28,7 @@ public class People {
 	 */
 	private String name;
 	/**
-	 * 性别 女0, 男1
+	 * 性别 女2, 男1
 	 */
 	private int sex;
 	/**

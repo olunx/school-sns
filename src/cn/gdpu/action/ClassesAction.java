@@ -3,14 +3,10 @@ package cn.gdpu.action;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
-
-import net.sf.json.JSONObject;
 
 import org.apache.struts2.ServletActionContext;
 
@@ -25,7 +21,6 @@ import cn.gdpu.util.Log;
 import cn.gdpu.vo.Classes;
 import cn.gdpu.vo.Institute;
 import cn.gdpu.vo.People;
-import cn.gdpu.vo.Province;
 import cn.gdpu.vo.School;
 import cn.gdpu.vo.Student;
 import cn.gdpu.vo.Topic;
@@ -124,17 +119,21 @@ public class ClassesAction extends BaseAction implements Preparable{
 		if (student != null) {
 			if (student instanceof Student) {
 				Student user = (Student) student;
-				if(user.getPermission() == 1){          //未审核通过不能访问
-					return ERROR;
+				
+				if(id == -1){							//未加入班级									
+					return "goPerfectReg";
 				}
-				if(id == -1){
+				
+				if(user.getPermission() == 1){          //未审核通过不能访问
 					return ERROR;
 				}
 				classes = classesService.getEntity(Classes.class, id);
 				boolean isAdmin = false;
-				for(People peo : classes.getAdmins()){
-					if(peo.getUsername().trim().equals(user.getUsername().trim()))
+				for(People peo:classes.getAdmins()){
+					if(peo.getId() == user.getId()){
 						isAdmin = true;
+						break;
+					}
 				}
 				getRequest().put("isAdmin", isAdmin);
 				
@@ -149,6 +148,7 @@ public class ClassesAction extends BaseAction implements Preparable{
 						old.setTime(new Date());
 						visitors.set(i, old);
 						ishas=true;
+						break;
 					}
 				}
 				if(ishas != true){
@@ -260,6 +260,7 @@ public class ClassesAction extends BaseAction implements Preparable{
 				for(int i=0; i<admins.size();i++){
 					if(admins.get(i).getId() == user.getId()){
 						ishas=true;
+						break;
 					}
 				}
 				if(ishas != true){

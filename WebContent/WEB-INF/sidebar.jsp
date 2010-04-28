@@ -18,7 +18,7 @@
 <div class="mod">
 		<a target="content" href="<%=path %>/t/${student.username}"><img src="<%=path%>/avatar/${student.id}" width="104"></img><br/></a>
 		${student.name }  
-		性别：<c:choose><c:when test="student.sex == 1">男</c:when><c:otherwise>女</c:otherwise></c:choose>
+		性别：<c:choose><c:when test="${student.sex == 1}">男</c:when><c:otherwise>女</c:otherwise></c:choose>
 		所在地：${student.school.province.name }
 		<br>
 		上回登陆：<fmt:formatDate value="${student.lastlogin }" pattern="yyyy-MM-dd" />	
