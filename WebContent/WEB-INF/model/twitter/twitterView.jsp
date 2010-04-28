@@ -10,7 +10,6 @@
 <link type="text/css" rel="stylesheet" href="<%=path%>/content/images/intro.css" />
 <div id="LUI">
   <ul>
-    <li class="pic"><a target="content" href="<%=path %>/t/${people.username}"><img src="<%=path%>/avatar/${people.id}" width="124"></img></a></li>
     <li class="detail">
       <h4><span class="userName">${people.name }</span><span> (性别：<c:choose><c:when test="people.sex == 1">男</c:when><c:otherwise>女</c:otherwise></c:choose> | 所在地：${people.school.province.name }) </span><br>
       <a class="link" target="content" href="<%=path %>/t/${people.username}">http://<%=url %>/t/${people.username}</a></h4>
@@ -32,6 +31,7 @@
         </div>
       </div>
     </li>
+    <li class="pic"><a target="content" href="<%=path %>/t/${people.username}"><img src="<%=path%>/avatar/${people.id}" width="124"></img></a></li>
   </ul>
 </div>
 	
