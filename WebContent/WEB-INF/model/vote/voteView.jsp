@@ -8,9 +8,6 @@
 %>
 <script type="text/javascript" src="<%=path%>/content/jq-highcharts/highcharts.js"></script>
 <script type="text/javascript" src="<%=path%>/content/jq-highcharts/highcharts-gridtheme.js"></script>
-<!--[if IE]> 
-		<script type="text/javascript" src="<%=path%>/content/jq-highcharts/highcharts-ie.js"></script> 
-<![endif]-->
 <script type="text/javascript">
 	var data = "${data}";
 	$(document).ready(function() {
@@ -18,10 +15,11 @@
 		var options = {
 			chart : {
 				renderTo : 'chart',
+				margin: [80, 20, 60, 100],
 				defaultSeriesType : 'bar'
 			},
 			title : {
-				text : '${vote.title }'
+				text : '${vote.summary }'
 			},
 			xAxis : {
 				categories : []
@@ -29,8 +27,41 @@
 			yAxis : {
 				title : {
 					text : ''
+					
 				}
 			},
+			tooltip: {
+			      formatter: function() {
+			         return this.series.name +' 票数: '+ this.y ;
+			      }
+			   },
+			   plotOptions: {
+			      bar: {
+			         dataLabels: {
+			            enabled: true,
+			            color: 'auto',
+			            style: {
+			            	fontSize: '15pt',
+			            	padding: '5px'
+			            }
+			         }
+			      }
+			   },
+			   legend: {
+			      layout: 'vertical',
+			      style: {
+			         left: '10px',
+			         bottom: 'auto',
+			         right: 'auto',
+			         top: '10px'
+			      },
+			      borderWidth: 1,
+			      backgroundColor: '#FFFFFF'
+			   },
+			   credits: {
+			      enabled: false
+			   },
+          
 			series : []
 		};
 
@@ -58,6 +89,7 @@
 					// the rest of the lines contain data with their name in the first position
 					else {
 						var series = {
+							name: '${vote.title }',
 							data : []
 						};
 						$.each(items, function(itemNo, item) {

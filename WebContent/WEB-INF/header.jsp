@@ -19,6 +19,9 @@
 <script type="text/javascript" src="<%=path%>/content/jq-ajaxupload/ajaxupload.js"></script>
 
 <!-- 常用库，确保这段代码在最下方 -->
+<!--[if IE]> 
+		<script type="text/javascript" src="<%=path%>/content/jq-highcharts/highcharts-ie.js"></script> 
+<![endif]-->
 <script type="text/javascript" src="<%=path%>/content/js/common.js"></script>
 
 <!-- highslide -->
