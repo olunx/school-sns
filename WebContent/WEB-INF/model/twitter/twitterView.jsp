@@ -7,28 +7,33 @@
 	String path = request.getContextPath();
 	String url = request.getServerName();
 %>
-	<div>
-		<a target="content" href="<%=path %>/t/${people.username}"><img src="<%=path%>/avatar/${people.id}" width="124"></img><br/></a>
-		${people.name }
-		性别：<c:choose><c:when test="people.sex == 1">男</c:when><c:otherwise>女</c:otherwise></c:choose>
-		所在地：${people.school.province.name }
-		<br>
-		上回登陆：<fmt:formatDate value="${people.lastlogin }" pattern="yyyy-MM-dd" />	
-		<br/>
-		<a target="content" href="<%=path %>/t/${people.username}">http://<%=url %>/t/${people.username}</a><br/>
-		<a target="content" href="<%=path %>/people/viewPeople?id=${people.id}">查看个人资料</a><br />
-		他广播的：<a target="content" href="<%=path %>/twitter/listOtherTwitter?otherId=${people.id}">${fn:length(pageBean.list)}</a>条 |
-		他关注的：<a target="content" href="<%=path %>/people/listFriendPeople?id=${people.id}">${fn:length(people.friends)}</a>人 |
-		关注他的：<a target="content" href="<%=path %>/people/listFollowerPeople?id=${people.id}">${fn:length(people.follower)}</a>人 |
-		最近来访：<a target="content" href="<%=path %>/people/listVisitorPeople?id=${people.id}">${fn:length(people.visitors)}</a>人
-		<br />
-	 	<a target="content" href="<%=path%>/people/followPeople?id=${people.id}">
+<link type="text/css" rel="stylesheet" href="<%=path%>/content/images/intro.css" />
+<div id="LUI">
+  <ul>
+    <li class="pic"><a target="content" href="<%=path %>/t/${people.username}"><img src="<%=path%>/avatar/${people.id}" width="124"></img></a></li>
+    <li class="detail">
+      <h4><span class="userName">${people.name }</span><span> (性别：<c:choose><c:when test="people.sex == 1">男</c:when><c:otherwise>女</c:otherwise></c:choose> | 所在地：${people.school.province.name }) </span><br>
+      <a class="link" target="content" href="<%=path %>/t/${people.username}">http://<%=url %>/t/${people.username}</a></h4>
+      <div class="userNums">
+      <a target="content" href="<%=path %>/twitter/listOtherTwitter?otherId=${people.id}">广播<strong>${fn:length(pageBean.list)}</strong>条</a><span>|</span>
+      <a target="content" href="<%=path %>/people/listFollowerPeople?id=${people.id}">听众<strong class="followNum" >${fn:length(people.follower)}</strong>人</a><span>|</span>
+      <a target="content" href="<%=path %>/people/listFriendPeople?id=${people.id}">他收听<strong>${fn:length(people.friends)}</strong>人</a></div>
+      <div class="funBox">
+        <div class="left">
+        <a target="content" href="<%=path%>/people/followPeople?id=${people.id}">
 		 	<c:choose>
 			 	<c:when test="${my:isMyFriend(friends,people)}">取消关注</c:when>
 			 	<c:otherwise>设为关注</c:otherwise>
 		 	</c:choose>
 	 	</a>
-	</div>
+        </div>
+        <div class="right">
+			<a>上回登陆：<fmt:formatDate value="${people.lastlogin }" pattern="yyyy-MM-dd" /></a>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>
 	
 	<div id="topic_list">
 		<h2>他的广播：</h2>
