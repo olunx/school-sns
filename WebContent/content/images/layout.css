@@ -9,6 +9,18 @@
 	clear: both;
 	height: 0;
 }
+.clearfix:after
+{
+content:".";
+display:block;
+height:0;
+clear:both;
+visibility:hidden;
+}
+.clearfix
+{
+display:inline-block;
+}
 
 body{ font-family:Arial, Helvetica, sans-serif,"宋体"; font-size:13px; background:#ccc url(bg.jpg) top center no-repeat fixed;}
 a:link,a:visited{ color:#2e8ca0; text-decoration:none;}
@@ -41,9 +53,9 @@ img{ border:none;}
 
 #main{width:800px;padding:0;float:left;background:#FFF;}
 
-#content{width:565px;float:left; min-height:400px; _height:400px;/*ie6 min-height hack*/ background:#FFF; margin:0px 0 0 0; padding:10px;}
+#content{width:570px;float:left; min-height:400px; _height:400px;/*ie6 min-height hack*/ background:#FFF; padding:10px;}
 #content h2{ font-size:14px; padding:5px 0; clear:both;}
-#sidebar{width:200px;float:left; padding:0px;}
+#sidebar{padding:10px 0px;width:210px; float:left; }
 
 /*chat*/
 #showmsg { overflow-y:scroll; height:350px;}
@@ -138,10 +150,51 @@ img{ border:none;}
 #pagecount a{background:transparent url(btn_page_r.gif) no-repeat scroll top right;color:#295568;float:left;display:block;height:21px;margin-right:6px;padding-right:5px;/* sliding doors padding */text-decoration:none;font-size:13px;}
 #pagecount span{background:transparent url(btn_page_l.gif) no-repeat;display:block;line-height:14px;padding:5px 0 5px 5px;}
 /*侧栏*/
-.mod {clear:both;}
-#sidebar .mod li{ float:left;white-space:nowrap;}
+/*.mod {clear:both;}
+.mod li{ float:left;white-space:nowrap;}
 .mod a{display:block; padding:0 10px 0 0;}
 .mod a:link,.mod a:visited{color:#f9f4b9;}
+*/
+.mod { padding:0 10px 10px 10px; }
+.mod h2{ clear:both;}
+
+.search #keyword{ width:140px;}
+.search #searchbtn{ width:40px;}
+.userDetail .avatar img{
+background:none repeat scroll 0 0 #FFFFFF;
+border:1px solid #CCCCCC;
+height:100px;
+padding:2px;
+width:100px;
+}
+.userDetail .avatar{ float:left;}
+.userDetail .myinfo{
+float:left;
+margin:20px 0 0 10px;
+}
+.userDetail .myinfo dt{ margin-top:5px;}
+.userDetail .myinfo dd{
+font-family:georgia;
+font-size:20px;
+}
+.userDetail .myotherinfo{
+	clear:both;
+}
+.userDetail .myotherinfo p{ margin-bottom:5px;}
+/*侧栏头像列表*/
+.mod .imglist {
+	width:190px;
+}
+.mod .imglist li{
+ float:left; width:56px;
+ height:80px;
+ text-align:center;
+ overflow:hidden;
+ margin-right:7px;
+}
+.mod .imglist li a { white-space:nowrap;}
+.mod .imglist li img{ width:50px; height:50px; padding:2px; border:1px solid #d2d2d2; background:#fff;}
+
 /*底部*/
 #footer{width:800px; clear:both; margin:0 auto; padding:5px; border-bottom:8px solid #999;color:#333;text-align:center;}
 #footer p{font:#FFF;}

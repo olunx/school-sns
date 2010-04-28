@@ -51,7 +51,7 @@ public class LoginAction extends BaseAction {
 		Log.init(getClass()).info("登陆 username: " + username);
 		Log.init(getClass()).info("登陆 password: " + password);
 
-		if (username != null && password != null) {
+		if (username != null && password != null && this.getSession().get("isAccess")==null) {
 			if (peopleService != null) {
 				Log.init(getClass()).info("开始查询: ");
 				People people = peopleService.getPeopleByUsernameAndPwd(username, password);
