@@ -23,14 +23,13 @@
 			<dt>我的粉丝</dt>
 			<dd><a target="content" href="<%=path %>/people/listFollowerPeople">${fn:length(student.follower)}</a></dd>
 		</dl>
-	<div class="myotherinfo">
-		<p>${student.name }</p>
-		<p>性别：<c:choose><c:when test="${student.sex == 1}">男</c:when><c:otherwise>女</c:otherwise></c:choose> 所在地：${student.school.province.name }
-		</p>
-		<p>我关注的：<a target="content" href="<%=path %>/people/listFriendPeople">${fn:length(student.friends)}</a>人 | 最近来访：<a target="content" href="<%=path %>/people/listVisitorPeople">${fn:length(student.visitors)}</a>人
-		</p>
-	</div>
-			<a target="content" href="<%=path %>/people/viewPeople?id=${student.id}">查看个人资料</a> | <a target="content" href="<%=path %>/people/goModifyPeople?id=${student.id}">修改个人资料</a>
+		<div class="myotherinfo">
+			<p>${student.name }</p>
+			<p>性别：<c:choose><c:when test="${student.sex == 1}">男</c:when><c:otherwise>女</c:otherwise></c:choose> 所在地：${student.school.province.name }
+			</p>
+			<p>我关注的：<a target="content" href="<%=path %>/people/listFriendPeople">${fn:length(student.friends)}</a>人 | 最近来访：<a target="content" href="<%=path %>/people/listVisitorPeople">${fn:length(student.visitors)}</a>人
+			</p>
+		</div>
 	</div>
 	<c:if test="${student.classes == null}">
 	<div class="mod" id="information">
