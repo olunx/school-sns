@@ -6,29 +6,11 @@
 <%
 	String path = request.getContextPath();
 %>
+<script type="text/javascript" src="<%=path%>/content/js/jquery.scrollTo-min.js"></script>
 <script type="text/javascript">
 	$(function() {
-		list("#vote_list");
+		listMore("#vote_more_list","#vote_list");
 	});
-
-	function list(target) {
-		$("a[target='list']").click(function() {
-			var href = $(this).attr('href');
-			$("#vote_more_list").remove();
-			
-			$.ajax( {
-				url : href,
-				type : 'GET',
-				success : function(result) {
-					$(target).append(result);
-				}
-			});
-
-			return false;
-		});
-
-		ajax();
-	}
 </script>
 <c:choose>
 	<c:when test="${pageBean.list == null}">
@@ -55,8 +37,15 @@
 
 		<div id="vote_more_list"><c:choose>
 			<c:when test="${pageBean.currentPage != pageBean.totalPage}">
-				<br/><a target="list" href="<%=path%>/vote/listVote?page=${pageBean.currentPage+1}"><span>更多...</span></a>
+			<div class="buttons">
+			<a class="regular long center" target="list" href="<%=path%>/vote/listVote?page=${pageBean.currentPage+1}" >更多...</a>
+			</div>
 			</c:when>
+			<c:otherwise>
+				<div class="buttons">
+				<a class="negative long center" href="#" onClick="$.scrollTo(0 , 800 );">没有了！回到顶部</a>
+				</div>
+			</c:otherwise>
 		</c:choose>
 		</div>
 

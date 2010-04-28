@@ -1,0 +1,35 @@
+li{ list-style:none;}
+em{ margin:0; padding:0;}
+.btn_normal{
+	display: inline-block;
+	height: 23px;
+	line-height: 23px;
+	font-size: 12px;
+	font-weight: normal;
+	background: url(mblog_btn.gif) no-repeat 0px 0px;
+	padding-left:10px;
+	text-decoration:none;
+	}
+a.btn_normal:hover{
+	background-position-x: 0px;
+	background-position-y: -55px;
+	}
+	
+.btn_normal em{
+	background: url(mblog_btn.gif) no-repeat 100% -28px;
+	color: rgb(51, 51, 51);
+	cursor: pointer;
+	display: inline-block;
+	font-style:normal;
+	height: 23px;
+	line-height: 23px;
+	padding-right: 10px;
+	text-decoration: none;
+}
+a.btn_normal:hover em{
+	background-position-x: 100%;
+	background-position-y: -83px;
+	display: inline-block;
+	height: 23px;
+	text-decoration: none;
+}

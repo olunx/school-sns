@@ -111,6 +111,27 @@ function commit(obj, url){
         });
 }
 
+//列表页面获取更多
+function listMore(more,target) {
+	$("a[target='list']").click(function() {
+		var href = $(this).attr('href');
+		$.scrollTo('+=600px' , 800 );
+		$(more).remove();
+		
+		$.ajax( {
+			url : href,
+			type : 'GET',
+			success : function(result) {
+				$(target).append(result);
+			}
+		});
+
+		return false;
+	});
+
+	ajax();
+}
+
 //配置ajaxUpload
 function myAjaxUploadSetup(btnobj, uploadUrl, completeUrl, allowType){
     var button = $(btnobj), interval;

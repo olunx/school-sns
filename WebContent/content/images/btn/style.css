@@ -3,6 +3,7 @@
 /* BUTTONS */
 
 .buttons {
+	margin-top:10px;
 	height:30px;
 }
 .buttons a, .buttons button{
@@ -108,5 +109,5 @@ button.regular, .buttons a.regular{
 	text-align:center;
 }
 .buttons a.long{
-	width:530px;
+	width:550px;
 }
