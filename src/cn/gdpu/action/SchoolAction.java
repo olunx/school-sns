@@ -125,8 +125,10 @@ public class SchoolAction extends BaseAction {
 				school = schoolService.getEntity(School.class, id);
 				boolean isAdmin = false;
 				for(People peo : school.getAdmin()){
-					if(peo.getUsername().trim().equals(user.getUsername().trim()))
+					if(peo.getId() == user.getId()){
 						isAdmin = true;
+						break;
+					}
 				}
 				getRequest().put("isAdmin", isAdmin);
 				
@@ -141,6 +143,7 @@ public class SchoolAction extends BaseAction {
 						old.setTime(new Date());
 						visitors.set(i, old);
 						ishas=true;
+						break;
 					}
 				}
 				if(ishas != true){
@@ -187,6 +190,7 @@ public class SchoolAction extends BaseAction {
 				for(int i=0; i<admins.size();i++){
 					if(admins.get(i).getId() == user.getId()){
 						ishas=true;
+						break;
 					}
 				}
 				if(ishas != true){

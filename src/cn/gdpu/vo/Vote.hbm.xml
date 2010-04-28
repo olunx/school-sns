@@ -29,7 +29,7 @@
 		<property name="scope" />
 		<property name="airTime" />
 		<property name="deadline" />
-		<set name="voters" table="t_vote_user" cascade="save-update" >
+		<set name="voters" table="t_vote_user" >
 			<key column="voteId" />
 			<many-to-many class="People" column="peopleId" />
 		</set>

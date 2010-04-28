@@ -58,7 +58,7 @@ $(document).ready(function(){
 	<s:fielderror><s:param>sno</s:param></s:fielderror>
 	</p>
 	<p><label>出生年月：</label>
-	<input id="datepicker" class="required date" type="text" name="birthday" readonly="readonly"/>
+	<input id="datepicker" type="text" name="birthday" readonly="readonly"/>
 	<s:fielderror><s:param>birthday</s:param></s:fielderror>
 	</p>
 	<label>上传头像：</label>
