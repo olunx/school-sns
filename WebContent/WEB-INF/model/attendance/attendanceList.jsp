@@ -11,12 +11,11 @@
 			没有数据	
 	</c:when>
 	<c:otherwise>
-		<form onSubmit="post(this);return false;" action="<%=path%>/attendance/deleteManyAttendance" method="post">
+		<form onSubmit="post(this,'#class');return false;" action="<%=path%>/attendance/deleteManyAttendance" method="post">
 		<table class="table">
 			<thead>
 				<tr>
 					<th><a rel="checkall">全选</a></th>
-					<th>ID</th>
 					<th>周次</th>
 					<th>星期</th>
 					<th>课程</th>
@@ -29,7 +28,6 @@
 			<c:forEach items="${pageBean.list}" var="attendance">
 				<tr>
 					<td><input type="checkbox" name="ids" value="${attendance.id}" /></td>
-					<td>${attendance.id}</td>
 					<td>${attendance.week}</td>
 					<td>${attendance.day}</td>
 					<td>

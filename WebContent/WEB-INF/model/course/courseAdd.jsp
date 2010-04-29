@@ -2,9 +2,7 @@
 <%
 	String path = request.getContextPath();
 %>
-<!-- JQuery 上传插件 -->
-<link type="text/css" rel="stylesheet" href="<%=path%>/content/jq-ajaxupload/ajaxupload.css" />
-<script type="text/javascript" src="<%=path%>/content/jq-ajaxupload/ajaxupload.js"></script>
+
 <script type="text/javascript">
 $(document).ready(function() {
 	var button = $('#button'), interval;

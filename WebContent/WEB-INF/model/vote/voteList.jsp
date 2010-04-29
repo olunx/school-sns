@@ -6,7 +6,7 @@
 <%
 	String path = request.getContextPath();
 %>
-<script type="text/javascript" src="<%=path%>/content/js/jquery.scrollTo-min.js"></script>
+
 <script type="text/javascript">
 	$(function() {
 		listMore("#vote_more_list","#vote_list");

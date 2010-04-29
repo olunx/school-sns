@@ -4,9 +4,6 @@
 <%
 	String path = request.getContextPath();
 %>
-<!-- JQuery库 -->
-<script type="text/javascript" src="<%=path%>/content/js/jquery-1.4.2.min.js"></script>
-<script type="text/javascript" src="<%=path %>/content/js/jquery.doubleSelect.min.js"></script>
 <script type="text/JavaScript">
  $(document).ready(function()
  {		

@@ -64,6 +64,8 @@ public class TAction extends BaseAction {
 				
 				Log.init(getClass()).info("TwitterAction id: " + people.getId());
 				
+				id = people.getId();
+				
 				this.pageBean = this.twitterService.queryForPage("from Twitter t where t.istopic = '1' and t.author.id = '" + people.getId()
 						+ "' order by t.time DESC", 10, page);
 				if (pageBean.getList().isEmpty()) {

@@ -129,6 +129,7 @@ public class TwitterAction extends BaseAction {
 
 	public String listOther() {
 		Log.init(getClass()).info("listOther");
+		id = otherId;
 		this.pageBean = this.twitterService.queryForPage("from Twitter t where t.istopic = '1' and t.author = '" + otherId
 				+ "' order by t.time DESC", 10, page);
 		if (pageBean.getList().isEmpty()) {

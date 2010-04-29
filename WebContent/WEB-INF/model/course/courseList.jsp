@@ -5,7 +5,7 @@
 <%
 	String path = request.getContextPath();
 %>
-<a rel="ajaxupload" rev="{upload:'<%=path %>/course/courseUpload',complete:'<%=path %>/course/listCourse',allowtype:/^(xls)$/i}" href="javascript:void()">添加</a>
+<a rel="ajaxupload" rev="{upload:'<%=path %>/course/courseUpload',complete:'<%=path %>/course/listCourse',allowtype:/^(xls)$/i}" href="javascript:void()">上传课程</a>
 <c:choose>
 	<c:when test="${courseList==null}">
 					还没有添加课程呢！

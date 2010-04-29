@@ -5,7 +5,6 @@
 	String path = request.getContextPath();
 %>
 
-<script type="text/javascript" src="<%=path%>/content/jq-ui/jquery-ui-1.8.custom.min.js"></script>
 <script type="text/JavaScript">
 $(document).ready(function() {
     hs.graphicsDir = '<%=path%>/content/jq-highslide/graphics/';
