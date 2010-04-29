@@ -12,6 +12,7 @@
 			<result name="addPage">/WEB-INF/model/people/peopleAdd.jsp</result>
 			<result name="modifyPage">/WEB-INF/model/people/peopleModify.jsp</result>
 			<result name="viewPage">/WEB-INF/model/people/peopleView.jsp</result>
+			<result name="input">/WEB-INF/model/people/peopleModify.jsp</result>
 			<result name="success" type="chain">addManyPeople</result>
 			<result name="listvisitor">/WEB-INF/model/visitor/visitorList.jsp</result>
 		</global-results>

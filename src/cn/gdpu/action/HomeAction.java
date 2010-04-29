@@ -9,11 +9,12 @@ import cn.gdpu.service.GoodsTypeService;
 import cn.gdpu.service.IssueTypeService;
 import cn.gdpu.service.PeopleService;
 import cn.gdpu.service.StudentService;
-import cn.gdpu.util.PageBean;
+import cn.gdpu.service.TwitterService;
 import cn.gdpu.vo.GoodsType;
 import cn.gdpu.vo.IssueType;
 import cn.gdpu.vo.People;
 import cn.gdpu.vo.Student;
+import cn.gdpu.vo.Twitter;
 
 @SuppressWarnings("serial")
 public class HomeAction extends BaseAction {
@@ -23,9 +24,8 @@ public class HomeAction extends BaseAction {
 	private StudentService<Student, Integer> studentService;
 	private IssueTypeService<IssueType, Integer> issueTypeService;
 	private GoodsTypeService<GoodsType, Integer> goodsTypeService;
+	private TwitterService<Twitter, Integer> twitterService;
 	private Student student;
-	private PageBean pageBean;
-	private int page;
 
 	public String home() {
 		//重新设置session对象
@@ -56,6 +56,14 @@ public class HomeAction extends BaseAction {
 		List<GoodsType> list = goodsTypeService.getAllEntity(GoodsType.class);
 		getRequest().put("goodsType", list);
 
+		
+		if (user instanceof Student) {
+			student = studentService.getEntity(Student.class, user.getId());
+			hql = "from Twitter t where t.istopic = '1' and t.author.id = '" + user.getId()
+					+ "' order by t.time DESC";
+			int length = this.twitterService.getEntity(Twitter.class, hql).size();         
+			getRequest().put("twittersize", length);
+		}
 		return "home";
 	}
 	
@@ -97,20 +105,12 @@ public class HomeAction extends BaseAction {
 		this.peopleService = peopleService;
 	}
 
-	public PageBean getPageBean() {
-		return pageBean;
+	public TwitterService<Twitter, Integer> getTwitterService() {
+		return twitterService;
 	}
 
-	public void setPageBean(PageBean pageBean) {
-		this.pageBean = pageBean;
-	}
-
-	public int getPage() {
-		return page;
-	}
-
-	public void setPage(int page) {
-		this.page = page;
+	public void setTwitterService(TwitterService<Twitter, Integer> twitterService) {
+		this.twitterService = twitterService;
 	}
 
 	public IssueTypeService<IssueType, Integer> getIssueTypeService() {

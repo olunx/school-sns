@@ -10,7 +10,7 @@
 <div>
 		<a href="<%=path %>/t/${people.username}"><img src="<%=path%>/avatar/${people.id}" width="124"></img><br/></a>
 		${people.name }
-		性别：<c:choose><c:when test="people.sex == 1">男</c:when><c:otherwise>女</c:otherwise></c:choose>
+		性别：<c:choose><c:when test="${people.sex == 1}">男</c:when><c:otherwise>女</c:otherwise></c:choose>
 		所在地：${people.school.province.name }
 		<br>
 		上回登陆：<fmt:formatDate value="${people.lastlogin }" pattern="yyyy-MM-dd" />	
@@ -24,19 +24,19 @@
 	</div>
 <br/>
 <br/>
-<p><label> id： </label> <input type="text" name="people.id" value="${people.id}" /></p>
-<p><label> 用户名： </label> <input type="text" name="people.username" value="${people.username}" /></p>
-<p><label> 密码： </label> <input type="text" name="people.password" value="${people.password}" /></p>
-<p><label> 昵称： </label> <input type="text" name="people.nickname" value="${people.nickname}" /></p>
-<p><label> 姓名： </label> <input type="text" name="people.name" value="${people.name}" /></p>
-<p><label> 宿舍： </label> <input type="text" name="people.dorm" value="${people.dorm}" /></p>
-<p><label> 手机： </label> <input type="text" name="people.phoneNo" value="${people.phoneNo}" /></p>
-<p><label> QQ： </label> <input type="text" name="people.qq" value="${people.qq}" /></p>
-<p><label> 邮箱： </label> <input type="text" name="people.email" value="${people.email}" /></p>
+<p><label> id： </label> <input type="text" name="people.id" value="${people.id}" readonly="readonly"/></p>
+<p><label> 用户名： </label> <input type="text" name="people.username" value="${people.username}" readonly="readonly"/></p>
+<p><label> 密码： </label> <input type="text" name="people.password" value="${people.password}" readonly="readonly"/></p>
+<p><label> 昵称： </label> <input type="text" name="people.nickname" value="${people.nickname}" readonly="readonly"/></p>
+<p><label> 姓名： </label> <input type="text" name="people.name" value="${people.name}" readonly="readonly"/></p>
+<p><label> 宿舍： </label> <input type="text" name="people.dorm" value="${people.dorm}" readonly="readonly"/></p>
+<p><label> 手机： </label> <input type="text" name="people.phoneNo" value="${people.phoneNo}" readonly="readonly"/></p>
+<p><label> QQ： </label> <input type="text" name="people.qq" value="${people.qq}" readonly="readonly"/></p>
+<p><label> 邮箱： </label> <input type="text" name="people.email" value="${people.email}" readonly="readonly"/></p>
 <p><label> 参加的小组： </label>
 <c:if test="${people.groups != null}">
 	<c:forEach items="${people.groups}" var="group">
-		 <input type="text" value="${group.name}" />
+		 <input type="text" value="${group.name}" readonly="readonly"/>
 	</c:forEach>
 </c:if>
 </p>

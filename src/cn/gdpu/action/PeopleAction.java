@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-import org.apache.commons.beanutils.BeanUtils;
 
 import cn.gdpu.service.ClassesService;
 import cn.gdpu.service.ImageService;
@@ -36,7 +35,8 @@ public class PeopleAction extends BaseAction {
 	private int page;
 	private Image image;
 	private ImageService<Image, Integer> imageService;
-
+	private String oldPassword;
+	private String rePassword;
 	@Override
 	public String add() {
 		peopleService.addEntity(people);
@@ -100,8 +100,13 @@ public class PeopleAction extends BaseAction {
 
 	// 检查是否是朋友
 	public static Boolean isMyFriend(Set<People> set, People people) {
-		if (set != null && people != null && set.contains(people))
-			return true;
+		if (set != null && people != null){
+			for(People peo:set){
+				if(peo.getId()==people.getId()){
+					return true;
+				}
+			}
+		}
 		return false;
 	}
 
@@ -142,18 +147,50 @@ public class PeopleAction extends BaseAction {
 	}
 
 	@Override
-	public String modify() {
+	public String modify() {		//修改个人资料
+		People onepeople = peopleService.getEntity(People.class, people.getId());
+		onepeople.setName(people.getName());
+		onepeople.setEmail(people.getEmail());
+		onepeople.setPhoneNo(people.getPhoneNo());
+		onepeople.setNickname(people.getNickname());
+		onepeople.setQq(people.getQq());
+		onepeople.setDorm(people.getDorm());
+		peopleService.updateEntity(onepeople);
+		getRequest().put("modifysuc", true);
+		getRequest().put("people", onepeople);
+		return MODIFY_PAGE;
+	}
+	
+	public String modifyPSW() {			//修改密码
+		People onepeople = peopleService.getEntity(People.class, people.getId());
+		
+		if(!oldPassword.trim().equals(onepeople.getPassword())){         //验证旧密码
+			this.addFieldError("oldPassword", "旧密码不正确");
+		}
+		if (hasFieldErrors()) {
+			getRequest().put("people", onepeople);
+			return MODIFY_PAGE;
+		}
+		
+		if(people.getPassword().trim().equals(rePassword) && oldPassword.trim().equals(onepeople.getPassword())){
+			onepeople.setPassword(people.getPassword());
+			peopleService.updateEntity(onepeople);
+			getRequest().put("modifypswsuc", true);
+		}
+		getRequest().put("people", onepeople);
+		return  MODIFY_PAGE;
+	}
+	
+	public String modifyAvatar() {		//修改头像
 		People onepeople = peopleService.getEntity(People.class, people.getId());
 		Log.init(getClass()).info(image);
 		Log.init(getClass()).info("image.getMinFileUrl()" + image.getMinFileUrl());
 		imageService.addEntity(image);
 		onepeople.setAvatar(image);
-		onepeople.setUsername(people.getUsername());
-		onepeople.setPassword(people.getPassword());
-		onepeople.setName(people.getName());
-		onepeople.setDorm(people.getDorm());
 		peopleService.updateEntity(onepeople);
-		return super.modify();
+		getRequest().put("modifyavatarsuc", true);
+		getRequest().put("people", onepeople);
+		return  MODIFY_PAGE;
 	}
 
 	@Override
@@ -168,7 +205,13 @@ public class PeopleAction extends BaseAction {
 		if (author != null) {
 			if (author instanceof People) {
 				People people = (People) author;
-				String hql = "from People p where p.id<>'" + people.getId() + "' and ( p.name like '%" + search + "%' or p.username like '%" + search + "%' or p.sno like '%" + search + "%' ) order by p.activity DESC";
+				String hql;
+				if(search.trim().equals("")){
+					hql = "from People";
+				}
+				else{
+					hql = "from People p where p.id<>'" + people.getId() + "' and ( p.name like '%" + search + "%' or p.username like '%" + search + "%' or p.sno like '%" + search + "%' ) order by p.activity DESC";
+				}
 				this.pageBean = this.peopleService.queryForPage(hql, 30, page);
 				if(pageBean.getList().isEmpty())
 		    		pageBean.setList(null);
@@ -368,6 +411,22 @@ public class PeopleAction extends BaseAction {
 
 	public void setClassesService(ClassesService<Classes, Integer> classesService) {
 		this.classesService = classesService;
+	}
+
+	public String getOldPassword() {
+		return oldPassword;
+	}
+
+	public void setOldPassword(String oldPassword) {
+		this.oldPassword = oldPassword;
+	}
+
+	public String getRePassword() {
+		return rePassword;
+	}
+
+	public void setRePassword(String rePassword) {
+		this.rePassword = rePassword;
 	}
 
 }
