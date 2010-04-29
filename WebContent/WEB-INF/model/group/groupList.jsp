@@ -8,7 +8,7 @@
 <script type="text/javascript" src="<%=path%>/content/js/jquery.scrollTo-min.js"></script>
 <script type="text/javascript">
 	$(function() {
-		list("#group_more_list", "#group_list");
+		//list("#group_more_list", "#group_list");
 	});
 </script>
 <c:choose>
@@ -17,26 +17,29 @@
 	</c:when>
 	<c:otherwise>
 		<c:forEach items="${pageBean.list}" var="group">
-			<div class="ilist">
-			<div class="iavatar"><img src="<%=path %>${group.pic.minFileUrl}" /></div>
-			<div class="imsg">
-			<div class="iname">管理员：${group.admin.name}</div>
-			<p class="icontent">小组：
-			<a target="content" href="<%=path%>/group/viewGroup?id=${group.id}&page=${page}">${group.name}</a>
-			<br/>  简介： ${group.intro}
-			</p>
-			<div class="ioperate">
-			 <a target="content" href="<%=path%>/group/joinGroup?id=${group.id}&page=${page}">
-			 <c:choose>
-			 	<c:when test="${my:isMyGroup(groups,group)}">退出</c:when>
-			 	<c:otherwise>加入</c:otherwise>
-			 </c:choose>
-			 </a>
+			<div class="ilist clearfix">
+			<div class="iavatar">
+			<c:choose>
+				<c:when test="${!empty group.pic.minFileUrl}"><img src="<%=path %>${group.pic.minFileUrl}" /></c:when>
+				<c:otherwise><img src="<%=path %>/avatar/${group.admin.id}" /></c:otherwise>
+			</c:choose>
 			</div>
+				<div class="imsg">
+				<div class="iname">管理员：${group.admin.name}</div>
+				<p class="icontent">小组：
+				<a target="content" href="<%=path%>/group/viewGroup?id=${group.id}&page=${page}">${group.name}</a>
+				<br/>  简介： ${group.intro}
+				</p>
+				<div class="ioperate">
+				 <a target="content" href="<%=path%>/group/joinGroup?id=${group.id}&page=${page}">
+				 <c:choose>
+				 	<c:when test="${my:isMyGroup(groups,group)}">退出</c:when>
+				 	<c:otherwise>加入</c:otherwise>
+				 </c:choose>
+				 </a>
+				</div>
+				</div>
 			</div>
-			</div>
-			<div class="clear "></div>
-			<div class="linedot"></div>
 		</c:forEach>
 
 		<div id="group_more_list"><c:choose>

@@ -11,6 +11,7 @@ import cn.gdpu.service.StudentService;
 import cn.gdpu.util.PageBean;
 import cn.gdpu.vo.Attendance;
 import cn.gdpu.vo.Course;
+import cn.gdpu.vo.People;
 import cn.gdpu.vo.Student;
 
 @SuppressWarnings("serial")
@@ -75,7 +76,10 @@ public class AttendanceAction extends BaseAction {
 
 	@Override
 	public String goAdd() {
-		List<Student> students = studentService.getAllEntity(Student.class);
+		Student user = (Student) this.getSession().get("student");
+		user = studentService.getEntity(Student.class, user.getId());
+		int classid = user.getClasses().getId();
+		List<Student> students = studentService.getEntity(Student.class, "from People p where p.classes.id = " + classid);
 		List<Course> courses = courseService.getAllEntity(Course.class);
 
 		getRequest().put("students", students);

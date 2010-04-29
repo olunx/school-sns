@@ -41,11 +41,7 @@
 			<jsp:include page="./twitterList.jsp"></jsp:include>
 		</div>
 	</div>
-	
-	<br />
-	
 	 <div>
-	 <br />
 	 <p>他关注的：<br/>
 			<c:forEach items="${people.friends}" var="friends">
 			<ul class="ul">
@@ -57,11 +53,6 @@
 			</c:forEach>
 	 </p>
 	 </div>
-	<br/>
-	<br/>
-	<br/>
-	<br/>
-	<br/>
 	 <div>
 	 <p>最近访问：<br/>
 			<c:forEach items="${people.visitors}" var="visitor">

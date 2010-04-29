@@ -8,7 +8,7 @@
 <script type="text/javascript" src="<%=path%>/content/js/jquery.scrollTo-min.js"></script>
 <script type="text/javascript">
 	$(function() {
-		listMore("#more_list", "#topic_list");
+		listMore("#more_list", "#feed");
 	});
 </script>
 <c:choose>
@@ -17,7 +17,7 @@
 	</c:when>
 	<c:otherwise>
 		<c:forEach items="${pageBean.list}" var="feed">
-			<div class="list">
+			<div class="list clearfix">
 			<div class="avatar"><img src="<%=path%>/avatar/${feed.author.id}" /></div>
 			<div class="topic_msg">
 			<div class="time" title="${feed.time}">${my:formatDate(feed.time)}</div>
@@ -70,14 +70,12 @@
 			</c:choose></p>
 			</div>
 			</div>
-			<div class="clear "></div>
-			<div class="linedot"></div>
 		</c:forEach>
 
 		<div id="more_list"><c:choose>
 			<c:when test="${pageBean.currentPage != pageBean.totalPage}">
 				<div class="buttons">
-				<a class="regular long center" target="list" href="<%=path%>/feed/listFeed?page=${pageBean.currentPage+1}" >更多...</a>
+				<a class="regular long center" target="list" href="<%=path%>/feed/${moreAction }?page=${pageBean.currentPage+1}" >更多...</a>
 				</div>
 			</c:when>
 			<c:otherwise>

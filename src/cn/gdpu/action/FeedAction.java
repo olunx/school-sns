@@ -27,6 +27,7 @@ public class FeedAction extends BaseAction {
 	private static FeedAction feedAction;
 	private PeopleService<People, Integer> peopleService;
 	private PageBean pageBean;
+	private String moreAction;
 	private int page;
 
 	public final static String ADD_TWITTER = "add_twitter";
@@ -195,6 +196,7 @@ public class FeedAction extends BaseAction {
 		if (pageBean.getList().isEmpty()) {
 			pageBean.setList(null);
 		}
+		moreAction = "listFeed";
 
 		return super.list();
 	}
@@ -208,20 +210,20 @@ public class FeedAction extends BaseAction {
 		if (pageBean.getList().isEmpty()) {
 			pageBean.setList(null);
 		}
-		
-		return "schoolIndex";
+		moreAction = "listSchoolFeed";
+		return super.list();
 	}
 	
 	public String listClass() {
 		People user = (People) this.getSession().get("user");
 		user = peopleService.getEntity(People.class, user.getId());
 		
-		pageBean = feedService.queryForPage("from Feed f where f.author.classes = '" + user.getClasses() + "' order by f.time desc", 10, page);
+		pageBean = feedService.queryForPage("from Feed f where f.author.classes = '" + user.getClasses().getId() + "' order by f.time desc", 10, page);
 		if (pageBean.getList().isEmpty()) {
 			pageBean.setList(null);
 		}
-		
-		return "classIndex";
+		moreAction = "listClassFeed";
+		return super.list();
 	}
 
 	public FeedService<Feed, Integer> getFeedService() {
@@ -254,6 +256,14 @@ public class FeedAction extends BaseAction {
 
 	public void setPage(int page) {
 		this.page = page;
+	}
+
+	public String getMoreAction() {
+		return moreAction;
+	}
+
+	public void setMoreAction(String moreAction) {
+		this.moreAction = moreAction;
 	}
 
 }

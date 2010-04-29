@@ -6,23 +6,17 @@
 <%
 	String path = request.getContextPath();
 %>
-<script type="text/javascript">
-<!--
-$(function(){
-	updateSidebar();
-	updateSidebar($("#class_sidebar").html(),true);
-});
-//-->
-</script>
+
 <div class="form">
-<ul class="nav">
+<ul id="classnav" class="nav">
 	<li><a target="content" href="<%=path%>/classes/viewClasses?id=${id}">班级首页</a></li>
-	<li><a target="content" href="<%=path%>/classfee/listClassfee">查看班费</a></li>
-	<li><a class="letterspacing" target="content" href="<%=path%>/course/listCourse">课程表</a></li>
-	<li><a class="letterspacing" target="content" href="<%=path%>/attendance/listAttendance">考勤记录</a></li>
-	<li><a class="letterspacing" target="content" href="<%=path%>/people/classesPeople?id=${classes.id}">班级成员</a></li>
+	<li><a target="content" rev="#class" href="<%=path%>/classfee/listClassfee">查看班费</a></li>
+	<li><a target="content" rev="#class" href="<%=path%>/course/listCourse">课程表</a></li>
+	<li><a target="content" rev="#class" href="<%=path%>/attendance/listAttendance">考勤记录</a></li>
+	<li><a target="content" rev="#class" href="<%=path%>/people/classesPeople?id=${classes.id}">班级成员</a></li>
 </ul>
 <div class="clear"></div>
+<div id="class">
 <p><label>班级名称：</label>${classes.name} <label>入学年份：</label>${classes.entryYear}</p>
 <p>
 <label>管理员：</label>
@@ -96,55 +90,59 @@ $(function(){
 	</c:otherwise>
 </c:choose>
 </div>
-</div>
-
-<div id="class_sidebar" style="display: none;">
-<div class="mod">
-<h2>最近访问：</h2>
-	<ul>
-	<c:forEach items="${classes.visitors}" var="visitor">
-		<li>
-			<a target="content" href="<%=path%>/t/${visitor.people.username }"><img src="<%=path %>/avatar/${visitor.people.id}" width="50"></img></a>
-			<a target="content" href="<%=path%>/t/${visitor.people.username }">${visitor.people.name}</a>
-			<fmt:formatDate value="${visitor.time }" pattern="MM-dd" />	
-		</li>
-	</c:forEach>
-	</ul>
-<div class="clear"></div>
-</div>
-<div class="mod">
-<h2>班级新人：</h2>
-	<ul>
-	<c:forEach items="${peoplenew}" var="people">
-		<li>
-			<a target="content" href="<%=path%>/t/${people.username }"><img src="<%=path %>/avatar/${people.id}" width="50"></img></a>
-			<a target="content" href="<%=path%>/t/${people.username }">${people.name}</a>
-		</li>
-	</c:forEach>
-	</ul>
-	<div class="clear"></div>
-</div>
-<div class="mod">
-	<h2>人气王:</h2>
-	<ul>
-	<c:forEach items="${peoplehot}" var="people">
-		<li>
-			<a target="content" href="<%=path%>/t/${people.username }"><img src="<%=path %>/avatar/${people.id}" width="50"></img></a>
-			<a target="content" href="<%=path%>/t/${people.username }">${people.name}</a>
-		</li>
-	</c:forEach>
-	</ul>
-	<div class="clear"></div>
-</div>
-</div>
 
 <!-- 班级的Feed -->
+<h2>最新动态：</h2>
+<div id="feed" class="feed"></div>
+
+	<div id="class_sidebar" style="display: block">
+	<div class="mod">
+	<h2>最近访问：</h2>
+		<ul class="imglist">
+		<c:forEach items="${classes.visitors}" var="visitor">
+			<li>
+				<a target="content" href="<%=path%>/t/${visitor.people.username }"><img src="<%=path %>/avatar/${visitor.people.id}" width="50"></img></a>
+				<a target="content" href="<%=path%>/t/${visitor.people.username }">${visitor.people.name}</a>
+				<fmt:formatDate value="${visitor.time }" pattern="MM-dd" />	
+			</li>
+		</c:forEach>
+		</ul>
+	<div class="clear"></div>
+	</div>
+	<div class="mod">
+	<h2>班级新人：</h2>
+		<ul class="imglist">
+		<c:forEach items="${peoplenew}" var="people">
+			<li>
+				<a target="content" href="<%=path%>/t/${people.username }"><img src="<%=path %>/avatar/${people.id}" width="50"></img></a>
+				<a target="content" href="<%=path%>/t/${people.username }">${people.name}</a>
+			</li>
+		</c:forEach>
+		</ul>
+		<div class="clear"></div>
+	</div>
+	<div class="mod">
+		<h2>人气王:</h2>
+		<ul class="imglist">
+		<c:forEach items="${peoplehot}" var="people">
+			<li>
+				<a target="content" href="<%=path%>/t/${people.username }"><img src="<%=path %>/avatar/${people.id}" width="50"></img></a>
+				<a target="content" href="<%=path%>/t/${people.username }">${people.name}</a>
+			</li>
+		</c:forEach>
+		</ul>
+		<div class="clear"></div>
+	</div>
+	</div>
+</div>
+</div>
 <script type="text/javascript">
 <!--
-	$(function(){
-		$("#topic_list").load("<%=path%>/feed/listClassFeed");
-	});
+$(function(){
+	updateSidebar();
+	$("#feed").load("<%=path%>/feed/listClassFeed");
+//	updateSidebar($("#class_sidebar").html(),true);
+	if ($("#classnav").size()>1) $("#classnav:first").remove();
+});
 //-->
 </script>
-<h2>最新动态：</h2>
-<div id="topic_list"></div>

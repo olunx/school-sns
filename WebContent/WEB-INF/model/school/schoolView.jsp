@@ -47,6 +47,17 @@ $(function(){
 	<c:if test="${student.classes != null and student.permission == 1}">你已申请加入“ ${student.classes.name} ”班级,审核中</c:if>
 </div>
 
+<!-- 学校的Feed -->
+<script type="text/javascript">
+<!--
+	$(function(){
+		$("#feed").load("<%=path%>/feed/listSchoolFeed");
+	});
+//-->
+</script>
+<h2>最新动态：</h2>
+<div id="feed" class="feed"></div>
+
 <div>
 <h2>最近访问：</h2>
 	<ul class="ul">
@@ -85,14 +96,4 @@ $(function(){
 <div class="clear"></div>
 </div>
 
-<!-- 学校的Feed -->
-<script type="text/javascript">
-<!--
-	$(function(){
-		$("#topic_list").load("<%=path%>/feed/listSchoolFeed");
-	});
-//-->
-</script>
-<h2>最新动态：</h2>
-<div id="topic_list"></div>
 

@@ -5,8 +5,10 @@
         var href = $(this).attr('href');
         var rev = $(this).attr('rev');
         if (rev != null && rev != "") 
-            window.location = rev;
-        loadContent(href);
+		{loadContent(href,rev);}
+        else
+		{loadContent(href);}
+        
         return false;
     });
     
@@ -30,18 +32,29 @@ function ajax(){
 	$(divid+" a[target='content']").unbind("click"); 
     $(divid+" a[target='content']").click(function(){
         var href = $(this).attr('href');
-        loadContent(href);
+        var rev = $(this).attr('rev');
+        if (rev != null && rev != "") 
+		{
+			loadContent(href,rev);
+			}
+        else
+		{
+			loadContent(href,divid);
+		}
         return false;
     });
 };
 
 //加载数据
 function loadContent(href){
-    var content = $('#content');
+	var divid = arguments[1] || '#content';//更新目标id
+	//alert(divid);
+    var content = $(divid);
     content.html("");
     onLoading(content);//打开loading
     content.load(href, function(){
         offLoading();//关闭loading
+        ajax(divid);
         //content.fadeIn('slow', ajax);
     });
 }
