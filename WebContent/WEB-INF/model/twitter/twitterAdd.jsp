@@ -139,7 +139,6 @@
 		<textarea id="inputarea" class="required" minlength="2" maxlength="140" name="twitter.content"></textarea>
 		<div id="addition"></div>
         <div id="pic" style="display:none;">
-            <img src=""></img>
             <!-- 上传成功后，图片将插到这里。 -->
             <input id="oriFileName" type="hidden" name="image.oriFileName" value=""/>
             <input id="bigFileName" type="hidden" name="image.bigFileName" value=""/>
