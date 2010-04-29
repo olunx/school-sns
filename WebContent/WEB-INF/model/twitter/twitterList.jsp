@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
@@ -6,7 +6,7 @@
 <%
 	String path = request.getContextPath();
 %>
-<script type="text/javascript" src="<%=path%>/content/js/jquery.scrollTo-min.js"></script>
+
 <script type="text/javascript">
 	$(function() {
 		listMore("#more_list","#topic_list");
@@ -18,8 +18,9 @@
 			var id = $(this).attr("rev");
 
 			var editorid = "#reply_editor_"+id;
-			if ($(this).parent().find(editorid).size()==0){
-				$(this).parent().append('<div class="reply_editor" id="reply_editor_'+id+'"><form onSubmit="post(this,\'#topic_list\');return false;" action="<%=path%>/twitter/replyTwitter" method="post"><textarea name="twitter.content" onblur="onEditorBlur('+id+')"></textarea><input type="hidden" name="id" value="'+id+'" /><input type="submit" value="回复" /> <a href="javascript:;" onclick="switchEditor(0,'+id+')">取消</a></form></div>');
+			var replydiv = $(this).parent();
+			if (replydiv.find(editorid).size()==0){
+				replydiv.append('<div class="reply_editor" id="reply_editor_'+id+'"><form onSubmit="post(this,\'#topic_list\',\'<%=path%>/twitter/listOtherTwitter?otherId=${id }&page=${pageBean.currentPage}\');return false;" action="<%=path%>/twitter/replyTwitter" method="post"><textarea name="twitter.content" onblur="onEditorBlur('+id+')"></textarea><input type="hidden" name="id" value="'+id+'" /><input type="submit" value="回复" /> <a href="javascript:;" onclick="switchEditor(0,'+id+')">取消</a></form></div>');
 			};
 
 			switchEditor(1,id);
@@ -62,11 +63,13 @@
 	</c:when>
 	<c:otherwise>
 		<c:forEach items="${pageBean.list}" var="twitter">
-			<div class="list">
+			<div class="list clearfix">
 			<div class="avatar"><img src="<%=path%>/avatar/${twitter.author.id}" /></div>
 			<div class="topic_msg">
 			<div class="time" title="${twitter.time }">${my:formatDate(twitter.time)}</div>
-			<p class="content"><a href="#">${twitter.author.name}</a> ${twitter.content} <c:if test="${!empty twitter.image && !empty twitter.image.minFileUrl}">
+			<p class="content"><a href="<%=path %>/t/${twitter.author.name}">${twitter.author.name}</a> ${twitter.content}
+			<c:if test="${!empty twitter.image && !empty twitter.image.minFileUrl}">
+				<br/>
 				<img src="<%=path%>${twitter.image.minFileUrl}" />
 			</c:if></p>
 			<div class="operate"><c:if test="${twitter.author.id == user.id}"><a target="content" href="<%=path%>/twitter/deleteTwitter?id=${twitter.id }&page=${page}" class="btn_del">删除</a></c:if> </div>
@@ -90,15 +93,13 @@
 			</div>
 			</div>
 			</div>
-			<div class="clear "></div>
-			<div class="linedot"></div>
 		</c:forEach>
 
 
 		<div id="more_list"><c:choose>
 			<c:when test="${pageBean.currentPage != pageBean.totalPage}">
 			<div class="buttons">
-			<a class="regular long center" target="list" href="<%=path%>/twitter/listTwitter?page=${pageBean.currentPage+1}" >更多...</a>
+			<a class="regular long center" target="list" href="<%=path%>/twitter/listOtherTwitter?otherId=${id }&page=${pageBean.currentPage+1}" >更多...</a>
 			</div>
 			</c:when>
 			<c:otherwise>

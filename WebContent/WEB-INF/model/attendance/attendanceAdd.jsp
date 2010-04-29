@@ -69,7 +69,7 @@
 	});
 </script>
 
-<form onSubmit="post(this);return false;" action="<%=path%>/attendance/addAttendance" method="post">
+<form onSubmit="post(this,'#class');return false;" action="<%=path%>/attendance/addAttendance" method="post">
 <div style="float: left">第 <select size="1" name="week">
 	<%
 		for (int i = 1; i < 21; i++) {
@@ -88,6 +88,7 @@
 </select></div>
 <div class="clear"></div>
 <div class="attmod">课程(请按住Ctrl键选择)： <input type="hidden" name="courseIds" id="courseIds" />
+<c:if test="${empty courses}">还没有课程，请上传课程表</c:if>
 <ol id="lessonsel" class="selectable">
 	<c:forEach items="${courses}" var="c">
 		<li class="ui-state-default" title="${c.id }">周${c.whatDay }, ${c.name }</li>
@@ -105,5 +106,5 @@
 <input type="hidden" name="clerk" value="${sessionScope.student.sno }" /></div>
 <div class="clear"></div>
 
-<button type="submit">提交</button>
+<input type="submit" value="提交" />
 </form>

@@ -18,8 +18,8 @@ $(function(){
 	<img src="<%=path %>/${school.avatar.minFileUrl}" width="80"/>
 </c:if>
 </div>
-<p>学校名称：${school.name}</p>
-<p>学校简介：${school.content}</p>
+<h2>${school.name}</h2>
+<p class="desc">${school.content}</p>
 <p>学校地址：${school.address}</p>
 <p>
 管理员：

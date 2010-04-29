@@ -13,7 +13,7 @@
     });
     
     $("#content").ajaxError(function(event, request, settings){
-        $(this).append("<li>出错页面:" + settings.url + "</li>");
+        $(this).append("<li>哎呀，出错啦！请刷新一下试试:" + settings.url + "</li>");
     });
     
     $("a[rel='ajaxupload']").each(function(i){

@@ -30,6 +30,7 @@ td,th{padding:2px 5px;}
 ul{ list-style:none;}
 img{ border:none;}
 .textinput{background:#FFF url(input_bg_70.png) repeat-x;}
+.desc{ color:#666;}
 
 /* 头部*/
 #header{width:800px;height:70px;margin:0 auto;color:#FFF; background:url(logoarrow.gif) no-repeat 40px bottom;}
@@ -76,10 +77,10 @@ img{ border:none;}
 .reply_editor textarea{ width:426px; height:80px;}
 
 /*微博*/
-#topic_list .list{ padding:0 0 5px 0; margin:5px 0 0 0; }
+#topic_list .list{ padding:0 0 5px 0; margin:0px 0 10px 0; border-bottom:1px dashed #ccc;}
 #topic_list .avatar{ background:#FFF; float:left; padding:2px; border:1px solid #CCC;}
 #topic_list .avatar img{width:50px; height:50px; }
-#topic_list .topic_msg{ margin-left:70px;}
+#topic_list .topic_msg{ float:right; width:508px; padding-left:5px;}
 #topic_list .topic_msg .content{ line-height:24px; font-size:14px;}
 #topic_list .time{ color:#999; float:right;}
 #topic_list .reply{background:#edf4f8; margin:0 50px 0 0;}

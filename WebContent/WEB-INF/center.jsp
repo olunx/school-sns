@@ -5,10 +5,6 @@
 %>
 <script type="text/javascript">
 	$(function() {
-		onLoading("#feed");
-		$("#feed").load("<%=path%>/feed/listFeed", function() {
-			offLoading();
-		});
 		initHighslide("<%=path%>", "480", "400");
 	});
 </script>
@@ -22,3 +18,9 @@
 <h2>最新动态：</h2>
 <div id="feed" class="feed">
 </div>
+<script type="text/javascript">
+		onLoading("#feed");
+		$("#feed").load("<%=path%>/feed/listFeed", function() {
+			offLoading();
+		});
+</script>

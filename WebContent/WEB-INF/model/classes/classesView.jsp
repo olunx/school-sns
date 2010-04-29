@@ -8,16 +8,17 @@
 %>
 
 <div class="form">
-<ul id="classnav" class="nav">
+<ul id="classnav" class="nav buttons">
 	<li><a target="content" href="<%=path%>/classes/viewClasses?id=${id}">班级首页</a></li>
 	<li><a target="content" rev="#class" href="<%=path%>/classfee/listClassfee">查看班费</a></li>
 	<li><a target="content" rev="#class" href="<%=path%>/course/listCourse">课程表</a></li>
 	<li><a target="content" rev="#class" href="<%=path%>/attendance/listAttendance">考勤记录</a></li>
+	<li><a target="content" rev="#class" href="<%=path%>/score/queryScore">成绩</a></li>
 	<li><a target="content" rev="#class" href="<%=path%>/people/classesPeople?id=${classes.id}">班级成员</a></li>
 </ul>
 <div class="clear"></div>
 <div id="class">
-<p><label>班级名称：</label>${classes.name} <label>入学年份：</label>${classes.entryYear}</p>
+<h2>${classes.name}(${classes.entryYear})</h2>
 <p>
 <label>管理员：</label>
 		<c:forEach items="${classes.admins}" var="admin">

@@ -7,7 +7,9 @@
   <div id="footer">
     <p>&copy; 2010 3C-Team</p>
   </div>
+
 <!-- AjaxUpload库 -->
+<!-- JQuery 上传插件 -->
 <script type="text/javascript" src="<%=path%>/content/jq-ajaxupload/ajaxupload.js"></script>
 
 <!-- JQ验证插件 -->
@@ -18,6 +20,8 @@
 <link type="text/css" rel="stylesheet" href="<%=path%>/content/jq-highslide/highslide.css" />
 <script type="text/javascript" src="<%=path%>/content/jq-highslide/highslide-full.min.js"></script>
 <script type="text/javascript" src="<%=path%>/content/js/highslide-init.js"></script>
+
+<script type="text/javascript" src="<%=path%>/content/js/jquery.scrollTo-min.js"></script>
 
 <script type="text/javascript" src="<%=path %>/content/js/jquery.doubleSelect.min.js"></script>
 <!-- JQuery UI 插件 -->

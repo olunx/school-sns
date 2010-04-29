@@ -12,7 +12,8 @@
 		
 		$('#inputform').validate({
 			submitHandler: function() {
-				post($('#inputform'),"#topic_list","<%=path%>/feed/listFeed");
+				onLoading('#feed');
+				post($('#inputform'),"#feed","<%=path%>/feed/listFeed");
 				cancel();
 				//commit($('#inputform'), '<%=path%>/home');
 			}
@@ -175,13 +176,11 @@
             <input type="radio" name="vote.type" value="1" />多选
             </p>
             
-            <div id="voteitem">
-            <ul>
+            <ul id="voteitem">
                 <li><label>选项：</label><input class="required" id="vt2" type="text" name="content" /> <a href="#" onclick="return delVote(this)">删除</a></li>
                 <li><label>选项：</label><input class="required" id="vt3" type="text" name="content" /> <a href="#" onclick="return delVote(this)">删除</a></li>
                 <li><label>选项：</label><input class="required" id="vt4" type="text" name="content" /> <a href="#" onclick="return delVote(this)">删除</a></li>
             </ul>
-            </div>
             <p>
             <a href="#" onclick="return addNewVote('voteitem', '1');">再添加一项</a>
              | <a href="#" onclick="return addNewVote('voteitem', '3');">再添加三项</a>
