@@ -14,7 +14,7 @@
       <h4><span class="userName">${people.name }</span><span> (性别：<c:choose><c:when test="${people.sex == 1}">男</c:when><c:otherwise>女</c:otherwise></c:choose> | 所在地：${people.school.province.name }) </span><br>
       <a class="link" target="content" href="<%=path %>/t/${people.username}">http://<%=url %>/t/${people.username}</a></h4>
       <div class="userNums">
-      <a target="content" href="<%=path %>/t/${people.username}">广播<strong>${fn:length(pageBean.list)}</strong>条</a><span>|</span>
+      <a target="content" href="<%=path %>/t/${people.username}">广播<strong>${pageBean.allRow}</strong>条</a><span>|</span>
       <a target="content" href="<%=path %>/people/listFollowerPeople?id=${people.id}">听众<strong class="followNum" >${fn:length(people.follower)}</strong>人</a><span>|</span>
       <a target="content" href="<%=path %>/people/listFriendPeople?id=${people.id}">他收听<strong>${fn:length(people.friends)}</strong>人</a></div>
       <div class="funBox">
@@ -44,13 +44,6 @@
 	 <div>
 	<h2>最近访问</h2> 
 		<ul class="ul">
-	 <br/>
-	 <br/>
-	 <br/>
-	 <br/>
-	 <br/>
-	 <br/>
-	 <br/>
 		<c:forEach items="${people.visitors}" var="visitor">
 			<li>
 				<a target="content" href="<%=path%>/t/${visitor.people.username }"><img src="<%=path %>/avatar/${visitor.people.id}" width="50"></img></a><br/>

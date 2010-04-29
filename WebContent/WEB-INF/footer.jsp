@@ -16,16 +16,10 @@
 <script type="text/javascript" src="<%=path%>/content/jq-validate/jquery.form.js" ></script>
 <script type="text/javascript" src="<%=path%>/content/jq-validate/jquery.validate.pack.js" ></script>
 <script type="text/javascript" src="<%=path%>/content/jq-validate/messages_cn.js" ></script>
-<!-- highslide -->
-<link type="text/css" rel="stylesheet" href="<%=path%>/content/jq-highslide/highslide.css" />
-<script type="text/javascript" src="<%=path%>/content/jq-highslide/highslide-full.min.js"></script>
-<script type="text/javascript" src="<%=path%>/content/js/highslide-init.js"></script>
+
 
 <script type="text/javascript" src="<%=path%>/content/js/jquery.scrollTo-min.js"></script>
 
-<script type="text/javascript" src="<%=path %>/content/js/jquery.doubleSelect.min.js"></script>
-<!-- JQuery UI 插件 -->
-<script type="text/javascript" src="<%=path%>/content/jq-ui/jquery-ui-1.8.custom.min.js" ></script>
 
 <!--[if IE]> 
 		<script type="text/javascript" src="<%=path%>/content/jq-highcharts/highcharts-ie.js"></script> 
