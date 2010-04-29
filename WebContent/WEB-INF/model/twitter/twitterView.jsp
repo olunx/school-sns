@@ -11,7 +11,7 @@
 <div id="LUI">
   <ul>
     <li class="detail">
-      <h4><span class="userName">${people.name }</span><span> (性别：<c:choose><c:when test="people.sex == 1">男</c:when><c:otherwise>女</c:otherwise></c:choose> | 所在地：${people.school.province.name }) </span><br>
+      <h4><span class="userName">${people.name }</span><span> (性别：<c:choose><c:when test="${people.sex == 1}">男</c:when><c:otherwise>女</c:otherwise></c:choose> | 所在地：${people.school.province.name }) </span><br>
       <a class="link" target="content" href="<%=path %>/t/${people.username}">http://<%=url %>/t/${people.username}</a></h4>
       <div class="userNums">
       <a target="content" href="<%=path %>/twitter/listOtherTwitter?otherId=${people.id}">广播<strong>${fn:length(pageBean.list)}</strong>条</a><span>|</span>
@@ -21,7 +21,7 @@
         <div class="left">
         <a target="content" href="<%=path%>/people/followPeople?id=${people.id}">
 		 	<c:choose>
-			 	<c:when test="${my:isMyFriend(friends,people)}">取消关注</c:when>
+			 	<c:when test="${my:isMyFriend(user.friends,people)}">取消关注</c:when>
 			 	<c:otherwise>设为关注</c:otherwise>
 		 	</c:choose>
 	 	</a>
@@ -53,6 +53,13 @@
 			</c:forEach>
 	 </p>
 	 </div>
+	 <br/>
+	 <br/>
+	 <br/>
+	 <br/>
+	 <br/>
+	 <br/>
+	 <br/>
 	 <div>
 	 <p>最近访问：<br/>
 			<c:forEach items="${people.visitors}" var="visitor">

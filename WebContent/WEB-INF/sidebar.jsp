@@ -19,7 +19,7 @@
 		</div>
 		<dl class="myinfo">
 			<dt>我的广播</dt>
-			<dd><a target="content" href="<%=path %>/t/${student.username}">${fn:length(pageBean.list)}</a></dd>
+			<dd><a target="content" href="<%=path %>/t/${student.username}">${twittersize}</a></dd>
 			<dt>我的粉丝</dt>
 			<dd><a target="content" href="<%=path %>/people/listFollowerPeople">${fn:length(student.follower)}</a></dd>
 		</dl>

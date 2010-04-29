@@ -17,8 +17,8 @@
 			<tr>
 				<th><a rel="checkall">全选</a></th>
 				<th>用户名</th>
-				<th>姓名</th>
 				<th>加为好友</th>
+				<th>姓名</th>
 				<th>宿舍</th>
 				<th>状态</th>
 				<c:if test="${admin != null}">
@@ -29,11 +29,11 @@
 			<c:forEach items="${pageBean.list}" var="people">
 				<tr>
 					<td><input type="checkbox" name="ids" value="${people.id}" /></td>
-					<td><a target="content" href="<%=path%>/people/viewPeople?id=${people.id}&page=${page}">${people.username}</a>
+					<td><a target="content" href="<%=path %>/t/${people.username}">${people.username}</a>
 					 <a target="content" href="<%=path%>/mail/goAddMail?receiverId=${people.id}">传纸条</a></td>
 					 <td><a target="content" href="<%=path%>/people/followPeople?id=${people.id}&page=${page}">
 					 <c:choose>
-					 	<c:when test="${my:isMyFriend(friends,people)}">删除好友</c:when>
+					 	<c:when test="${my:isMyFriend(user.friends,people)}">删除好友</c:when>
 					 	<c:otherwise>加为好友</c:otherwise>
 					 </c:choose>
 					 </a></td>
