@@ -14,7 +14,9 @@ $(function(){
 </script>
 <div class="school form">
 <div class="school_pic">
-<img src="<%=path %>/${school.avatar.minFileUrl}" width="80"/>
+<c:if test="${!empty school.avatar.minFileUrl}">
+	<img src="<%=path %>/${school.avatar.minFileUrl}" width="80"/>
+</c:if>
 </div>
 <p>学校名称：${school.name}</p>
 <p>学校简介：${school.content}</p>

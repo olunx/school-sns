@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
 	String path = request.getContextPath();
+/*	
 	Object isAccess = session.getAttribute("isAccess");
 	if (isAccess!=null && isAccess.equals("true")){
 		response.sendRedirect(path+"/home");
 	}
-		
+*/		
 %>
 <jsp:include page="/WEB-INF/header.jsp"></jsp:include>
 <!-- 登录页专用件 -->

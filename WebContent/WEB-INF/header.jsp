@@ -11,23 +11,16 @@
 <link type="text/css" rel="stylesheet" href="<%=path%>/content/images/layout.css" />
 <link type="text/css" rel="stylesheet" href="<%=path%>/content/images/btn/style.css" />
 <link id="themecss" type="text/css" rel="stylesheet" href="<%=path%>/content/images/blue/theme_blue.css" />
+<link type="text/css" rel="stylesheet" href="<%=path%>/content/images/twitter.css" />
+<link type="text/css" rel="stylesheet" href="<%=path%>/content/jq-ui/jquery-ui-1.8.custom.css" />
 
 <!-- JQuery库 -->
 <script type="text/javascript" src="<%=path%>/content/js/jquery-1.4.2.min.js"></script>
 
-<!-- AjaxUpload库 -->
-<script type="text/javascript" src="<%=path%>/content/jq-ajaxupload/ajaxupload.js"></script>
 
 <!-- 常用库，确保这段代码在最下方 -->
-<!--[if IE]> 
-		<script type="text/javascript" src="<%=path%>/content/jq-highcharts/highcharts-ie.js"></script> 
-<![endif]-->
 <script type="text/javascript" src="<%=path%>/content/js/common.js"></script>
 
-<!-- highslide -->
-<link type="text/css" rel="stylesheet" href="<%=path%>/content/jq-highslide/highslide.css" />
-<script type="text/javascript" src="<%=path%>/content/jq-highslide/highslide-full.min.js"></script>
-<script type="text/javascript" src="<%=path%>/content/js/highslide-init.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
 	initHighslide("<%=path%>", "640", "480");
