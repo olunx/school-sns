@@ -91,7 +91,11 @@ img{ border:none;}
 #topic_list .operate{}
 .linedot{ background:url(linedot.gif) center repeat-x; padding:0; margin:0;}
 /*Feed*/
-.feed .feed_list{ padding:5px 0 5px 0; border-bottom:1px dashed #ccc;}
+.feed .list{ padding:0 0 3px 0px; margin-bottom:5px; border-bottom:1px dashed #ccc;}
+.feed .avatar{ background:#FFF; float:left; padding:2px; border:1px solid #CCC;}
+.feed .avatar img{width:30px; height:30px; }
+.feed .topic_msg{ float:right; padding-left:10px; width:520px;}
+.feed .topic_msg .content{ line-height:24px; font-size:14px;}
 .feed .time{ color:#999; float:right;}
 /*添加表单样式*/
 .form p{ margin-bottom:8px;}

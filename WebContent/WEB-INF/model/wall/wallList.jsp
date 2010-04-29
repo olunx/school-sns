@@ -12,7 +12,7 @@
 		updateSidebar();
 
 		diaplayAll();
-		
+
 		$("#vote_list").load("<%=path%>/vote/listVote",function(){
 			ajax('#content');
 		});
@@ -25,7 +25,6 @@
 		$("#group_list").load("<%=path%>/group/listGroup",function(){
 			ajax('#content');
 		});
-
 	});
 
 	function diaplayAll() {

@@ -6,7 +6,7 @@
 <script type="text/javascript">
 	$(function() {
 		onLoading("#feed");
-		$("#topic_list").load("<%=path%>/feed/listFeed", function() {
+		$("#feed").load("<%=path%>/feed/listFeed", function() {
 			offLoading();
 		});
 		initHighslide("<%=path%>", "480", "400");
@@ -20,6 +20,5 @@
 </div>
 
 <h2>最新动态：</h2>
-<div id="feed">
-	<div id="topic_list"></div>
+<div id="feed" class="feed">
 </div>

@@ -3,10 +3,8 @@
 <%
 	String path = request.getContextPath();
 %>
-<script type="text/javascript" src="<%=path%>/content/jq-ui/jquery-ui-1.8.custom.min.js"></script>
-<link type="text/css" rel="stylesheet" href="<%=path%>/content/jq-ui/jquery-ui-1.8.custom.css" />
 <style type="text/css">
-.mod {
+.attmod {
 	margin: 10px 0;
 }
 
@@ -89,7 +87,7 @@
 	<option>日</option>
 </select></div>
 <div class="clear"></div>
-<div class="mod">课程(请按住Ctrl键选择)： <input type="hidden" name="courseIds" id="courseIds" />
+<div class="attmod">课程(请按住Ctrl键选择)： <input type="hidden" name="courseIds" id="courseIds" />
 <ol id="lessonsel" class="selectable">
 	<c:forEach items="${courses}" var="c">
 		<li class="ui-state-default" title="${c.id }">周${c.whatDay }, ${c.name }</li>
@@ -98,7 +96,7 @@
 </div>
 
 <div class="clear"></div>
-<div class="mod">逃课学生(请按住Ctrl键选择)： <input type="hidden" name="students" id="students" />
+<div class="attmod">逃课学生(请按住Ctrl键选择)： <input type="hidden" name="students" id="students" />
 <ol id="studentssel" class="selectable">
 	<c:forEach items="${students}" var="stu">
 		<li class="ui-state-default" title="${stu.sno }">${stu.name }</li>
