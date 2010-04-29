@@ -18,21 +18,19 @@
 	</c:when>
 	<c:otherwise>
 		<c:forEach items="${pageBean.list}" var="vote">
-			<div class="ilist">
-			<div class="iavatar"><img src="<%=path %>" /></div>
+			<div class="ilist clearfix">
+			<div class="iavatar"><img src="<%=path %>/avatar/${vote.author.id}" /></div>
 			<div class="imsg">
-			<div class="iname">发起者：${vote.author.name }</div>
-			<p class="icontent">投票主题：
-			<a target="content" href="<%=path %>/vote/goVotingVote?vid=${vote.id}" >${fn:substring(fn:replace(vote.title,"<","&lt;"),0,20)}</a>
-			<br/>  简介：${fn:substring(fn:replace(vote.summary,"<","&lt;"),0,50)}
-			</p>
-			<div class="ioperate">
-			 创建时间：${my:formatDate(vote.airTime) }
+				<div class="iname">发起者：${vote.author.name }</div>
+				<p class="icontent">
+				<a target="content" href="<%=path %>/vote/goVotingVote?vid=${vote.id}" >${fn:substring(fn:replace(vote.title,"<","&lt;"),0,20)}</a>
+				</p>
+				<p class="desc">${fn:substring(fn:replace(vote.summary,"<","&lt;"),0,50)}</p>
+				<div class="ioperate">
+				 ${my:formatDate(vote.airTime) }
+				</div>
 			</div>
 			</div>
-			</div>
-			<div class="clear "></div>
-			<div class="linedot"></div>
 		</c:forEach>
 
 		<div id="vote_more_list"><c:choose>

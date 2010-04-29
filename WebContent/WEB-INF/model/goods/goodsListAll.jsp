@@ -18,22 +18,20 @@
 	</c:when>
 	<c:otherwise>
 		<c:forEach items="${pageBean.list}" var="goods">
-			<div class="ilist">
-			<div class="iavatar"><img src="<%=path %>${goods.image}" /></div>
-			<div class="imsg">
-			<div class="iname">拥有者：${goods.owner.name }</div>
-			<p class="icontent">物品名称：
-			<a target="content" href="<%=path%>/goods/viewGoods?id=${goods.id }">${goods.name}</a>
-			<br/>  物品估价：${goods.value}
-			<br/>  物品说明：${fn:substring(fn:replace(goods.content,"<","&lt;"),0,50)}
-			</p>
-			<div class="ioperate">
-			 状态：${goods.state == 1? "可交换" :"正常" } | 发布时间：${my:formatDate(goods.airTime) }
+			<div class="ilist clearfix">
+				<div class="iavatar"><img src="<%=path %>/avatar/${goods.owner.id}" /></div>
+				<div class="imsg">
+				<div class="iname">拥有者：${goods.owner.name }</div>
+				<p class="icontent">
+				<a target="content" href="<%=path%>/goods/viewGoods?id=${goods.id }">${goods.name} <span class="money">（${goods.value}元）</span></a>
+				</p>
+				<p class="desc">${fn:substring(fn:replace(goods.content,"<","&lt;"),0,50)}</p>
+				
+				<div class="ioperate">
+				 状态：${goods.state == 1? "可交换" :"正常" } | ${my:formatDate(goods.airTime) }
+				</div>
+				</div>
 			</div>
-			</div>
-			</div>
-			<div class="clear "></div>
-			<div class="linedot"></div>
 		</c:forEach>
 
 		<div id="goods_more_list"><c:choose>

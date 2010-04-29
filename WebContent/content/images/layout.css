@@ -201,11 +201,13 @@ font-size:20px;
 #footer p{font:#FFF;}
 
 /*列表页*/
-.ilist{ padding:0 0 5px 0; margin:5px 0 0 0; border-bottom:#09F dashed 1px;}
+.ilist{ padding:0 0 5px 0; margin:5px 0 0 0; border-bottom:#ccc dashed 1px;}
 .iavatar{ background:#FFF; float:left; padding:2px; border:1px solid #CCC;}
 .iavatar img{width:50px; height:50px; }
-.imsg { margin-left:70px; padding-left:5px;}
+.imsg { float:right; padding-left:5px; width:500px;}
 .imsg { font-size:13px;}
-.imsg .content{ line-height:24px; font-size:14px;}
+.imsg .icontent{ font-size:14px; margin-bottom:5px;}
+.ilist .desc{ color:#666;}
+.imsg .money{ color:#ff8000;}
 .iname{ color:#999; float:right;}
-.ioperate{text-align:right;}
+.ioperate{text-align:right; color:#ccc;}

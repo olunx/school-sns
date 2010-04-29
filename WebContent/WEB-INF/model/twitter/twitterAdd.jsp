@@ -5,17 +5,7 @@
 <%
 	String path = request.getContextPath();
 %>
-<!-- JQ验证插件 -->
-<script type="text/javascript" src="<%=path%>/content/jq-validate/jquery.form.js" ></script>
-<script type="text/javascript" src="<%=path%>/content/jq-validate/jquery.validate.pack.js" ></script>
-<script type="text/javascript" src="<%=path%>/content/jq-validate/messages_cn.js" ></script>
 
-<link type="text/css" rel="stylesheet" href="<%=path%>/content/images/twitter.css" />
-<script type="text/javascript" src="<%=path %>/content/js/jquery.doubleSelect.min.js"></script>
-
-<!-- JQuery UI 插件 -->
-<link type="text/css" rel="stylesheet" href="<%=path%>/content/jq-ui/jquery-ui-1.8.custom.css" />
-<script type="text/javascript" src="<%=path%>/content/jq-ui/jquery-ui-1.8.custom.min.js" ></script>
 <script type="text/javascript">
 	$(document).ready(function() {
 		initHighslide("<%=path%>", "840", "640");
