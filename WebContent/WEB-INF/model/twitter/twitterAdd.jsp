@@ -7,23 +7,6 @@
 %>
 
 <script type="text/javascript">
-	$(document).ready(function() {
-		initHighslide("<%=path%>", "840", "640");
-		
-		$('#inputform').validate({
-			submitHandler: function() {
-				onLoading('#feed');
-				post($('#inputform'),"#feed","<%=path%>/feed/listFeed");
-				cancel();
-				//commit($('#inputform'), '<%=path%>/home');
-			}
-		});
-        
-		var selectoptions = ${jsonmap};
-	    $('#first').doubleSelect('second', selectoptions);   
-	    
-	});
-
 	function initDatePicker() {
 		$("#datepicker").datepicker( {
 			dateFormat : 'yy-mm-dd',
@@ -105,8 +88,8 @@
 	function showVote() {
 		displayAll();
 		$("#addition").html($("#vote").html());
-		$("#addition").slideDown("normal");
 		initDatePicker();//重新初始化日期选择器
+		$("#addition").slideDown("normal");
 		$("#inputtitle").html("投票说明：");
 		$("#inputform").attr("action", "<%=path%>/vote/addVote");
 		$("#inputarea").attr("name", "vote.summary");
@@ -184,7 +167,7 @@
             <a href="#" onclick="return addNewVote('voteitem', '1');">再添加一项</a>
              | <a href="#" onclick="return addNewVote('voteitem', '3');">再添加三项</a>
             </p>
-            <p><label>投票期限：</label><input id="datepicker" class="required date" type="text" name="time" /></p>
+            <p><label>投票期限：</label><input id="datepicker" class="required" type="text" name="time" /></p>
 		</div>
         <!-- 投票结束 -->
         <!-- 问答 -->
@@ -221,3 +204,21 @@
 	<!-- end of temp -->
 	
 </div>
+<script type="text/javascript">
+		var selectoptions = ${jsonmap};
+	    $('#first').doubleSelect('second', selectoptions);   
+
+		$(function(){
+			initHighslide("<%=path%>", "840", "640");
+			$('#inputform').validate({
+				submitHandler: function() {
+					onLoading('#feed');
+					post($('#inputform'),"#feed","<%=path%>/feed/listFeed");
+					cancel();
+					//commit($('#inputform'), '<%=path%>/home');
+				}
+			});
+		});
+        
+	    
+</script>

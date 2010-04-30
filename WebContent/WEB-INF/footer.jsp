@@ -8,6 +8,28 @@
     <p>&copy; 2010 3C-Team</p>
   </div>
 
+<script type="text/javascript">
+	$(".menu li[rel=submenu]").mouseover(function(){
+		$(this).addClass("menu_hover");
+	});
+	$(".menu li[rel=submenu]").mouseout(function(){
+		$(this).removeClass("menu_hover");
+	});	
+    //注册事件
+    $("a[target='content']").click(function(){
+        var href = $(this).attr('href');
+        var rev = $(this).attr('rev');
+        if (rev != null && rev != "") 
+		{loadContent(href,rev);}
+        else
+		{loadContent(href);}
+        
+        return false;
+    });
+</script>
+
+
+
 <!-- AjaxUpload库 -->
 <!-- JQuery 上传插件 -->
 <script type="text/javascript" src="<%=path%>/content/jq-ajaxupload/ajaxupload.js"></script>
@@ -17,9 +39,16 @@
 <script type="text/javascript" src="<%=path%>/content/jq-validate/jquery.validate.pack.js" ></script>
 <script type="text/javascript" src="<%=path%>/content/jq-validate/messages_cn.js" ></script>
 
+<!-- highslide -->
+<link type="text/css" rel="stylesheet" href="<%=path%>/content/jq-highslide/highslide.css" />
+<script type="text/javascript" src="<%=path%>/content/jq-highslide/highslide-full.min.js"></script>
+<script type="text/javascript" src="<%=path%>/content/js/highslide-init.js"></script>
 
 <script type="text/javascript" src="<%=path%>/content/js/jquery.scrollTo-min.js"></script>
 
+<script type="text/javascript">
+	initHighslide("<%=path%>", "640", "480");
+</script>
 
 <!--[if IE]> 
 		<script type="text/javascript" src="<%=path%>/content/jq-highcharts/highcharts-ie.js"></script> 

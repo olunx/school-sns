@@ -1,16 +1,4 @@
 ﻿$(document).ready(function(){
-
-    //注册事件
-    $("a[target='content']").click(function(){
-        var href = $(this).attr('href');
-        var rev = $(this).attr('rev');
-        if (rev != null && rev != "") 
-		{loadContent(href,rev);}
-        else
-		{loadContent(href);}
-        
-        return false;
-    });
     
     $("#content").ajaxError(function(event, request, settings){
         $(this).append("<li>哎呀，出错啦！请刷新一下试试:" + settings.url + "</li>");

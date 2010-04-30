@@ -16,31 +16,16 @@
 <link type="text/css" rel="stylesheet" href="<%=path%>/content/jq-ajaxupload/ajaxupload.css" />
 
 <!-- JQuery库 -->
-<script type="text/javascript" src="<%=path%>/content/js/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
+<!-- <script type="text/javascript" src="<%=path%>/content/js/jquery-1.4.2.min.js"></script> -->
 
 <script type="text/javascript" src="<%=path %>/content/js/jquery.doubleSelect.min.js"></script>
 <!-- JQuery UI 插件 -->
-<script type="text/javascript" src="<%=path%>/content/jq-ui/jquery-ui-1.8.custom.min.js" ></script>
-
-<!-- highslide -->
-<link type="text/css" rel="stylesheet" href="<%=path%>/content/jq-highslide/highslide.css" />
-<script type="text/javascript" src="<%=path%>/content/jq-highslide/highslide-full.min.js"></script>
-<script type="text/javascript" src="<%=path%>/content/js/highslide-init.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+<!-- <script type="text/javascript" src="<%=path%>/content/jq-ui/jquery-ui-1.8.custom.min.js" ></script>-->
 
 <!-- 常用库，确保这段代码在最下方 -->
 <script type="text/javascript" src="<%=path%>/content/js/common.js"></script>
-
-<script type="text/javascript">
-$(document).ready(function() {
-	initHighslide("<%=path%>", "640", "480");
-	$(".menu li[rel=submenu]").mouseover(function(){
-		$(this).addClass("menu_hover");
-	});
-	$(".menu li[rel=submenu]").mouseout(function(){
-		$(this).removeClass("menu_hover");
-	});	
-});
-</script>
 
 </head>
 <body>
