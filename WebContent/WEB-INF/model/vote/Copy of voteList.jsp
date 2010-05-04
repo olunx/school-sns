@@ -26,7 +26,7 @@
 				<tr>						
 					
 					<td class="ta_left">
-						<a target="content" href="<%=path %>/vote/goVotingVote?vid=${vote.id}" >${fn:substring(fn:replace(vote.title,"<","&lt;"),0,20)}</a>
+						<a onclick="ajaxload(this);return false;" href="<%=path %>/vote/goVotingVote?vid=${vote.id}" >${fn:substring(fn:replace(vote.title,"<","&lt;"),0,20)}</a>
 					</td>
 					<td>
 						${fn:substring(fn:replace(vote.summary,"<","&lt;"),0,20)}...
@@ -38,7 +38,7 @@
 						${my:formatDate(vote.airTime) }
 					</td>
 					<td>
-						<a target="content" href="<%=path %>/vote/deleteVote?vid=${vote.id}" class="btn_del">删除</a>
+						<a onclick="ajaxload(this);return false;" href="<%=path %>/vote/deleteVote?vid=${vote.id}" class="btn_del">删除</a>
 					</td>
 				</tr>
 			</c:forEach>
@@ -52,13 +52,13 @@
 				<a><span>上一页</span></a>
 			</c:when>
 			<c:otherwise>
-				<a target="content" href="<%=path%>/vote/listVote?page=1"><span>首页</span></a>
-				<a target="content" href="<%=path%>/vote/listVote?page=${pageBean.currentPage-1}"><span>上一页</span></a>
+				<a onclick="ajaxload(this);return false;" href="<%=path%>/vote/listVote?page=1"><span>首页</span></a>
+				<a onclick="ajaxload(this);return false;" href="<%=path%>/vote/listVote?page=${pageBean.currentPage-1}"><span>上一页</span></a>
 			</c:otherwise>
 		</c:choose> <c:choose>
 			<c:when test="${pageBean.currentPage != pageBean.totalPage}">
-				<a target="content" href="<%=path%>/vote/listVote?page=${pageBean.currentPage+1}"><span>下一页</span></a>
-				<a target="content" href="<%=path%>/vote/listVote?page=${pageBean.totalPage}"><span>尾页</span></a>
+				<a onclick="ajaxload(this);return false;" href="<%=path%>/vote/listVote?page=${pageBean.currentPage+1}"><span>下一页</span></a>
+				<a onclick="ajaxload(this);return false;" href="<%=path%>/vote/listVote?page=${pageBean.totalPage}"><span>尾页</span></a>
 			</c:when>
 			<c:otherwise>
 				<a><span>下一页</span></a>

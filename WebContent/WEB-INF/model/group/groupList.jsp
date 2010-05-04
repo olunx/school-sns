@@ -27,11 +27,11 @@
 				<div class="imsg">
 				<div class="iname">管理员：${group.admin.name}</div>
 				<p class="icontent">小组：
-				<a target="content" href="<%=path%>/group/viewGroup?id=${group.id}&page=${page}">${group.name}</a>
+				<a onclick="ajaxload(this);return false;" href="<%=path%>/group/viewGroup?id=${group.id}&page=${page}">${group.name}</a>
 				<br/>  简介： ${group.intro}
 				</p>
 				<div class="ioperate">
-				 <a target="content" href="<%=path%>/group/joinGroup?id=${group.id}&page=${page}">
+				 <a onclick="ajaxload(this);return false;" href="<%=path%>/group/joinGroup?id=${group.id}&page=${page}">
 				 <c:choose>
 				 	<c:when test="${my:isMyGroup(groups,group)}">退出</c:when>
 				 	<c:otherwise>加入</c:otherwise>

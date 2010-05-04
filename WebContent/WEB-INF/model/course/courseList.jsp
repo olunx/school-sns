@@ -26,7 +26,7 @@
 					<td> ${course.startLesson } - ${course.endLesson} </td>
 					<td>${course.year }/${course.term }</td>
 					
-					<td><a target="content" href="<%=path%>/course/deleteCourse?id=${course.id }&page=${page}" class="btn_del">删除</a></td>
+					<td><a onclick="ajaxload(this);return false;" href="<%=path%>/course/deleteCourse?id=${course.id }&page=${page}" class="btn_del">删除</a></td>
 				</tr>
 			</c:forEach>
 		</table>

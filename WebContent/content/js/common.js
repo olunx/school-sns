@@ -10,39 +10,30 @@
     });
 });
 
-//注册二级事件
-function ajax(){
-	var divid = arguments[0] || '#content';//更新目标id
-    $("a[rel='ajaxupload']").each(function(i){
-        var ajaxinfo = eval('(' + $(this).attr("rev") + ')');
-        myAjaxUploadSetup(this, ajaxinfo.upload, ajaxinfo.complete, ajaxinfo.allowtype);
-    });
-	$(divid+" a[target='content']").unbind("click"); 
-    $(divid+" a[target='content']").click(function(){
-        var href = $(this).attr('href');
-        var rev = $(this).attr('rev');
-        if (rev != null && rev != "") 
-		{
-			loadContent(href,rev);
-			}
-        else
-		{
-			loadContent(href,divid);
-		}
-        return false;
-    });
-};
+//ajax加载链接
+function ajaxload(obj){
+        var href = $(obj).attr('href');
+        var divid = $(obj).attr('rev');
+		loadContent(href,divid);
+		return false;
+}
 
 //加载数据
 function loadContent(href){
 	var divid = arguments[1] || '#content';//更新目标id
+	if (divid==null || divid == "") divid = "#content";
 	//alert(divid);
     var content = $(divid);
     content.html("");
     onLoading(content);//打开loading
     content.load(href, function(){
         offLoading();//关闭loading
-        ajax(divid);
+	    $("a[rel='ajaxupload']").each(function(i){
+	        var ajaxinfo = eval('(' + $(this).attr("rev") + ')');
+	        myAjaxUploadSetup(this, ajaxinfo.upload, ajaxinfo.complete, ajaxinfo.allowtype);
+	    });
+        return false;
+        //ajax(divid);
         //content.fadeIn('slow', ajax);
     });
 }
@@ -126,8 +117,6 @@ function listMore(more,target) {
 
 		return false;
 	});
-
-	ajax();
 }
 
 //配置ajaxUpload
@@ -178,11 +167,6 @@ function updateSidebar(){
     else {
         $("#widget").html(html);
     }
-    $("#widget a[target='content']").click(function(){
-        var href = $(this).attr('href');
-        loadContent(href);
-        return false;
-    });
 }
 
 /**

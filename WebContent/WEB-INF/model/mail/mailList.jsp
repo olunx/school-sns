@@ -27,10 +27,10 @@
 				<tr>
 					<td><input type="checkbox" name="ids" value="${mail.id }" />
 					 <c:if test="${mail.isreaded == false}"><a style="color:red;">未读</a></c:if>
-					 <a target="content" href="<%=path%>/mail/goReplyMail?id=${mail.id }">回复</a>
+					 <a onclick="ajaxload(this);return false;" href="<%=path%>/mail/goReplyMail?id=${mail.id }">回复</a>
 					</td>
 					<td>
-					<a target="content" href="<%=path%>/mail/viewMail?id=${mail.id}">${mail.title}</a>
+					<a onclick="ajaxload(this);return false;" href="<%=path%>/mail/viewMail?id=${mail.id}">${mail.title}</a>
 					 <c:if test="${mail.reply != null}">(${fn:length(mail.reply)})</c:if>
 					 <c:if test="${mail.hasreply == true}"><a style="color:red;">有新回复</a></c:if>
 					</td>
@@ -38,7 +38,7 @@
 					<td>${mail.sender.name}</td>
 					<td>${mail.receiver.name}</td>
 					<td><fmt:formatDate value="${mail.time}" pattern="yyyy-MM-dd HH:mm" /></td>
-					<td><a target="content" href="<%=path%>/mail/deleteMail?id=${mail.id }&page=${page}" class="btn_del">删除</a></td>
+					<td><a onclick="ajaxload(this);return false;" href="<%=path%>/mail/deleteMail?id=${mail.id }&page=${page}" class="btn_del">删除</a></td>
 				</tr>
 			</c:forEach>
 		</table>
@@ -51,13 +51,13 @@
 				<a><span>上一页</span></a>
 			</c:when>
 			<c:otherwise>
-				<a target="content" href="<%=path%>/mail/listMail?page=1"><span>首页</span></a>
-				<a target="content" href="<%=path%>/mail/listMail?page=${pageBean.currentPage-1}"><span>上一页</span></a>
+				<a onclick="ajaxload(this);return false;" href="<%=path%>/mail/listMail?page=1"><span>首页</span></a>
+				<a onclick="ajaxload(this);return false;" href="<%=path%>/mail/listMail?page=${pageBean.currentPage-1}"><span>上一页</span></a>
 			</c:otherwise>
 		</c:choose> <c:choose>
 			<c:when test="${pageBean.currentPage != pageBean.totalPage}">
-				<a target="content" href="<%=path%>/mail/listMail?page=${pageBean.currentPage+1}"><span>下一页</span></a>
-				<a target="content" href="<%=path%>/mail/listMail?page=${pageBean.totalPage}"><span>尾页</span></a>
+				<a onclick="ajaxload(this);return false;" href="<%=path%>/mail/listMail?page=${pageBean.currentPage+1}"><span>下一页</span></a>
+				<a onclick="ajaxload(this);return false;" href="<%=path%>/mail/listMail?page=${pageBean.totalPage}"><span>尾页</span></a>
 			</c:when>
 			<c:otherwise>
 				<a><span>下一页</span></a>

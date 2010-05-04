@@ -22,7 +22,7 @@
 			</tr>
 			<c:forEach items="${pageBean.list}" var="goods">
 				<tr>
-					<td class="ta_left"><a target="content" href="<%=path %>/goods/viewGoods?id=${goods.id }">${goods.name}</a></td>
+					<td class="ta_left"><a onclick="ajaxload(this);return false;" href="<%=path %>/goods/viewGoods?id=${goods.id }">${goods.name}</a></td>
 					<td>${goods.state == 1? "可交换" :"正常" }</td>
 					<td>${goods.value}</td>
 					<td>${goods.owner.name }</td>
@@ -39,14 +39,14 @@
 				<a><span>上一页</span></a>
 			</c:when>
 			<c:otherwise>
-				<a target="content" href="<%=path%>/goods/listGoods?page=1"><span>首页</span></a>
-				<a target="content" href="<%=path%>/goods/listGoods?page=${pageBean.currentPage-1}"><span>上一页</span></a>
+				<a onclick="ajaxload(this);return false;" href="<%=path%>/goods/listGoods?page=1"><span>首页</span></a>
+				<a onclick="ajaxload(this);return false;" href="<%=path%>/goods/listGoods?page=${pageBean.currentPage-1}"><span>上一页</span></a>
 			</c:otherwise>
 		</c:choose>
 		<c:choose>
 			<c:when test="${pageBean.currentPage != pageBean.totalPage}">
-				<a target="content" href="<%=path%>/goods/listGoods?page=${pageBean.currentPage+1}"><span>下一页</span></a>
-				<a target="content" href="<%=path%>/goods/listGoods?page=${pageBean.totalPage}"><span>尾页</span></a>
+				<a onclick="ajaxload(this);return false;" href="<%=path%>/goods/listGoods?page=${pageBean.currentPage+1}"><span>下一页</span></a>
+				<a onclick="ajaxload(this);return false;" href="<%=path%>/goods/listGoods?page=${pageBean.totalPage}"><span>尾页</span></a>
 			</c:when>
 			<c:otherwise>
 				<a><span>下一页</span></a>

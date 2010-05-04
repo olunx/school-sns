@@ -9,12 +9,12 @@
 
 <div class="form">
 <ul id="classnav" class="nav buttons">
-	<li><a target="content" href="<%=path%>/classes/viewClasses?id=${id}">班级首页</a></li>
-	<li><a target="content" rev="#class" href="<%=path%>/classfee/listClassfee">查看班费</a></li>
-	<li><a target="content" rev="#class" href="<%=path%>/course/listCourse">课程表</a></li>
-	<li><a target="content" rev="#class" href="<%=path%>/attendance/listAttendance">考勤记录</a></li>
-	<li><a target="content" rev="#class" href="<%=path%>/score/queryScore">成绩</a></li>
-	<li><a target="content" rev="#class" href="<%=path%>/people/classesPeople?id=${classes.id}">班级成员</a></li>
+	<li><a onclick="ajaxload(this);return false;" href="<%=path%>/classes/viewClasses?id=${id}">班级首页</a></li>
+	<li><a onclick="ajaxload(this);return false;" rev="#class" href="<%=path%>/classfee/listClassfee">查看班费</a></li>
+	<li><a onclick="ajaxload(this);return false;" rev="#class" href="<%=path%>/course/listCourse">课程表</a></li>
+	<li><a onclick="ajaxload(this);return false;" rev="#class" href="<%=path%>/attendance/listAttendance">考勤记录</a></li>
+	<li><a onclick="ajaxload(this);return false;" rev="#class" href="<%=path%>/score/queryScore">成绩</a></li>
+	<li><a onclick="ajaxload(this);return false;" rev="#class" href="<%=path%>/people/classesPeople?id=${classes.id}">班级成员</a></li>
 </ul>
 <div class="clear"></div>
 <div id="class">
@@ -22,7 +22,7 @@
 <p>
 <label>管理员：</label>
 		<c:forEach items="${classes.admins}" var="admin">
-				<a target="content" href="<%=path%>/student/viewStudent?id=${admin.id }">${admin.name}</a>
+				<a onclick="ajaxload(this);return false;" href="<%=path%>/student/viewStudent?id=${admin.id }">${admin.name}</a>
 		</c:forEach>
 </p>
 <p><label>班级公告：</label>${classes.intro} </p>
@@ -35,7 +35,7 @@
 	</c:when>
 	<c:otherwise>
 		<p>
-			<a target="content" href="<%=path %>/classes/joinAdminClasses?id=${classes.id}">申请加入班级管理员</a>
+			<a onclick="ajaxload(this);return false;" href="<%=path %>/classes/joinAdminClasses?id=${classes.id}">申请加入班级管理员</a>
 		</p>
 	</c:otherwise>
 </c:choose>
@@ -45,9 +45,9 @@
 	<div>
 		申请入班级的人：<br />
 		<c:forEach items="${applicant}" var="people">
-			<a target="content" href="<%=path%>/student/viewStudent?id=${people.id }">${people.name}</a>申请加入班级,
-			<a target="content" href="<%=path%>/classes/auditClasses?id=${people.id }&audit=1">通过申请</a>，
-			<a target="content" href="<%=path%>/classes/auditClasses?id=${people.id }&audit=0">拒绝申请</a>
+			<a onclick="ajaxload(this);return false;" href="<%=path%>/student/viewStudent?id=${people.id }">${people.name}</a>申请加入班级,
+			<a onclick="ajaxload(this);return false;" href="<%=path%>/classes/auditClasses?id=${people.id }&audit=1">通过申请</a>，
+			<a onclick="ajaxload(this);return false;" href="<%=path%>/classes/auditClasses?id=${people.id }&audit=0">拒绝申请</a>
 			<br/>
 		</c:forEach>
 	</div>
@@ -57,7 +57,7 @@
 	<h2>班级留言：</h2>
 	<c:choose>
 	<c:when test="${empty classes.replys}">
-		<a target="content" href="<%=path %>/classes/goReplyClasses?id=${classes.id}&rid=-1">还没有留言哦！我来抢沙发^o^</a> 
+		<a onclick="ajaxload(this);return false;" href="<%=path %>/classes/goReplyClasses?id=${classes.id}&rid=-1">还没有留言哦！我来抢沙发^o^</a> 
 	</c:when>
 	<c:otherwise>
 		<div class="class_msg_list">
@@ -68,7 +68,7 @@
 			</div>
 			<div class="msg">
 			<div class="operate">
-			<p class="time" title="${reply.time }"><a target="content" href="<%=path %>/classes/goReplyClasses?id=${classes.id}&rid=${reply.id != null ? reply.id : -1 }">回复</a> ${my:formatDate(reply.time)}</p>
+			<p class="time" title="${reply.time }"><a onclick="ajaxload(this);return false;" href="<%=path %>/classes/goReplyClasses?id=${classes.id}&rid=${reply.id != null ? reply.id : -1 }">回复</a> ${my:formatDate(reply.time)}</p>
 			</div>
 				<p class="text">${reply.author.name }： ${reply.content}</p>
 				
@@ -87,7 +87,7 @@
 		</div>
 		</c:forEach>
 		</div>
-		<a target="content" href="<%=path %>/classes/goReplyClasses?id=${classes.id}&rid=-1">我也来说几句</a> 
+		<a onclick="ajaxload(this);return false;" href="<%=path %>/classes/goReplyClasses?id=${classes.id}&rid=-1">我也来说几句</a> 
 	</c:otherwise>
 </c:choose>
 </div>
@@ -102,8 +102,8 @@
 		<ul class="imglist">
 		<c:forEach items="${classes.visitors}" var="visitor">
 			<li>
-				<a target="content" href="<%=path%>/t/${visitor.people.username }"><img src="<%=path %>/avatar/${visitor.people.id}" width="50"></img></a>
-				<a target="content" href="<%=path%>/t/${visitor.people.username }">${visitor.people.name}</a>
+				<a onclick="ajaxload(this);return false;" href="<%=path%>/t/${visitor.people.username }"><img src="<%=path %>/avatar/${visitor.people.id}" width="50"></img></a>
+				<a onclick="ajaxload(this);return false;" href="<%=path%>/t/${visitor.people.username }">${visitor.people.name}</a>
 				<fmt:formatDate value="${visitor.time }" pattern="MM-dd" />	
 			</li>
 		</c:forEach>
@@ -115,8 +115,8 @@
 		<ul class="imglist">
 		<c:forEach items="${peoplenew}" var="people">
 			<li>
-				<a target="content" href="<%=path%>/t/${people.username }"><img src="<%=path %>/avatar/${people.id}" width="50"></img></a>
-				<a target="content" href="<%=path%>/t/${people.username }">${people.name}</a>
+				<a onclick="ajaxload(this);return false;" href="<%=path%>/t/${people.username }"><img src="<%=path %>/avatar/${people.id}" width="50"></img></a>
+				<a onclick="ajaxload(this);return false;" href="<%=path%>/t/${people.username }">${people.name}</a>
 			</li>
 		</c:forEach>
 		</ul>
@@ -127,8 +127,8 @@
 		<ul class="imglist">
 		<c:forEach items="${peoplehot}" var="people">
 			<li>
-				<a target="content" href="<%=path%>/t/${people.username }"><img src="<%=path %>/avatar/${people.id}" width="50"></img></a>
-				<a target="content" href="<%=path%>/t/${people.username }">${people.name}</a>
+				<a onclick="ajaxload(this);return false;" href="<%=path%>/t/${people.username }"><img src="<%=path %>/avatar/${people.id}" width="50"></img></a>
+				<a onclick="ajaxload(this);return false;" href="<%=path%>/t/${people.username }">${people.name}</a>
 			</li>
 		</c:forEach>
 		</ul>

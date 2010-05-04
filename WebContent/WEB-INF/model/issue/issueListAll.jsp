@@ -23,7 +23,7 @@
 			<div class="imsg">
 			<div class="iname">提问者：${issue.owner.name }</div>
 			<p class="icontent">
-			<a target="content" href="<%=path%>/issue/viewIssue?id=${issue.id }">${issue.name} <span class="money">(${issue.value}朵)</span></a>
+			<a onclick="ajaxload(this);return false;" href="<%=path%>/issue/viewIssue?id=${issue.id }">${issue.name} <span class="money">(${issue.value}朵)</span></a>
 			</p>
 			<p class="desc">${fn:substring(fn:replace(issue.content,"<","&lt;"),0,50)}</p>
 			<div class="ioperate">

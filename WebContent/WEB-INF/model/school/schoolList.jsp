@@ -41,7 +41,7 @@
 						${school.province.name}
 					</td>
 					<td>
-						<a target="content" href="<%=path %>/school/viewSchool?id=${school.id}" >${school.name}</a>
+						<a onclick="ajaxload(this);return false;" href="<%=path %>/school/viewSchool?id=${school.id}" >${school.name}</a>
 					</td>
 					<td>
 						${fn:length(school.institute)}
@@ -51,10 +51,10 @@
 					</td>
 					<c:if test="${admin != null}">
 					<td>
-						<a target="content" href="<%=path %>/school/modifySchool?id=${school.id}" class="btn_del">修改</a>
+						<a onclick="ajaxload(this);return false;" href="<%=path %>/school/modifySchool?id=${school.id}" class="btn_del">修改</a>
 					</td>
 					<td>
-						<a target="content" href="<%=path %>/school/deleteSchool?id=${school.id}" class="btn_del">删除</a>
+						<a onclick="ajaxload(this);return false;" href="<%=path %>/school/deleteSchool?id=${school.id}" class="btn_del">删除</a>
 					</td>
 					</c:if>
 				</tr>
@@ -69,13 +69,13 @@
 				<a><span>上一页</span></a>
 			</c:when>
 			<c:otherwise>
-				<a target="content" href="<%=path%>/school/listSchool?page=1"><span>首页</span></a>
-				<a target="content" href="<%=path%>/school/listSchool?page=${pageBean.currentPage-1}"><span>上一页</span></a>
+				<a onclick="ajaxload(this);return false;" href="<%=path%>/school/listSchool?page=1"><span>首页</span></a>
+				<a onclick="ajaxload(this);return false;" href="<%=path%>/school/listSchool?page=${pageBean.currentPage-1}"><span>上一页</span></a>
 			</c:otherwise>
 		</c:choose> <c:choose>
 			<c:when test="${pageBean.currentPage != pageBean.totalPage}">
-				<a target="content" href="<%=path%>/school/listSchool?page=${pageBean.currentPage+1}"><span>下一页</span></a>
-				<a target="content" href="<%=path%>/school/listSchool?page=${pageBean.totalPage}"><span>尾页</span></a>
+				<a onclick="ajaxload(this);return false;" href="<%=path%>/school/listSchool?page=${pageBean.currentPage+1}"><span>下一页</span></a>
+				<a onclick="ajaxload(this);return false;" href="<%=path%>/school/listSchool?page=${pageBean.totalPage}"><span>尾页</span></a>
 			</c:when>
 			<c:otherwise>
 				<a><span>下一页</span></a>

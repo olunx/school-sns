@@ -29,9 +29,9 @@
 			<c:forEach items="${pageBean.list}" var="people">
 				<tr>
 					<td><input type="checkbox" name="ids" value="${people.id}" /></td>
-					<td><a target="content" href="<%=path %>/t/${people.username}">${people.username}</a>
-					 <a target="content" href="<%=path%>/mail/goAddMail?receiverId=${people.id}">传纸条</a></td>
-					 <td><a target="content" href="<%=path%>/people/followPeople?id=${people.id}&page=${page}">
+					<td><a onclick="ajaxload(this);return false;" href="<%=path %>/t/${people.username}">${people.username}</a>
+					 <a onclick="ajaxload(this);return false;" href="<%=path%>/mail/goAddMail?receiverId=${people.id}">传纸条</a></td>
+					 <td><a onclick="ajaxload(this);return false;" href="<%=path%>/people/followPeople?id=${people.id}&page=${page}">
 					 <c:choose>
 					 	<c:when test="${my:isMyFriend(user.friends,people)}">删除好友</c:when>
 					 	<c:otherwise>加为好友</c:otherwise>
@@ -41,8 +41,8 @@
 					<td>${people.dorm}</td>
 					<td>${people.status}</td>
 					<c:if test="${admin != null}">
-					<td><a target="content" href="<%=path%>/people/goModifyPeople?id=${people.id }&page=${page}" class="btn_edit">编辑</a></td>
-					<td><a target="content" href="<%=path%>/people/deletePeople?id=${people.id }&page=${page}" class="btn_del">删除</a></td>
+					<td><a onclick="ajaxload(this);return false;" href="<%=path%>/people/goModifyPeople?id=${people.id }&page=${page}" class="btn_edit">编辑</a></td>
+					<td><a onclick="ajaxload(this);return false;" href="<%=path%>/people/deletePeople?id=${people.id }&page=${page}" class="btn_del">删除</a></td>
 					</c:if>
 				</tr>
 			</c:forEach>
@@ -56,14 +56,14 @@
 				<a><span>上一页</span></a>
 			</c:when>
 			<c:otherwise>
-				<a target="content" href="<%=path%>/people/listPeople?page=1"><span>首页</span></a>
-				<a target="content" href="<%=path%>/people/listPeople?page=${pageBean.currentPage-1}"><span>上一页</span></a>
+				<a onclick="ajaxload(this);return false;" href="<%=path%>/people/listPeople?page=1"><span>首页</span></a>
+				<a onclick="ajaxload(this);return false;" href="<%=path%>/people/listPeople?page=${pageBean.currentPage-1}"><span>上一页</span></a>
 			</c:otherwise>
 		</c:choose>
 		<c:choose>
 			<c:when test="${pageBean.currentPage != pageBean.totalPage}">
-				<a target="content" href="<%=path%>/people/listPeople?page=${pageBean.currentPage+1}"><span>下一页</span></a>
-				<a target="content" href="<%=path%>/people/listPeople?page=${pageBean.totalPage}"><span>尾页</span></a>
+				<a onclick="ajaxload(this);return false;" href="<%=path%>/people/listPeople?page=${pageBean.currentPage+1}"><span>下一页</span></a>
+				<a onclick="ajaxload(this);return false;" href="<%=path%>/people/listPeople?page=${pageBean.totalPage}"><span>尾页</span></a>
 			</c:when>
 			<c:otherwise>
 				<a><span>下一页</span></a>

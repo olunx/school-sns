@@ -8,12 +8,12 @@
 <div>
 管理员:
 	<c:forEach items="${admins}" var="admin">
-			<a target="content" href="<%=path%>/student/viewStudent?id=${admin.id }">${admin.name}</a>
+			<a onclick="ajaxload(this);return false;" href="<%=path%>/student/viewStudent?id=${admin.id }">${admin.name}</a>
 	</c:forEach>
 	<br/>
 </div>
 <div>
-	<a class="letterspacing" target="content" href="<%=path%>/school/listSchool">查看全部学校</a>
-    <a class="letterspacing" target="content" href="<%=path %>/school/goAddSchool">添加学校</a>
+	<a class="letterspacing" onclick="ajaxload(this);return false;" href="<%=path%>/school/listSchool">查看全部学校</a>
+    <a class="letterspacing" onclick="ajaxload(this);return false;" href="<%=path %>/school/goAddSchool">添加学校</a>
 </div>
 

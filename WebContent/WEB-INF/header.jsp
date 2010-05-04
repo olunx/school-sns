@@ -34,22 +34,22 @@
 <div class="logo"><a href="<%=path%>/home"><img src="<%=path%>/content/images/logo.gif"/></a></div>
 <div class="menuk">
 <ul class="menu">
-	<li><a target="content" href="<%=path%>/center">我的大厅</a></li>
+	<li><a onclick="ajaxload(this);return false;" href="<%=path%>/center">我的大厅</a></li>
 	<c:if test="${student != null}">
-		<li><a target="content" href="<%=path %>/school/viewSchool?id=${user.school.id}">学校</a></li>
-		<li><a target="content" href="<%=path %>/classes/viewClasses?id=${user.classes == null? -1: user.classes.id}">班级</a></li>
+		<li><a onclick="ajaxload(this);return false;" href="<%=path %>/school/viewSchool?id=${user.school.id}">学校</a></li>
+		<li><a onclick="ajaxload(this);return false;" href="<%=path %>/classes/viewClasses?id=${user.classes == null? -1: user.classes.id}">班级</a></li>
 	</c:if>
-	<li><a target="content" href="<%=path%>/wall/listWall">广场</a></li>
+	<li><a onclick="ajaxload(this);return false;" href="<%=path%>/wall/listWall">广场</a></li>
 	<li rel="submenu"><a href="javascript:;">聊天馆</a>
 		<dl>
-		<dt><a target="content" href="<%=path%>/chat/pubChat">公共聊天室</a></dt>
-		<dt><a target="content" href="<%=path%>/chat/priChat">匿名聊天室</a></dt>
+		<dt><a onclick="ajaxload(this);return false;" href="<%=path%>/chat/pubChat">公共聊天室</a></dt>
+		<dt><a onclick="ajaxload(this);return false;" href="<%=path%>/chat/priChat">匿名聊天室</a></dt>
 		</dl>
 	</li>
 </ul>
 <div class="nav_account"><c:choose>
 	<c:when test="${isAccess!=null}">
-		 <a target="content" href="<%=path %>/people/goModifyPeople?id=${student.id}">设置</a> | 
+		 <a onclick="ajaxload(this);return false;" href="<%=path %>/people/goModifyPeople?id=${student.id}">设置</a> | 
 		<a onclick="return hs.htmlExpand(this, { objectType: 'iframe' } )" href="<%=path%>/mail/boxMail">小纸箱</a>
         | <a href="<%=path%>/logout">退出</a>
 	</c:when>

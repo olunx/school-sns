@@ -6,7 +6,7 @@
 	String path = request.getContextPath();
 %>
 <c:if test="${isAdmin}">
-	<a target="content" href="<%=path %>/classfee/goAddClassfee">添加班费记录</a>
+	<a onclick="ajaxload(this);return false;" href="<%=path %>/classfee/goAddClassfee">添加班费记录</a>
 </c:if>
 <c:choose>
 	<c:when test="${pageBean.list==null}">
@@ -30,14 +30,14 @@
 			<c:forEach items="${pageBean.list}" var="classfee">
 				<tr>
 					<td><input type="checkbox" name="ids" value="${classfee.id }" /></td>
-					<td><a target="content" href="<%=path%>/classfee/viewClassfee?id=${classfee.id }">${classfee.event }</a></td>
+					<td><a onclick="ajaxload(this);return false;" href="<%=path%>/classfee/viewClassfee?id=${classfee.id }">${classfee.event }</a></td>
 					<td>${classfee.fee lt 0 ? "支出":"收入" }</td>
 					<td>${classfee.fee } 元</td>
 					<td>${classfee.cmaker.name }</td>
 					<td><fmt:formatDate value="${classfee.time}" pattern="yyyy-MM-dd HH:mm" /></td>
 					<c:if test="${isAdmin}">
-					<td><a target="content" href="<%=path%>/classfee/goModifyClassfee?id=${classfee.id }" class="btn_edit">修改</a></td>
-					<td><a target="content" href="<%=path%>/classfee/deleteClassfee?id=${classfee.id }&page=${page}" class="btn_del">删除</a></td>
+					<td><a onclick="ajaxload(this);return false;" href="<%=path%>/classfee/goModifyClassfee?id=${classfee.id }" class="btn_edit">修改</a></td>
+					<td><a onclick="ajaxload(this);return false;" href="<%=path%>/classfee/deleteClassfee?id=${classfee.id }&page=${page}" class="btn_del">删除</a></td>
 					</c:if>
 				</tr>
 			</c:forEach>
@@ -61,13 +61,13 @@
 				<a><span>上一页</span></a>
 			</c:when>
 			<c:otherwise>
-				<a target="content" href="<%=path%>/classfee/listClassfee?page=1"><span>首页</span></a>
-				<a target="content" href="<%=path%>/classfee/listClassfee?page=${pageBean.currentPage-1}"><span>上一页</span></a>
+				<a onclick="ajaxload(this);return false;" href="<%=path%>/classfee/listClassfee?page=1"><span>首页</span></a>
+				<a onclick="ajaxload(this);return false;" href="<%=path%>/classfee/listClassfee?page=${pageBean.currentPage-1}"><span>上一页</span></a>
 			</c:otherwise>
 		</c:choose> <c:choose>
 			<c:when test="${pageBean.currentPage != pageBean.totalPage}">
-				<a target="content" href="<%=path%>/classfee/listClassfee?page=${pageBean.currentPage+1}"><span>下一页</span></a>
-				<a target="content" href="<%=path%>/classfee/listClassfee?page=${pageBean.totalPage}"><span>尾页</span></a>
+				<a onclick="ajaxload(this);return false;" href="<%=path%>/classfee/listClassfee?page=${pageBean.currentPage+1}"><span>下一页</span></a>
+				<a onclick="ajaxload(this);return false;" href="<%=path%>/classfee/listClassfee?page=${pageBean.totalPage}"><span>尾页</span></a>
 			</c:when>
 			<c:otherwise>
 				<a><span>下一页</span></a>

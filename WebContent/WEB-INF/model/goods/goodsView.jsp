@@ -8,7 +8,7 @@
 %>
 <div class="goods">
 <h2>${goods.name }${goods.state == 1? "(可交换)" :"(不可交换)" }</h2>
-<p class="desc">${goods.content }   <c:if test="${goods.owner.id == student.id}"><a target="content" href="<%=path %>/goods/deleteGoods?id=${goods.id}">注销该货品</a></c:if> </p>
+<p class="desc">${goods.content }   <c:if test="${goods.owner.id == student.id}"><a onclick="ajaxload(this);return false;" href="<%=path %>/goods/deleteGoods?id=${goods.id}">注销该货品</a></c:if> </p>
 <p>货品价钱：${goods.value } 元</p>
 <p>货品数量：${goods.quantity }</p>
 <p>拥有者 ：${goods.owner.name }</p>
@@ -22,7 +22,7 @@
 		这些货品可能对你有用哦~~~~~~~~~^o^~~~~~~~~<br />
 		-----------------------------------<br />
 		<c:forEach items="${goodslist}" var="goodslike">
-				货品名称：<a target="content" href="<%=path%>/goods/viewGoods?id=${goodslike.id }">${goodslike.name}</a><br />
+				货品名称：<a onclick="ajaxload(this);return false;" href="<%=path%>/goods/viewGoods?id=${goodslike.id }">${goodslike.name}</a><br />
 				货品描述：${goodslike.content }	<br />
 				货品状态：${goodslike.state == 1? "可交换" :"正常" } <br />
 				货品价钱：${goodslike.value } <br />
@@ -35,7 +35,7 @@
 <h2>用户评论</h2>
 <c:choose>
 	<c:when test="${empty goods.reply}">
-		<a target="content" href="<%=path %>/goods/goReplyGoods?id=${goods.id}&rid=-1">还没有评论哦！我来抢沙发^o^</a> 
+		<a onclick="ajaxload(this);return false;" href="<%=path %>/goods/goReplyGoods?id=${goods.id}&rid=-1">还没有评论哦！我来抢沙发^o^</a> 
 	</c:when>
 	<c:otherwise>
 		<div class="class_msg_list">
@@ -46,7 +46,7 @@
 			</div>
 			<div class="msg">
 			<div class="operate">
-			<p class="time" title="${reply.time }"><a target="content" href="<%=path %>/goods/goReplyGoods?id=${goods.id}&rid=${reply.id != null ? reply.id : -1 }">回复</a> ${my:formatDate(reply.time)}</p>
+			<p class="time" title="${reply.time }"><a onclick="ajaxload(this);return false;" href="<%=path %>/goods/goReplyGoods?id=${goods.id}&rid=${reply.id != null ? reply.id : -1 }">回复</a> ${my:formatDate(reply.time)}</p>
 			</div>
 				<p class="text">${reply.author.name }： ${reply.content}</p>
 				
@@ -65,6 +65,6 @@
 		</div>
 		</c:forEach>
 		</div>
-		<a target="content" href="<%=path %>/goods/goReplyGoods?id=${goods.id}&rid=-1">我也来说几句</a> 
+		<a onclick="ajaxload(this);return false;" href="<%=path %>/goods/goReplyGoods?id=${goods.id}&rid=-1">我也来说几句</a> 
 	</c:otherwise>
 </c:choose>
