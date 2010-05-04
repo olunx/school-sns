@@ -5,7 +5,7 @@
 <%
 	String path = request.getContextPath();
 %>
-<a target="content" href="<%=path%>/attendance/goAddAttendance">添加考勤记录</a>
+<a onclick="ajaxload(this);return false;" href="<%=path%>/attendance/goAddAttendance">添加考勤记录</a>
 <c:choose>
 	<c:when test="${pageBean.list==null}">
 			没有数据	
@@ -38,7 +38,7 @@
 					<td><c:forEach items="${attendance.students}" var="s">${s.name},</c:forEach></td>
 					<td>${attendance.clerk.name}</td>
 					<td>${attendance.time}</td>
-					<td><a target="content" href="<%=path%>/attendance/deleteAttendance?id=${attendance.id}" class="btn_del">删除</a></td>
+					<td><a onclick="ajaxload(this);return false;" href="<%=path%>/attendance/deleteAttendance?id=${attendance.id}" class="btn_del">删除</a></td>
 				</tr>
 			</c:forEach>
 		</table>
@@ -50,13 +50,13 @@
 				<a><span>上一页</span></a>
 			</c:when>
 			<c:otherwise>
-				<a target="content" href="<%=path%>/attendance/listAttendance?page=1"><span>首页</span></a>
-				<a target="content" href="<%=path%>/attendance/listAttendance?page=${pageBean.currentPage-1}"><span>上一页</span></a>
+				<a onclick="ajaxload(this);return false;" href="<%=path%>/attendance/listAttendance?page=1"><span>首页</span></a>
+				<a onclick="ajaxload(this);return false;" href="<%=path%>/attendance/listAttendance?page=${pageBean.currentPage-1}"><span>上一页</span></a>
 			</c:otherwise>
 		</c:choose> <c:choose>
 			<c:when test="${pageBean.currentPage != pageBean.totalPage}">
-				<a target="content" href="<%=path%>/attendance/listAttendance?page=${pageBean.currentPage+1}"><span>下一页</span></a>
-				<a target="content" href="<%=path%>/attendance/listAttendance?page=${pageBean.totalPage}"><span>尾页</span></a>
+				<a onclick="ajaxload(this);return false;" href="<%=path%>/attendance/listAttendance?page=${pageBean.currentPage+1}"><span>下一页</span></a>
+				<a onclick="ajaxload(this);return false;" href="<%=path%>/attendance/listAttendance?page=${pageBean.totalPage}"><span>尾页</span></a>
 			</c:when>
 			<c:otherwise>
 				<a><span>下一页</span></a>

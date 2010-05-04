@@ -23,7 +23,7 @@
 			<div class="imsg">
 				<div class="iname">发起者：${vote.author.name }</div>
 				<p class="icontent">
-				<a target="content" href="<%=path %>/vote/goVotingVote?vid=${vote.id}" >${fn:substring(fn:replace(vote.title,"<","&lt;"),0,20)}</a>
+				<a onclick="ajaxload(this);return false;" href="<%=path %>/vote/goVotingVote?vid=${vote.id}" >${fn:substring(fn:replace(vote.title,"<","&lt;"),0,20)}</a>
 				</p>
 				<p class="desc">${fn:substring(fn:replace(vote.summary,"<","&lt;"),0,50)}</p>
 				<div class="ioperate">

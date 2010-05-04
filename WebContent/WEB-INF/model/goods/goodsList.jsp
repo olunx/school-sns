@@ -7,7 +7,7 @@
 	String path = request.getContextPath();
 %>
 
-<a target="content" href="<%=path %>/goods/listGoods" >全部交换品</a>	<br />
+<a onclick="ajaxload(this);return false;" href="<%=path %>/goods/listGoods" >全部交换品</a>	<br />
 <c:choose>
 	<c:when test="${pageBean.list == null}">
 					没有该学生的货品数据！
@@ -25,13 +25,13 @@
 			</tr>
 			<c:forEach items="${pageBean.list}" var="goods">
 				<tr>
-					<td><a target="content" href="<%=path%>/goods/viewGoods?id=${goods.id }">${goods.name}</a></td>
+					<td><a onclick="ajaxload(this);return false;" href="<%=path%>/goods/viewGoods?id=${goods.id }">${goods.name}</a></td>
 					<td>${fn:substring(fn:replace(goods.content,"<","&lt;"),0,20)}...</td>
 					<td>${goods.quantity}</td>
 					<td>${goods.state == 1? "可交换" :"正常" }</td>
 					<td>${goods.value}</td>
 					<td><fmt:formatDate value="${goods.airTime}" pattern="yyyy-MM-dd HH:mm" /></td>
-					<td><a target="content" href="<%=path %>/goods/deleteGoods?id=${goods.id }">删除</a></td>
+					<td><a onclick="ajaxload(this);return false;" href="<%=path %>/goods/deleteGoods?id=${goods.id }">删除</a></td>
 				</tr>
 			</c:forEach>
 		</table>
@@ -44,14 +44,14 @@
 				<a><span>上一页</span></a>
 			</c:when>
 			<c:otherwise>
-				<a target="content" href="<%=path%>/goods/listGoods?page=1"><span>首页</span></a>
-				<a target="content" href="<%=path%>/goods/listGoods?page=${pageBean.currentPage-1}"><span>上一页</span></a>
+				<a onclick="ajaxload(this);return false;" href="<%=path%>/goods/listGoods?page=1"><span>首页</span></a>
+				<a onclick="ajaxload(this);return false;" href="<%=path%>/goods/listGoods?page=${pageBean.currentPage-1}"><span>上一页</span></a>
 			</c:otherwise>
 		</c:choose>
 		<c:choose>
 			<c:when test="${pageBean.currentPage != pageBean.totalPage}">
-				<a target="content" href="<%=path%>/goods/listGoods?page=${pageBean.currentPage+1}"><span>下一页</span></a>
-				<a target="content" href="<%=path%>/goods/listGoods?page=${pageBean.totalPage}"><span>尾页</span></a>
+				<a onclick="ajaxload(this);return false;" href="<%=path%>/goods/listGoods?page=${pageBean.currentPage+1}"><span>下一页</span></a>
+				<a onclick="ajaxload(this);return false;" href="<%=path%>/goods/listGoods?page=${pageBean.totalPage}"><span>尾页</span></a>
 			</c:when>
 			<c:otherwise>
 				<a><span>下一页</span></a>
@@ -79,7 +79,7 @@
 				</tr>
 			<c:forEach items="${goodshot}" var="goodshot">
 				<tr>
-					<td><a target="content" href="<%=path%>/goods/viewGoods?id=${goodshot.id }">${goodshot.name}</a></td>
+					<td><a onclick="ajaxload(this);return false;" href="<%=path%>/goods/viewGoods?id=${goodshot.id }">${goodshot.name}</a></td>
 					<td>${fn:substring(fn:replace(goodshot.content,"<","&lt;"),0,20)}...</td>
 					<td>${goodshot.state == 1? "可交换" :"正常" }</td>
 					<td>${goodshot.value }</td>
@@ -109,7 +109,7 @@
 				</tr>
 			<c:forEach items="${goodsnew}" var="goodsnew">
 				<tr>
-					<td><a target="content" href="<%=path%>/goods/viewGoods?id=${goodsnew.id }">${goodsnew.name}</a></td>
+					<td><a onclick="ajaxload(this);return false;" href="<%=path%>/goods/viewGoods?id=${goodsnew.id }">${goodsnew.name}</a></td>
 					<td>${fn:substring(fn:replace(goodsnew.content,"<","&lt;"),0,20)}...</td>
 					<td>${goodsnew.state == 1? "可交换" :"正常" }</td>
 					<td>${goodsnew.value }</td>

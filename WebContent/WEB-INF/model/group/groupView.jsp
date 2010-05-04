@@ -21,7 +21,7 @@
 
 <br />
 群组话题：<br />
-<a target="content" href="<%=path %>/group/goAddTopicGroup?id=${group.id}">添加话题。</a>
+<a onclick="ajaxload(this);return false;" href="<%=path %>/group/goAddTopicGroup?id=${group.id}">添加话题。</a>
 <br />
 <c:choose>
 	<c:when test="${empty group.post}">
@@ -45,7 +45,7 @@
 						</c:choose>
 				    </div>
 				    <div class="right">
-				        <div class="reply"><a target="content" href="<%=path %>/group/goReplyGroup?topicId=${post.id}&id=${group.id}">回复</a></div>
+				        <div class="reply"><a onclick="ajaxload(this);return false;" href="<%=path %>/group/goReplyGroup?topicId=${post.id}&id=${group.id}">回复</a></div>
 				    </div>
 				</div>
 			</c:forEach>

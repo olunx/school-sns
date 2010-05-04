@@ -21,7 +21,7 @@
 			<div class="avatar"><img src="<%=path%>/avatar/${feed.author.id}" /></div>
 			<div class="topic_msg">
 			<div class="time" title="${feed.time}">${my:formatDate(feed.time)}</div>
-			<p class="content"><a target="content" href="<%=path%>/t/${feed.author.username}">${feed.author.name}</a> <c:choose>
+			<p class="content"><a onclick="ajaxload(this);return false;" href="<%=path%>/t/${feed.author.username}">${feed.author.name}</a> <c:choose>
 				<c:when test="${feed.type ==  'add_twitter'}">
 						叽叽歪歪的说：${feed.message}。
 					</c:when>
@@ -42,27 +42,27 @@
 					</c:when>
 				<c:when test="${feed.type == 'add_group'}">
 						创建了小组  
-						<a target="content" href="<%=path%>/group/viewGroup?id=${feed.msgId}">${feed.message}</a> 。
+						<a onclick="ajaxload(this);return false;" href="<%=path%>/group/viewGroup?id=${feed.msgId}">${feed.message}</a> 。
 					</c:when>
 				<c:when test="${feed.type == 'join_group'}">
 						加入了   
-						<a target="content" href="<%=path%>/group/viewGroup?id=${feed.msgId}">${feed.message}</a>   小组。
+						<a onclick="ajaxload(this);return false;" href="<%=path%>/group/viewGroup?id=${feed.msgId}">${feed.message}</a>   小组。
 					</c:when>
 				<c:when test="${feed.type == 'add_friend'}">
 						添加 了  
-						<a target="content" href="<%=path%>/people/viewPeople?id=${feed.msgId}">${feed.message}</a>   为好友。
+						<a onclick="ajaxload(this);return false;" href="<%=path%>/people/viewPeople?id=${feed.msgId}">${feed.message}</a>   为好友。
 					</c:when>
 				<c:when test="${feed.type == 'add_goods'}">
 						有  
-						<a target="content" href="<%=path%>/goods/viewGoods?id=${feed.msgId}">${feed.message}</a>   可以交换。
+						<a onclick="ajaxload(this);return false;" href="<%=path%>/goods/viewGoods?id=${feed.msgId}">${feed.message}</a>   可以交换。
 					</c:when>
 				<c:when test="${feed.type == 'add_issue'}">
 						发起问题  
-						<a target="content" href="<%=path%>/issue/viewIssue?id=${feed.msgId}">${feed.message}</a>  。
+						<a onclick="ajaxload(this);return false;" href="<%=path%>/issue/viewIssue?id=${feed.msgId}">${feed.message}</a>  。
 					</c:when>
 				<c:when test="${feed.type == 'add_vote'}">
 						发起投票  
-						<a target="content" href="<%=path%>/vote/goVotingVote?vid=${feed.msgId}">${feed.message}</a>  。
+						<a onclick="ajaxload(this);return false;" href="<%=path%>/vote/goVotingVote?vid=${feed.msgId}">${feed.message}</a>  。
 					</c:when>
 				<c:otherwise>
 						${feed.author.name} ${feed.type} ${feed.message}

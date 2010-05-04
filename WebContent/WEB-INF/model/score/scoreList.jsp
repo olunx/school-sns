@@ -6,7 +6,7 @@
 	String path = request.getContextPath();
 %>
 
-<a target="content" href="<%=path %>/score/listScore" >全部学生的成绩</a>
+<a onclick="ajaxload(this);return false;" href="<%=path %>/score/listScore" >全部学生的成绩</a>
 <a rel="ajaxupload" rev="{upload:'<%=path%>/score/scoreUpload',complete:'<%=path%>/score/listScore',allowtype:/^(xls)$/i}" href="javascript:void()">上传成绩</a>
 <c:choose>
 	<c:when test="${scores == null}">

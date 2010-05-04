@@ -15,11 +15,11 @@
 		<br>
 		上回登陆：<fmt:formatDate value="${people.lastlogin }" pattern="yyyy-MM-dd" />	
 		<br/>
-		<a target="content" href="<%=path %>/t/${people.username}">http://<%=url %>/t/${people.username}</a><br/>
-		他广播的：<a target="content" href="<%=path %>/twitter/listOtherTwitter?otherId=${people.id}">${fn:length(pageBean.list)}</a>条 |
-		他关注的：<a target="content" href="<%=path %>/people/listFriendPeople?id=${people.id}">${fn:length(people.friends)}</a>人 |
-		关注他的：<a target="content" href="<%=path %>/people/listFollowerPeople?id=${people.id}">${fn:length(people.follower)}</a>人 |
-		最近来访：<a target="content" href="<%=path %>/people/listVisitorPeople?id=${people.id}">${fn:length(people.visitors)}</a>人
+		<a onclick="ajaxload(this);return false;" href="<%=path %>/t/${people.username}">http://<%=url %>/t/${people.username}</a><br/>
+		他广播的：<a onclick="ajaxload(this);return false;" href="<%=path %>/twitter/listOtherTwitter?otherId=${people.id}">${fn:length(pageBean.list)}</a>条 |
+		他关注的：<a onclick="ajaxload(this);return false;" href="<%=path %>/people/listFriendPeople?id=${people.id}">${fn:length(people.friends)}</a>人 |
+		关注他的：<a onclick="ajaxload(this);return false;" href="<%=path %>/people/listFollowerPeople?id=${people.id}">${fn:length(people.follower)}</a>人 |
+		最近来访：<a onclick="ajaxload(this);return false;" href="<%=path %>/people/listVisitorPeople?id=${people.id}">${fn:length(people.visitors)}</a>人
 		<br />
 	</div>
 <br/>

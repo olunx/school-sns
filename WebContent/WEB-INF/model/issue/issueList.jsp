@@ -13,7 +13,7 @@
  });
 </script>
 
-<a target="content" href="<%=path %>/issue/listIssue" >全部学生的提问</a>我的提问<br />
+<a onclick="ajaxload(this);return false;" href="<%=path %>/issue/listIssue" >全部学生的提问</a>我的提问<br />
 <c:choose>
 	<c:when test="${pageBean.list == null}">
 					没有该学生的提问数据！
@@ -30,12 +30,12 @@
 			</tr>
 			<c:forEach items="${pageBean.list}" var="issue">
 				<tr>
-					<td><a target="content" href="<%=path%>/issue/viewIssue?id=${issue.id }">${issue.name}</a></td>
+					<td><a onclick="ajaxload(this);return false;" href="<%=path%>/issue/viewIssue?id=${issue.id }">${issue.name}</a></td>
 					<td>${fn:substring(fn:replace(issue.content,"<","&lt;"),0,20)}...</td>
 					<td>${issue.answer == null ? "未解决":"已解决"}</td>
 					<td>${issue.value }</td>
 					<td><fmt:formatDate value="${issue.airTime}" pattern="yyyy-MM-dd HH:mm" /></td>
-					<td><a target="content" href="<%=path %>/issue/deleteIssue?id=${issue.id }">删除</a></td>
+					<td><a onclick="ajaxload(this);return false;" href="<%=path %>/issue/deleteIssue?id=${issue.id }">删除</a></td>
 				</tr>
 			</c:forEach>
 		</table>
@@ -48,14 +48,14 @@
 				<a><span>上一页</span></a>
 			</c:when>
 			<c:otherwise>
-				<a target="content" href="<%=path%>/issue/listIssue?page=1"><span>首页</span></a>
-				<a target="content" href="<%=path%>/issue/listIssue?page=${pageBean.currentPage-1}"><span>上一页</span></a>
+				<a onclick="ajaxload(this);return false;" href="<%=path%>/issue/listIssue?page=1"><span>首页</span></a>
+				<a onclick="ajaxload(this);return false;" href="<%=path%>/issue/listIssue?page=${pageBean.currentPage-1}"><span>上一页</span></a>
 			</c:otherwise>
 		</c:choose>
 		<c:choose>
 			<c:when test="${pageBean.currentPage != pageBean.totalPage}">
-				<a target="content" href="<%=path%>/issue/listIssue?page=${pageBean.currentPage+1}"><span>下一页</span></a>
-				<a target="content" href="<%=path%>/issue/listIssue?page=${pageBean.totalPage}"><span>尾页</span></a>
+				<a onclick="ajaxload(this);return false;" href="<%=path%>/issue/listIssue?page=${pageBean.currentPage+1}"><span>下一页</span></a>
+				<a onclick="ajaxload(this);return false;" href="<%=path%>/issue/listIssue?page=${pageBean.totalPage}"><span>尾页</span></a>
 			</c:when>
 			<c:otherwise>
 				<a><span>下一页</span></a>
@@ -82,7 +82,7 @@
 				</tr>
 			<c:forEach items="${issuehot}" var="issuehot">
 				<tr>
-					<td><a target="content" href="<%=path%>/issue/viewIssue?id=${issuehot.id }">${issuehot.name}</a></td>
+					<td><a onclick="ajaxload(this);return false;" href="<%=path%>/issue/viewIssue?id=${issuehot.id }">${issuehot.name}</a></td>
 					<td>${fn:substring(fn:replace(issuehot.content,"<","&lt;"),0,20)}...</td>
 					<td>${issuehot.answer == null? "未解决" :"已解决" }</td>
 					<td>${issuehot.value }</td>
@@ -110,7 +110,7 @@
 				</tr>
 			<c:forEach items="${issuenew}" var="issuenew">
 				<tr>
-					<td><a target="content" href="<%=path%>/issue/viewIssue?id=${issuenew.id }">${issuenew.name}</a></td>
+					<td><a onclick="ajaxload(this);return false;" href="<%=path%>/issue/viewIssue?id=${issuenew.id }">${issuenew.name}</a></td>
 					<td>${fn:substring(fn:replace(issuenew.content,"<","&lt;"),0,20)}...</td>
 					<td>${issuenew.answer == null? "未解决" :"已解决" }</td>
 					<td>${issuenew.value }</td>

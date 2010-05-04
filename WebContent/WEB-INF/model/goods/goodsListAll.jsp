@@ -23,7 +23,7 @@
 				<div class="imsg">
 				<div class="iname">拥有者：${goods.owner.name }</div>
 				<p class="icontent">
-				<a target="content" href="<%=path%>/goods/viewGoods?id=${goods.id }">${goods.name} <span class="money">（${goods.value}元）</span></a>
+				<a onclick="ajaxload(this);return false;" href="<%=path%>/goods/viewGoods?id=${goods.id }">${goods.name} <span class="money">（${goods.value}元）</span></a>
 				</p>
 				<p class="desc">${fn:substring(fn:replace(goods.content,"<","&lt;"),0,50)}</p>
 				

@@ -15,17 +15,6 @@
 	$(".menu li[rel=submenu]").mouseout(function(){
 		$(this).removeClass("menu_hover");
 	});	
-    //注册事件
-    $("a[target='content']").click(function(){
-        var href = $(this).attr('href');
-        var rev = $(this).attr('rev');
-        if (rev != null && rev != "") 
-		{loadContent(href,rev);}
-        else
-		{loadContent(href);}
-        
-        return false;
-    });
 </script>
 
 

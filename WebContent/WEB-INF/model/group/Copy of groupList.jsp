@@ -5,7 +5,7 @@
 <%
 	String path = request.getContextPath();
 %>
-<a target="content" href="<%=path%>/group/listMyCreateGroup">我创建的群组</a>
+<a onclick="ajaxload(this);return false;" href="<%=path%>/group/listMyCreateGroup">我创建的群组</a>
 <c:choose>
 	<c:when test="${pageBean.list == null}">
 					没有数据！
@@ -30,8 +30,8 @@
 				<tr>
 					<td><input type="checkbox" name="ids" value="${group.id}" /></td>
 					<td>
-					<a target="content" href="<%=path%>/group/viewGroup?id=${group.id}&page=${page}">${group.name}</a>
-					 <a target="content" href="<%=path%>/group/joinGroup?id=${group.id}&page=${page}">
+					<a onclick="ajaxload(this);return false;" href="<%=path%>/group/viewGroup?id=${group.id}&page=${page}">${group.name}</a>
+					 <a onclick="ajaxload(this);return false;" href="<%=path%>/group/joinGroup?id=${group.id}&page=${page}">
 					 <c:choose>
 					 	<c:when test="${my:isMyGroup(groups,group)}">退出</c:when>
 					 	<c:otherwise>加入</c:otherwise>
@@ -45,8 +45,8 @@
 					<td>${group.admin.name}</td>
 					<td><c:if test="${group.post != null}">(${fn:length(group.post)})</c:if></td>
 					<td><c:if test="${group.members != null}">(${fn:length(group.members)})</c:if></td>
-					<td><a target="content" href="<%=path%>/group/goModifyGroup?id=${group.id }&page=${page}" class="btn_edit">编辑</a></td>
-					<td><a target="content" href="<%=path%>/group/deleteGroup?id=${group.id }&page=${page}" class="btn_del">删除</a></td>
+					<td><a onclick="ajaxload(this);return false;" href="<%=path%>/group/goModifyGroup?id=${group.id }&page=${page}" class="btn_edit">编辑</a></td>
+					<td><a onclick="ajaxload(this);return false;" href="<%=path%>/group/deleteGroup?id=${group.id }&page=${page}" class="btn_del">删除</a></td>
 				</tr>
 			</c:forEach>
 		</table>
@@ -59,14 +59,14 @@
 				<a><span>上一页</span></a>
 			</c:when>
 			<c:otherwise>
-				<a target="content" href="<%=path%>/group/listGroup?page=1"><span>首页</span></a>
-				<a target="content" href="<%=path%>/group/listGroup?page=${pageBean.currentPage-1}"><span>上一页</span></a>
+				<a onclick="ajaxload(this);return false;" href="<%=path%>/group/listGroup?page=1"><span>首页</span></a>
+				<a onclick="ajaxload(this);return false;" href="<%=path%>/group/listGroup?page=${pageBean.currentPage-1}"><span>上一页</span></a>
 			</c:otherwise>
 		</c:choose>
 		<c:choose>
 			<c:when test="${pageBean.currentPage != pageBean.totalPage}">
-				<a target="content" href="<%=path%>/group/listGroup?page=${pageBean.currentPage+1}"><span>下一页</span></a>
-				<a target="content" href="<%=path%>/group/listGroup?page=${pageBean.totalPage}"><span>尾页</span></a>
+				<a onclick="ajaxload(this);return false;" href="<%=path%>/group/listGroup?page=${pageBean.currentPage+1}"><span>下一页</span></a>
+				<a onclick="ajaxload(this);return false;" href="<%=path%>/group/listGroup?page=${pageBean.totalPage}"><span>尾页</span></a>
 			</c:when>
 			<c:otherwise>
 				<a><span>下一页</span></a>

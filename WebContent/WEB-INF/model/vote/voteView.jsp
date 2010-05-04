@@ -124,7 +124,7 @@
 <h2>用户评论</h2>
 <c:choose>
 	<c:when test="${empty vote.reply}">
-		<a target="content" href="<%=path %>/vote/goReplyVote?vid=${vote.id}&rid=-1">还没有评论哦！我来抢沙发^o^</a> 
+		<a onclick="ajaxload(this);return false;" href="<%=path %>/vote/goReplyVote?vid=${vote.id}&rid=-1">还没有评论哦！我来抢沙发^o^</a> 
 	</c:when>
 	<c:otherwise>
 		<div class="class_msg_list">
@@ -135,7 +135,7 @@
 			</div>
 			<div class="msg">
 			<div class="operate">
-			<p class="time" title="${reply.time }"><a target="content" href="<%=path %>/vote/goReplyVote?vid=${vote.id}&rid=${reply.id != null ? reply.id : -1 }">回复</a> ${my:formatDate(reply.time)}</p>
+			<p class="time" title="${reply.time }"><a onclick="ajaxload(this);return false;" href="<%=path %>/vote/goReplyVote?vid=${vote.id}&rid=${reply.id != null ? reply.id : -1 }">回复</a> ${my:formatDate(reply.time)}</p>
 			</div>
 				<p class="text">${reply.author.name }： ${reply.content}</p>
 				
@@ -154,7 +154,7 @@
 		</div>
 		</c:forEach>
 		</div>
-		<a target="content" href="<%=path %>/vote/goReplyVote?vid=${vote.id}&rid=-1">我也来说几句</a> 
+		<a onclick="ajaxload(this);return false;" href="<%=path %>/vote/goReplyVote?vid=${vote.id}&rid=-1">我也来说几句</a> 
 	</c:otherwise>
 </c:choose>
 </div>

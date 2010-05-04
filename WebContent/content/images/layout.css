@@ -77,7 +77,7 @@ img{ border:none;}
 .reply_editor textarea{ width:426px; height:80px;}
 
 /*微博*/
-#topic_list .list{ padding:0 0 5px 0; margin:0px 0 10px 0; border-bottom:1px dashed #ccc;}
+#topic_list .list{ padding:0 0 5px 0; margin:0px 0 10px 0; border-bottom:1px dashed #ccc;overflow:hidden;}
 #topic_list .avatar{ background:#FFF; float:left; padding:2px; border:1px solid #CCC;}
 #topic_list .avatar img{width:50px; height:50px; }
 #topic_list .topic_msg{ float:right; width:508px; padding-left:5px;}

@@ -15,25 +15,25 @@
 	</div>
 	<div class="mod userDetail">
 		<div class="avatar">
-			<a target="content" href="<%=path %>/t/${student.username}"><img src="<%=path%>/avatar/${student.id}"></img></a>
+			<a onclick="ajaxload(this);return false;" href="<%=path %>/t/${student.username}"><img src="<%=path%>/avatar/${student.id}"></img></a>
 		</div>
 		<dl class="myinfo">
 			<dt>我的广播</dt>
-			<dd><a target="content" href="<%=path %>/t/${student.username}">${twittersize}</a></dd>
+			<dd><a onclick="ajaxload(this);return false;" href="<%=path %>/t/${student.username}">${twittersize}</a></dd>
 			<dt>我的粉丝</dt>
-			<dd><a target="content" href="<%=path %>/people/listFollowerPeople">${fn:length(student.follower)}</a></dd>
+			<dd><a onclick="ajaxload(this);return false;" href="<%=path %>/people/listFollowerPeople">${fn:length(student.follower)}</a></dd>
 		</dl>
 		<div class="myotherinfo">
 			<p>${student.name }</p>
 			<p>性别：<c:choose><c:when test="${student.sex == 1}">男</c:when><c:otherwise>女</c:otherwise></c:choose> 所在地：${student.school.province.name }
 			</p>
-			<p>我关注的：<a target="content" href="<%=path %>/people/listFriendPeople">${fn:length(student.friends)}</a>人 | 最近来访：<a target="content" href="<%=path %>/people/listVisitorPeople">${fn:length(student.visitors)}</a>人
+			<p>我关注的：<a onclick="ajaxload(this);return false;" href="<%=path %>/people/listFriendPeople">${fn:length(student.friends)}</a>人 | 最近来访：<a onclick="ajaxload(this);return false;" href="<%=path %>/people/listVisitorPeople">${fn:length(student.visitors)}</a>人
 			</p>
 		</div>
 	</div>
 	<c:if test="${student.classes == null}">
 	<div class="mod" id="information">
-		<a target="content" href="<%=path %>/goPerfectReg">继续完善资料</a>
+		<a onclick="ajaxload(this);return false;" href="<%=path %>/goPerfectReg">继续完善资料</a>
 		<c:if test="${student.classes != null and student.permission == 1}">你已申请加入“${student.classes.name}”班级,审核中</c:if>
 	</div>
 	</c:if> 
@@ -46,8 +46,8 @@
 	<ul class="imglist">
 	<c:forEach items="${maybeMeet}" var="peopler" end="5">
 		<li>
-			<a target="content" href="<%=path%>/t/${peopler.username }"><img src="<%=path %>/avatar/${peopler.id}" width="50"></img></a>
-			<a target="content" href="<%=path%>/t/${peopler.username }">${peopler.name}</a>
+			<a onclick="ajaxload(this);return false;" href="<%=path%>/t/${peopler.username }"><img src="<%=path %>/avatar/${peopler.id}" width="50"></img></a>
+			<a onclick="ajaxload(this);return false;" href="<%=path%>/t/${peopler.username }">${peopler.name}</a>
 		</li>
 	</c:forEach>
 	</ul>
@@ -65,7 +65,7 @@
 		</c:when>
 		<c:otherwise>
 			<c:forEach items="${student.groups}" var="group">
-				 <li><a target="content" href="<%=path%>/group/viewGroup?id=${group.id}">${group.name}</a></li>
+				 <li><a onclick="ajaxload(this);return false;" href="<%=path%>/group/viewGroup?id=${group.id}">${group.name}</a></li>
 			</c:forEach>
 		</c:otherwise>
 	</c:choose>
@@ -79,8 +79,8 @@
 		<ul class="imglist">
 		<c:forEach items="${student.friends}" var="friend">
 			<li>
-				<a target="content" href="<%=path%>/t/${friend.username }"><img src="<%=path %>/avatar/${friend.id}" width="50"></img></a><br/>
-				<a target="content" href="<%=path%>/t/${friend.username }">${friend.name}</a><br/>
+				<a onclick="ajaxload(this);return false;" href="<%=path%>/t/${friend.username }"><img src="<%=path %>/avatar/${friend.id}" width="50"></img></a><br/>
+				<a onclick="ajaxload(this);return false;" href="<%=path%>/t/${friend.username }">${friend.name}</a><br/>
 			</li>
 		</c:forEach>
 		</ul>
@@ -92,8 +92,8 @@
 	<ul class="imglist">
 	<c:forEach items="${student.visitors}" var="visitor">
 		<li title="<fmt:formatDate value="${visitor.time }" pattern="MM-dd hh:mm" />">
-			<a target="content" href="<%=path%>/t/${visitor.people.username }"><img src="<%=path %>/avatar/${visitor.people.id}"/></a>
-			<a target="content" href="<%=path%>/t/${visitor.people.username }">${visitor.people.name}</a>
+			<a onclick="ajaxload(this);return false;" href="<%=path%>/t/${visitor.people.username }"><img src="<%=path %>/avatar/${visitor.people.id}"/></a>
+			<a onclick="ajaxload(this);return false;" href="<%=path%>/t/${visitor.people.username }">${visitor.people.name}</a>
 		</li>
 	</c:forEach>
 	</ul>

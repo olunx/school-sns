@@ -13,7 +13,7 @@
 <p><span class="money">悬赏：${issue.value }朵小红花</span>  <span class="time">${my:formatDate(issue.airTime)}</span></p>
 <p class="content">${issue.content }</p>
 <c:if test="${issue.answer == null}">
-	<a target="content" href="<%=path %>/issue/goReplyIssue?id=${issue.id}&rid=-1">我来回答</a> 
+	<a onclick="ajaxload(this);return false;" href="<%=path %>/issue/goReplyIssue?id=${issue.id}&rid=-1">我来回答</a> 
 </c:if>
 </div>
 	<c:choose>
@@ -43,7 +43,7 @@
 		<h2>相关内容:</h2>
 		<ul class="push"> 
 		<c:forEach items="${issuedown}" var="issue">
-				<li>#<a target="content" href="<%=path%>/issue/viewIssue?id=${issue.id }">${issue.name}</a></li>
+				<li>#<a onclick="ajaxload(this);return false;" href="<%=path%>/issue/viewIssue?id=${issue.id }">${issue.name}</a></li>
 		</c:forEach>
 		</ul>
 </c:if>
@@ -51,7 +51,7 @@
 		<h2>等待您来回答:</h2>
 		<ul class="push"> 
 		<c:forEach items="${issueup}" var="issue">
-				<li>*<a target="content" href="<%=path%>/issue/viewIssue?id=${issue.id }">${issue.name}</a></li>
+				<li>*<a onclick="ajaxload(this);return false;" href="<%=path%>/issue/viewIssue?id=${issue.id }">${issue.name}</a></li>
 		</c:forEach>
 		</ul>
 </c:if>
@@ -59,7 +59,7 @@
 <h2>其它回答</h2>
 <c:choose>
 	<c:when test="${empty issue.reply}">
-		<a target="content" href="<%=path %>/issue/goReplyIssue?id=${issue.id}&rid=-1">还没有回答哦！我来抢沙发^o^</a> 
+		<a onclick="ajaxload(this);return false;" href="<%=path %>/issue/goReplyIssue?id=${issue.id}&rid=-1">还没有回答哦！我来抢沙发^o^</a> 
 	</c:when>
 	<c:otherwise>
 			<c:forEach items="${issue.reply}" var="reply">
@@ -82,11 +82,11 @@
 					<div class="operate">
 					<!-- 
 						<c:if test="${issue.answer == null}">
-						<a target="content" href="<%=path %>/issue/goReplyIssue?id=${issue.id}&rid=${reply.id != null ? reply.id : -1 }">回复</a>
+						<a onclick="ajaxload(this);return false;" href="<%=path %>/issue/goReplyIssue?id=${issue.id}&rid=${reply.id != null ? reply.id : -1 }">回复</a>
 						</c:if>
 					-->
 						<c:if test="${issue.answer == null and issue.owner.id == student.id}">
-						<a target="content" href="<%=path %>/issue/answerIssue?id=${issue.id}&rid=${reply.id != null ? reply.id : -1 }">设为最佳答案</a> 
+						<a onclick="ajaxload(this);return false;" href="<%=path %>/issue/answerIssue?id=${issue.id}&rid=${reply.id != null ? reply.id : -1 }">设为最佳答案</a> 
 						</c:if>
 					</div>
 				</div>

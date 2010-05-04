@@ -15,8 +15,8 @@
 		<c:forEach items="${pageBean.list}" var="visitor">
 			<ul class="ul">
 				<li>
-					<a target="content" href="<%=path%>/t/${visitor.people.username }"><img src="<%=path %>/avatar/${visitor.people.id}" width="50"></img></a><br/>
-					<a target="content" href="<%=path%>/t/${visitor.people.username }">${visitor.people.name}</a><br/>
+					<a onclick="ajaxload(this);return false;" href="<%=path%>/t/${visitor.people.username }"><img src="<%=path %>/avatar/${visitor.people.id}" width="50"></img></a><br/>
+					<a onclick="ajaxload(this);return false;" href="<%=path%>/t/${visitor.people.username }">${visitor.people.name}</a><br/>
 					<fmt:formatDate value="${visitor.time }" pattern="MM-dd" />	
 				</li>
 			</ul>
