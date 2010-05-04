@@ -5,7 +5,7 @@
 <%
 	String path = request.getContextPath();
 %>
-<a onclick="ajaxload(this);return false;" href="<%=path%>/attendance/goAddAttendance">添加考勤记录</a>
+<a onclick="ajaxload(this);return false;" rev="#class" href="<%=path%>/attendance/goAddAttendance">添加考勤记录</a>
 <c:choose>
 	<c:when test="${pageBean.list==null}">
 			没有数据	

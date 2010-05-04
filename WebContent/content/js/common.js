@@ -66,11 +66,8 @@ function post(obj){
 				content.slideUp('normal',function(){
 					if (returl == "") {
 						content.html(result);
-						ajax(divid);
 					} else {
-						content.load(returl,function(){
-							ajax(divid);
-						});
+						content.load(returl);
 					};
 	                offLoading();//关闭loading
 	                content.slideDown('normal');
