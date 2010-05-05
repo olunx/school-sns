@@ -331,5 +331,10 @@ public class People {
 	public void setFollower(Set<People> follower) {
 		this.follower = follower;
 	}
+
+	@Override
+	public String toString() {
+		return this.username;
+	}
 	
 }

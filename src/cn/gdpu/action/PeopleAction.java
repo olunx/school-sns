@@ -69,11 +69,10 @@ public class PeopleAction extends BaseAction {
 	// 加为好友
 	public String follow() {
 		People friend = peopleService.getEntity(People.class, id);
-		People me = (People) this.getSession().get("student");
+		People me = (People) this.getSession().get("user");
 		if (friend != null && me != null) {
 			me = peopleService.getEntity(People.class, me.getId());
 			Set<People> myFriends = me.getFriends();
-			Set<People> followers = friend.getFollower();
 			
 			if (myFriends.contains(friend)) {// 如果是朋友就删除
 				myFriends.remove(friend);
@@ -83,29 +82,20 @@ public class PeopleAction extends BaseAction {
 				FeedAction.init().add(me, friend, FeedAction.ADD_FRIEND);
 			}
 			
-			if (followers.contains(me)) {// 如果已经被关注就删除
-				followers.remove(me);
-			} else {
-				followers.add(me);
-			}
 			
 			me.setFriends(myFriends);
+			Log.init(getClass()).debug("myFriends:"+myFriends);
 			peopleService.updateEntity(me);
 			
-			friend.setFollower(followers);
-			peopleService.updateEntity(friend);
 		}
 		return "list";
 	}
 
 	// 检查是否是朋友
 	public static Boolean isMyFriend(Set<People> set, People people) {
-		if (set != null && people != null){
-			for(People peo:set){
-				if(peo.getId()==people.getId()){
-					return true;
-				}
-			}
+		Log.init(People.class).debug("set:"+set+" people:"+people);
+		if (set != null && people != null &&set.contains(people)){
+			return true;
 		}
 		return false;
 	}
@@ -128,10 +118,10 @@ public class PeopleAction extends BaseAction {
 
 	@Override
 	public String list() {
-		People people = (People) this.getSession().get("user");
-		if (people != null) {
-			people = peopleService.getEntity(People.class, people.getId());
-			this.getRequest().put("friends", people.getFriends());
+		People user = (People) this.getSession().get("user");
+		if (user != null) {
+			user = peopleService.getEntity(People.class, user.getId());
+			this.getRequest().put("friends", user.getFriends());
 		}
 		this.pageBean = this.peopleService.queryForPage(People.class, 10, page);
 		if (pageBean.getList().isEmpty())
