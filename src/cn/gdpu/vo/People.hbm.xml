@@ -42,12 +42,12 @@
 			<one-to-many class="Achievement" />
 		</set>
 		<set name="friends" lazy="true">
-			<key column="peopleId" />
-			<one-to-many class="Student" />
+			<key column="friendId" />
+			<one-to-many class="People" />
 		</set>
 		<set name="follower" lazy="true">
-			<key column="peopleId" />
-			<one-to-many class="Student" />
+			<key column="followerId" />
+			<one-to-many class="People" />
 		</set>
 		<set name="groups" table="t_group_people" lazy="true">
 			<key column="peopleId" />

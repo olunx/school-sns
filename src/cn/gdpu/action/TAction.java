@@ -1,5 +1,6 @@
 package cn.gdpu.action;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -27,53 +28,56 @@ public class TAction extends BaseAction {
 		Object peo = this.getSession().get("user");
 		if (peo != null) {
 			if (peo instanceof People) {
-				People user = (People) peo;
-		
+				People user = peopleService.getEntity(People.class,  ((People) peo).getId());
+				this.getRequest().put("friends", user.getFriends());
+
 				String username = ActionContext.getContext().getName();
-				
+
 				Log.init(getClass()).info("TwitterAction username: " + username);
-				
+
 				people = peopleService.getPeopleByUsername(username);
-				
-				List<Visitor> visitors = (List<Visitor>) people.getVisitors();
-				
+
+				List<Visitor> visitors = people.getVisitors();
+				if (visitors == null)
+					visitors = new ArrayList<Visitor>();
+
 				Visitor visitor = new Visitor();
 				visitor.setPeople(user);
 				visitor.setTime(new Date());
-				
-				boolean ishas =false;
-				for(int i=0; i<visitors.size();i++){
-					if(visitors.get(i).getPeople().getId() == user.getId()){
+
+				boolean ishas = false;
+				for (int i = 0; i < visitors.size(); i++) {
+					if (visitors.get(i).getPeople().getId() == user.getId()) {
 						Visitor old = visitors.get(i);
 						old.setTime(new Date());
 						visitors.set(i, old);
-						ishas=true;
+						ishas = true;
 					}
 				}
-				
-				if(ishas != true && visitor.getPeople().getId() != people.getId()){
-					if(visitors.size()>=10){
+
+				if (ishas != true && visitor.getPeople().getId() != people.getId()) {
+					if (visitors.size() >= 10) {
 						visitors.remove(0);
 					}
 					visitors.add(visitor);
 				}
-				
+
 				people.setVisitors(visitors);
-				
+
 				peopleService.updateEntity(people);
-				
+
 				Log.init(getClass()).info("TwitterAction id: " + people.getId());
-				
+
 				id = people.getId();
-				
-				this.pageBean = this.twitterService.queryForPage("from Twitter t where t.istopic = '1' and t.author.id = '" + people.getId()
-						+ "' order by t.time DESC", 10, page);
+
+				this.pageBean = this.twitterService.queryForPage("from Twitter t where t.istopic = '1' and t.author.id = '"
+						+ people.getId() + "' order by t.time DESC", 10, page);
 				if (pageBean.getList().isEmpty()) {
 					pageBean.setList(null);
 				}
 
 				Log.init(getClass()).info("listOther finish");
-				
+
 				return super.SUCCESS;
 			}
 		}

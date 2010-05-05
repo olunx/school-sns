@@ -67,7 +67,7 @@
 			<div class="avatar"><img src="<%=path%>/avatar/${twitter.author.id}" /></div>
 			<div class="topic_msg">
 			<div class="time" title="${twitter.time }">${my:formatDate(twitter.time)}</div>
-			<p class="content"><a onclick="ajaxload(this);return false;" href="<%=path %>/t/${twitter.author.name}">${twitter.author.name}</a> ${twitter.content}
+			<p class="content"><a onclick="ajaxload(this);return false;" href="<%=path %>/t/${twitter.author.username}">${twitter.author.name}</a> ${twitter.content}
 			<c:if test="${!empty twitter.image && !empty twitter.image.minFileUrl}">
 				<br/>
 				<img src="<%=path%>${twitter.image.minFileUrl}" />
@@ -79,7 +79,7 @@
 						<c:forEach items="${twitter.reply}" var="reply">
 							<div class="reply_list">
 							<div class="reply_avatar"><img src="<%=path%>/avatar/${reply.author.id}" /></div>
-							<p class="reply_content"><a onclick="ajaxload(this);return false;" href="<%=path %>/t/${reply.author.name}">${reply.author.name}</a> ${reply.content}<br />
+							<p class="reply_content"><a onclick="ajaxload(this);return false;" href="<%=path %>/t/${reply.author.username}">${reply.author.name}</a> ${reply.content}<br />
 							<span class="replytime">${my:formatDate(reply.time)}</span></p>
 							</div>
 							<div class="clear"></div>

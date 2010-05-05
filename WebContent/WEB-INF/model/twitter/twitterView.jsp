@@ -21,7 +21,7 @@
         <div class="left">
         <a onclick="ajaxload(this);return false;" href="<%=path%>/people/followPeople?id=${people.id}">
 		 	<c:choose>
-			 	<c:when test="${my:isMyFriend(user.friends,people)}">取消关注</c:when>
+			 	<c:when test="${my:isMyFriend(friends,people)}">取消关注</c:when>
 			 	<c:otherwise>设为关注</c:otherwise>
 		 	</c:choose>
 	 	</a>

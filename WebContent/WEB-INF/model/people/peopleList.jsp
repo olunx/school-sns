@@ -33,7 +33,7 @@
 					 <a onclick="ajaxload(this);return false;" href="<%=path%>/mail/goAddMail?receiverId=${people.id}">传纸条</a></td>
 					 <td><a onclick="ajaxload(this);return false;" href="<%=path%>/people/followPeople?id=${people.id}&page=${page}">
 					 <c:choose>
-					 	<c:when test="${my:isMyFriend(user.friends,people)}">删除好友</c:when>
+					 	<c:when test="${my:isMyFriend(friends,people)}">删除好友</c:when>
 					 	<c:otherwise>加为好友</c:otherwise>
 					 </c:choose>
 					 </a></td>
