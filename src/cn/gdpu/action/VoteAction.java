@@ -5,9 +5,13 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
+
+import net.sf.json.JSONArray;
 
 import cn.gdpu.service.TopicService;
 import cn.gdpu.service.VoteItemService;
@@ -177,10 +181,12 @@ public class VoteAction extends BaseAction {
 	public String view() {
 		String data = "";
 		vote = (Vote) voteService.getEntity(Vote.class, vid);
-
+		List<Object> data3 = new ArrayList<Object>();
 		for (Iterator<VoteItem> iter = vote.getItems().iterator(); iter.hasNext();) {
 			VoteItem voteItem = (VoteItem) iter.next();
 			data += voteItem.getContent();
+			String data2 = "['" + voteItem.getContent() + "'," + voteItem.getNum() + "]";
+			data3.add(data2);
 			if (iter.hasNext()) {
 				data += ",";
 			}
@@ -193,7 +199,10 @@ public class VoteAction extends BaseAction {
 				data += ",";
 			}
 		}
+		JSONArray jsonArray = JSONArray.fromObject(data3);   
+
 		getRequest().put("data", data);
+		getRequest().put("data2", jsonArray);
 		return "view";
 	}
 

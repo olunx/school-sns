@@ -10,11 +10,12 @@
 <script type="text/javascript" src="<%=path%>/content/jq-highcharts/highcharts-gridtheme.js"></script>
 <script type="text/javascript">
 	var data = "${data}";
+	//直方图
 	$(document).ready(function() {
 	
 		var options = {
 			chart : {
-				renderTo : 'chart',
+				renderTo : 'barchart',
 				margin: [80, 20, 60, 100],
 				defaultSeriesType : 'bar'
 			},
@@ -77,30 +78,89 @@
 		 */
 
 		// Split the lines
-			var lines = data.split('-');
-			$.each(lines, function(lineNo, line) {
-				var items = line.split(',');
-				// header line containes categories
-					if (lineNo == 0) {
-						$.each(items, function(itemNo, item) {
-							options.xAxis.categories.push(item);
-						});
-					}
-					// the rest of the lines contain data with their name in the first position
-					else {
-						var series = {
-							name: '${vote.title }',
-							data : []
-						};
-						$.each(items, function(itemNo, item) {
-							series.data.push(parseFloat(item));
-						});
-						options.series.push(series);
+		var lines = data.split('-');
+		$.each(lines, function(lineNo, line) {
+			var items = line.split(',');
+			// header line containes categories
+				if (lineNo == 0) {
+					$.each(items, function(itemNo, item) {
+						options.xAxis.categories.push(item);
+					});
+				}
+				// the rest of the lines contain data with their name in the first position
+				else {
+					var series = {
+						name: '${vote.title }',
+						data : []
 					};
-				});
-			var chart = new Highcharts.Chart(options);
+					$.each(items, function(itemNo, item) {
+						series.data.push(parseFloat(item));
+					});
+					options.series.push(series);
+				};
+			});
+		var chart = new Highcharts.Chart(options);
 
-		});
+	});
+
+	//饼图
+	$(document).ready(function() {
+		
+		var options = {
+			chart: {
+				renderTo: 'piechart',
+				margin: [80, 20, 60, 20]
+			},
+			title: {
+				text : '${vote.summary }'
+			},
+			plotArea: {
+				shadow: null,
+				borderWidth: null,
+				backgroundColor: null
+			},
+			tooltip: {
+				formatter: function() {
+					return '<b>'+ this.point.name +'</b>: '+ this.y +' %';
+				}
+			},
+			plotOptions: {
+				pie: {
+					allowPointSelect: true,
+					dataLabels: {
+						enabled: true,
+						formatter: function() {
+							if (this.y > 5) return this.point.name;
+						},
+						color: 'white',
+						style: {
+							font: '13px Trebuchet MS, Verdana, sans-serif'
+						}
+					}
+				}
+			},
+			legend: {
+				layout: 'vertical',
+				style: {
+					left: 'auto',
+					bottom: 'auto',
+					right: '50px',
+					top: '100px'
+				}
+			},
+		        series: []
+		};
+			var test = ${data2};
+			var series = { 
+				type: 'pie',
+				name: '${vote.title }',
+				data:  []
+			};
+			series.data=test;
+			options.series.push(series);
+			var chart2 = new Highcharts.Chart(options);
+
+	});
 </script>
 <div class="vote">
 	<h2>${vote.title }(${vote.author.name })</h2>
@@ -116,10 +176,10 @@
 	<c:forEach items="${vote.voters}" var="voter" varStatus="i">
 	${voter.name }，
 	</c:forEach>
-	<h2>图表</h2>
 </div>
-<div id="chart" style=""></div>
-
+<h2>图表</h2>
+<div id="barchart" style=""></div>
+<div id="piechart" style=""></div>
 <div>
 <h2>用户评论</h2>
 <c:choose>
