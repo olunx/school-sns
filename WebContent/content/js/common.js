@@ -1,12 +1,6 @@
 ﻿$(document).ready(function(){
-    
     $("#content").ajaxError(function(event, request, settings){
-        $(this).append("<li>哎呀，出错啦！请刷新一下试试:" + settings.url + "</li>");
-    });
-    
-    $("a[rel='ajaxupload']").each(function(i){
-        var ajaxinfo = eval('(' + $(this).attr("rev") + ')');
-        myAjaxUploadSetup(this, ajaxinfo.upload, ajaxinfo.complete, ajaxinfo.allowtype);
+        $(this).append("<li>服务器繁忙！请刷新一下试试:" + settings.url + "</li>");
     });
 });
 
@@ -24,17 +18,29 @@ function loadContent(href){
 	if (divid==null || divid == "") divid = "#content";
 	//alert(divid);
     var content = $(divid);
-    content.html("");
+	if (content.size()==0) content = $('#content');
+	
+   	content.html("");
     onLoading(content);//打开loading
     content.load(href, function(){
         offLoading();//关闭loading
-	    $("a[rel='ajaxupload']").each(function(i){
-	        var ajaxinfo = eval('(' + $(this).attr("rev") + ')');
-	        myAjaxUploadSetup(this, ajaxinfo.upload, ajaxinfo.complete, ajaxinfo.allowtype);
-	    });
+        loadContentComplete(content,divid);
         return false;
-        //ajax(divid);
-        //content.fadeIn('slow', ajax);
+    });
+}
+
+//处理加载完后的链接
+function loadContentComplete(content,divid){
+	//给a标签加入rev
+	$("a",content).each(function(){
+		if ($(this).attr("rev") == "" ){
+			$(this).attr("rev",divid);
+		}
+	});
+	//绑定上传
+    $("a[rel='ajaxupload']",content).each(function(i){
+        var ajaxinfo = eval('(' + $(this).attr("lang") + ')');
+        myAjaxUploadSetup(this, ajaxinfo.upload, ajaxinfo.complete, ajaxinfo.allowtype,divid);
     });
 }
 
@@ -55,6 +61,7 @@ function post(obj){
 	var divid = arguments[1] || '#content';//更新目标id
 	var returl = arguments[2] || '';//返回
     var content = $(divid);
+	if (content.size()==0) content = $('#content');
     var urlStr = $(obj).attr('action');
     var dataStr = decodeURIComponent($(obj).serialize());
         onLoading();//打开loading
@@ -66,8 +73,9 @@ function post(obj){
 				content.slideUp('normal',function(){
 					if (returl == "") {
 						content.html(result);
+						loadContentComplete(content,divid);
 					} else {
-						content.load(returl);
+						loadContent(returl,divid);
 					};
 	                offLoading();//关闭loading
 	                content.slideDown('normal');
@@ -117,7 +125,7 @@ function listMore(more,target) {
 }
 
 //配置ajaxUpload
-function myAjaxUploadSetup(btnobj, uploadUrl, completeUrl, allowType){
+function myAjaxUploadSetup(btnobj, uploadUrl, completeUrl, allowType,divid){
     var button = $(btnobj), interval;
     var button_txt = button.text();
     new AjaxUpload(button, {
@@ -145,7 +153,7 @@ function myAjaxUploadSetup(btnobj, uploadUrl, completeUrl, allowType){
         },
         onComplete: function(){
             this.enable();
-            $('#content').load(completeUrl, ajax);
+			loadContent(completeUrl,divid);
             clearInterval(interval);
             button.text(button_txt);
             

@@ -21,5 +21,9 @@
 		<property name="year" />
 		<property name="term" />
 		<one-to-one name="classes"></one-to-one>
+		<set name="attendances" table="t_attendance_course" cascade="delete">
+			<key column="courseId" />
+			<many-to-many class="Attendance" column="attendanceId" />
+		</set>
 	</class>
 </hibernate-mapping>

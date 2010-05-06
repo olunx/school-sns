@@ -35,6 +35,7 @@
 <div class="menuk">
 <ul class="menu">
 	<li><a onclick="ajaxload(this);return false;" href="<%=path%>/center">我的大厅</a></li>
+	<li><a onclick="ajaxload(this);return false;" href="<%=path%>/twitter/listTwitter">微博</a></li>
 	<c:if test="${student != null}">
 		<li><a onclick="ajaxload(this);return false;" href="<%=path %>/school/viewSchool?id=${user.school.id}">学校</a></li>
 		<li><a onclick="ajaxload(this);return false;" href="<%=path %>/classes/viewClasses?id=${user.classes == null? -1: user.classes.id}">班级</a></li>

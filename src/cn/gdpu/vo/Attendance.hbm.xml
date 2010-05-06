@@ -14,7 +14,7 @@
 		<property name="time" />
 		<property name="week" />
 		<property name="day" />
-		<set name="course" table="t_attendance_course"  cascade="delete">
+		<set name="course" table="t_attendance_course">
 			<key column="attendanceId" />
 			<many-to-many class="Course" column="courseId" />
 		</set>

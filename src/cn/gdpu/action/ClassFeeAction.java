@@ -142,7 +142,7 @@ public class ClassFeeAction extends BaseAction {
 					}
 					getRequest().put("isAdmin", isAdmin);
 					
-					this.pageBean = classfeeService.queryForPage(ClassFee.class, 5, page);
+					this.pageBean = classfeeService.queryForPage(ClassFee.class, 15, page);
 					if (pageBean.getList().isEmpty())
 						pageBean.setList(null);
 					this.getRequest().put("totalMoney", classfeeService.getTotalMoney());
