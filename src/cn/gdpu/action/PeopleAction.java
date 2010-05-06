@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-
 import cn.gdpu.service.ClassesService;
 import cn.gdpu.service.ImageService;
 import cn.gdpu.service.PeopleService;
@@ -37,6 +36,7 @@ public class PeopleAction extends BaseAction {
 	private ImageService<Image, Integer> imageService;
 	private String oldPassword;
 	private String rePassword;
+
 	@Override
 	public String add() {
 		peopleService.addEntity(people);
@@ -45,18 +45,44 @@ public class PeopleAction extends BaseAction {
 	}
 
 	@SuppressWarnings("unchecked")
-	public String addMany() {
-		List<String> fileList = (List<String>) this.getRequest().get("targetsFilePath");
-		Log.init(getClass()).info("fileList" + fileList);
-		List<Student> peopleList = new ArrayList<Student>();
-		if (fileList.size() > 0) {
-			peopleList = StudentExcel.getStudentExcel().getStudentData(fileList.get(0));
-			Log.init(getClass()).info("peopleList" + peopleList);
-		}
-		for (People s : peopleList) {
-			peopleService.addEntity(s);
-		}
+	public String addManyStudent() {
+		Log.init(getClass()).info("useraaaaa");
+		People user = (People) this.getSession().get("user");
+		if (user != null) {
+			user = peopleService.getEntity(People.class, user.getId());
+			Classes classes = user.getClasses();
+			School school = user.getSchool();
+			Log.init(getClass()).info("classes" + classes);
+			Log.init(getClass()).info("school" + school);
 
+			List<String> fileList = (List<String>) this.getRequest().get("targetsFilePath");
+			Log.init(getClass()).info("fileList" + fileList);
+			List<Student> peopleList = new ArrayList<Student>();
+			if (fileList.size() > 0) {
+				peopleList = StudentExcel.getStudentExcel().getStudentData(fileList.get(0));
+				Log.init(getClass()).info("peopleList" + peopleList);
+			}
+
+			// peopleList.remove(user);
+			Log.init(getClass()).info("remove");
+			int length = peopleList.size();
+			String username = user.getUsername();
+			String name;
+			People p;
+			for (int i = 0; i < length; i++) {
+				p = peopleList.get(i);
+				name = p.getUsername();
+				if (name.equalsIgnoreCase(username) || name == username) {
+					peopleList.remove(i);
+					length = peopleList.size();
+				}else {
+					p.setClasses(classes);
+					p.setSchool(school);
+					peopleService.addEntity(p);
+				}
+			}
+		}
+		Log.init(getClass()).info("addManyStudent finish");
 		return super.add();
 	}
 
@@ -73,7 +99,7 @@ public class PeopleAction extends BaseAction {
 		if (friend != null && me != null) {
 			me = peopleService.getEntity(People.class, me.getId());
 			Set<People> myFriends = me.getFriends();
-			
+
 			if (myFriends.contains(friend)) {// 如果是朋友就删除
 				myFriends.remove(friend);
 				FeedAction.init().add(me, friend, FeedAction.DEL_FRIEND);
@@ -81,20 +107,19 @@ public class PeopleAction extends BaseAction {
 				myFriends.add(friend);
 				FeedAction.init().add(me, friend, FeedAction.ADD_FRIEND);
 			}
-			
-			
+
 			me.setFriends(myFriends);
-			Log.init(getClass()).debug("myFriends:"+myFriends);
+			Log.init(getClass()).debug("myFriends:" + myFriends);
 			peopleService.updateEntity(me);
-			
+
 		}
 		return "list";
 	}
 
 	// 检查是否是朋友
 	public static Boolean isMyFriend(Set<People> set, People people) {
-		Log.init(People.class).debug("set:"+set+" people:"+people);
-		if (set != null && people != null &&set.contains(people)){
+		Log.init(People.class).debug("set:" + set + " people:" + people);
+		if (set != null && people != null && set.contains(people)) {
 			return true;
 		}
 		return false;
@@ -137,7 +162,7 @@ public class PeopleAction extends BaseAction {
 	}
 
 	@Override
-	public String modify() {		//修改个人资料
+	public String modify() { // 修改个人资料
 		People onepeople = peopleService.getEntity(People.class, people.getId());
 		onepeople.setName(people.getName());
 		onepeople.setEmail(people.getEmail());
@@ -150,28 +175,28 @@ public class PeopleAction extends BaseAction {
 		getRequest().put("people", onepeople);
 		return MODIFY_PAGE;
 	}
-	
-	public String modifyPSW() {			//修改密码
+
+	public String modifyPSW() { // 修改密码
 		People onepeople = peopleService.getEntity(People.class, people.getId());
-		
-		if(!oldPassword.trim().equals(onepeople.getPassword())){         //验证旧密码
+
+		if (!oldPassword.trim().equals(onepeople.getPassword())) { // 验证旧密码
 			this.addFieldError("oldPassword", "旧密码不正确");
 		}
 		if (hasFieldErrors()) {
 			getRequest().put("people", onepeople);
 			return MODIFY_PAGE;
 		}
-		
-		if(people.getPassword().trim().equals(rePassword) && oldPassword.trim().equals(onepeople.getPassword())){
+
+		if (people.getPassword().trim().equals(rePassword) && oldPassword.trim().equals(onepeople.getPassword())) {
 			onepeople.setPassword(people.getPassword());
 			peopleService.updateEntity(onepeople);
 			getRequest().put("modifypswsuc", true);
 		}
 		getRequest().put("people", onepeople);
-		return  MODIFY_PAGE;
+		return MODIFY_PAGE;
 	}
-	
-	public String modifyAvatar() {		//修改头像
+
+	public String modifyAvatar() { // 修改头像
 		People onepeople = peopleService.getEntity(People.class, people.getId());
 		Log.init(getClass()).info(image);
 		Log.init(getClass()).info("image.getMinFileUrl()" + image.getMinFileUrl());
@@ -180,7 +205,7 @@ public class PeopleAction extends BaseAction {
 		peopleService.updateEntity(onepeople);
 		getRequest().put("modifyavatarsuc", true);
 		getRequest().put("people", onepeople);
-		return  MODIFY_PAGE;
+		return MODIFY_PAGE;
 	}
 
 	@Override
@@ -196,21 +221,21 @@ public class PeopleAction extends BaseAction {
 			if (author instanceof People) {
 				People people = (People) author;
 				String hql;
-				if(search.trim().equals("")){
+				if (search.trim().equals("")) {
 					hql = "from People";
-				}
-				else{
-					hql = "from People p where p.id<>'" + people.getId() + "' and ( p.name like '%" + search + "%' or p.username like '%" + search + "%' or p.sno like '%" + search + "%' ) order by p.activity DESC";
+				} else {
+					hql = "from People p where p.id<>'" + people.getId() + "' and ( p.name like '%" + search + "%' or p.username like '%"
+							+ search + "%' or p.sno like '%" + search + "%' ) order by p.activity DESC";
 				}
 				this.pageBean = this.peopleService.queryForPage(hql, 30, page);
-				if(pageBean.getList().isEmpty())
-		    		pageBean.setList(null);
+				if (pageBean.getList().isEmpty())
+					pageBean.setList(null);
 			}
 		}
 		return super.list();
 
 	}
-	
+
 	/**
 	 *查找学校的所有成员
 	 */
@@ -218,87 +243,84 @@ public class PeopleAction extends BaseAction {
 		School school = schoolService.getEntity(School.class, id);
 		String hql = "from People p where p.school.id ='" + school.getId() + "' order by p.activity DESC";
 		this.pageBean = this.peopleService.queryForPage(hql, 30, page);
-		if(pageBean.getList().isEmpty())
-    		pageBean.setList(null);
+		if (pageBean.getList().isEmpty())
+			pageBean.setList(null);
 		return super.list();
 	}
-	
+
 	/**
 	 *查找班级的所有成员
 	 */
 	public String classes() {
-		Classes classes= classesService.getEntity(Classes.class, id);
+		Classes classes = classesService.getEntity(Classes.class, id);
 		String hql = "from People p where p.classes.id ='" + classes.getId() + "' order by p.activity DESC";
 		this.pageBean = this.peopleService.queryForPage(hql, 30, page);
-		if(pageBean.getList().isEmpty())
-    		pageBean.setList(null);
+		if (pageBean.getList().isEmpty())
+			pageBean.setList(null);
 		return super.list();
 
 	}
-	
-	public String listFriend(){
+
+	public String listFriend() {
 		Object author = this.getSession().get("user");
 		if (author != null) {
 			if (author instanceof People) {
 				People people;
-				if(id == 0){
+				if (id == 0) {
 					people = (People) author;
-				}
-				else{
+				} else {
 					people = peopleService.getEntity(People.class, id);
 				}
 				String hql = "select friends from People p where p.id = '" + people.getId() + "' order by p.activity DESC";
 				this.pageBean = this.peopleService.queryForPage(hql, 30, page);
-				if(pageBean.getList().isEmpty())
-		    		pageBean.setList(null);
+				if (pageBean.getList().isEmpty())
+					pageBean.setList(null);
 				return super.list();
 			}
 		}
 		return ERROR;
 	}
-	
-	public String listFollower(){
+
+	public String listFollower() {
 		Object author = this.getSession().get("user");
 		if (author != null) {
 			if (author instanceof People) {
 				People people;
-				if(id == 0){
+				if (id == 0) {
 					people = (People) author;
-				}
-				else{
+				} else {
 					people = peopleService.getEntity(People.class, id);
 				}
 				String hql = "select follower from People p where p.id = '" + people.getId() + "' order by p.activity DESC";
 				this.pageBean = this.peopleService.queryForPage(hql, 30, page);
-				if(pageBean.getList().isEmpty())
-		    		pageBean.setList(null);
+				if (pageBean.getList().isEmpty())
+					pageBean.setList(null);
 				return super.list();
 			}
 		}
 		return ERROR;
 	}
-	
-	public String listVisitor(){
+
+	public String listVisitor() {
 		Object author = this.getSession().get("user");
 		if (author != null) {
 			if (author instanceof People) {
 				People people;
-				if(id == 0){
+				if (id == 0) {
 					people = (People) author;
-				}
-				else{
+				} else {
 					people = peopleService.getEntity(People.class, id);
 				}
 				String hql = "select visitors from People p where p.id = '" + people.getId() + "' order by p.activity DESC";
 				this.pageBean = this.peopleService.queryForPage(hql, 30, page);
-				if(pageBean.getList().isEmpty())
-		    		pageBean.setList(null);
+				if (pageBean.getList().isEmpty())
+					pageBean.setList(null);
 				return "listvisitor";
 			}
 		}
 		return ERROR;
 	}
-	
+
 	public int getId() {
 		return id;
 	}

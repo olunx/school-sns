@@ -50,11 +50,11 @@
 					</c:when>
 				<c:when test="${feed.type == 'add_friend'}">
 						关注了  
-						<a onclick="ajaxload(this);return false;" href="<%=path%>/people/viewPeople?id=${feed.msgId}">${feed.message}</a> ，并表示希望成为TA的忠实fans。
+						<a onclick="ajaxload(this);return false;" href="<%=path%>/t/${feed.whose.username}">${feed.message}</a> ，并表示希望成为TA的忠实fans。
 					</c:when>
 				<c:when test="${feed.type == 'del_friend'}">
 						不想再关注   
-						<a onclick="ajaxload(this);return false;" href="<%=path%>/people/viewPeople?id=${feed.msgId}">${feed.message}</a>了。
+						<a onclick="ajaxload(this);return false;" href="<%=path%>/t/${feed.whose.username}">${feed.message}</a>了。
 					</c:when>
 				<c:when test="${feed.type == 'add_goods'}">
 						有  

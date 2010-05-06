@@ -28,7 +28,6 @@
 				if (parent.window.hs) {
 					parent.$('#username').val($('#username').val());
 					parent.$('#password').val($('#password').val());
-					parent.$('#submit').click();
 					parent.window.hs.close();
 				}
 			}
