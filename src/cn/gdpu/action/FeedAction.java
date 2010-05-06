@@ -129,6 +129,7 @@ public class FeedAction extends BaseAction {
 		feed.setType(type);
 		feed.setMessage(friend.getName());
 		feed.setMsgId(friend.getId());
+		feed.setWhose(friend);
 		feed.setTime(new Date());
 		service.addEntity(feed);
 

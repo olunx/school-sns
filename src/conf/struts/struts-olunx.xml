@@ -13,17 +13,16 @@
 			<result name="modifyPage">/WEB-INF/model/people/peopleModify.jsp</result>
 			<result name="viewPage">/WEB-INF/model/people/peopleView.jsp</result>
 			<result name="input">/WEB-INF/model/people/peopleModify.jsp</result>
-			<result name="success" type="chain">addManyPeople</result>
+			<result name="success" type="chain">addManyStudentPeople</result>
 			<result name="listvisitor">/WEB-INF/model/visitor/visitorList.jsp</result>
 		</global-results>
 		<action name="*People" class="cn.gdpu.action.PeopleAction" method="{1}"></action>
 		<action name="peopleUpload" class="cn.gdpu.action.FileUploadAction" method="people">
-			<!-- Action中的savePath属性的值 -->
 			<param name="savePath">/upload</param>
 		</action>
 	</package>
 	
-	<!-- 学生 -->
+	<!-- 学生 
 	<package name="student" extends="default" namespace="/student">
 		<global-results>
 			<result name="list" type="redirect">listStudent?page=${page}</result>
@@ -35,11 +34,11 @@
 		</global-results>
 		<action name="*Student" class="cn.gdpu.action.StudentAction" method="{1}"></action>
 		<action name="studentUpload" class="cn.gdpu.action.FileUploadAction" method="people">
-			<!-- Action中的savePath属性的值 -->
 			<param name="savePath">/upload</param>
 		</action>
 	</package>
-
+	-->
+	
 	<!-- 话题-->
 	<package name="topic" extends="default" namespace="/topic">
 		<global-results>

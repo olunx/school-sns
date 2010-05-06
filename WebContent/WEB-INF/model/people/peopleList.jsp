@@ -6,7 +6,7 @@
 <%
 	String path = request.getContextPath();
 %>
-
+<a rel="ajaxupload" rev="{upload:'<%=path %>/people/peopleUpload',complete:'<%=path %>/people/classesPeople?id=1',allowtype:/^(xls)$/i}" href="javascript:void()">上传学生信息</a>
 <c:choose>
 	<c:when test="${pageBean.list == null}">
 					没有数据！

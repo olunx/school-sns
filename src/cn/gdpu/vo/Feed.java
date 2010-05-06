@@ -9,6 +9,7 @@ public class Feed {
 	private String type;
 	private String link;
 	private String message;
+	private People whose;
 	private int msgId;
 	private Date time;
 
@@ -66,6 +67,14 @@ public class Feed {
 
 	public void setTime(Date time) {
 		this.time = time;
+	}
+
+	public People getWhose() {
+		return whose;
+	}
+
+	public void setWhose(People whose) {
+		this.whose = whose;
 	}
 
 }
