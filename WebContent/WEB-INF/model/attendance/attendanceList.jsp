@@ -32,7 +32,9 @@
 					<td>${attendance.day}</td>
 					<td>
 					<c:if test="${attendance.course!=null}">
-						<c:forEach items="${attendance.course}" var="l">周${l.whatDay} - ${l.name}, </c:forEach>
+					<c:catch var="e">
+						<c:forEach items="${attendance.course}" var="c">周${c.whatDay} - ${c.name}, </c:forEach>
+					</c:catch>
 					</c:if>
 					</td>
 					<td><c:forEach items="${attendance.students}" var="s">${s.name},</c:forEach></td>

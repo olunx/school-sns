@@ -1,5 +1,7 @@
 package cn.gdpu.vo;
 
+import java.util.Set;
+
 public class Course {
 	private int id;
 	private String name;
@@ -9,6 +11,7 @@ public class Course {
 	private int year;
 	private int term;
 	private Classes classes;
+	private Set<Attendance> attendances;
 
 	public String getName() {
 		return name;
@@ -78,5 +81,13 @@ public class Course {
 	public String toString() {
 		return "name:" + name + " startLesson:" + startLesson + " endLesson:" + endLesson + " whatDay:" + whatDay + " year:" + year
 				+ " term:" + term;
+	}
+
+	public Set<Attendance> getAttendances() {
+		return attendances;
+	}
+
+	public void setAttendances(Set<Attendance> attendances) {
+		this.attendances = attendances;
 	}
 }
