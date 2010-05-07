@@ -22,7 +22,7 @@
 <p>
 <label>管理员：</label>
 		<c:forEach items="${classes.admins}" var="admin">
-				<a onclick="ajaxload(this);return false;" href="<%=path%>/student/viewStudent?id=${admin.id }">${admin.name}</a>
+				<a onclick="ajaxload(this);return false;" href="<%=path%>/t/${admin.username }">${admin.name}</a>
 		</c:forEach>
 </p>
 <p><label>班级公告：</label>${classes.intro} </p>

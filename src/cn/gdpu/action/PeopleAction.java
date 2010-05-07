@@ -242,7 +242,7 @@ public class PeopleAction extends BaseAction {
 	public String school() {
 		School school = schoolService.getEntity(School.class, id);
 		String hql = "from People p where p.school.id ='" + school.getId() + "' order by p.activity DESC";
-		this.pageBean = this.peopleService.queryForPage(hql, 30, page);
+		this.pageBean = this.peopleService.queryForPage(hql, 20, page);
 		if (pageBean.getList().isEmpty())
 			pageBean.setList(null);
 		return super.list();
@@ -252,13 +252,17 @@ public class PeopleAction extends BaseAction {
 	 *查找班级的所有成员
 	 */
 	public String classes() {
+		People user = (People) this.getSession().get("user");
+		if (user != null) {
+			user = peopleService.getEntity(People.class, user.getId());
+			this.getRequest().put("friends", user.getFriends());
+		}
 		Classes classes = classesService.getEntity(Classes.class, id);
 		String hql = "from People p where p.classes.id ='" + classes.getId() + "' order by p.activity DESC";
-		this.pageBean = this.peopleService.queryForPage(hql, 30, page);
+		this.pageBean = this.peopleService.queryForPage(hql, 20, page);
 		if (pageBean.getList().isEmpty())
 			pageBean.setList(null);
 		return super.list();
-
 	}
 
 	public String listFriend() {

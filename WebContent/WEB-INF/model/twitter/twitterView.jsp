@@ -27,7 +27,12 @@
 	 	</a>
         </div>
         <div class="right">
-			<a>上回登陆：<fmt:formatDate value="${people.lastlogin }" pattern="yyyy-MM-dd" /></a>
+			<a>上次登陆：
+			<c:if test="${people.lastlogin == null}">
+				从未登陆过
+			</c:if>
+			<fmt:formatDate value="${people.lastlogin }" pattern="yyyy-MM-dd" />
+			</a>
         </div>
       </div>
     </li>
