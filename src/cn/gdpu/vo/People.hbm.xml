@@ -81,7 +81,7 @@
 		<joined-subclass name="Student" table="t_student">
 			<key column="id" />
 			<property name="sno" />
-			<set name="scores" inverse="true" cascade="all" lazy="true" order-by="id asc">
+			<set name="scores" inverse="true" cascade="all" order-by="id asc">
 				<key column="studentId" />
 				<one-to-many class="Score" />
 			</set>

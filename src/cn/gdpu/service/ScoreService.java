@@ -3,5 +3,5 @@
 import java.io.Serializable;
 
 public interface ScoreService<T, ID extends Serializable> extends BaseService<T, ID> {
-
+	public abstract double getAvgSubject(String subject);
 }

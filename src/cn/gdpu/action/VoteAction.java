@@ -1,5 +1,6 @@
 package cn.gdpu.action;
 
+import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -178,13 +179,13 @@ public class VoteAction extends BaseAction {
 	@Override
 	public String view() {
 		String data = "";
+		int count = 0;
 		vote = (Vote) voteService.getEntity(Vote.class, vid);
 		List<Object> data3 = new ArrayList<Object>();
 		for (Iterator<VoteItem> iter = vote.getItems().iterator(); iter.hasNext();) {
 			VoteItem voteItem = (VoteItem) iter.next();
 			data += voteItem.getContent();
-			String data2 = "['" + voteItem.getContent() + "'," + voteItem.getNum() + "]";
-			data3.add(data2);
+			count += voteItem.getNum();
 			if (iter.hasNext()) {
 				data += ",";
 			}
@@ -193,6 +194,11 @@ public class VoteAction extends BaseAction {
 		for (Iterator<VoteItem> iter = vote.getItems().iterator(); iter.hasNext();) {
 			VoteItem voteItem = (VoteItem) iter.next();
 			data += voteItem.getNum();
+			BigDecimal b = new BigDecimal(Double.toString( voteItem.getNum() * 100));
+			BigDecimal one = new BigDecimal(count);
+			double result = b.divide(one, 2, BigDecimal.ROUND_HALF_UP).doubleValue() ;
+			String data2 = "['" + voteItem.getContent() + "'," + result + "]";
+			data3.add(data2);
 			if (iter.hasNext()) {
 				data += ",";
 			}

@@ -196,9 +196,12 @@ public class ClassFeeAction extends BaseAction {
 						isAdmin = true;
 				}
 				if(isAdmin){
+					ClassFee classfee1 = classfeeService.getEntity(ClassFee.class, id);
 					String remarks = classfee.getRemarks() + new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()) + " " + "，" + student.getName() +" 修改了班费记录；";
-					classfee.setRemarks(remarks);
-					classfeeService.updateEntity(classfee);
+					classfee1.setRemarks(remarks);
+					classfee1.setFee(classfee.getFee());
+					classfee1.setEvent(classfee.getEvent());
+					classfeeService.updateEntity(classfee1);
 					Log.init(getClass()).info(student.getName() + " 成功修改班费：" + classfee.getFee());
 					return super.modify();
 				}
