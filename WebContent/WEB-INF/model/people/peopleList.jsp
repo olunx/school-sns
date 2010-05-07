@@ -6,76 +6,65 @@
 <%
 	String path = request.getContextPath();
 %>
-<a rel="ajaxupload" lang="{upload:'<%=path %>/people/peopleUpload',complete:'<%=path %>/people/classesPeople?id=1',allowtype:/^(xls)$/i}" href="javascript:void()">上传学生信息</a>
+<script type="text/javascript">
+	$(function() {
+		listMore("#people_more_list", "#class");
+	});
+</script>
 <c:choose>
 	<c:when test="${pageBean.list == null}">
-					没有数据！
-			</c:when>
+		没有任何班级成员！
+	</c:when>
 	<c:otherwise>
-		<form method="post" onSubmit="post(this);return false;" action="<%=path%>/people/deleteManyPeople">
-		<table class="table">
-			<tr>
-				<th><a rel="checkall">全选</a></th>
-				<th>用户名</th>
-				<th>加为好友</th>
-				<th>姓名</th>
-				<th>宿舍</th>
-				<th>状态</th>
-				<c:if test="${admin != null}">
-				<th>编辑</th>
-				<th>删除</th>
-				</c:if>
-			</tr>
-			<c:forEach items="${pageBean.list}" var="people">
-				<tr>
-					<td><input type="checkbox" name="ids" value="${people.id}" /></td>
-					<td><a onclick="ajaxload(this);return false;" href="<%=path %>/t/${people.username}">${people.username}</a>
-					 <a onclick="ajaxload(this);return false;" href="<%=path%>/mail/goAddMail?receiverId=${people.id}">传纸条</a></td>
-					 <td><a onclick="ajaxload(this);return false;" href="<%=path%>/people/followPeople?id=${people.id}&page=${page}">
+		<c:if test="${fn:length(pageBean.list) < 10}">
+			<a rel="ajaxupload" lang="{upload:'<%=path %>/people/peopleUpload',complete:'<%=path %>/people/classesPeople?id=1',allowtype:/^(xls)$/i}" href="javascript:void()">上传学生信息</a>
+		</c:if>
+		<c:forEach items="${pageBean.list}" var="people">
+			<div class="ilist clearfix">
+				<div class="iavatar"><img src="<%=path %>/avatar/${people.id}" /></div>
+				<div class="imsg">
+				<div class="iname">
+				<a onclick="ajaxload(this);return false;" href="<%=path%>/people/followPeople?id=${people.id}&page=${page}">
 					 <c:choose>
 					 	<c:when test="${my:isMyFriend(friends,people)}">删除好友</c:when>
 					 	<c:otherwise>加为好友</c:otherwise>
 					 </c:choose>
-					 </a></td>
-					<td>${people.name}</td>
-					<td>${people.dorm}</td>
-					<td>${people.status}</td>
-					<c:if test="${admin != null}">
-					<td><a onclick="ajaxload(this);return false;" href="<%=path%>/people/goModifyPeople?id=${people.id }&page=${page}" class="btn_edit">编辑</a></td>
-					<td><a onclick="ajaxload(this);return false;" href="<%=path%>/people/deletePeople?id=${people.id }&page=${page}" class="btn_del">删除</a></td>
-					</c:if>
-				</tr>
-			</c:forEach>
-		</table>
+				</a>
+				</div>
+				<p class="icontent">
+				<a onclick="ajaxload(this);return false;" href="<%=path%>/t/${people.username }">姓名：${people.name} <span class="money">（${people.school.name}）</span></a>
+				</p>
+				<p class="desc">学院：${people.institute.name} | 班级：${people.classes.name} | 宿舍：${people.dorm} | 手机号码：${people.phoneNo}</p>
+				
+				<div class="ioperate">
+				 状态：${people.status} | 上次登录：
+				 <c:choose>
+				 	<c:when test="${people.lastlogin != null}">
+				 		${my:formatDate(people.lastlogin) }
+				 	</c:when>
+				 	<c:otherwise>
+				 		从未
+				 	</c:otherwise>
+				 </c:choose>
+				</div>
+				</div>
+			</div>
+		</c:forEach>
 
-		<div id="pagecount">
-		<p>共  ${pageBean.allRow} 条记录 共 ${pageBean.totalPage} 页 当前第 ${pageBean.currentPage}页</p>
-		<c:choose>
-			<c:when test="${pageBean.currentPage == 1}">
-				<a><span>首页</span></a>
-				<a><span>上一页</span></a>
-			</c:when>
-			<c:otherwise>
-				<a onclick="ajaxload(this);return false;" href="<%=path%>/people/listPeople?page=1"><span>首页</span></a>
-				<a onclick="ajaxload(this);return false;" href="<%=path%>/people/listPeople?page=${pageBean.currentPage-1}"><span>上一页</span></a>
-			</c:otherwise>
-		</c:choose>
-		<c:choose>
+		<div id="people_more_list"><c:choose>
 			<c:when test="${pageBean.currentPage != pageBean.totalPage}">
-				<a onclick="ajaxload(this);return false;" href="<%=path%>/people/listPeople?page=${pageBean.currentPage+1}"><span>下一页</span></a>
-				<a onclick="ajaxload(this);return false;" href="<%=path%>/people/listPeople?page=${pageBean.totalPage}"><span>尾页</span></a>
+			<div class="buttons">
+			<a class="regular long center" target="list" href="<%=path%>/people/listPeople?page=${pageBean.currentPage+1}" >更多...</a>
+			</div>
 			</c:when>
 			<c:otherwise>
-				<a><span>下一页</span></a>
-				<a><span>尾页</span></a>
+				<div class="buttons">
+				<a class="negative long center" href="#" onClick="$.scrollTo(0 , 800 );">没有了！回到顶部</a>
+				</div>
 			</c:otherwise>
 		</c:choose>
 		</div>
 
-		<select name="cmd">
-			<option value="0" selected="selected">批量操作，请选择</option>
-			<option value="1">删除</option>
-		</select> <input type="submit" value="确定" /></form>
 	</c:otherwise>
 </c:choose>
 
