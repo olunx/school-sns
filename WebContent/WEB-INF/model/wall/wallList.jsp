@@ -6,29 +6,16 @@
 <%
 	String path = request.getContextPath();
 %>
+
 <div class="buttons">
-<a onclick="show('#pvote');" href="#" class="regular">投票</a>
- <a onclick="show('#pissue');" href="#" class="regular">问答</a>
- <a onclick="show('#pgoods');" href="#" class="regular">交换</a>
- <a onclick="show('#pgroup');" href="#" class="regular">群组</a>
+<a onclick="ajaxload(this);return false;" rev="#wall" href="<%=path%>/vote/listVote" class="regular">投票</a>
+ <a onclick="ajaxload(this);return false;" rev="#wall" href="<%=path%>/issue/listIssue" class="regular">问答</a>
+ <a onclick="ajaxload(this);return false;" rev="#wall" href="<%=path%>/goods/listGoods" class="regular">交换</a>
+ <a onclick="ajaxload(this);return false;" rev="#wall" href="<%=path%>/group/listGroup" class="regular">群组</a>
 </div>
 
 <p><br/></p>
-<div id="pvote">
-<h2>投票</h2>
-<div id="vote_list"></div>
-</div>
-<div id="pissue">
-<h2>问答</h2>
-<div id="issue_list"></div>
-</div>
-<div id="pgoods">
-<h2>交换</h2>
-<div id="goods_list"></div>
-</div>
-<div id="pgroup">
-<h2>群组</h2>
-<div id="group_list"></div>
+<div id="wall">
 </div>
 <script type="text/javascript">
 	$(function(){
@@ -39,19 +26,16 @@
 		$('#pissue').slideUp('normal');
 		$('#pgoods').slideUp('normal');
 		$('#pgroup').slideUp('normal');
+		$('#pvote').slideUp('normal');
 	}
 
 	function show(target) {
 		diaplayAll();
-		$('#pvote').slideUp('normal');
 		$(target).slideDown('normal');
 	}
 	
-	diaplayAll();
-
-	loadContent("<%=path%>/vote/listVote","#vote_list");
-	loadContent("<%=path%>/goods/listGoods","#goods_list");
-	loadContent("<%=path%>/issue/listIssue","#issue_list");
-	loadContent("<%=path%>/group/listGroup","#group_list");
+	//diaplayAll();
+	//$('#pvote').slideDown('normal');
+	loadContent("<%=path%>/vote/listVote","#wall");
 
 </script>

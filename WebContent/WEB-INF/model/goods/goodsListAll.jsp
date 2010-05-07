@@ -9,12 +9,13 @@
 
 <script type="text/javascript">
 	$(function() {
-		listMore("#goods_more_list", "#goods_list");
+		listMore("#goods_more_list", "#wall");
 	});
 </script>
+<h2>交换</h2>
 <c:choose>
 	<c:when test="${pageBean.list == null}">
-		没有该学生的货品数据！
+		没有货品数据！
 	</c:when>
 	<c:otherwise>
 		<c:forEach items="${pageBean.list}" var="goods">

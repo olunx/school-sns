@@ -9,9 +9,10 @@
 
 <script type="text/javascript">
 	$(function() {
-		listMore("#vote_more_list","#vote_list");
+		listMore("#vote_more_list","#wall");
 	});
 </script>
+<h2>投票</h2>
 <c:choose>
 	<c:when test="${pageBean.list == null}">
 					没有数据！

@@ -3,7 +3,7 @@
 <%
 	String path = request.getContextPath();
 %>
-<form onSubmit="post(this);return false;" action="<%=path%>/vote/replyVote" method="post">
+<form onSubmit="post(this,'#wall');return false;" action="<%=path%>/vote/replyVote" method="post">
 	<label>回复：</label>
 	<div class="paddingmin"><textarea name="reply.content" id="demo" rows="10" cols="50" style="width: 500px; height: 150px"></textarea>
 	</div>

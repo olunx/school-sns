@@ -9,12 +9,13 @@
 
 <script type="text/javascript">
 	$(function() {
-		listMore("issue_more_list","#issue_list");
+		listMore("issue_more_list","#wall");
 	});
 </script>
+<h2>问答</h2>
 <c:choose>
 	<c:when test="${pageBean.list == null}">
-		没有该学生的提问数据！
+		没有提问数据！
 	</c:when>
 	<c:otherwise>
 		<c:forEach items="${pageBean.list}" var="issue">

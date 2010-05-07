@@ -35,6 +35,14 @@
 
 <script type="text/javascript" src="<%=path%>/content/js/jquery.scrollTo-min.js"></script>
 
+<!-- dwr -->
+<script type='text/javascript' src='<%=path%>/content/js/jquery.selectboxes.min.js'></script>
+<script type='text/javascript' src='<%=path%>/dwr/engine.js'></script>
+<script type='text/javascript' src='<%=path%>/dwr/util.js'></script>
+<script type='text/javascript' src='<%=path%>/dwr/interface/PublicChat.js'></script>
+<script type='text/javascript' src='<%=path%>/dwr/interface/PrivateChat.js'></script>
+
+
 <script type="text/javascript">
 	initHighslide("<%=path%>", "640", "480");
 </script>
