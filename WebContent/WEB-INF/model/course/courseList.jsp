@@ -7,7 +7,7 @@
 %>
 <a rel="ajaxupload" lang="{upload:'<%=path %>/course/courseUpload',complete:'<%=path %>/course/listCourse',allowtype:/^(xls)$/i}" href="javascript:;">上传课程</a>
 <c:choose>
-	<c:when test="${courseList==null}">
+	<c:when test="${empty courseList}">
 					还没有添加课程呢！
 	</c:when>
 	<c:otherwise>

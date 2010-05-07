@@ -212,7 +212,6 @@
 			initHighslide("<%=path%>", "840", "640");
 			$('#inputform').validate({
 				submitHandler: function() {
-					onLoading('#feed');
 					post($('#inputform'),"#feed","<%=path%>/feed/listFeed");
 					cancel();
 					//commit($('#inputform'), '<%=path%>/home');

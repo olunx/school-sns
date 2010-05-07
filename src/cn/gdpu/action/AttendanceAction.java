@@ -8,8 +8,10 @@ import java.util.Set;
 import cn.gdpu.service.AttendanceService;
 import cn.gdpu.service.CourseService;
 import cn.gdpu.service.StudentService;
+import cn.gdpu.util.Log;
 import cn.gdpu.util.PageBean;
 import cn.gdpu.vo.Attendance;
+import cn.gdpu.vo.Classes;
 import cn.gdpu.vo.Course;
 import cn.gdpu.vo.People;
 import cn.gdpu.vo.Student;
@@ -80,7 +82,9 @@ public class AttendanceAction extends BaseAction {
 		user = studentService.getEntity(Student.class, user.getId());
 		int classid = user.getClasses().getId();
 		List<Student> students = studentService.getEntity(Student.class, "from People p where p.classes.id = " + classid);
-		List<Course> courses = courseService.getAllEntity(Course.class);
+		Classes classes = user.getClasses();
+		Log.init(getClass()).info("classes:"+classes.getName());
+		List<Course> courses = courseService.getEntity(Course.class, "from Course c where c.classes.id="+classes.getId()+" order by c.whatDay asc");
 
 		getRequest().put("students", students);
 		getRequest().put("courses", courses);

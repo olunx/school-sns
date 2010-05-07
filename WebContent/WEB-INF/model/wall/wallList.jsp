@@ -6,40 +6,6 @@
 <%
 	String path = request.getContextPath();
 %>
-
-<script type="text/javascript">
-	$(function(){
-		updateSidebar();
-
-		diaplayAll();
-
-		$("#vote_list").load("<%=path%>/vote/listVote",function(){
-			ajax('#content');
-		});
-		$("#goods_list").load("<%=path%>/goods/listGoods",function(){
-			ajax('#content');
-		});
-		$("#issue_list").load("<%=path%>/issue/listIssue",function(){
-			ajax('#content');
-		});
-		$("#group_list").load("<%=path%>/group/listGroup",function(){
-			ajax('#content');
-		});
-	});
-
-	function diaplayAll() {
-		$('#pissue').slideUp('normal');
-		$('#pgoods').slideUp('normal');
-		$('#pgroup').slideUp('normal');
-	}
-
-	function show(target) {
-		diaplayAll();
-		$('#pvote').slideUp('normal');
-		$(target).slideDown('normal');
-	}
-</script>
-
 <div class="buttons">
 <a onclick="show('#pvote');" href="#" class="regular">投票</a>
  <a onclick="show('#pissue');" href="#" class="regular">问答</a>
@@ -64,3 +30,28 @@
 <h2>群组</h2>
 <div id="group_list"></div>
 </div>
+<script type="text/javascript">
+	$(function(){
+		updateSidebar();
+	});
+
+	function diaplayAll() {
+		$('#pissue').slideUp('normal');
+		$('#pgoods').slideUp('normal');
+		$('#pgroup').slideUp('normal');
+	}
+
+	function show(target) {
+		diaplayAll();
+		$('#pvote').slideUp('normal');
+		$(target).slideDown('normal');
+	}
+	
+	diaplayAll();
+
+	loadContent("<%=path%>/vote/listVote","#vote_list");
+	loadContent("<%=path%>/goods/listGoods","#goods_list");
+	loadContent("<%=path%>/issue/listIssue","#issue_list");
+	loadContent("<%=path%>/group/listGroup","#group_list");
+
+</script>

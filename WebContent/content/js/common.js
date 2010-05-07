@@ -64,7 +64,7 @@ function post(obj){
 	if (content.size()==0) content = $('#content');
     var urlStr = $(obj).attr('action');
     var dataStr = decodeURIComponent($(obj).serialize());
-        onLoading();//打开loading
+        onLoading(divid);//打开loading
         $.ajax({
             url: urlStr,
             data: dataStr,
