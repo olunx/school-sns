@@ -56,7 +56,7 @@ img{ border:none;}
 #main{width:800px;padding:0; margin-bottom:10px; float:left;background:#FFF;}
 
 #content{width:570px; overflow:hidden; float:left;background:#FFF; padding:10px;}
-#content h2{ font-size:14px; padding:5px 0; clear:both;}
+#content h2{ font-size:14px; padding:5px 0; margin-bottom:5px; clear:both;}
 #sidebar{padding:10px 0px;width:210px; overflow:hidden; float:left; }
 
 /*chat*/
@@ -191,15 +191,15 @@ font-size:20px;
 .mod .imglist {
 	width:190px;
 }
-.mod .imglist li{
+.imglist li{
  float:left; width:56px;
  height:80px;
  text-align:center;
  overflow:hidden;
  margin-right:7px;
 }
-.mod .imglist li a { white-space:nowrap;}
-.mod .imglist li img{ width:50px; height:50px; padding:2px; border:1px solid #d2d2d2; background:#fff;}
+.imglist li a { white-space:nowrap;}
+.imglist li img{ width:50px; height:50px; padding:2px; border:1px solid #d2d2d2; background:#fff;}
 
 /*底部*/
 #footer{width:790px; background:#ffffff; clear:both; margin:10px auto; padding:5px; text-align:center;}

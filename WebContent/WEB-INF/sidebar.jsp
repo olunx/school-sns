@@ -18,17 +18,16 @@
 			<a onclick="ajaxload(this);return false;" href="<%=path %>/t/${student.username}"><img src="<%=path%>/avatar/${student.id}"></img></a>
 		</div>
 		<dl class="myinfo">
-			<dt>我的广播</dt>
+			<dt><a onclick="ajaxload(this);return false;" href="<%=path %>/t/${student.username}">我的广播</a></dt>
 			<dd><a onclick="ajaxload(this);return false;" href="<%=path %>/t/${student.username}">${twittersize}</a></dd>
-			<dt>我的粉丝</dt>
+			<dt><a onclick="ajaxload(this);return false;" href="<%=path %>/people/listFollowerPeople">我的粉丝</a></dt>
 			<dd><a onclick="ajaxload(this);return false;" href="<%=path %>/people/listFollowerPeople">${fn:length(student.follower)}</a></dd>
 		</dl>
 		<div class="myotherinfo">
 			<p>${student.name }</p>
 			<p>性别：<c:choose><c:when test="${student.sex == 1}">男</c:when><c:otherwise>女</c:otherwise></c:choose> 所在地：${student.school.province.name }
 			</p>
-			<p>我关注的：<a onclick="ajaxload(this);return false;" href="<%=path %>/people/listFriendPeople">${fn:length(student.friends)}</a>人 | 最近来访：<a onclick="ajaxload(this);return false;" href="<%=path %>/people/listVisitorPeople">${fn:length(student.visitors)}</a>人
-			</p>
+			<p><a onclick="ajaxload(this);return false;" href="<%=path %>/people/listFriendPeople">我关注的：${fn:length(student.friends)}人</a>  | <a onclick="ajaxload(this);return false;" href="<%=path %>/people/listVisitorPeople">最近来访：${fn:length(student.visitors)}人</a></p>
 		</div>
 	</div>
 	<c:if test="${student.classes == null}">

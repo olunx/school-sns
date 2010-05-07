@@ -109,14 +109,14 @@ function commit(obj, url){
 function listMore(more,target) {
 	$("a[target='list']").click(function() {
 		var href = $(this).attr('href');
-		$.scrollTo('+=600px' , 800 );
-		$(more).remove();
+		//$.scrollTo('+=600px' , 800 );
 		
 		$.ajax( {
 			url : href,
 			type : 'GET',
 			success : function(result) {
 				$(target).append(result);
+				$(more).remove();
 			}
 		});
 

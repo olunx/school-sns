@@ -35,12 +35,8 @@
   </ul>
 </div>
 	
-	<div id="topic_list">
 		<h2>他的广播：</h2>
-		<div id="box">
 			<jsp:include page="./twitterList.jsp"></jsp:include>
-		</div>
-	</div>
 	 <div>
 	<h2>最近访问</h2> 
 		<ul class="ul">
