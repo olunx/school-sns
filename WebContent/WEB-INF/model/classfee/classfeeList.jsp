@@ -109,6 +109,8 @@
 		<a>没有数据</a>
 	</c:when>
 	<c:otherwise>
+		<h2>班费收支情况图表</h2>
+		<div id="linechart" style=""></div>
 		<form onSubmit="post(this);return false;"  action="<%=path%>/classfee/deleteManyClassfee" method="post">
 		<table class="table">
 			<tr>
@@ -177,7 +179,5 @@
 		</select> <input type="submit" value="确定" />
 		
 		</form>
-		<h2>图表</h2>
-		<div id="linechart" style=""></div>
 	</c:otherwise>
 </c:choose>

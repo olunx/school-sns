@@ -2,6 +2,7 @@ package cn.gdpu.action;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -15,6 +16,7 @@ import cn.gdpu.service.FetionService;
 import cn.gdpu.service.ScoreService;
 import cn.gdpu.service.StudentService;
 import cn.gdpu.util.excel.StudentExcel;
+import cn.gdpu.vo.People;
 import cn.gdpu.vo.Score;
 import cn.gdpu.vo.Student;
 
@@ -51,17 +53,50 @@ public class ScoreAction extends BaseAction {
 	 * @return
 	 */
 	public String query() {
-		Student student = (Student) getSession().get("student");
-		String sno = student.getSno();
-		Student stu = studentService.getStudentByNo(sno);
-		Set<Score> scores = null;
-		if(stu != null){
-			scores = stu.getScores();
+		Object author = this.getSession().get("user");
+		if (author != null) {
+			if (author instanceof Student) {
+			Student student = (Student) author;
+			String sno = student.getSno();
+			String hql = "from Score s where s.student.sno ='" + sno + "'";
+			List<Score> scores = scoreService.getEntity(Score.class, hql);
+			String data = "";
+			if(scores.size() == 0){
+				scores = null;	
+			}
+			else{
+				for(Iterator<Score> iter= scores.iterator(); iter.hasNext();){
+					Score s = iter.next();
+					data += s.getSubject();
+					if (iter.hasNext()) {
+						data += ",";
+					}
+				}
+				data += "/n";
+				for(Iterator<Score> iter= scores.iterator(); iter.hasNext();){
+					Score s = iter.next();
+					data += s.getMarks();
+					if (iter.hasNext()) {
+						data += ",";
+					}
+				}
+				data += "/n";
+				for(Iterator<Score> iter= scores.iterator(); iter.hasNext();){
+					Score s = iter.next();
+					double avg = scoreService.getAvgSubject(s.getSubject());
+					data += avg;
+					if (iter.hasNext()) {
+						data += ",";
+					}
+				}
+				System.out.println(data);
+				getRequest().put("data", data);
+				getRequest().put("scores", scores);
+			}
+			return INDEX;
+			}
 		}
-		if(scores.size() == 0)
-			scores = null;			
-		getRequest().put("scores", scores);
-		return INDEX;
+		return ERROR;
 	}
 
 	/**

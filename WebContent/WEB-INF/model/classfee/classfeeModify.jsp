@@ -11,5 +11,5 @@
 <br />
 </div>
 <p class="paddingmin"><input type="submit" value="提交" /> <input type="reset" value="重置" /></p>
-<input name="classfee.id" type="hidden" value="${classfee.id }" />
+<input name="id" type="hidden" value="${classfee.id }" />
 </form>
