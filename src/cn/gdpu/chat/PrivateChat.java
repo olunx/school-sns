@@ -109,7 +109,8 @@ public class PrivateChat {
 		Browser.withAllSessions(new Runnable() {
 			@Override
 			public void run() {
-				ScriptSessions.addFunctionCall("receiveOnlineUser", userList.size()+chatingUserList.size());
+				int usernum = userList.size()+chatingUserList.size();
+				ScriptSessions.addFunctionCall("receiveOnlineUser", usernum);
 			}
 		});
 	};

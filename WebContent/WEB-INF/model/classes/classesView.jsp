@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
@@ -8,7 +8,7 @@
 %>
 
 <div class="form">
-<ul id="classnav" class="nav buttons">
+<ul id="classnav" class="buttons">
 	<li><a onclick="ajaxload(this);return false;" href="<%=path%>/classes/viewClasses?id=${id}">班级首页</a></li>
 	<li><a onclick="ajaxload(this);return false;" rev="#class" href="<%=path%>/classfee/listClassfee">查看班费</a></li>
 	<li><a onclick="ajaxload(this);return false;" rev="#class" href="<%=path%>/course/listCourse">课程表</a></li>

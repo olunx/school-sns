@@ -147,7 +147,7 @@ img{ border:none;}
 .issue_otherans .time{ float:right;}
 .issue_best{ background:#fef9d3; padding:5px; margin-bottom:10px;}
 /*内页导航链接*/
-.nav {padding-bottom:12px;}
+.nav {padding-bottom:12px; clear:both;}
 /*分页*/
 #pagecount{float:right;}
 #pagecount p{float:left;line-height:21px;padding-right:5px;font-size:13px;font-weight:700;color:#295568;}

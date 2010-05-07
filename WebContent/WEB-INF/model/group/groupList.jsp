@@ -8,9 +8,10 @@
 
 <script type="text/javascript">
 	$(function() {
-		//list("#group_more_list", "#group_list");
+		list("#group_more_list", "#wall");
 	});
 </script>
+<h2>群组</h2>
 <c:choose>
 	<c:when test="${pageBean.list == null}">
 					没有数据！
@@ -26,10 +27,10 @@
 			</div>
 				<div class="imsg">
 				<div class="iname">管理员：${group.admin.name}</div>
-				<p class="icontent">小组：
+				<p class="icontent">
 				<a onclick="ajaxload(this);return false;" href="<%=path%>/group/viewGroup?id=${group.id}&page=${page}">${group.name}</a>
-				<br/>  简介： ${group.intro}
 				</p>
+				<p class="desc">${group.intro}</p>
 				<div class="ioperate">
 				 <a onclick="ajaxload(this);return false;" href="<%=path%>/group/joinGroup?id=${group.id}&page=${page}">
 				 <c:choose>
