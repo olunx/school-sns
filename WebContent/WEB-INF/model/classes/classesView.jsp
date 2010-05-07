@@ -97,21 +97,21 @@
 <div id="feed" class="feed"></div>
 
 	<div id="class_sidebar" style="display: block">
-	<div class="mod">
-	<h2>最近访问：</h2>
+	<div>
+	<h2>最近访问</h2>
 		<ul class="imglist">
 		<c:forEach items="${classes.visitors}" var="visitor">
 			<li>
 				<a onclick="ajaxload(this);return false;" href="<%=path%>/t/${visitor.people.username }"><img src="<%=path %>/avatar/${visitor.people.id}" width="50"></img></a>
 				<a onclick="ajaxload(this);return false;" href="<%=path%>/t/${visitor.people.username }">${visitor.people.name}</a>
-				<fmt:formatDate value="${visitor.time }" pattern="MM-dd" />	
+				<!--<fmt:formatDate value="${visitor.time }" pattern="MM-dd" />	-->
 			</li>
 		</c:forEach>
 		</ul>
 	<div class="clear"></div>
 	</div>
-	<div class="mod">
-	<h2>班级新人：</h2>
+	<div>
+	<h2>班级新人</h2>
 		<ul class="imglist">
 		<c:forEach items="${peoplenew}" var="people">
 			<li>
@@ -122,8 +122,8 @@
 		</ul>
 		<div class="clear"></div>
 	</div>
-	<div class="mod">
-		<h2>人气王:</h2>
+	<div>
+		<h2>人气王</h2>
 		<ul class="imglist">
 		<c:forEach items="${peoplehot}" var="people">
 			<li>

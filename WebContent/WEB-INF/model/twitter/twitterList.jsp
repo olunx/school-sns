@@ -56,7 +56,7 @@
 		}
 	};
 </script>
-
+<div id="topic_list">
 <c:choose>
 	<c:when test="${pageBean.list==null}">
 		<a>没有数据</a>
@@ -111,3 +111,4 @@
 		</div>
 	</c:otherwise>
 </c:choose>
+</div>
