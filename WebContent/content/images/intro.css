@@ -1,0 +1,67 @@
+@charset "utf-8";
+
+#LUI {
+	padding:10px 0;
+	overflow:hidden;
+}
+#LUI ul {
+	margin:0 auto;
+	overflow:hidden;
+}
+#LUI .pic {
+	float:left;
+	width:130px;
+}
+#LUI .pic img {
+	width:120px;
+	height:120px;
+	padding:2px;
+	border:1px solid #D2D2D2;
+	background:#fff
+}
+#LUI .detail {
+	float:right;
+	width:430px
+}
+#LUI .detail h4 {
+	line-height:25px;
+	color:#999
+}
+#LUI .detail .report {
+	text-indent:0
+}
+#LUI .userName {
+	padding-top:2px;
+	font-family:"MicroSoft YaHei", "SimHei";
+	font-size:20px;
+	color:#333
+}
+#LUI .link {
+	clear:both;
+	font-family:Tahoma, Arial;
+	font-size:12px;
+	line-height:21px
+}
+#LUI .userNums {
+	height:54px;
+	line-height:33px
+}
+#LUI .userNums span {
+	margin:0 9px 0 8px;
+	font-size:16px;
+	color:#DEDEDE
+}
+#LUI .userNums a strong {
+	margin:0 2px;
+	font-size:16px
+}
+#LUI .funBox {
+	height:27px;
+	line-height:27px;
+}
+#LUI .left{
+	float:left;
+}
+#LUI .right{
+	float:right;
+}

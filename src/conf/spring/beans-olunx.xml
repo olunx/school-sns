@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+			http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+			http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+			http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd"
+	default-lazy-init="false">
+	<!-- 注释 -->
+
+	<bean name="theAfterAdvice" class="cn.gdpu.interceptor.FeedProcess"></bean>
+	<bean name="autoProxy" class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
+		<!-- 对哪些对象进行代理 -->
+		<property name="beanNames">
+			<list>
+				<value>*Service</value>
+			</list>
+		</property>
+		<!-- 谁是代理 -->
+		<property name="interceptorNames">
+			<list>
+				<value>theAfterAdvice</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- 主题 -->
+	<bean name="topicDaoImpl" class="cn.gdpu.dao.impl.TopicDaoImpl" scope="prototype">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean name="topicService" class="cn.gdpu.service.impl.TopicServiceImpl" scope="prototype">
+		<property name="baseDao" ref="topicDaoImpl" />
+	</bean>
+
+	<!-- 微博 -->
+	<bean name="twitterDaoImpl" class="cn.gdpu.dao.impl.TwitterDaoImpl" scope="prototype">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean name="twitterService" class="cn.gdpu.service.impl.TwitterServiceImpl" scope="prototype">
+		<property name="baseDao" ref="twitterDaoImpl" />
+	</bean>
+
+	<!-- 邮件 -->
+	<bean name="mailDaoImpl" class="cn.gdpu.dao.impl.MailDaoImpl" scope="prototype">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean name="mailService" class="cn.gdpu.service.impl.MailServiceImpl" scope="prototype">
+		<property name="baseDao" ref="mailDaoImpl" />
+	</bean>
+
+	<!-- 图片 -->
+	<bean name="imageDaoImpl" class="cn.gdpu.dao.impl.ImageDaoImpl" scope="prototype">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean name="imageService" class="cn.gdpu.service.impl.ImageServiceImpl" scope="prototype">
+		<property name="baseDao" ref="imageDaoImpl" />
+	</bean>
+
+	<!-- 好友动态 -->
+	<bean name="feedDaoImpl" class="cn.gdpu.dao.impl.FeedDaoImpl" scope="prototype">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean name="feedService" class="cn.gdpu.service.impl.FeedServiceImpl" scope="prototype">
+		<property name="baseDao" ref="feedDaoImpl" />
+	</bean>
+
+</beans>

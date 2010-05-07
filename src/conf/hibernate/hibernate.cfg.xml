@@ -1,0 +1,50 @@
+<!DOCTYPE hibernate-configuration PUBLIC
+	"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+	<session-factory>
+		<property name="show_sql">false</property>
+		<property name="hbm2ddl.auto">update</property>
+		<property name="dialect">org.hibernate.dialect.MySQLDialect</property>
+		<property name="connection.useUnicode">true</property>
+		<property name="connection.characterEncoding">UTF-8</property>
+		
+		<mapping resource="cn/gdpu/vo/People.hbm.xml" />
+		
+		<mapping resource="cn/gdpu/vo/Province.hbm.xml" />
+		<mapping resource="cn/gdpu/vo/School.hbm.xml" />
+		<mapping resource="cn/gdpu/vo/Institute.hbm.xml" />
+		<mapping resource="cn/gdpu/vo/Classes.hbm.xml" />
+		
+		<mapping resource="cn/gdpu/vo/Achievement.hbm.xml" />
+		<mapping resource="cn/gdpu/vo/Course.hbm.xml" />
+		
+		<mapping resource="cn/gdpu/vo/Duty.hbm.xml" />
+		<mapping resource="cn/gdpu/vo/Group.hbm.xml" />
+		 
+		<mapping resource="cn/gdpu/vo/Hobby.hbm.xml" />
+
+		<mapping resource="cn/gdpu/vo/Topic.hbm.xml" />
+		<mapping resource="cn/gdpu/vo/Twitter.hbm.xml" />
+		<mapping resource="cn/gdpu/vo/Mail.hbm.xml" />
+		<mapping resource="cn/gdpu/vo/Feed.hbm.xml" />
+		<mapping resource="cn/gdpu/vo/Image.hbm.xml" />
+		
+		<mapping resource="cn/gdpu/vo/ClassFee.hbm.xml"/> 
+		<mapping resource="cn/gdpu/vo/Score.hbm.xml"/>
+		
+		<mapping resource="cn/gdpu/vo/Attendance.hbm.xml"/> 
+		
+		<mapping resource="cn/gdpu/vo/Vote.hbm.xml"/> 
+		<mapping resource="cn/gdpu/vo/VoteItem.hbm.xml"/> 
+		
+		<mapping resource="cn/gdpu/vo/Goods.hbm.xml"/> 
+		<mapping resource="cn/gdpu/vo/GoodsType.hbm.xml"/> 
+		
+		<mapping resource="cn/gdpu/vo/Issue.hbm.xml"/> 
+		<mapping resource="cn/gdpu/vo/IssueType.hbm.xml"/>
+		
+		<mapping resource="cn/gdpu/vo/Visitor.hbm.xml"/>  
+	</session-factory>
+</hibernate-configuration>
