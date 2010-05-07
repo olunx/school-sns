@@ -5,6 +5,102 @@
 <%
 	String path = request.getContextPath();
 %>
+<script type="text/javascript" src="<%=path%>/content/jq-highcharts/highcharts.js"></script>
+<script type="text/javascript" src="<%=path%>/content/jq-highcharts/highcharts-gridtheme.js"></script>
+<script type="text/javascript">
+	var data = "${data}";
+	//折线图
+	$(document).ready(function() {
+	
+		var options = {
+			chart: {
+				renderTo: 'linechart',
+				defaultSeriesType: 'line',
+				margin: [60, 10, 60, 60]
+			},
+			title: {
+				text: '班费收支情况图表',
+				style: {
+					margin: '10px 100px 0 0' // center it
+				}
+			},
+			subtitle: {
+				text: '',
+				style: {
+					margin: '0 100px 0 0' // center it
+				}
+			},
+			xAxis: {
+				categories : [],
+				title: {
+					text: '日期'
+				}
+			},
+			yAxis: {
+				title: {
+					text: '费用 (元)'
+				},
+				plotLines: [{
+					value: 0,
+					width: 1,
+					color: '#808080'
+				}]
+			},
+			tooltip: {
+				formatter: function() {
+		                return '<b>'+ this.series.name +': '+ this.y +'元' +'</b><br/>'+
+						this.x ;
+				}
+			},
+			legend: {
+				layout: 'vertical',
+				style: {
+					left: 'auto',
+					bottom: 'auto',
+					right: '10px',
+					top: '10px'
+				}
+			},
+			series: []
+		};
+
+		// Split the lines
+		var lines = data.split('/n');
+		$.each(lines, function(lineNo, line) {
+			var items = line.split(',');
+			// header line containes categories
+				if (lineNo == 0) {
+					$.each(items, function(itemNo, item) {
+						options.xAxis.categories.push(item);
+					});
+				}
+				// the rest of the lines contain data with their name in the first position
+				else if(lineNo ==1) {
+					var series = {
+						name: '总班费',
+						data : []
+					};
+					$.each(items, function(itemNo, item) {
+						series.data.push(parseFloat(item));
+					});
+					options.series.push(series);
+				}
+				else {
+					var series = {
+						name: '收支班费',
+						data : []
+					};
+					$.each(items, function(itemNo, item) {
+						series.data.push(parseFloat(item));
+					});
+					options.series.push(series);
+				};
+			});
+		var chart = new Highcharts.Chart(options);
+
+	});
+
+</script>
 <c:if test="${isAdmin}">
 	<a onclick="ajaxload(this);return false;" href="<%=path %>/classfee/goAddClassfee">添加班费记录</a>
 </c:if>
@@ -81,5 +177,7 @@
 		</select> <input type="submit" value="确定" />
 		
 		</form>
+		<h2>图表</h2>
+		<div id="linechart" style=""></div>
 	</c:otherwise>
 </c:choose>

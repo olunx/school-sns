@@ -2,6 +2,8 @@ package cn.gdpu.action;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Iterator;
+import java.util.List;
 
 import cn.gdpu.service.ClassFeeService;
 import cn.gdpu.service.ClassesService;
@@ -145,7 +147,36 @@ public class ClassFeeAction extends BaseAction {
 					this.pageBean = classfeeService.queryForPage(ClassFee.class, 15, page);
 					if (pageBean.getList().isEmpty())
 						pageBean.setList(null);
-					this.getRequest().put("totalMoney", classfeeService.getTotalMoney());
+					
+					String data = "";
+					List<ClassFee> classfees = classfeeService.getAllEntity(ClassFee.class);
+					for(Iterator<ClassFee> iter= classfees.iterator(); iter.hasNext();){
+						ClassFee cf = iter.next();
+						data += new SimpleDateFormat("MM/dd").format(cf.getTime());
+						if (iter.hasNext()) {
+							data += ",";
+						}
+					}
+					data += "/n";
+					double feecount = 0;
+					for(Iterator<ClassFee> iter= classfees.iterator(); iter.hasNext();){
+						ClassFee cf = iter.next();
+						feecount += cf.getFee();
+						data += feecount;
+						if (iter.hasNext()) {
+							data += ",";
+						}
+					}
+					data += "/n";
+					for(Iterator<ClassFee> iter= classfees.iterator(); iter.hasNext();){
+						ClassFee cf = iter.next();
+						data += cf.getFee();
+						if (iter.hasNext()) {
+							data += ",";
+						}
+					}
+					getRequest().put("data", data);
+ 					this.getRequest().put("totalMoney", classfeeService.getTotalMoney());
 					return super.list();
 				}
 			}
