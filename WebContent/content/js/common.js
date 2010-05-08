@@ -51,12 +51,12 @@ function onLoading(target){
 		$(document.body).prepend('<span id="loading" class="fixed-top"><img src="./content/images/loading.gif" />加载中，请稍等...</span>');
 		$('#loading').css('opacity', 0.8);
 	}
-    $('#loading').slideDown(100);
+    $('#loading').fadeIn(100);
 }
 
 //关闭loading
 function offLoading(){
-	setTimeout(function(){$('#loading').slideUp(500);},1000);
+	setTimeout(function(){$('#loading').fadeOut(500);},500);
 	
     //$('#loading').remove();
 }
