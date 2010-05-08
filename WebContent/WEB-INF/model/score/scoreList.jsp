@@ -11,10 +11,12 @@
 	var data = "${data}";
 	//直方图
 	$(document).ready(function() {
-	
+
+		if ($('#columnchart').size()==0) return;
 		var options = {
 				chart: {
 			renderTo: 'columnchart',
+			width:570,
 			margin: [70, 10, 50, 40],
 			defaultSeriesType: 'column'
 		},

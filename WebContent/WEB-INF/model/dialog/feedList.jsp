@@ -42,31 +42,31 @@
 					</c:when>
 				<c:when test="${feed.type == 'add_group'}">
 						创建了小组  
-						<a onclick="ajaxload(this);return false;" href="<%=path%>/group/viewGroup?id=${feed.msgId}">${feed.message}</a> 。
+						<a onclick="ajaxload(this);return false;" rev="#content" href="<%=path%>/group/viewGroup?id=${feed.msgId}">${feed.message}</a> 。
 					</c:when>
 				<c:when test="${feed.type == 'join_group'}">
 						加入了   
-						<a onclick="ajaxload(this);return false;" href="<%=path%>/group/viewGroup?id=${feed.msgId}">${feed.message}</a>   小组。
+						<a onclick="ajaxload(this);return false;" rev="#content" href="<%=path%>/group/viewGroup?id=${feed.msgId}">${feed.message}</a>   小组。
 					</c:when>
 				<c:when test="${feed.type == 'add_friend'}">
 						关注了  
-						<a onclick="ajaxload(this);return false;" href="<%=path%>/t/${feed.whose.username}">${feed.message}</a> ，并表示希望成为TA的忠实fans。
+						<a onclick="ajaxload(this);return false;" rev="#content" href="<%=path%>/t/${feed.whose.username}">${feed.message}</a> ，并表示希望成为TA的忠实fans。
 					</c:when>
 				<c:when test="${feed.type == 'del_friend'}">
 						不想再关注   
-						<a onclick="ajaxload(this);return false;" href="<%=path%>/t/${feed.whose.username}">${feed.message}</a>了。
+						<a onclick="ajaxload(this);return false;" rev="#content" href="<%=path%>/t/${feed.whose.username}">${feed.message}</a>了。
 					</c:when>
 				<c:when test="${feed.type == 'add_goods'}">
 						有  
-						<a onclick="ajaxload(this);return false;" href="<%=path%>/goods/viewGoods?id=${feed.msgId}">${feed.message}</a>   可以交换。
+						<a onclick="ajaxload(this);return false;" rev="#content" href="<%=path%>/goods/viewGoods?id=${feed.msgId}">${feed.message}</a>   可以交换。
 					</c:when>
 				<c:when test="${feed.type == 'add_issue'}">
 						发起问题  
-						<a onclick="ajaxload(this);return false;" href="<%=path%>/issue/viewIssue?id=${feed.msgId}">${feed.message}</a>  。
+						<a onclick="ajaxload(this);return false;" rev="#content" href="<%=path%>/issue/viewIssue?id=${feed.msgId}">${feed.message}</a>  。
 					</c:when>
 				<c:when test="${feed.type == 'add_vote'}">
 						发起投票  
-						<a onclick="ajaxload(this);return false;" href="<%=path%>/vote/goVotingVote?vid=${feed.msgId}">${feed.message}</a>  。
+						<a onclick="ajaxload(this);return false;" rev="#content" href="<%=path%>/vote/goVotingVote?vid=${feed.msgId}">${feed.message}</a>  。
 					</c:when>
 				<c:otherwise>
 						${feed.author.name} ${feed.type} ${feed.message}

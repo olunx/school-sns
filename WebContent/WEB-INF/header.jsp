@@ -9,11 +9,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>School Social</title>
 <link type="text/css" rel="stylesheet" href="<%=path%>/content/images/layout.css" />
-<link type="text/css" rel="stylesheet" href="<%=path%>/content/images/btn/style.css" />
 <link id="themecss" type="text/css" rel="stylesheet" href="<%=path%>/content/images/blue/theme_blue.css" />
-<link type="text/css" rel="stylesheet" href="<%=path%>/content/images/twitter.css" />
 <link type="text/css" rel="stylesheet" href="<%=path%>/content/jq-ui/jquery-ui-1.8.custom.css" />
-<link type="text/css" rel="stylesheet" href="<%=path%>/content/jq-ajaxupload/ajaxupload.css" />
 
 <!-- JQuery库 -->
 <!-- <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script> -->

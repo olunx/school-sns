@@ -14,7 +14,6 @@
  <a onclick="ajaxload(this);return false;" rev="#wall" href="<%=path%>/group/listGroup" class="regular">群组</a>
 </div>
 
-<p><br/></p>
 <div id="wall">
 </div>
 <script type="text/javascript">

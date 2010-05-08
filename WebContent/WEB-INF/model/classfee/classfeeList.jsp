@@ -16,6 +16,7 @@
 			chart: {
 				renderTo: 'linechart',
 				defaultSeriesType: 'line',
+				width:570,
 				margin: [60, 10, 60, 60]
 			},
 			title: {
