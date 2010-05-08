@@ -139,7 +139,6 @@ public class RegisterAction extends BaseAction implements Preparable {
 				user.setPermission(1);        //普通注册完成是1
 				user.setStatus(1);           //普通用户注册成功状态为1
 				user.setRegTime(new Date());
-				
 				if(identity == 1){
 					studentService.addEntity(user);
 				}
@@ -207,6 +206,7 @@ public class RegisterAction extends BaseAction implements Preparable {
 					classes.setAdmins(admins);
 					classesService.updateEntity(classes);
 					user.setPermission(2);
+					
 				}
 				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 				Date date =sdf.parse(birthday);
@@ -215,6 +215,7 @@ public class RegisterAction extends BaseAction implements Preparable {
 				user.setSno(sno);
 				user.setEntryYear(entryYear);
 				user.setAvatar(image);
+				user.setActivity(user.getActivity() + 5);
 				studentService.updateEntity(user);
 				return "classes";
 			}
