@@ -18,10 +18,13 @@
 	<c:otherwise>
 		<c:forEach items="${pageBean.list}" var="feed">
 			<div class="list clearfix">
-			<div class="avatar"><img src="<%=path%>/avatar/${feed.author.id}" /></div>
-			<div class="topic_msg">
-			<div class="time" title="${feed.time}">${my:formatDate(feed.time)}</div>
-			<p class="content"><a onclick="ajaxload(this);return false;" href="<%=path%>/t/${feed.author.username}">${feed.author.name}</a> <c:choose>
+			<div class="iavatar"><img src="<%=path%>/avatar/${feed.author.id}" /></div>
+			<div class="imsg">
+			<div class="iname" title="${feed.time}">${my:formatDate(feed.time)}</div>
+			<p class="icontent">
+			<a onclick="ajaxload(this);return false;" href="<%=path%>/t/${feed.author.username}">${feed.author.name}</a> </p>
+			<p class="desc">   
+			<c:choose>
 				<c:when test="${feed.type ==  'add_twitter'}">
 						叽叽歪歪的说：${feed.message}。
 					</c:when>
@@ -71,7 +74,8 @@
 				<c:otherwise>
 						${feed.author.name} ${feed.type} ${feed.message}
 					</c:otherwise>
-			</c:choose></p>
+			</c:choose>
+			</p>
 			</div>
 			</div>
 		</c:forEach>
