@@ -17,7 +17,7 @@
 				chart: {
 			renderTo: 'columnchart',
 			width:570,
-			margin: [70, 10, 50, 40],
+			margin: [60, 10, 50, 30],
 			defaultSeriesType: 'column'
 		},
 		title: {
@@ -27,9 +27,17 @@
 			text: ''
 		},
 		xAxis: {
-			categories: []
+			categories: [],
+			labels: {
+				rotation: -20,
+				align: 'centre',
+				style: {
+					font: 'normal 13px Verdana, sans-serif'
+				}
+			}
 		},
 		yAxis: {
+			max: 100,
 			min: 0,
 			title: {
 				text: '分数'
@@ -60,17 +68,6 @@
 	        series: []
 	};
 
-		/*
-		 Load the data from the CSV file. This is the contents of the file:
-		 
-			Apples,Pears,Oranges,Bananas,Plums
-			John,8,4,6,5
-			Jane,3,4,2,3
-			Joe,86,76,79,77
-			Janet,3,16,13,15
-			
-		 */
-	
 		// Split the lines
 		var lines = data.split('/n');
 		$.each(lines, function(lineNo, line) {
