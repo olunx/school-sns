@@ -19,24 +19,6 @@
 <script type="text/javascript" src="<%=path%>/content/jq-validate/jquery.validationEngine.js"></script>
 
 <script type="text/javascript">
-//图片选择事件
-function imgselect() {
-	$('#photo').imgAreaSelect( {
-		aspectRatio : '1:1',
-		handles : true,
-		fadeSpeed : 200,
-		x1: 0,
-		y1: 0,
-		x2: 50,
-		y2: 50,
-		onSelectChange: function(img, selection) {
-		    $('#x').val(selection.x1);
-		    $('#y').val(selection.y1);
-		    $('#width').val(selection.width);
-		    $('#height').val(selection.height);    
-		}
-	});
-}
 
 //验证事件
 function validate() {
@@ -71,7 +53,6 @@ $(document).ready(function() {
 		},
 		onComplete: function(file, response){
 			$('#dialogbox').html(response);
-			imgselect();
 			validate();
 		}
 	});

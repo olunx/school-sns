@@ -30,7 +30,7 @@
 			categories: [],
 			labels: {
 				rotation: -20,
-				align: 'centre',
+				align: 'center',
 				style: {
 					font: 'normal 13px Verdana, sans-serif'
 				}
