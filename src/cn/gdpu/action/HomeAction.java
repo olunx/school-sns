@@ -1,8 +1,10 @@
 package cn.gdpu.action;
 
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import net.sf.json.JSONObject;
 import cn.gdpu.service.GoodsTypeService;
@@ -26,6 +28,7 @@ public class HomeAction extends BaseAction {
 	private GoodsTypeService<GoodsType, Integer> goodsTypeService;
 	private TwitterService<Twitter, Integer> twitterService;
 	private Student student;
+	private People people;
 
 	public String home() {
 		//重新设置session对象
@@ -64,6 +67,61 @@ public class HomeAction extends BaseAction {
 			int length = this.twitterService.getEntity(Twitter.class, hql).size();         
 			getRequest().put("twittersize", length);
 		}
+		
+		Set<People> maybeMeet = new HashSet<People>();
+		people = peopleService.getEntity(People.class, user.getId());
+		Set<People> friends = people.getFriends();
+		if (people.getSchool() != null) {
+			if (people.getClasses() != null) {
+				// 推荐班级好友 同一班级的
+				hql = "from People p where p.classes.id ='" + people.getClasses().getId() + "' and p.id <> '" + people.getId()
+						+ "' order by rand()";
+				List<People> cpeos = peopleService.queryForLimit(hql, 0, 5);
+				for (People peo : cpeos) {
+					if(!friends.contains(peo)){
+						maybeMeet.add(peo);
+					}
+				}
+				// 推荐学校好友不同一班级的
+				hql = "from People p where p.school.id ='" + people.getSchool().getId() + "' and p.classes.id <>'"
+						+ people.getClasses().getId() + "' and p.id <> '" + people.getId() + "' order by rand()";
+				List<People> speos = peopleService.queryForLimit(hql, 0, 5);
+				for (People peo : speos) {
+					if(!friends.contains(peo)){
+						maybeMeet.add(peo);
+					}
+				}
+			} else { // 推荐学校好友
+				hql = "from People p where p.school.id ='" + people.getSchool().getId() + "' and p.id <> '" + people.getId()
+						+ "' order by rand()";
+				List<People> speos = peopleService.queryForLimit(hql, 0, 5);
+				for (People peo : speos) {
+					if(!friends.contains(peo)){
+						maybeMeet.add(peo);
+					}
+				}
+
+			}
+			// 推荐好友不同一学校的
+			hql = "from People p where p.school.id <>'" + people.getSchool().getId() + "' and p.id <> '" + people.getId()
+					+ "' order by rand()";
+			List<People> peos = peopleService.queryForLimit(hql, 0, 5);
+			for (People peo : peos) {
+				if(!friends.contains(peo)){
+					maybeMeet.add(peo);
+				}
+			}
+		} else {
+			hql = "from People p where p.id <> '" + people.getId() + "' order by rand()"; // 推荐好友
+			List<People> peos = peopleService.queryForLimit(hql, 0, 5);
+			for (People peo : peos) {
+				if(!friends.contains(peo)){
+					maybeMeet.add(peo);
+				}
+			}
+		}
+		this.getSession().put("maybeMeet", maybeMeet);
+		
 		return "home";
 	}
 	
@@ -127,6 +185,14 @@ public class HomeAction extends BaseAction {
 
 	public void setGoodsTypeService(GoodsTypeService<GoodsType, Integer> goodsTypeService) {
 		this.goodsTypeService = goodsTypeService;
+	}
+
+	public People getPeople() {
+		return people;
+	}
+
+	public void setPeople(People people) {
+		this.people = people;
 	}
 
 }
