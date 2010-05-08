@@ -22,7 +22,7 @@ img{ border:none;}
 #loading{ background:#FFF; width:200px; margin-left:-100px; margin-top:-25px; height:50px; border:1px solid #ccc; display:block; text-align:center;  }
 #loading img{ vertical-align:middle;}
 /* 头部*/
-#header{width:800px;height:85px;margin:0 auto;color:#FFF; background:url(logoarrow.gif) no-repeat 40px bottom;}
+#header{ position:relative; width:800px;height:85px;margin:0 auto;color:#FFF; background:url(logoarrow.gif) no-repeat 40px bottom;}
 #header .logo{float:left;padding:15px 0 0 10px;margin:0;}
 #header .logo img{margin:0;}
 .menuk{float:right;background:#FFF; width:400px; margin:20px 0 0 0; padding:0px 10px; color:#999;}
@@ -36,6 +36,18 @@ img{ border:none;}
 .menu li.menu_hover dl a{ padding:0;}
 .nav_account{float:right;padding:7px 0;}
 .nav_account a{}
+#themechanger{ position:absolute; right:0; bottom:10px;}
+#themechanger li{ float:right; margin-left:7px;}
+#themechanger a{ border:1px solid #000; text-indent:-9999px; display:block; width:13px; height:13px; overflow:hidden;}
+#themechanger .green{ background:#94AA1E;}
+#themechanger .blue{ background:#39C5D6;}
+#themechanger .gray{ background:#BFBFBF;}
+#themechanger .beige{ background:#EBD15C;}
+#themechanger .pink{ background:#DC7A49;}
+#themechanger .red{ background:#E12A20;}
+#themechanger .purple{ background:#8F6594;}
+
+
 /*.nav_account a:link,.nav_account a:visited{color:#666;}
 .nav_account a:hover{color:#fff;}*/
 .loginName{color:#CDEB8B;font-size:13px;padding-left:10px;padding-right:5px;}

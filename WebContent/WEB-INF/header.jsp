@@ -23,7 +23,6 @@
 
 <!-- 常用库，确保这段代码在最下方 -->
 <script type="text/javascript" src="<%=path%>/content/js/common.js"></script>
-
 </head>
 <body>
 
@@ -61,7 +60,23 @@
 </c:choose></div>
 <div id="dialog"></div>
 </div>
-
+<div id="themechanger">
+<ul>
+<li><a href="#" class="blue">蓝色</a></li>
+<li><a href="#" class="green">绿色</a></li>
+<li><a href="#" class="gray">灰色</a></li>
+<li><a href="#" class="beige">悲歌</a></li>
+<li><a href="#" class="pink">粉红色</a></li>
+<li><a href="#" class="red">红色</a></li>
+<li><a href="#" class="purple">紫色</a></li>
+</ul>
+<script type="text/javascript">
+	$("#themechanger a").click(function(){
+		var themename = $(this).attr("class");
+		$("#themecss").attr("href","<%=path%>/content/images/theme/"+themename+"/theme.css");
+	});
+</script>
+</div>
 </div>
 
 <div id="container">
