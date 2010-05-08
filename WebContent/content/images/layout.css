@@ -16,7 +16,11 @@ img{ border:none;}
 .desc{ color:#666;}
 .avatar img{width:50px; height:50px; background:#FFF; padding:2px; border:1px solid #CCC;}
 
+.fixed-top /* 头部固定 */{position:fixed;bottom:auto;top:0px; left:50px; z-index:10;}
+* html .fixed-top /* IE6 头部固定 */{position:absolute; left:50px; z-index:10; bottom:auto;top:expression(eval(document.documentElement.scrollTop));}
 
+#loading{ background:#FFF; width:200px; height:50px; display:block; text-align:center;  }
+#loading img{ vertical-align:middle;}
 /* 头部*/
 #header{width:800px;height:85px;margin:0 auto;color:#FFF; background:url(logoarrow.gif) no-repeat 40px bottom;}
 #header .logo{float:left;padding:15px 0 0 10px;margin:0;}
