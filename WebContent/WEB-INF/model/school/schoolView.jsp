@@ -15,7 +15,7 @@ $(function(){
 <div class="school form">
 <div class="school_pic">
 <c:if test="${!empty school.avatar.minFileUrl}">
-	<img src="<%=path %>/${school.avatar.minFileUrl}" width="80"/>
+	<img src="<%=path%>${school.avatar.minFileUrl}" width="80"/>
 </c:if>
 </div>
 <h3>${school.name}</h3>
