@@ -27,7 +27,6 @@
 				<a onclick="ajaxload(this);return false;" href="<%=path%>/goods/viewGoods?id=${goods.id }">${goods.name} <span class="money">（${goods.value}元）</span></a>
 				</p>
 				<p class="desc">${fn:substring(fn:replace(goods.content,"<","&lt;"),0,50)}</p>
-				
 				<div class="ioperate">
 				 状态：${goods.state == 1? "可交换" :"正常" } | ${my:formatDate(goods.airTime) }
 				</div>

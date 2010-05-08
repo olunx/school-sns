@@ -18,19 +18,19 @@ img{ border:none;}
 
 
 /* 头部*/
-#header{width:800px;height:70px;margin:0 auto;color:#FFF; background:url(logoarrow.gif) no-repeat 40px bottom;}
+#header{width:800px;height:85px;margin:0 auto;color:#FFF; background:url(logoarrow.gif) no-repeat 40px bottom;}
 #header .logo{float:left;padding:15px 0 0 10px;margin:0;}
 #header .logo img{margin:0;}
-.menuk{float:right;background:#FFF; width:400px; margin:18px 0 0 0; padding:0px 10px; color:#999;}
+.menuk{float:right;background:#FFF; width:400px; margin:20px 0 0 0; padding:0px 10px; color:#999;}
 .menu li{float:left;position:relative;}
-.menu li a{ display:block; margin-right:8px; padding:5px 0;}
+.menu li a{ display:block; margin-right:8px; padding:7px 0;}
 /*.menu li a:link,.menu li a:visited{ color:#FFF;}*/
 .menu li dl{position:absolute; left:0; top:24px;width:100px;display:none;}
 .menu li dt{padding-bottom:5px; }
 .menu li.menu_hover{background:#eaeaea;}
 .menu li.menu_hover dl{display:block; background:#eaeaea; padding:5px 0 0 15px;}
 .menu li.menu_hover dl a{ padding:0;}
-.nav_account{float:right;padding:5px 0;}
+.nav_account{float:right;padding:7px 0;}
 .nav_account a{}
 /*.nav_account a:link,.nav_account a:visited{color:#666;}
 .nav_account a:hover{color:#fff;}*/
