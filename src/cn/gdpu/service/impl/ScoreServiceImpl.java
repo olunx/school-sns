@@ -22,4 +22,22 @@ public class ScoreServiceImpl extends BaseServiceImpl<Score, Integer, ScoreDaoIm
 		double result = b.divide(one, 1, BigDecimal.ROUND_HALF_UP).doubleValue() ;
 		return result;
 	}
+	
+	public double getMaxSubject(String subject) {
+		String hql = "from Score s where s.subject ='" + subject + "' order by s.marks desc";
+		List<Score> list = this.queryForLimit(hql, 0, 1);
+		if(list.size() != 0){
+			return list.get(0).getMarks();
+		}
+		return -1;       
+	}
+	
+	public double getMinSubject(String subject) {
+		String hql = "from Score s where s.subject ='" + subject + "' order by s.marks asc";
+		List<Score> list = this.queryForLimit(hql, 0, 1);
+		if(list.size() != 0){
+			return list.get(0).getMarks();
+		}
+		return -1;       
+	}
 }

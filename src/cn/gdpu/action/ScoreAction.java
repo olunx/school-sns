@@ -5,7 +5,6 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import cn.gdpu.util.Log;
 import cn.gdpu.util.PageBean;
@@ -16,7 +15,6 @@ import cn.gdpu.service.FetionService;
 import cn.gdpu.service.ScoreService;
 import cn.gdpu.service.StudentService;
 import cn.gdpu.util.excel.StudentExcel;
-import cn.gdpu.vo.People;
 import cn.gdpu.vo.Score;
 import cn.gdpu.vo.Student;
 
@@ -61,35 +59,35 @@ public class ScoreAction extends BaseAction {
 			String hql = "from Score s where s.student.sno ='" + sno + "'";
 			List<Score> scores = scoreService.getEntity(Score.class, hql);
 			String data = "";
+			String data1 = "";
+			String data2 = "";
+			String data3 = "";
+//			String data4 = "";
+//			String data5 = "";
 			if(scores.size() == 0){
 				scores = null;	
 			}
 			else{
 				for(Iterator<Score> iter= scores.iterator(); iter.hasNext();){
 					Score s = iter.next();
-					data += s.getSubject();
-					if (iter.hasNext()) {
-						data += ",";
-					}
-				}
-				data += "/n";
-				for(Iterator<Score> iter= scores.iterator(); iter.hasNext();){
-					Score s = iter.next();
-					data += s.getMarks();
-					if (iter.hasNext()) {
-						data += ",";
-					}
-				}
-				data += "/n";
-				for(Iterator<Score> iter= scores.iterator(); iter.hasNext();){
-					Score s = iter.next();
+					data1 += s.getSubject();
+					data2 += s.getMarks();
 					double avg = scoreService.getAvgSubject(s.getSubject());
-					data += avg;
+					data3 += avg;
+//					double max = scoreService.getMaxSubject(s.getSubject());
+//					data4 += max;
+//					double min = scoreService.getMinSubject(s.getSubject());
+//					data5 += min;
 					if (iter.hasNext()) {
-						data += ",";
+						data1 += ",";
+						data2 += ",";
+						data3 += ",";
+//						data4 += ",";
+//						data5 += ",";
 					}
 				}
-				System.out.println(data);
+				data =data1 + "/n" + data2 + "/n" + data3;
+//				data =data1 + "/n" + data2 + "/n" + data3 + "/n" + data4 + "/n" + data5;
 				getRequest().put("data", data);
 				getRequest().put("scores", scores);
 			}

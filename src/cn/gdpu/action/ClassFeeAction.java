@@ -149,32 +149,25 @@ public class ClassFeeAction extends BaseAction {
 						pageBean.setList(null);
 					
 					String data = "";
+					String data1 = "";
+					String data2 = "";
+					String data3 = "";
+					double feecount = 0;
 					List<ClassFee> classfees = classfeeService.getAllEntity(ClassFee.class);
 					for(Iterator<ClassFee> iter= classfees.iterator(); iter.hasNext();){
 						ClassFee cf = iter.next();
-						data += new SimpleDateFormat("MM/dd").format(cf.getTime());
-						if (iter.hasNext()) {
-							data += ",";
-						}
-					}
-					data += "/n";
-					double feecount = 0;
-					for(Iterator<ClassFee> iter= classfees.iterator(); iter.hasNext();){
-						ClassFee cf = iter.next();
+						data1 += new SimpleDateFormat("MM/dd").format(cf.getTime());
 						feecount += cf.getFee();
-						data += feecount;
+						data2 += feecount;
+						data3 += cf.getFee();
 						if (iter.hasNext()) {
-							data += ",";
+							data1 += ",";
+							data2 += ",";
+							data3 += ",";
 						}
 					}
-					data += "/n";
-					for(Iterator<ClassFee> iter= classfees.iterator(); iter.hasNext();){
-						ClassFee cf = iter.next();
-						data += cf.getFee();
-						if (iter.hasNext()) {
-							data += ",";
-						}
-					}
+					data = data1 + "/n" + data2 + "/n" + data3;
+					
 					getRequest().put("data", data);
  					this.getRequest().put("totalMoney", classfeeService.getTotalMoney());
 					return super.list();
