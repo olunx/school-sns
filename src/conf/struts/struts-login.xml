@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts 
+	PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.1.dtd" >
+<struts>
+	<!-- 全局权限验证拦截器 -->
+	<package name="default" extends="struts-default" >
+		<interceptors>
+			<interceptor-stack name="customInterceptor">
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+				<interceptor-ref name="authInterceptor"></interceptor-ref>
+			</interceptor-stack>
+			<interceptor name="authInterceptor" class="cn.gdpu.interceptor.AuthInterceptor"></interceptor>
+		</interceptors>
+		<default-interceptor-ref name="customInterceptor"></default-interceptor-ref>
+		<global-results>
+			<result name="login" type="redirect">/</result>
+			<result name="cookieauth" type="redirectAction">
+				<param name="actionName">cookieAuthLogin</param>
+				<param name="namespace">/</param>
+			</result>
+		</global-results>
+	</package>
+
+	<!-- 安装 -->
+	<package name="install" extends="struts-default" namespace="/">
+		<global-results>
+			<result name="success">/login.jsp</result>
+		</global-results>
+		<action name="install" class="cn.gdpu.action.InstallAction"></action>
+	</package>
+	
+	<!-- 登录 -->
+	<package name="login" extends="struts-default" namespace="/">
+		<global-results>
+			<result name="success" type="redirectAction">home</result>
+			<result name="redirect" type="redirect">${referUrl}</result>
+			<result name="index">/login.jsp</result>
+			<result name="goLogin">/WEB-INF/model/dialog/login.jsp</result>
+		</global-results>
+		<action name="*Login" class="cn.gdpu.action.LoginAction" method="{1}">
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+		<action name="login" class="cn.gdpu.action.LoginAction" method="login">
+		</action>
+		<action name="logout" class="cn.gdpu.action.LoginAction" method="logout">
+		</action>
+	</package>
+
+	<!-- 个人首页的Action -->
+	<package name="home" extends="default" namespace="/">
+		<global-results>
+			<result name="home">/WEB-INF/index.jsp</result>
+			<result name="center">/WEB-INF/center.jsp</result>
+		</global-results>
+		<action name="*" class="cn.gdpu.action.HomeAction" method="{1}"></action>
+	</package>	
+	
+	<!-- 个人微博首页 -->
+	<package name="t" extends="default" namespace="/t">
+		<global-results>
+			<result name="success">/WEB-INF/model/twitter/twitterView.jsp</result>
+		</global-results>
+		<action name="*" class="cn.gdpu.action.TAction" ></action>
+	</package>
+	
+	<!-- 好友动态 -->
+	<package name="feed" extends="default" namespace="/feed">
+		<global-results>
+			<result name="list" type="redirect">listFeed?page=${page}</result>
+			<result name="index">/WEB-INF/model/dialog/feedList.jsp</result>
+		</global-results>
+		<action name="*Feed" class="cn.gdpu.action.FeedAction" method="{1}"></action>
+	</package>
+	
+	<!-- 地址返回头像 -->
+	<package name="avatar" extends="struts-default" namespace="/avatar">
+		<global-results>
+			<result name="index">/WEB-INF/model/image/avatar.jsp</result>
+		</global-results>
+		<action name="*" class="cn.gdpu.action.AvatarAction"></action>
+	</package>
+	
+	<!-- 广场的Action -->
+	<package name="wall" extends="default" namespace="/wall">
+		<global-results>
+			<result name="list" type="redirect">listWall</result>
+			<result name="index">/WEB-INF/model/wall/wallList.jsp</result>
+		</global-results>
+		<action name="*Wall" class="cn.gdpu.action.WallAction" method="{1}"></action>
+	</package>
+</struts>    

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE validators PUBLIC 
+          "-//OpenSymphony Group//XWork Validator 1.0//EN" 
+          "http://www.opensymphony.com/xwork/xwork-validator-1.0.dtd" >
+<validators>
+	<field name="group.name">
+		<field-validator type="requiredstring">
+			<param name="trim">true</param>
+			<message>名称不能为空</message>		
+		</field-validator>
+	</field>
+	<field name="group.intro">
+		<field-validator type="requiredstring">
+			<param name="trim">true</param>
+			<message>简介不能为空</message>
+		</field-validator>	
+	</field>
+	<field name="group.works">
+		<field-validator type="requiredstring">
+			<param name="trim">true</param>
+			<message>作品不能为空</message>
+		</field-validator>	
+	</field>
+	<field name="group.type">
+		<field-validator type="requiredstring">
+			<param name="trim">true</param>
+			<message>类型不能为空</message>
+		</field-validator>	
+	</field>
+</validators>
