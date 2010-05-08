@@ -1,5 +1,6 @@
 package cn.gdpu.action;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -79,7 +80,18 @@ public class LoginAction extends BaseAction {
 							}
 						}
 					}
+					if(people.getLastlogin()!= null ){		//根据登陆增加活跃度，每日只计算一次
+						String toDay = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+						String lastLogin = new SimpleDateFormat("yyyy-MM-dd").format(people.getLastlogin());
+						if(!lastLogin.equals(toDay)){
+							people.setActivity(people.getActivity() + 1);
+						}
+					}
+					else{
+						people.setActivity(1);
+					}
 					people.setLastlogin(new Date());
+					System.out.println("------------------" + people.getActivity());
 					peopleService.updateEntity(people);
 					
 					this.getSession().put("isAccess", "true");
