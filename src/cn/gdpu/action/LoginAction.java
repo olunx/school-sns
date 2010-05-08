@@ -1,10 +1,6 @@
 package cn.gdpu.action;
 
 import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -83,61 +79,6 @@ public class LoginAction extends BaseAction {
 							}
 						}
 					}
-
-					Set<People> maybeMeet = new HashSet<People>();
-					Set<People> friends = people.getFriends();
-					String hql = "";
-					if (people.getSchool() != null) {
-						if (people.getClasses() != null) {
-							// 推荐班级好友 同一班级的
-							hql = "from People p where p.classes.id ='" + people.getClasses().getId() + "' and p.id <> '" + people.getId()
-									+ "' order by rand()";
-							List<People> cpeos = peopleService.queryForLimit(hql, 0, 5);
-							for (People peo : cpeos) {
-								if(!friends.contains(peo)){
-									maybeMeet.add(peo);
-								}
-							}
-							// 推荐学校好友不同一班级的
-							hql = "from People p where p.school.id ='" + people.getSchool().getId() + "' and p.classes.id <>'"
-									+ people.getClasses().getId() + "' and p.id <> '" + people.getId() + "' order by rand()";
-							List<People> speos = peopleService.queryForLimit(hql, 0, 5);
-							for (People peo : speos) {
-								if(!friends.contains(peo)){
-									maybeMeet.add(peo);
-								}
-							}
-						} else { // 推荐学校好友
-							hql = "from People p where p.school.id ='" + people.getSchool().getId() + "' and p.id <> '" + people.getId()
-									+ "' order by rand()";
-							List<People> speos = peopleService.queryForLimit(hql, 0, 5);
-							for (People peo : speos) {
-								if(!friends.contains(peo)){
-									maybeMeet.add(peo);
-								}
-							}
-
-						}
-						// 推荐好友不同一学校的
-						hql = "from People p where p.school.id <>'" + people.getSchool().getId() + "' and p.id <> '" + people.getId()
-								+ "' order by rand()";
-						List<People> peos = peopleService.queryForLimit(hql, 0, 5);
-						for (People peo : peos) {
-							if(!friends.contains(peo)){
-								maybeMeet.add(peo);
-							}
-						}
-					} else {
-						hql = "from People p where p.id <> '" + people.getId() + "' order by rand()"; // 推荐好友
-						List<People> peos = peopleService.queryForLimit(hql, 0, 5);
-						for (People peo : peos) {
-							if(!friends.contains(peo)){
-								maybeMeet.add(peo);
-							}
-						}
-					}
-					this.getSession().put("maybeMeet", maybeMeet);
-					
 					people.setLastlogin(new Date());
 					peopleService.updateEntity(people);
 					

@@ -17,7 +17,7 @@
 				chart: {
 			renderTo: 'columnchart',
 			width:570,
-			margin: [60, 10, 50, 30],
+			margin: [90, 10, 50, 30],
 			defaultSeriesType: 'column'
 		},
 		title: {
@@ -50,7 +50,7 @@
 				left: 'auto',
 				bottom: 'auto',
 				right: '10px',
-				top: '10px'
+				top: '35px'
 			}
 		},
 		tooltip: {
