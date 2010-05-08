@@ -14,6 +14,7 @@ import cn.gdpu.util.excel.StudentExcel;
 import cn.gdpu.vo.Classes;
 import cn.gdpu.vo.Group;
 import cn.gdpu.vo.Image;
+import cn.gdpu.vo.Institute;
 import cn.gdpu.vo.People;
 import cn.gdpu.vo.School;
 import cn.gdpu.vo.Student;
@@ -51,6 +52,7 @@ public class PeopleAction extends BaseAction {
 		if (user != null) {
 			user = peopleService.getEntity(People.class, user.getId());
 			Classes classes = user.getClasses();
+			Institute institute = user.getInstitute();
 			School school = user.getSchool();
 			Log.init(getClass()).info("classes" + classes);
 			Log.init(getClass()).info("school" + school);
@@ -63,7 +65,7 @@ public class PeopleAction extends BaseAction {
 				Log.init(getClass()).info("peopleList" + peopleList);
 			}
 
-			// peopleList.remove(user);
+			// 删除自己，添加学校学院班级的值
 			Log.init(getClass()).info("remove");
 			int length = peopleList.size();
 			String username = user.getUsername();
@@ -77,6 +79,7 @@ public class PeopleAction extends BaseAction {
 					length = peopleList.size();
 				}else {
 					p.setClasses(classes);
+					p.setInstitute(institute);
 					p.setSchool(school);
 					peopleService.addEntity(p);
 				}

@@ -16,7 +16,7 @@
 		没有任何班级成员！
 	</c:when>
 	<c:otherwise>
-		<c:if test="${fn:length(pageBean.list) < 10}">
+		<c:if test="${fn:length(pageBean.list) <= 1}">
 			<a rel="ajaxupload" lang="{upload:'<%=path %>/people/peopleUpload',complete:'<%=path %>/people/classesPeople?id=1',allowtype:/^(xls)$/i}" href="javascript:void()">上传学生信息</a>
 		</c:if>
 		<c:forEach items="${pageBean.list}" var="people">
@@ -34,7 +34,7 @@
 				<p class="icontent">
 				<a onclick="ajaxload(this);return false;" href="<%=path%>/t/${people.username }">姓名：${people.name} <span class="money">（${people.school.name}）</span></a>
 				</p>
-				<p class="desc">学院：${people.institute.name} | 班级：${people.classes.name} | 宿舍：${people.dorm} | 手机号码：${people.phoneNo}</p>
+				<p class="desc">学院：${people.institute.name} | 班级：${people.classes.name} <br/> 宿舍：${people.dorm} | 手机号码：${people.phoneNo}</p>
 				
 				<div class="ioperate">
 				 状态：${people.status} | 上次登录：
