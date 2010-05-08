@@ -28,7 +28,7 @@
 <body>
 
 <div id="header">
-<div class="logo"><a href="<%=path%>/home"><img src="<%=path%>/content/images/logo.gif"/></a></div>
+<div class="logo"><a href="<%=path%>/home"><img src="<%=path%>/content/images/logo.png"/></a></div>
 <div class="menuk">
 <ul class="menu">
 	<li><a onclick="ajaxload(this);return false;" href="<%=path%>/center">我的大厅</a></li>
