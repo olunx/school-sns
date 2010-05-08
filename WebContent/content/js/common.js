@@ -47,13 +47,18 @@ function loadContentComplete(content,divid){
 //打开loading
 function onLoading(target){
 	//$('#content').html("");
-    $(target).prepend('<span id="loading"><img src="./content/images/loading.gif" /> ::>_<:: 努力处理中......</span>');
-    $('#loading').show();
+	if ($("#loading").size() < 1) {
+		$(document.body).prepend('<span id="loading" class="fixed-top"><img src="./content/images/loading.gif" />加载中，请稍等...</span>');
+		$('#loading').css('opacity', 0.8);
+	}
+    $('#loading').slideDown(100);
 }
 
 //关闭loading
 function offLoading(){
-    $('#loading').remove();
+	setTimeout(function(){$('#loading').slideUp(500);},1000);
+	
+    //$('#loading').remove();
 }
 
 //提交表单数据
