@@ -99,18 +99,25 @@ public class PeopleAction extends BaseAction {
 		if (friend != null && me != null) {
 			me = peopleService.getEntity(People.class, me.getId());
 			Set<People> myFriends = me.getFriends();
+			Set<People> friendFollowers = friend.getFollower();
 
 			if (myFriends.contains(friend)) {// 如果是朋友就删除
 				myFriends.remove(friend);
+				if (friendFollowers.contains(me)) friendFollowers.remove(me);
 				FeedAction.init().add(me, friend, FeedAction.DEL_FRIEND);
 			} else {
 				myFriends.add(friend);
+				if (!friendFollowers.contains(me)) friendFollowers.add(me);
 				FeedAction.init().add(me, friend, FeedAction.ADD_FRIEND);
 			}
+			
+			
 
 			me.setFriends(myFriends);
+			friend.setFollower(friendFollowers);
 			Log.init(getClass()).debug("myFriends:" + myFriends);
 			peopleService.updateEntity(me);
+			peopleService.updateEntity(friend);
 
 		}
 		return "list";
@@ -272,9 +279,13 @@ public class PeopleAction extends BaseAction {
 				People people;
 				if (id == 0) {
 					people = (People) author;
+					people = peopleService.getEntity(People.class, ((People)author).getId());
 				} else {
 					people = peopleService.getEntity(People.class, id);
 				}
+					
+				this.getRequest().put("friends", people.getFriends());
+				
 				String hql = "select friends from People p where p.id = '" + people.getId() + "' order by p.activity DESC";
 				this.pageBean = this.peopleService.queryForPage(hql, 30, page);
 				if (pageBean.getList().isEmpty())
@@ -292,10 +303,14 @@ public class PeopleAction extends BaseAction {
 				People people;
 				if (id == 0) {
 					people = (People) author;
+					people = peopleService.getEntity(People.class, ((People)author).getId());
 				} else {
 					people = peopleService.getEntity(People.class, id);
 				}
+				this.getRequest().put("friends", people.getFriends());
+				
 				String hql = "select follower from People p where p.id = '" + people.getId() + "' order by p.activity DESC";
+				//String hql = "from People p where (from People me where me.id = "+people.getId()+") in elements(p.friends)";
 				this.pageBean = this.peopleService.queryForPage(hql, 30, page);
 				if (pageBean.getList().isEmpty())
 					pageBean.setList(null);

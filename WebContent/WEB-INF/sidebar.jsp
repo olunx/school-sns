@@ -20,7 +20,7 @@
 		<dl class="myinfo">
 			<dt><a onclick="ajaxload(this);return false;" href="<%=path %>/t/${student.username}">我的广播</a></dt>
 			<dd><a onclick="ajaxload(this);return false;" href="<%=path %>/t/${student.username}">${twittersize}</a></dd>
-			<dt><a onclick="ajaxload(this);return false;" href="<%=path %>/people/listFollowerPeople">我的粉丝</a></dt>
+			<dt><a onclick="ajaxload(this);return false;" href="<%=path %>/people/listFollowerPeople">我的听众</a></dt>
 			<dd><a onclick="ajaxload(this);return false;" href="<%=path %>/people/listFollowerPeople">${fn:length(student.follower)}</a></dd>
 		</dl>
 		<div class="myotherinfo">

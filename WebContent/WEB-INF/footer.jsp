@@ -7,6 +7,8 @@
   <div id="footer">
     <p>&copy; 2010 3C-Team</p>
   </div>
+  
+<script type="text/javascript" src="<%=path%>/content/js/jquery.pngFix.js"></script>
 
 <script type="text/javascript">
 	$(".menu li[rel=submenu]").mouseover(function(){
@@ -15,11 +17,11 @@
 	$(".menu li[rel=submenu]").mouseout(function(){
 		$(this).removeClass("menu_hover");
 	});	
+    $(".logo").pngFix(); 
 </script>
 
 
 
-<!-- AjaxUpload库 -->
 <!-- JQuery 上传插件 -->
 <script type="text/javascript" src="<%=path%>/content/jq-ajaxupload/ajaxupload.js"></script>
 
