@@ -9,7 +9,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>School Social</title>
 <link type="text/css" rel="stylesheet" href="<%=path%>/content/images/layout.css" />
-<link id="themecss" type="text/css" rel="stylesheet" href="<%=path%>/content/images/blue/theme_blue.css" />
+<link id="themecss" type="text/css" rel="stylesheet" href="<%=path%>/content/images/green/theme.css" />
 <link type="text/css" rel="stylesheet" href="<%=path%>/content/jq-ui/jquery-ui-1.8.custom.css" />
 
 <!-- JQuery库 -->
