@@ -9,17 +9,18 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>School Social</title>
 <link type="text/css" rel="stylesheet" href="<%=path%>/content/images/layout.css" />
-<link id="themecss" type="text/css" rel="stylesheet" href="<%=path%>/content/images/theme/beige/theme.css" />
+<link id="themecss" type="text/css" rel="stylesheet" href="" />
+<!-- <%=path%>/content/images/theme/beige/theme.css -->
 <link type="text/css" rel="stylesheet" href="<%=path%>/content/jq-ui/jquery-ui-1.8.custom.css" />
 
 <!-- JQuery库 -->
-<!-- <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script> -->
-<script type="text/javascript" src="<%=path%>/content/js/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
+<!-- <script type="text/javascript" src="<%=path%>/content/js/jquery-1.4.2.min.js"></script> -->
 
 <script type="text/javascript" src="<%=path %>/content/js/jquery.doubleSelect.min.js"></script>
 <!-- JQuery UI 插件 -->
-<!-- <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>-->
-<script type="text/javascript" src="<%=path%>/content/jq-ui/jquery-ui-1.8.custom.min.js" ></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script><!-- 
+<script type="text/javascript" src="<%=path%>/content/jq-ui/jquery-ui-1.8.custom.min.js" ></script>-->
 
 <!-- 常用库，确保这段代码在最下方 -->
 <script type="text/javascript" src="<%=path%>/content/js/common.js"></script>
@@ -28,6 +29,51 @@
 
 <div id="header">
 <div class="logo"><a href="<%=path%>/home"><img src="<%=path%>/content/images/logo.png"/></a></div>
+<div id="themechanger">
+<ul>
+<li class="blue" title="blue"><a href="#">蓝色</a></li>
+<li class="green" title="green"><a href="#">绿色</a></li>
+<li class="gray" title="gray"><a href="#">灰色</a></li>
+<li class="beige" title="beige"><a href="#">悲歌</a></li>
+<li class="pink" title="pink"><a href="#">粉红色</a></li>
+<li class="red" title="red"><a href="#">红色</a></li>
+<li class="purple" title="purple"><a href="#">紫色</a></li>
+</ul>
+<script type="text/javascript">
+	//检查cookie，换主题
+	var cookie= new $Cookie();
+	var oldThemeName = cookie.get('iTheme');
+	if (oldThemeName == null) oldThemeName="blue";
+	changeCss(oldThemeName);
+	
+	$("#themechanger li").click(function(){
+		var themename = $(this).attr("title");
+		changeCss(themename);
+		var cookie= new $Cookie();
+		cookie.set("iTheme",themename);
+	});
+
+	function changeCss(themename){
+		$("#themecss").attr("href","<%=path%>/content/images/theme/"+themename+"/theme.css");
+		$("#themechanger ."+themename).addClass("current").siblings().removeClass("current");
+	}
+
+	function $Cookie(){
+		this.set=function(name,value){
+			var exdate=new Date();
+			exdate.setDate(exdate.getDate()+30);
+			document.cookie=name+"="+value+";expires="+exdate.toGMTString(); 
+		};
+		this.get=function(name){
+			var cookies=document.cookie.split("; ");
+			for(var i=0;i<cookies.length;i++){
+				var s=cookies[i].split("=");
+				if(s[0]==name)return s[1];
+			}
+		}
+	}
+</script>
+</div>
 <div class="menuk">
 <ul class="menu">
 	<li><a onclick="ajaxload(this);return false;" href="<%=path%>/center">我的大厅</a></li>
@@ -59,23 +105,6 @@
 
 </c:choose></div>
 <div id="dialog"></div>
-</div>
-<div id="themechanger">
-<ul>
-<li><a href="#" class="blue">蓝色</a></li>
-<li><a href="#" class="green">绿色</a></li>
-<li><a href="#" class="gray">灰色</a></li>
-<li><a href="#" class="beige">悲歌</a></li>
-<li><a href="#" class="pink">粉红色</a></li>
-<li><a href="#" class="red">红色</a></li>
-<li><a href="#" class="purple">紫色</a></li>
-</ul>
-<script type="text/javascript">
-	$("#themechanger a").click(function(){
-		var themename = $(this).attr("class");
-		$("#themecss").attr("href","<%=path%>/content/images/theme/"+themename+"/theme.css");
-	});
-</script>
 </div>
 </div>
 
