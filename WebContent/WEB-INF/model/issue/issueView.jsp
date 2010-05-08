@@ -63,7 +63,7 @@
 	</c:when>
 	<c:otherwise>
 			<c:forEach items="${issue.reply}" var="reply">
-			<div class="list">
+			<div class="list clearfix">
 				<div class="avatar">
 					<img src="<%=path %>/avatar/${reply.author.id}" />
 				</div>
@@ -90,7 +90,6 @@
 						</c:if>
 					</div>
 				</div>
-				<div class="clear"></div>
 			</div>
 			</c:forEach>
 	</c:otherwise>

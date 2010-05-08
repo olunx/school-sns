@@ -8,7 +8,7 @@
 %>
 
 <div class="form">
-<ul id="classnav" class="buttons">
+<ul id="classnav" class="buttons nav">
 	<li><a onclick="ajaxload(this);return false;" href="<%=path%>/classes/viewClasses?id=${id}">班级首页</a></li>
 	<li><a onclick="ajaxload(this);return false;" rev="#class" href="<%=path%>/classfee/listClassfee">查看班费</a></li>
 	<li><a onclick="ajaxload(this);return false;" rev="#class" href="<%=path%>/course/listCourse">课程表</a></li>
@@ -43,7 +43,7 @@
 <c:choose>
 <c:when test="${applicant!=null}">
 	<div>
-		申请入班级的人：<br />
+		申请入班级的人<br />
 		<c:forEach items="${applicant}" var="people">
 			<a onclick="ajaxload(this);return false;" href="<%=path%>/student/viewStudent?id=${people.id }">${people.name}</a>申请加入班级,
 			<a onclick="ajaxload(this);return false;" href="<%=path%>/classes/auditClasses?id=${people.id }&audit=1">通过申请</a>，
@@ -54,7 +54,7 @@
 </c:when>
 </c:choose>
 <div>
-	<h2>班级留言：</h2>
+	<h2>班级留言</h2>
 	<c:choose>
 	<c:when test="${empty classes.replys}">
 		<a onclick="ajaxload(this);return false;" href="<%=path %>/classes/goReplyClasses?id=${classes.id}&rid=-1">还没有留言哦！我来抢沙发^o^</a> 
@@ -87,13 +87,21 @@
 		</div>
 		</c:forEach>
 		</div>
-		<a onclick="ajaxload(this);return false;" href="<%=path %>/classes/goReplyClasses?id=${classes.id}&rid=-1">我也来说几句</a> 
+		<div class="class_reply">
+			<h2>留言</h2>
+			<form onSubmit="post(this);return false;" action="<%=path%>/classes/replyClasses" method="post">
+				<textarea name="reply.content" id="demo" rows="4" cols="50"></textarea>
+				<p><input type="submit" value="发表留言" /> <input type="reset" value="重置" /></p>
+				<input type="hidden" name="id" value="${id}" />
+				<input type="hidden" name="rid" value="-1" />
+			</form>
+		</div>
 	</c:otherwise>
 </c:choose>
 </div>
 
 <!-- 班级的Feed -->
-<h2>最新动态：</h2>
+<h2>最新动态</h2>
 <div id="feed" class="feed"></div>
 
 	<div id="class_sidebar" style="display: block">

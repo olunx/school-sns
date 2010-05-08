@@ -1,26 +1,9 @@
 ﻿@charset utf-8;
 /*全局*/
 *{ padding:0; margin:0;}
-.clear{
-	visibility: hidden;
-	display: block;
-	font-size: 0;
-	content: " ";
-	clear: both;
-	height: 0;
-}
-.clearfix:after
-{
-content:".";
-display:block;
-height:0;
-clear:both;
-visibility:hidden;
-}
-.clearfix
-{
-display:inline-block;
-}
+.clear{visibility:hidden;display:block;font-size:0;content:" ";clear:both;height:0;}
+.clearfix:after{content:".";display:block;height:0;clear:both;visibility:hidden;}
+.clearfix{display:inline-block;}
 
 body{ font-family:Arial, Helvetica, sans-serif,"宋体"; font-size:13px; background:#CCC;}
 a:link,a:visited{ color:#2e8ca0; text-decoration:none;}
@@ -31,6 +14,8 @@ ul{ list-style:none;}
 img{ border:none;}
 .textinput{background:#FFF url(input_bg_70.png) repeat-x;}
 .desc{ color:#666;}
+.avatar img{width:50px; height:50px; background:#FFF; padding:2px; border:1px solid #CCC;}
+
 
 /* 头部*/
 #header{width:800px;height:70px;margin:0 auto;color:#FFF; background:url(logoarrow.gif) no-repeat 40px bottom;}
@@ -72,14 +57,29 @@ img{ border:none;}
 .table .ta_right{ text-align:right;}
 /*ul*/
 .ul li{ float:left; margin-left:10px; width:60px; text-align:center; overflow:hidden;}
+
 /*回复样式*/
 .replybtn{ border:1px solid #b9dcff; padding:2px; display:block; color:#666;}
-.reply_editor textarea{ width:426px; height:80px;}
+.reply_editor textarea{ width:438px; height:80px;}
 
 /*微博*/
+#LUI{padding:10px 0;overflow:hidden;}
+#LUI ul{margin:0 auto;overflow:hidden;}
+#LUI .pic{float:left;width:130px;}
+#LUI .pic img{width:120px;height:120px;padding:2px;border:1px solid #D2D2D2;background:#fff;}
+#LUI .detail{float:right;width:430px;}
+#LUI .detail h4{line-height:25px;color:#999;}
+#LUI .detail .report{text-indent:0;}
+#LUI .userName{padding-top:2px;font-family:"MicroSoft YaHei", SimHei;font-size:20px;color:#333;}
+#LUI .link{clear:both;font-family:Tahoma, Arial;font-size:12px;line-height:21px;}
+#LUI .userNums{height:54px;line-height:33px;}
+#LUI .userNums span{margin:0 9px 0 8px;font-size:16px;color:#DEDEDE;}
+#LUI .userNums a strong{margin:0 2px;font-size:16px;}
+#LUI .funBox{height:27px;line-height:27px;}
+#LUI .left{float:left;}
+#LUI .right{float:right;}
 #topic_list .list{ padding:0 0 5px 0; margin:0px 0 10px 0; border-bottom:1px dashed #ccc;overflow:hidden;}
-#topic_list .avatar{ background:#FFF; float:left; padding:2px; border:1px solid #CCC;}
-#topic_list .avatar img{width:50px; height:50px; }
+#topic_list .avatar{ float:left;}
 #topic_list .topic_msg{ float:right; width:508px; padding-left:5px;}
 #topic_list .topic_msg .content{ line-height:24px; font-size:14px;}
 #topic_list .time{ color:#999; float:right;}
@@ -90,10 +90,22 @@ img{ border:none;}
 #topic_list .replytime{ padding-left:5px; color:#999; }
 #topic_list .topic_msg .reply_content{ font-size:13px; margin-left:5px;}
 #topic_list .operate{}
+
 .linedot{ background:url(linedot.gif) center repeat-x; padding:0; margin:0;}
+/*微博页面*/
+#twitter{display:block;padding:5px;}
+#twitter,#twitter a:link,#twitter a:visited{font-size:13px;font-weight:700;color:#2276BB;text-decoration:none;}
+label.error{color:red;}
+#twitter p{padding:10px 0;}
+#input{background:#E7F7F8;padding:5px;}
+#inputarea{background:#fff;border:1px solid #ccc;margin:5px 0;padding:5px;width:538px;height:80px;outline:0;color:#666;-moz-border-radius:5px;-webkit-border-radius:5px;border-radius:5px;font-size:18px;}
+#options{height:50px;}
+#text{float:left;line-height:30px;margin:5px 0;}
+#submit{float:right;margin:5px 0;}
+.inputbtn{background:#E7F7F8;border:1px solid #7DD6FB;width:100px;height:30px;-moz-border-radius:5px;-webkit-border-radius:5px;border-radius:5px;font-size:15px;color:#2276BB;font-weight:700;cursor:pointer;}
 /*Feed*/
 .feed .list{ padding:0 0 3px 0px; margin-bottom:5px; border-bottom:1px dashed #ccc;}
-.feed .avatar{ background:#FFF; float:left; padding:2px; border:1px solid #CCC;}
+.feed .avatar{ float:left;}
 .feed .avatar img{width:30px; height:30px; }
 .feed .topic_msg{ float:right; padding-left:10px; width:520px;}
 .feed .topic_msg .content{ line-height:24px; font-size:14px;}
@@ -127,11 +139,12 @@ img{ border:none;}
 .class_msg_list { border:1px solid #ccc; }
 .class_msg_list .class_msg{border-bottom:1px solid #ccc;padding:5px;}
 .class_msg_list .class_msg .avatar{ float:left;}
-.class_msg_list .class_msg .avatar img{ width:50px; height:50px; padding:5px;}
+.class_msg_list .class_msg .avatar img{ width:50px; height:50px;}
 .class_msg_list .class_msg .msg{ float:right; width:480px;}
 .class_msg_list .class_msg .reply{ background:#e8f3ff; margin:0 20px 0 20px;}
 .class_msg_list .class_msg .reply p{ margin-bottom:5px; border-bottom:2px solid #fff; padding:5px;}
 .class_msg_list .class_msg .operate{ float:right; text-align:right;}
+.class_reply textarea{width:566px;}
 /*问答*/
 .issue_question{ background:#eee; padding:5px; margin-bottom:10px;}
 .issue_question .q_user{ float:right;}
@@ -140,14 +153,14 @@ img{ border:none;}
 .issue_question .money{ color:#e97516;}
 
 .issue_otherans { background:#dff3be; padding:5px; margin-bottom:10px;}
-.issue_otherans .list{ border-bottom:1px dashed #ccc; padding:5px 0;}
+.issue_otherans .list{ border-bottom:1px dashed #ccc; padding:5px 0; width:560px;}
 .issue_otherans .list p{ font-size:14px; line-height:25px;}
 .issue_otherans .avatar { float:left; padding:0 5px 5px 5px;}
 .issue_otherans .avatar img{ width:40px; height:40px;}
 .issue_otherans .time{ float:right;}
 .issue_best{ background:#fef9d3; padding:5px; margin-bottom:10px;}
 /*内页导航链接*/
-.nav {padding-bottom:12px; clear:both;}
+.nav li{ float:left; }
 /*分页*/
 #pagecount{float:right;}
 #pagecount p{float:left;line-height:21px;padding-right:5px;font-size:13px;font-weight:700;color:#295568;}
@@ -214,3 +227,27 @@ font-size:20px;
 .imsg .money{ color:#ff8000;}
 .iname{ color:#999; float:right;}
 .ioperate{text-align:right; color:#ccc;}
+
+/* BUTTONS */
+.buttons{margin-bottom:10px;height:30px;}
+.buttons a,.buttons button{display:block;float:left;margin:0 7px 0 0;background-color:#f5f5f5;border:1px solid #dedede;border-top:1px solid #eee;border-left:1px solid #eee;font-family:"Lucida Grande", Tahoma, Arial, Verdana, sans-serif;font-size:12px;line-height:130%;text-decoration:none;font-weight:700;color:#565656;cursor:pointer;padding:5px 10px 6px 7px;/* Links */}
+.buttons button{width:auto;overflow:visible;padding:4px 10px 3px 7px;/* IE6 */}
+.buttons button[type]{padding:5px 10px 5px 7px;/* Firefox */line-height:17px;/* Safari */}
+:first-child+html button[type]{padding:4px 10px 3px 7px;/* IE7 */}
+.buttons button img,.buttons a img{margin:0 3px -3px 0!important;padding:0;border:none;width:16px;height:16px;}
+/* STANDARD */.buttons button:hover,.buttons a:hover{background-color:#dff4ff;border:1px solid #c2e1ef;color:#369;}
+.buttons a:active{background-color:#6299c5;border:1px solid #6299c5;color:#fff;}
+/* POSITIVE */.buttons button.positive,.buttons a.positive{color:#529214;}
+.buttons a.positive:hover,button.positive:hover{background-color:#E6EFC2;border:1px solid #C6D880;color:#529214;}
+.buttons a.positive:active{background-color:#529214;border:1px solid #529214;color:#fff;}
+/* NEGATIVE */.buttons a.negative,button.negative{color:#d12f19;}
+.buttons a.negative:hover,button.negative:hover{background:#fbe3e4;border:1px solid #fbc2c4;color:#d12f19;}
+.buttons a.negative:active{background-color:#d12f19;border:1px solid #d12f19;color:#fff;}
+/* REGULAR */.buttons button.regular,.buttons a.regular{color:#369;}
+.buttons a.regular:hover,button.regular:hover{background-color:#dff4ff;border:1px solid #c2e1ef;color:#369;}
+.buttons a.regular:active{background-color:#6299c5;border:1px solid #6299c5;color:#fff;}
+.buttons a.center{text-align:center;}
+.buttons a.long{width:550px;}
+
+/*ajaxupload*/
+.button{background:#ccc;width:100px;height:30px;font-size:14px;color:#fff;padding-top:10px;text-align:center;}

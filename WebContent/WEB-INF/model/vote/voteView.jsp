@@ -17,6 +17,7 @@
 			chart : {
 				renderTo : 'barchart',
 				margin: [80, 20, 60, 100],
+				width:570,
 				defaultSeriesType : 'bar'
 			},
 			title : {
@@ -109,6 +110,7 @@
 		var options = {
 			chart: {
 				renderTo: 'piechart',
+				width:570,
 				margin: [80, 20, 60, 20]
 			},
 			title: {

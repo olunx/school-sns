@@ -7,7 +7,6 @@
 	String path = request.getContextPath();
 	String url = request.getServerName();
 %>
-<link type="text/css" rel="stylesheet" href="<%=path%>/content/images/intro.css" />
 <div id="LUI">
   <ul>
     <li class="detail">
@@ -44,12 +43,12 @@
 			<jsp:include page="./twitterList.jsp"></jsp:include>
 	 <div>
 	<h2>最近访问</h2> 
-		<ul class="ul">
+		<ul class="imglist">
 		<c:forEach items="${people.visitors}" var="visitor">
-			<li>
+			<li title="<fmt:formatDate value="${visitor.time }" pattern="MM-dd" />">
 				<a onclick="ajaxload(this);return false;" href="<%=path%>/t/${visitor.people.username }"><img src="<%=path %>/avatar/${visitor.people.id}" width="50"></img></a><br/>
 				<a onclick="ajaxload(this);return false;" href="<%=path%>/t/${visitor.people.username }">${visitor.people.name}</a><br/>
-				<fmt:formatDate value="${visitor.time }" pattern="MM-dd" />	
+				<!--<fmt:formatDate value="${visitor.time }" pattern="MM-dd" />	-->
 			</li>
 		</c:forEach>
 		</ul>
