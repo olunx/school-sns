@@ -23,6 +23,8 @@ public class FileUploadAction extends BaseAction {
 
 	// struts配置文件中设置
 	private String savePath;
+	//错误信息
+	private String errMessage;
 
 	private ServletContext context = ServletActionContext.getServletContext();
 
@@ -75,7 +77,8 @@ public class FileUploadAction extends BaseAction {
 			String fileExt = extraFileExt(filesFileName.get(i));
 			if (!allowedType.contains(fileExt)) {
 				Log.init(getClass()).info("不能上传非 " + allowedType + " 类型的文件");
-				return super.INDEX;
+				errMessage = "不能上传非 " + allowedType + " 类型的文件";
+				return "error";
 			}
 
 			targetFileName = generateFileName(filesFileName.get(i));
@@ -101,7 +104,7 @@ public class FileUploadAction extends BaseAction {
 
 	// 得到扩展名
 	private String extraFileExt(String filename) {
-		return filename.substring(filename.lastIndexOf("."));
+		return filename.substring(filename.lastIndexOf(".")).toLowerCase();
 	}
 
 	// 产生唯一的文件名
@@ -172,6 +175,14 @@ public class FileUploadAction extends BaseAction {
 
 	public void setTargetsFilePath(List<String> targetsFilePath) {
 		this.targetsFilePath = targetsFilePath;
+	}
+
+	public String getErrMessage() {
+		return errMessage;
+	}
+
+	public void setErrMessage(String errMessage) {
+		this.errMessage = errMessage;
 	}
 
 }

@@ -12,8 +12,8 @@ $(document).ready(function() {
 	if (parent.window.hs) {
 		setTimeout(function() {
 			//想返回什么数据到前端，可以写到这里。
+			parent.$("#pic img").remove();
 			parent.$("#pic").prepend('<img src="<%=path%>${image.minFileUrl}"></img>');
-			parent.$("#pic img").attr("src", "<%=path%>${image.minFileUrl}");
 			parent.$("#pic").slideDown("normal");
 			parent.$("#oriFileName").attr("value", "${image.oriFileName}");
 			parent.$("#bigFileName").attr("value", "${image.bigFileName}");
