@@ -82,6 +82,7 @@
 			<result name="uploadPage">/WEB-INF/model/image/imageUpload.jsp</result>
 			<result name="index">/WEB-INF/model/image/imageSuc.jsp</result>
 			<result name="success">/WEB-INF/model/image/imageSelect.jsp</result>
+			<result name="error">/WEB-INF/model/image/imageErr.jsp</result>
 		</global-results>
 		<action name="*Image" class="cn.gdpu.action.ImageAction" method="{1}" />
 		<action name="imageUpload" class="cn.gdpu.action.FileUploadAction" method="image">
