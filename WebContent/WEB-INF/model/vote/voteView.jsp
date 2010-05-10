@@ -163,6 +163,20 @@
 			var chart2 = new Highcharts.Chart(options);
 
 	});
+
+	$(function() {
+		$("#barchart").slideUp("normal");
+	});
+
+	function showPie() {
+		$("#barchart").slideUp("normal");
+		$("#piechart").slideDown("normal");
+	}
+
+	function showBar() {
+		$("#piechart").slideUp("normal");
+		$("#barchart").slideDown("normal");
+	}
 </script>
 <div class="vote">
 	<h2>${vote.title }(${vote.author.name })</h2>
@@ -179,10 +193,16 @@
 	${voter.name }，
 	</c:forEach>
 </div>
+<br/>
 <h2>图表</h2>
-<div id="barchart" style=""></div>
+<div class="buttons">
+ <a onclick="showPie();return false;" href="#" class="regular">饼图</a>
+ <a onclick="showBar();return false;" href="#" class="regular">直方图</a>
+</div>
 <div id="piechart" style=""></div>
+<div id="barchart" style=""></div>
 <div>
+<br/>
 <h2>用户评论</h2>
 <c:choose>
 	<c:when test="${empty vote.reply}">
