@@ -90,6 +90,10 @@
 		<filter-name>cachefilter</filter-name>
 		<url-pattern>/group/*</url-pattern>  
 	</filter-mapping> 
+	<filter-mapping>
+		<filter-name>cachefilter</filter-name>
+		<url-pattern>/people/*</url-pattern>  
+	</filter-mapping> 
    <!-- 配置Spring -->
   <listener>
     <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
