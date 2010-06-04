@@ -63,7 +63,7 @@
 	</c:when>
 	<c:otherwise>
 		<c:forEach items="${pageBean.list}" var="twitter">
-			<div class="list clearfix">
+			<div class="list">
 			<div class="avatar"><img src="<%=path%>/avatar/${twitter.author.id}" /></div>
 			<div class="topic_msg">
 			<div class="time" title="${twitter.time }">${my:formatDate(twitter.time)}</div>
@@ -91,6 +91,7 @@
 				</div>
 			</div>
 			</div>
+			<div class="clear"></div>
 			</div>
 		</c:forEach>
 
