@@ -21,7 +21,11 @@
 				defaultSeriesType : 'bar'
 			},
 			title : {
-				text : '${vote.summary }'
+				text : '${vote.summary }',
+				style: {
+					textAlign: 'center',
+					margin: '30px 0 0 0'
+				}
 			},
 			xAxis : {
 				categories : []
@@ -114,7 +118,11 @@
 				margin: [80, 20, 60, 20]
 			},
 			title: {
-				text : '${vote.summary }'
+				text : '${vote.summary }',
+				style: {
+					textAlign: 'center',
+					margin: '30px 0 0 0'
+				}
 			},
 			plotArea: {
 				shadow: null,
@@ -144,10 +152,10 @@
 			legend: {
 				layout: 'vertical',
 				style: {
-					left: 'auto',
+					left: '20px',
 					bottom: 'auto',
-					right: '50px',
-					top: '100px'
+					right: 'auto',
+					top: '80px'
 				}
 			},
 		        series: []
