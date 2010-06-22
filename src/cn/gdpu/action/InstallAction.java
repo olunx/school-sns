@@ -66,7 +66,7 @@ public class InstallAction extends BaseAction {
 
 	private void addMany(String fileName) {
 
-		String filePath = ServletActionContext.getServletContext().getRealPath("\\upload") + "\\" + fileName;
+		String filePath = ServletActionContext.getServletContext().getRealPath("upload") + "/" + fileName;
 
 		Log.init(getClass()).info("filePath " + filePath);
 
@@ -80,7 +80,7 @@ public class InstallAction extends BaseAction {
 
 	// 添加课程表
 	private void addCourse(String fileName) {
-		String filePath = ServletActionContext.getServletContext().getRealPath("\\upload") + "\\" + fileName;
+		String filePath = ServletActionContext.getServletContext().getRealPath("upload") + "/" + fileName;
 		Log.init(getClass()).info("filePath " + filePath);
 		List<Course> courseList = new ArrayList<Course>();
 		courseList = StudentExcel.getStudentExcel().getCourseData(filePath);
