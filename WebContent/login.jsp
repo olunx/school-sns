@@ -21,11 +21,11 @@
           <form id="inputform" action="authLogin" method="post">
             <p>
               <label for="username">用户名</label>
-              <input type="text" name="username" id="username" class="t_input" value="a" />
+              <input type="text" name="username" id="username" class="t_input" value="admin" />
             </p>
             <p>
               <label for="password">密　码</label>
-              <input type="password" name="password" id="password" class="t_input" value="a" />
+              <input type="password" name="password" id="password" class="t_input" value="admin" />
             </p>
             <p class="submitrow">
               <input id="submit" type="submit" name="loginsubmit" class="submit" value="登录" />
