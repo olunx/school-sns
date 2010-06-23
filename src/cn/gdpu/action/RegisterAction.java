@@ -166,12 +166,13 @@ public class RegisterAction extends BaseAction implements Preparable {
 	
 	@SkipValidation
 	public String goPerfectReg(){
-		Object student = this.getSession().get("student");
-		if (student != null) {
-			if (student instanceof Student) {
-				Student user = (Student) student;
+		People people = (People)this.getSession().get("user");
+		Log.init(getClass()).info("people: " + people);
+		if (people != null) {
+				People user = peopleService.getPeopleByUsername(people.getUsername());
+				Log.init(getClass()).info("user: " + user);
 				School school = schoolService.getEntity(School.class, user.getSchool().getId());
-				Set<Institute> institutes=  school.getInstitute();
+				Set<Institute> institutes =  school.getInstitute();
 		
 				Map<String, Map<String, Object>> map = new LinkedHashMap<String, Map<String, Object>>();
 				for(Institute institute: institutes){
@@ -189,7 +190,6 @@ public class RegisterAction extends BaseAction implements Preparable {
 		        JSONObject jo1 = JSONObject.fromObject(map);
 				getRequest().put("classesmap", jo1);
 				return "goPerfectReg";
-			}
 		}
 		return ERROR;
 	}
