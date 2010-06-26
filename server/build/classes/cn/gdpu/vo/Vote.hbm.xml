@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="cn.gdpu.vo">
+	<!--
+		private int id;
+		private People author; 
+		private String title; 
+		private String summary;		   
+		private Set<VoteItem> items; 
+		private String type; 
+		private Date airTime;	
+		private Date deadline;
+		private Set<People> voters;
+		private List<Topic> reply;
+	-->
+	<class name="Vote" table="t_vote" >
+		<id name="id" column="id">
+			<generator class="native" />
+		</id>
+		<many-to-one name="author" column="author" />
+		<property name="title" />
+		<property name="summary" />
+		<set name="items" cascade="all" lazy="false" order-by="id asc">
+			<key column="voteId" />
+			<one-to-many class="VoteItem" />
+		</set>
+		<property name="type" />
+		<property name="scope" />
+		<property name="airTime" />
+		<property name="deadline" />
+		<set name="voters" table="t_vote_user" >
+			<key column="voteId" />
+			<many-to-many class="People" column="peopleId" />
+		</set>
+		<list name="reply" cascade="all">
+			<key column="voteId" />
+			<index column="indexId" />
+			<one-to-many class="Topic" />
+		</list>
+	</class>
+</hibernate-mapping>
