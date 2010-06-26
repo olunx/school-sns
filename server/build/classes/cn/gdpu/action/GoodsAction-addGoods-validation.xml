@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE validators PUBLIC 
+          "-//OpenSymphony Group//XWork Validator 1.0//EN" 
+          "http://www.opensymphony.com/xwork/xwork-validator-1.0.dtd" >
+<validators>
+	<field name="goods.name">
+		<field-validator type="requiredstring">
+			<param name="trim">true</param>
+			<message>名称不能为空</message>
+		</field-validator>
+	</field>
+	
+	<field name="goods.quantity">
+		<field-validator type="int">
+		    <param name="min">1</param>
+		    <param name="max">100000</param>
+		    <message>数量不对</message>
+	   </field-validator>
+	</field>
+	
+	<field name="goods.value">
+		<field-validator type="double">
+		    <param name="minInclusive">0</param>
+		    <param name="maxInclusive ">10000000</param>
+		    <message>单价不对</message>
+	   </field-validator>
+	</field>
+</validators>
