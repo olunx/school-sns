@@ -2,12 +2,16 @@ package cn.gdpu;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.browser.Browser;
+import org.eclipse.swt.browser.ProgressAdapter;
+import org.eclipse.swt.browser.ProgressEvent;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.layout.FormAttachment;
 import org.eclipse.swt.layout.FormData;
 import org.eclipse.swt.layout.FormLayout;
+import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.MenuItem;
 import org.eclipse.swt.widgets.Shell;
@@ -35,7 +39,10 @@ public class MainWindow {
 	 * @wbp.nonvisual location=223,239
 	 */
 	private final TrayItem trayItem = new TrayItem(Display.getDefault().getSystemTray(), SWT.NONE);
+	
+	private Browser browser;
 
+	final private String site = "http://localhost:8080/SchoolSNS/";
 	/**
 	 * Launch the application
 	 * @param args
@@ -90,8 +97,24 @@ public class MainWindow {
 		newSubmenuMenuItem.setMenu(menu_1);
 
 		final MenuItem newItemMenuItem = new MenuItem(menu_1, SWT.NONE);
+		newItemMenuItem.addSelectionListener(new SelectionAdapter() {
+			public void widgetSelected(final SelectionEvent e) {
+				new Settings(shell).open();
+			}
+		});
 		newItemMenuItem.setImage(SWTResourceManager.getImage(MainWindow.class, "ico/configure.gif"));
 		newItemMenuItem.setText("设置");
+
+		new MenuItem(menu_1, SWT.SEPARATOR);
+
+		final MenuItem newItemMenuItem_7 = new MenuItem(menu_1, SWT.NONE);
+		newItemMenuItem_7.addSelectionListener(new SelectionAdapter() {
+			public void widgetSelected(final SelectionEvent e) {
+				shell.close();
+			}
+		});
+		newItemMenuItem_7.setImage(SWTResourceManager.getImage(MainWindow.class, "ico/run_exec.gif"));
+		newItemMenuItem_7.setText("退出");
 
 		final MenuItem newSubmenuMenuItem_1 = new MenuItem(menu, SWT.CASCADE);
 		newSubmenuMenuItem_1.setText("其它");
@@ -104,6 +127,11 @@ public class MainWindow {
 		newItemMenuItem_1.setText("帮助");
 
 		final MenuItem newItemMenuItem_2 = new MenuItem(menu_2, SWT.NONE);
+		newItemMenuItem_2.addSelectionListener(new SelectionAdapter() {
+			public void widgetSelected(final SelectionEvent e) {
+				new About(shell).open();
+			}
+		});
 		newItemMenuItem_2.setImage(SWTResourceManager.getImage(MainWindow.class, "ico/index_co.gif"));
 		newItemMenuItem_2.setText("关于");
 
@@ -112,17 +140,7 @@ public class MainWindow {
 		fd_toolBar.bottom = new FormAttachment(0, 45);
 		fd_toolBar.right = new FormAttachment(100, -5);
 		fd_toolBar.top = new FormAttachment(0, 5);
-		fd_toolBar.left = new FormAttachment(0, 5);
 		toolBar.setLayoutData(fd_toolBar);
-
-		final ToolItem newItemToolItem = new ToolItem(toolBar, SWT.PUSH);
-		newItemToolItem.addSelectionListener(new SelectionAdapter() {
-			public void widgetSelected(final SelectionEvent e) {
-				new PostTwitter(MainWindow.shell).open();
-			}
-		});
-		newItemToolItem.setImage(SWTResourceManager.getImage(MainWindow.class, "ico/add_action.gif"));
-		newItemToolItem.setText("新微博");
 
 		final ToolItem newItemToolItem_1 = new ToolItem(toolBar, SWT.PUSH);
 		newItemToolItem_1.setImage(SWTResourceManager.getImage(MainWindow.class, "ico/editor_pane.gif"));
@@ -141,39 +159,112 @@ public class MainWindow {
 		newItemToolItem_3.setImage(SWTResourceManager.getImage(MainWindow.class, "ico/cheatsheet_view.gif"));
 		newItemToolItem_3.setText("帮助");
 
-		final ToolItem newItemToolItem_5 = new ToolItem(toolBar, SWT.PUSH);
-		newItemToolItem_5.addSelectionListener(new SelectionAdapter() {
-			public void widgetSelected(final SelectionEvent e) {
-				new About(shell).open();
-			}
-		});
-		newItemToolItem_5.setImage(SWTResourceManager.getImage(MainWindow.class, "ico/index_co.gif"));
-		newItemToolItem_5.setText("关于");
-
-		final ToolItem newItemToolItem_4 = new ToolItem(toolBar, SWT.PUSH);
-		newItemToolItem_4.addSelectionListener(new SelectionAdapter() {
-			public void widgetSelected(final SelectionEvent e) {
-				shell.close();
-			}
-		});
-		newItemToolItem_4.setImage(SWTResourceManager.getImage(MainWindow.class, "ico/run_exec.gif"));
-		newItemToolItem_4.setText("退出");
-
 		final TabFolder tabFolder = new TabFolder(shell, SWT.NONE);
+		tabFolder.addSelectionListener(new SelectionAdapter() {
+			public void widgetSelected(final SelectionEvent e) {
+//				System.out.println("选择：" + e.item.toString().contains(""));
+				if(e.item.toString().contains("微博墙")) {
+					System.out.println("选择");
+				}
+			}
+		});
 		final FormData fd_tabFolder = new FormData();
+		fd_tabFolder.left = new FormAttachment(0, 5);
 		fd_tabFolder.bottom = new FormAttachment(100, -5);
 		fd_tabFolder.right = new FormAttachment(100, -5);
 		fd_tabFolder.top = new FormAttachment(toolBar, 5, SWT.BOTTOM);
-		fd_tabFolder.left = new FormAttachment(toolBar, 0, SWT.LEFT);
 		tabFolder.setLayoutData(fd_tabFolder);
 
 		final TabItem tabItem = new TabItem(tabFolder, SWT.NONE);
 		tabItem.setImage(SWTResourceManager.getImage(MainWindow.class, "ico/internal_browser.gif"));
 		tabItem.setText("我的主页");
 
-		final Browser browser = new Browser(tabFolder, SWT.NONE);
-		browser.setUrl("http://localhost:8080/SchoolSNS/");
-		tabItem.setControl(browser);
+		final Composite composite = new Composite(tabFolder, SWT.NONE);
+		composite.setLayout(new FormLayout());
+		tabItem.setControl(composite);
+
+		final ToolBar toolBar_1 = new ToolBar(composite, SWT.NONE);
+		toolBar_1.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WIDGET_BACKGROUND));
+		final FormData fd_toolBar_1 = new FormData();
+		fd_toolBar_1.right = new FormAttachment(100, -5);
+		fd_toolBar_1.bottom = new FormAttachment(0, 45);
+		fd_toolBar_1.top = new FormAttachment(0, 5);
+		fd_toolBar_1.left = new FormAttachment(0, 5);
+		toolBar_1.setLayoutData(fd_toolBar_1);
+
+		final ToolItem newItemToolItem_7 = new ToolItem(toolBar_1, SWT.PUSH);
+		newItemToolItem_7.addSelectionListener(new SelectionAdapter() {
+			public void widgetSelected(final SelectionEvent e) {
+				scrollUp();
+				browser.execute("cancel();");
+			}
+		});
+		newItemToolItem_7.setImage(SWTResourceManager.getImage(MainWindow.class, "ico/add_action.gif"));
+		newItemToolItem_7.setText("微博");
+
+		final ToolItem newItemToolItem = new ToolItem(toolBar_1, SWT.PUSH);
+		newItemToolItem.addSelectionListener(new SelectionAdapter() {
+			public void widgetSelected(final SelectionEvent e) {
+				scrollUp();
+				browser.execute("showLink();");
+			}
+		});
+		newItemToolItem.setImage(SWTResourceManager.getImage(MainWindow.class, "ico/browser.gif"));
+		newItemToolItem.setText("链接");
+
+		final ToolItem newItemToolItem_6 = new ToolItem(toolBar_1, SWT.PUSH);
+		newItemToolItem_6.addSelectionListener(new SelectionAdapter() {
+			public void widgetSelected(final SelectionEvent e) {
+				scrollUp();
+				browser.execute("showImage();");
+			}
+		});
+		newItemToolItem_6.setImage(SWTResourceManager.getImage(MainWindow.class, "ico/layered_pane.gif"));
+		newItemToolItem_6.setText("图片");
+
+		final ToolItem newItemToolItem_8 = new ToolItem(toolBar_1, SWT.PUSH);
+		newItemToolItem_8.addSelectionListener(new SelectionAdapter() {
+			public void widgetSelected(final SelectionEvent e) {
+				scrollUp();
+				browser.execute("showVote();");
+			}
+		});
+		newItemToolItem_8.setImage(SWTResourceManager.getImage(MainWindow.class, "ico/print_edit.gif"));
+		newItemToolItem_8.setText("投票");
+
+		final ToolItem newItemToolItem_9 = new ToolItem(toolBar_1, SWT.PUSH);
+		newItemToolItem_9.addSelectionListener(new SelectionAdapter() {
+			public void widgetSelected(final SelectionEvent e) {
+				scrollUp();
+				browser.execute("showIssue();");
+			}
+		});
+		newItemToolItem_9.setImage(SWTResourceManager.getImage(MainWindow.class, "ico/generate.gif"));
+		newItemToolItem_9.setText("问答");
+
+		final ToolItem newItemToolItem_10 = new ToolItem(toolBar_1, SWT.PUSH);
+		newItemToolItem_10.addSelectionListener(new SelectionAdapter() {
+			public void widgetSelected(final SelectionEvent e) {
+				scrollUp();
+				browser.execute("showGoods();");
+			}
+		});
+		newItemToolItem_10.setImage(SWTResourceManager.getImage(MainWindow.class, "ico/cpyqual_menu.gif"));
+		newItemToolItem_10.setText("交换");
+
+		browser = new Browser(composite, SWT.NONE);
+		browser.addProgressListener(new ProgressAdapter() {
+			public void completed(final ProgressEvent event) {
+				scrollUp();
+			}
+		});
+		final FormData fd_browser = new FormData();
+		fd_browser.top = new FormAttachment(toolBar_1, 5, SWT.DEFAULT);
+		fd_browser.bottom = new FormAttachment(100, -5);
+		fd_browser.right = new FormAttachment(100, -5);
+		fd_browser.left = new FormAttachment(toolBar_1, 0, SWT.LEFT);
+		browser.setLayoutData(fd_browser);
+		browser.setUrl(site);
 		
 		final Menu traymenu = new Menu(shell);
 		shell.setMenu(traymenu);
@@ -232,6 +323,51 @@ public class MainWindow {
 		});
 		newItemMenuItem_5.setImage(SWTResourceManager.getImage(MainWindow.class, "ico/run_exec.gif"));
 		newItemMenuItem_5.setText("退出");
+
+		final ToolBar toolBar_2 = new ToolBar(shell, SWT.NONE);
+		final FormData fd_toolBar_2 = new FormData();
+		fd_toolBar_2.right = new FormAttachment(0, 115);
+		fd_toolBar_2.bottom = new FormAttachment(toolBar, 0, SWT.BOTTOM);
+		fd_toolBar_2.top = new FormAttachment(toolBar, 0, SWT.TOP);
+		fd_toolBar_2.left = new FormAttachment(tabFolder, 0, SWT.LEFT);
+		toolBar_2.setLayoutData(fd_toolBar_2);
+
+		final ToolItem newItemToolItem_11 = new ToolItem(toolBar_2, SWT.PUSH);
+		newItemToolItem_11.addSelectionListener(new SelectionAdapter() {
+			public void widgetSelected(final SelectionEvent e) {
+				browser.back();
+			}
+		});
+		newItemToolItem_11.setImage(SWTResourceManager.getImage(MainWindow.class, "ico/left.gif"));
+		newItemToolItem_11.setText("后退");
+
+		final ToolItem newItemToolItem_12 = new ToolItem(toolBar_2, SWT.PUSH);
+		newItemToolItem_12.addSelectionListener(new SelectionAdapter() {
+			public void widgetSelected(final SelectionEvent e) {
+				browser.forward();
+			}
+		});
+		newItemToolItem_12.setImage(SWTResourceManager.getImage(MainWindow.class, "ico/right.gif"));
+		newItemToolItem_12.setText("前进");
+
+		final ToolItem newItemToolItem_13 = new ToolItem(toolBar_2, SWT.PUSH);
+		newItemToolItem_13.addSelectionListener(new SelectionAdapter() {
+			public void widgetSelected(final SelectionEvent e) {
+				browser.refresh();
+			}
+		});
+		newItemToolItem_13.setImage(SWTResourceManager.getImage(MainWindow.class, "ico/refresh.gif"));
+		newItemToolItem_13.setText("刷新");
+
+		Label label;
+		label = new Label(shell, SWT.SEPARATOR);
+		fd_toolBar.left = new FormAttachment(label, 5, SWT.RIGHT);
+		final FormData fd_label = new FormData();
+		fd_label.bottom = new FormAttachment(toolBar_2, 0, SWT.BOTTOM);
+		fd_label.left = new FormAttachment(toolBar_2, 5, SWT.RIGHT);
+		fd_label.right = new FormAttachment(0, 122);
+		fd_label.top = new FormAttachment(toolBar_2, 0, SWT.TOP);
+		label.setLayoutData(fd_label);
 		trayItem.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
@@ -252,5 +388,8 @@ public class MainWindow {
 		//
 	}
 
+	private void scrollUp() {
+		browser.execute("$.scrollTo(75 , 800 );");
+	}
 }
 

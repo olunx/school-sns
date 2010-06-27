@@ -84,7 +84,9 @@
 		$("#addition").slideDown("normal");
 		$("#links").append("<input id='twittertype' type='hidden' name='twitter.type' value='link' />");
 	}
-	
+	function showImage() {
+
+	}
 	function showVote() {
 		displayAll();
 		$("#addition").html($("#vote").html());
@@ -112,7 +114,6 @@
 		$("#inputform").attr("action", "<%=path %>/goods/addGoods");
 		$("#inputarea").attr("name", "goods.content");
 	}
-	
 </script>
 <body>
 <div id="twitter">
