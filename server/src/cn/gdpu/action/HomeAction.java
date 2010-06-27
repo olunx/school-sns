@@ -1,6 +1,8 @@
 package cn.gdpu.action;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,6 +16,7 @@ import cn.gdpu.service.StudentService;
 import cn.gdpu.service.TwitterService;
 import cn.gdpu.vo.GoodsType;
 import cn.gdpu.vo.IssueType;
+import cn.gdpu.vo.MutualFriend;
 import cn.gdpu.vo.People;
 import cn.gdpu.vo.Student;
 import cn.gdpu.vo.Twitter;
@@ -122,6 +125,9 @@ public class HomeAction extends BaseAction {
 		}
 		this.getSession().put("maybeMeet", maybeMeet);
 		
+		List<MutualFriend> mfs = findMutual(people);
+		this.getSession().put("mutualfriend", mfs);
+		
 		return "home";
 	}
 	
@@ -129,7 +135,58 @@ public class HomeAction extends BaseAction {
 		home();
 		return "center";
 	}
-
+	
+	//检查用户与其好友的共同好友
+	public List<MutualFriend> findMutual(People me){
+		List<MutualFriend> mfs = new ArrayList<MutualFriend>();
+		Set<People> myfriends = me.getFriends();
+		for(Iterator<People> mit = myfriends.iterator(); mit.hasNext();){
+			People other = mit.next();
+			System.out.println("other name " + other.getName());
+			if(other.getFriends() != null && other.getFriends().size() != 0){
+				for(Iterator<People> oit = other.getFriends().iterator(); oit.hasNext();){
+					People of = oit.next();
+					if(!myfriends.contains(of) && of.getId() != me.getId()){
+						System.out.println("of name " + of.getName());
+						if(mfs.size() == 0){
+							MutualFriend mf = new MutualFriend();
+							mf.setPeople(of);
+							Set<People> mu = new HashSet<People>();
+							mu.add(other);
+							mf.setMutual(mu);
+							mfs.add(mf);
+						}else{
+							int index = -1;
+							for(int i =0; i<mfs.size(); i++){
+								MutualFriend a = mfs.get(i);
+								if(of.getId() == a.getPeople().getId()){
+									index = i;
+									break;
+								}
+							}
+							if(index == -1){
+								MutualFriend mf = new MutualFriend();
+								mf.setPeople(of);
+								Set<People> mu = new HashSet<People>();
+								mu.add(other);
+								mf.setMutual(mu);
+								mfs.add(mf);
+								
+							}else{
+								MutualFriend mf = mfs.get(index);
+								Set<People> mu = mf.getMutual();
+								if(!mu.contains(other))
+									mu.add(other);
+								mf.setMutual(mu);
+								mfs.set(index, mf);
+							}
+						}
+					}
+				}
+			}
+		}
+		return mfs;
+	}
 
 	public StudentService<Student, Integer> getStudentService() {
 		return studentService;

@@ -117,4 +117,5 @@
 			<result name="input">/WEB-INF/model/classes/classesAdd.jsp</result>
 		</action>
 	</package>	
+	
 </struts>    

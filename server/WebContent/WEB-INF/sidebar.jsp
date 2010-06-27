@@ -42,11 +42,20 @@
 		<c:if test="${maybeMeet != null}">
 	<div id="recommend" class="mod clearfix">
 	<h2>推荐认识</h2>
+	<p><a onclick="ajaxload(this);return false;" href="<%=path %>/mutualfriend/listMutualFriend">更多</a></p>
 	<ul class="imglist">
-	<c:forEach items="${maybeMeet}" var="peopler" end="5">
+	<c:forEach items="${maybeMeet}" var="peopler" end="3">
 		<li>
 			<a onclick="ajaxload(this);return false;" href="<%=path%>/t/${peopler.username }"><img src="<%=path %>/avatar/${peopler.id}" width="50"></img></a>
 			<a onclick="ajaxload(this);return false;" href="<%=path%>/t/${peopler.username }">${peopler.name}</a>
+		</li>
+	</c:forEach>
+	</ul>
+	<ul class="imglist">
+	<c:forEach items="${mutualfriend}" var="mf" end="3">
+		<li>
+			<a onclick="ajaxload(this);return false;" href="<%=path%>/t/${mf.people.username }"><img src="<%=path %>/avatar/${mf.people.id}" width="50"></img></a>
+			<a onclick="ajaxload(this);return false;" href="<%=path%>/t/${mf.people.username }">${mf.people.name}</a>|${fn:length(mf.mutual)}
 		</li>
 	</c:forEach>
 	</ul>

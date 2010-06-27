@@ -75,6 +75,7 @@
 			<index column="indexId" />
 			<one-to-many class="Visitor" />
 		</list>
+		
 		<!--
 			学生
 		-->

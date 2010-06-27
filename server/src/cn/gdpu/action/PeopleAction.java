@@ -1,6 +1,8 @@
 package cn.gdpu.action;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -15,6 +17,7 @@ import cn.gdpu.vo.Classes;
 import cn.gdpu.vo.Group;
 import cn.gdpu.vo.Image;
 import cn.gdpu.vo.Institute;
+import cn.gdpu.vo.MutualFriend;
 import cn.gdpu.vo.People;
 import cn.gdpu.vo.School;
 import cn.gdpu.vo.Student;
@@ -114,7 +117,7 @@ public class PeopleAction extends BaseAction {
 				FeedAction.init().add(me, friend, FeedAction.ADD_FRIEND);
 			}
 			
-			
+			//me.setMutualFriends(findMutual(me, friend));//检查共同好友
 
 			me.setFriends(myFriends);
 			friend.setFollower(friendFollowers);
@@ -125,6 +128,48 @@ public class PeopleAction extends BaseAction {
 		}
 		return "list";
 	}
+	
+	/*//添加共同好友
+	public List<MutualFriend> findMutual(People me, People friend){
+		List<MutualFriend> mfs = me.getMutualFriends();
+		if(mfs==null){
+			mfs = new ArrayList<MutualFriend>();
+		}
+		Set<People> myfriends = me.getFriends();
+		for(Iterator<People> oit = friend.getFriends().iterator(); oit.hasNext();){
+			People of = oit.next();
+			if(!myfriends.contains(of)){
+				if(mfs.size() == 0){
+					MutualFriend mf = new MutualFriend();
+					mf.setPeople(of);
+					Set<People> mu = new HashSet<People>();
+					mu.add(friend);
+					mf.setMutual(mu);
+					mfs.add(mf);
+				}else{
+					int index = -1;
+					for(int i =0; i<mfs.size(); i++){
+						MutualFriend a = mfs.get(i);
+						if(of.getId() == a.getPeople().getId()){
+							index = i;
+							break;
+						}
+					}
+					if(index != -1){
+						MutualFriend mf = mfs.get(index);
+						Set<People> mu = mf.getMutual();
+						if(!mu.contains(friend))
+							mu.add(friend);
+						mf.setMutual(mu);
+						mfs.set(index, mf);
+					}
+				}
+			}
+		}
+		System.out.println("mfs size = " + mfs.size());
+		return mfs;
+	}*/
+
 
 	// 检查是否是朋友
 	public static Boolean isMyFriend(Set<People> set, People people) {
@@ -143,7 +188,7 @@ public class PeopleAction extends BaseAction {
 			return true;
 		return false;
 	}
-
+	
 	@Override
 	public String deleteMany() {
 		Log.init(getClass()).info("deleMamy " + ids);

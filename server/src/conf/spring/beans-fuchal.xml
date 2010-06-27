@@ -76,4 +76,5 @@
 	<bean name="visitorService" class="cn.gdpu.service.impl.VisitorServiceImpl" scope="prototype">
 		<property name="baseDao" ref="visitorDaoImpl" />
 	</bean>
+	
 </beans>
