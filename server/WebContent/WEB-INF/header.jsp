@@ -72,17 +72,18 @@
 			}
 		}
 	}
+
 </script>
 </div>
 <div class="menuk">
 <ul class="menu">
-	<li><a onclick="ajaxload(this);return false;" href="<%=path%>/center">我的大厅</a></li>
-	<li><a onclick="ajaxload(this);return false;" href="<%=path%>/twitter/listTwitter">微博</a></li>
+	<li><a rel="header_index" onclick="ajaxload(this);return false;" href="<%=path%>/center">我的大厅</a></li>
+	<li><a rel="header_twitter" onclick="ajaxload(this);return false;" href="<%=path%>/twitter/listTwitter">微博</a></li>
 	<c:if test="${student != null}">
-		<li><a onclick="ajaxload(this);return false;" href="<%=path %>/school/viewSchool?id=${user.school.id}">学校</a></li>
-		<li><a onclick="ajaxload(this);return false;" href="<%=path %>/classes/viewClasses?id=${user.classes == null? -1: user.classes.id}">班级</a></li>
+		<li><a rel="header_school" onclick="ajaxload(this);return false;" href="<%=path %>/school/viewSchool?id=${user.school.id}">学校</a></li>
+		<li><a rel="header_classes" onclick="ajaxload(this);return false;" href="<%=path %>/classes/viewClasses?id=${user.classes == null? -1: user.classes.id}">班级</a></li>
 	</c:if>
-	<li><a onclick="ajaxload(this);return false;" href="<%=path%>/wall/listWall">广场</a></li>
+	<li><a rel="header_square" onclick="ajaxload(this);return false;" href="<%=path%>/wall/listWall">广场</a></li>
 	<li rel="submenu"><a href="javascript:;">聊天馆</a>
 		<dl>
 		<dt><a onclick="ajaxload(this);return false;" href="<%=path%>/chat/pubChat">公共聊天室</a></dt>
@@ -92,9 +93,9 @@
 </ul>
 <div class="nav_account"><c:choose>
 	<c:when test="${isAccess!=null}">
-		 <a onclick="ajaxload(this);return false;" href="<%=path %>/people/goModifyPeople?id=${student.id}">设置</a> | 
-		<a onclick="return hs.htmlExpand(this, { objectType: 'iframe' } )" href="<%=path%>/mail/boxMail">小纸箱</a>
-        | <a href="<%=path%>/logout">退出</a>
+		 <a rel="header_info" onclick="ajaxload(this);return false;" href="<%=path %>/people/goModifyPeople?id=${student.id}">个人信息</a> | 
+		<a rel="header_mailbox" onclick="return hs.htmlExpand(this, { objectType: 'iframe' } )" href="<%=path%>/mail/boxMail">小纸箱</a>
+        | <a rel="header_exit" href="<%=path%>/logout">退出</a>
 	</c:when>
 
 	<c:otherwise>

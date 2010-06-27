@@ -7,9 +7,33 @@
 <script type="text/javascript">
 $(document).ready(function() {
 	initHighslide("<%=path%>", "840", "640");
+	showDetail();
 });
+
+function showDetail() {
+	$("#detail").slideDown("normal");
+	$("#pwd").slideUp("normal");
+	$("#avatar").slideUp("normal");
+}
+function showPwd() {
+	$("#pwd").slideDown("normal");
+	$("#detail").slideUp("normal");
+	$("#avatar").slideUp("normal");
+}
+function showAvatar() {
+	$("#avatar").slideDown("normal");
+	$("#pwd").slideUp("normal");
+	$("#detail").slideUp("normal");
+}
 </script>
-<div>
+<div class="form">
+<ul id="classnav" class="buttons nav">
+	<li><a rel="info_detail" onclick="showDetail();return false;" href="#">修改个人信息</a></li>
+	<li><a rel="info_pwd" onclick="showPwd();return false;"  href="#">修改密码</a></li>
+	<li><a rel="info_avatar" onclick="showAvatar();return false;" href="#">修改头像</a></li>
+</ul>
+<div id="info">
+<div id="detail">
 <h2 class="caption">个人资料修改</h2>
 <form onSubmit="post(this);return false;" action="<%=path%>/people/modifyPeople" method="post">
 <p><label> ${people.username } 用户资料修改</label></p>
@@ -26,7 +50,7 @@ $(document).ready(function() {
 </form>
 </div>
 
-<div>
+<div id="pwd">
 <h2 class="caption">用户密码更改</h2>
 <form onSubmit="post(this);return false;" action="<%=path%>/people/modifyPSWPeople" method="post">
 <p><label> 旧密码： </label> <input type="text" name="oldPassword" /><s:fielderror><s:param>oldPassword</s:param></s:fielderror></p>
@@ -37,7 +61,7 @@ $(document).ready(function() {
 </form>
 </div>
 
-<div>
+<div id="avatar">
 <h2 class="caption">用户头像修改</h2>
 <form onSubmit="post(this);return false;" action="<%=path%>/people/modifyAvatarPeople" method="post">
 <a onclick="return hs.htmlExpand(this, { objectType: 'iframe' } )" href="<%=path%>/image/goUploadImage">上传头像</a>
@@ -54,4 +78,6 @@ $(document).ready(function() {
 <p class="paddingmin"><input type="submit" value="提交" /> <input type="reset" value="重置" /><c:if test="${modifyavatarsuc}">保存头像成功！请手动按F5刷新一下页面</c:if></p>
 <input type="hidden" name="people.id" value="${people.id}"/>
 </form>
+</div>
+</div>
 </div>
