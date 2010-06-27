@@ -12,7 +12,15 @@ $(function(){
 });
 //-->
 </script>
-<div class="school form">
+<div class="form">
+<ul id="classnav" class="buttons nav">
+	<li><a rel="school_index" onclick="ajaxload(this);return false;" href="<%=path%>/school/viewSchool?id=${id}">学校首页</a></li>
+	<li><a rel="school_other" onclick="ajaxload(this);return false;" rev="#school" href="<%=path%>/school/listSchool">其它学校</a></li>
+	<li><a rel="school_people" onclick="ajaxload(this);return false;" rev="#school" href="<%=path%>/people/schoolPeople?id=${school.id}">学校成员</a></li>
+</ul>
+<div class="clear"></div>
+<div id="school">
+<div class="school">
 <div class="school_pic">
 <c:if test="${!empty school.avatar.minFileUrl}">
 	<img src="<%=path%>${school.avatar.minFileUrl}" width="80"/>
@@ -37,9 +45,6 @@ $(function(){
 		<a onclick="ajaxload(this);return false;" href="<%=path %>/school/joinAdminSchool?id=${school.id}">申请加入学校管理员</a>
 	</c:otherwise>
 </c:choose>
-| <a onclick="ajaxload(this);return false;" href="<%=path%>/classes/viewClasses?id=${student.classes.id}">我的班级</a>
-| <a onclick="ajaxload(this);return false;" href="<%=path%>/school/listSchool">访问其它学校</a>
-| <a onclick="ajaxload(this);return false;" href="<%=path%>/people/schoolPeople?id=${school.id}">学校成员</a>
 </p>
 </div>
 <div id="information">
@@ -95,5 +100,6 @@ $(function(){
 		</ul>
 <div class="clear"></div>
 </div>
-
+</div>
+</div>
 

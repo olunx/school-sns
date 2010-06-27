@@ -84,9 +84,7 @@
 		$("#addition").slideDown("normal");
 		$("#links").append("<input id='twittertype' type='hidden' name='twitter.type' value='link' />");
 	}
-	function showImage() {
-
-	}
+	
 	function showVote() {
 		displayAll();
 		$("#addition").html($("#vote").html());
@@ -135,7 +133,7 @@
 		<div id="text">
 		<a onclick="cancel();" href="javascript:;">微博</a>
 		<a onclick="showLink();" href="javascript:;">链接</a>
-		<a onclick="displayAll();return hs.htmlExpand(this, { objectType: 'iframe' } );" href="<%=path%>/image/goUploadImage">图片</a>
+		<a rel="post_image" onclick="displayAll();return hs.htmlExpand(this, { objectType: 'iframe' } );" href="<%=path%>/image/goUploadImage">图片</a>
 		<a onclick="showVote();" href="javascript:;">投票</a>
 		<a onclick="showIssue();" href="javascript:;">问答</a>
 		<a onclick="showGoods();" href="javascript:;">交换</a>
