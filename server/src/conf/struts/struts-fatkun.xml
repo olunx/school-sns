@@ -39,4 +39,11 @@
 		<action name="*Chat" class="cn.gdpu.action.ChatAction" method="{1}"></action>
 	</package>
 	
+	<package name="twitterjson" extends="json-default" namespace="/twitter">
+		<action name="twitterWall" class="cn.gdpu.action.TwitterAction" method="twitterWall">
+			<result type="json">
+			   	<param name="includeProperties">twitterList\[\d+\]\.content,twitterList\[\d+\]\.author\.name,twitterList\[\d+\]\.author\.avatar\.minFileUrl</param>
+			</result>
+		</action>
+	</package>
 </struts>    

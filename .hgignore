@@ -1,0 +1,3 @@
+glob:client/.settings/org.eclipse.core.resources.prefs
+glob:client/bin/*
+glob:server/build/*

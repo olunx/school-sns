@@ -57,6 +57,7 @@
 			<result name="list" type="redirect">listTwitter?page=${page}</result>
 			<result name="listMy" type="redirect">listMyTwitter?page=${page}</result>
 			<result name="index">/WEB-INF/model/twitter/twitterList.jsp</result>
+			<result name="wall">/WEB-INF/model/twitter/twitterWall.jsp</result>
 			<result name="addPage">/WEB-INF/model/twitter/twitterAdd.jsp</result>
 			<result name="replyPage">/WEB-INF/model/twitter/twitterReply.jsp</result>
 		</global-results>

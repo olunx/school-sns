@@ -204,9 +204,9 @@ public class MainWindow {
 		final Composite composite = new Composite(shell, SWT.NONE);
 		composite.setLayout(new FormLayout());
 		final FormData fd_composite = new FormData();
-		fd_composite.bottom = new FormAttachment(0, 55);
-		fd_composite.right = new FormAttachment(100, -5);
+		fd_composite.bottom = new FormAttachment(0, 63);
 		fd_composite.top = new FormAttachment(0, 5);
+		fd_composite.right = new FormAttachment(100, -5);
 		fd_composite.left = new FormAttachment(0, 5);
 		composite.setLayoutData(fd_composite);
 
@@ -362,10 +362,10 @@ public class MainWindow {
 		composite_1.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
 		composite_1.setLayout(new FormLayout());
 		final FormData fd_composite_1 = new FormData();
-		fd_composite_1.bottom = new FormAttachment(100, -5);
+		fd_composite_1.bottom = new FormAttachment(99);
+		fd_composite_1.top = new FormAttachment(0, 63);
+		fd_composite_1.left = new FormAttachment(0, 5);
 		fd_composite_1.right = new FormAttachment(100, -5);
-		fd_composite_1.top = new FormAttachment(composite, 5, SWT.BOTTOM);
-		fd_composite_1.left = new FormAttachment(composite, 0, SWT.LEFT);
 		composite_1.setLayoutData(fd_composite_1);
 
 		browser = new Browser(composite_1, SWT.NONE);
@@ -378,10 +378,10 @@ public class MainWindow {
 			}
 		});
 		final FormData fd_browser = new FormData();
-		fd_browser.bottom = new FormAttachment(100, -5);
-		fd_browser.right = new FormAttachment(100, -5);
-		fd_browser.top = new FormAttachment(0, 5);
-		fd_browser.left = new FormAttachment(0, 5);
+		fd_browser.bottom = new FormAttachment(100);
+		fd_browser.right = new FormAttachment(100);
+		fd_browser.top = new FormAttachment(0);
+		fd_browser.left = new FormAttachment(0);
 		browser.setLayoutData(fd_browser);
 		browser.setUrl(site);
 		trayItem.addSelectionListener(new SelectionAdapter() {

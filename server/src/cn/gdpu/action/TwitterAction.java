@@ -19,6 +19,7 @@ public class TwitterAction extends BaseAction {
 	private Integer[] ids;
 	private int otherId;
 	private Twitter twitter;
+	private List<Twitter> twitterList;
 	private Image image;
 	private ImageService<Image, Integer> imageService;
 	private TwitterService<Twitter, Integer> twitterService;
@@ -102,13 +103,13 @@ public class TwitterAction extends BaseAction {
 
 	@Override
 	public String list() {
-		Log.init(getClass()).info("list ");
-		this.pageBean = this.twitterService.queryForPage("from Twitter t where t.istopic = '1' order by t.time DESC", 10, page);
-		if (pageBean.getList().isEmpty()) {
-			pageBean.setList(null);
-		}
-		Log.init(getClass()).info("list finish");
-		return super.list();
+//		Log.init(getClass()).info("list ");
+//		this.pageBean = this.twitterService.queryForPage("from Twitter t where t.istopic = '1' order by t.time DESC", 10, page);
+//		if (pageBean.getList().isEmpty()) {
+//			pageBean.setList(null);
+//		}
+//		Log.init(getClass()).info("list finish");
+		return "wall";
 	}
 
 	public String listMy() {
@@ -139,6 +140,17 @@ public class TwitterAction extends BaseAction {
 
 		Log.init(getClass()).info("listOther finish");
 		return super.list();
+	}
+	
+	/**
+	 * 微博墙
+	 * @return
+	 */
+	public String twitterWall() {
+		List<Twitter> tempList = new ArrayList<Twitter>();
+		twitterList = twitterService.queryForLimit("from Twitter t where t.istopic = '1' order by t.time DESC", 0, 15);
+		Log.init(getClass()).info(twitterList);
+		return SUCCESS;
 	}
 
 	public int getId() {
@@ -181,16 +193,8 @@ public class TwitterAction extends BaseAction {
 		this.image = image;
 	}
 
-	public ImageService<Image, Integer> getImageService() {
-		return imageService;
-	}
-
 	public void setImageService(ImageService<Image, Integer> imageService) {
 		this.imageService = imageService;
-	}
-
-	public TwitterService<Twitter, Integer> getTwitterService() {
-		return twitterService;
 	}
 
 	public void setTwitterService(TwitterService<Twitter, Integer> twitterService) {
@@ -211,6 +215,14 @@ public class TwitterAction extends BaseAction {
 
 	public void setPage(int page) {
 		this.page = page;
+	}
+
+	public List<Twitter> getTwitterList() {
+		return twitterList;
+	}
+
+	public void setTwitterList(List<Twitter> twitterList) {
+		this.twitterList = twitterList;
 	}
 
 }
