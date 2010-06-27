@@ -46,7 +46,7 @@ public class InstallAction extends BaseAction {
 	public String execute() throws Exception {
 
 		// 添加学生
-//		addMany("001.xls");
+		addMany("001.xls");
 		// 添加课程表
 		addCourse("kecheng.xls");
 		// 添加交换类型
