@@ -65,7 +65,7 @@ public class ClassesAction extends BaseAction implements Preparable{
 		institute = instituteService.getEntity(Institute.class, id);
 		classes.setInstitute(institute);
 		classesService.addEntity(classes);
-		return "add";
+		return "goPerfectReg";
 	}
 
 	@Override
