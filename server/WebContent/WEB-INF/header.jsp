@@ -94,7 +94,7 @@
 <div class="nav_account"><c:choose>
 	<c:when test="${isAccess!=null}">
 		 <a rel="header_info" onclick="ajaxload(this);return false;" href="<%=path %>/people/goModifyPeople?id=${student.id}">个人信息</a> | 
-		<a rel="header_mailbox" onclick="return hs.htmlExpand(this, { objectType: 'iframe' } )" href="<%=path%>/mail/boxMail">小纸箱</a>
+		<a rel="header_mailbox" onclick="ajaxload(this);return false;" href="<%=path%>/mail/boxMail">小纸箱</a>
         | <a rel="header_exit" href="<%=path%>/logout">退出</a>
 	</c:when>
 

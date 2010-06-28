@@ -10,14 +10,14 @@
 <div>
 <ul id="classnav" class="buttons nav">
 	<li><a rel="classes_index" onclick="ajaxload(this);return false;" href="<%=path%>/classes/viewClasses?id=${id}">班级首页</a></li>
-	<li><a rel="classes_fee" onclick="ajaxload(this);return false;" rev="#class" href="<%=path%>/classfee/listClassfee">查看班费</a></li>
-	<li><a rel="classes_course" onclick="ajaxload(this);return false;" rev="#class" href="<%=path%>/course/listCourse">课程表</a></li>
-	<li><a rel="classes_atten" onclick="ajaxload(this);return false;" rev="#class" href="<%=path%>/attendance/listAttendance">考勤记录</a></li>
-	<li><a rel="classes_score" onclick="ajaxload(this);return false;" rev="#class" href="<%=path%>/score/queryScore">成绩</a></li>
-	<li><a rel="classes_people" onclick="ajaxload(this);return false;" rev="#class" href="<%=path%>/people/classesPeople?id=${classes.id}">班级成员</a></li>
+	<li><a rel="classes_fee" onclick="ajaxload(this);return false;" rev="#tab" href="<%=path%>/classfee/listClassfee">查看班费</a></li>
+	<li><a rel="classes_course" onclick="ajaxload(this);return false;" rev="#tab" href="<%=path%>/course/listCourse">课程表</a></li>
+	<li><a rel="classes_atten" onclick="ajaxload(this);return false;" rev="#tab" href="<%=path%>/attendance/listAttendance">考勤记录</a></li>
+	<li><a rel="classes_score" onclick="ajaxload(this);return false;" rev="#tab" href="<%=path%>/score/queryScore">成绩</a></li>
+	<li><a rel="classes_people" onclick="ajaxload(this);return false;" rev="#tab" href="<%=path%>/people/listClassesPeople?id=${classes.id}">班级成员</a></li>
 </ul>
 <div class="clear"></div>
-<div id="class">
+<div id="tab">
 <div  class="form">
 <h2>${classes.name}(${classes.entryYear})</h2>
 <p>
