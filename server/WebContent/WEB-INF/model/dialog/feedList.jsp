@@ -18,10 +18,10 @@
 	<c:otherwise>
 		<c:forEach items="${pageBean.list}" var="feed">
 			<div class="list clearfix">
-			<div class="iavatar"><img src="<%=path%>/avatar/${feed.author.id}" /></div>
-			<div class="imsg">
-			<div class="iname" title="${feed.time}">${my:formatDate(feed.time)}</div>
-			<p class="icontent">
+			<div class="avatar"><img src="<%=path%>/avatar/${feed.author.id}" /></div>
+			<div class="msg">
+			<div class="time" title="${feed.time}">${my:formatDate(feed.time)}</div>
+			<p class="content">
 			<a onclick="ajaxload(this);return false;" href="<%=path%>/t/${feed.author.username}">${feed.author.name}</a> </p>
 			<p class="desc">   
 			<c:choose>

@@ -7,7 +7,7 @@
 	String path = request.getContextPath();
 %>
 
-<div class="form">
+<div>
 <ul id="classnav" class="buttons nav">
 	<li><a rel="classes_index" onclick="ajaxload(this);return false;" href="<%=path%>/classes/viewClasses?id=${id}">班级首页</a></li>
 	<li><a rel="classes_fee" onclick="ajaxload(this);return false;" rev="#class" href="<%=path%>/classfee/listClassfee">查看班费</a></li>
@@ -18,6 +18,7 @@
 </ul>
 <div class="clear"></div>
 <div id="class">
+<div  class="form">
 <h2>${classes.name}(${classes.entryYear})</h2>
 <p>
 <label>管理员：</label>
@@ -99,7 +100,7 @@
 	</c:otherwise>
 </c:choose>
 </div>
-
+</div>
 <!-- 班级的Feed -->
 <h2>最新动态</h2>
 <div id="feed" class="feed"></div>
