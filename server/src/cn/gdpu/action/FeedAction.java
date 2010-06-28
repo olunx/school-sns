@@ -1,6 +1,8 @@
 package cn.gdpu.action;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 import org.springframework.context.ApplicationContext;
@@ -72,24 +74,24 @@ public class FeedAction extends BaseAction {
 		feed.setMessage(twitter.getContent());
 		feed.setMsgId(twitter.getId());
 		feed.setTime(twitter.getTime());
-		
-		if(twitter.getType() != null) {
-			if(twitter.getType().equalsIgnoreCase("link")) {
+
+		if (twitter.getType() != null) {
+			if (twitter.getType().equalsIgnoreCase("link")) {
 				feed.setType(FeedAction.ADD_LINK);
 				feed.setLink(twitter.getLink());
-			}else if(twitter.getType().equalsIgnoreCase("video")) {
+			} else if (twitter.getType().equalsIgnoreCase("video")) {
 				feed.setType(FeedAction.ADD_VIDEO);
 				feed.setLink(twitter.getLink());
 			}
-		}else {
+		} else {
 			feed.setType(type);
 		}
-		
+
 		service.addEntity(feed);
 
 		return super.add();
 	}
-	
+
 	// 话题
 	public String add(Topic topic, String type) {
 
@@ -181,19 +183,18 @@ public class FeedAction extends BaseAction {
 	public String list() {
 		People user = (People) this.getSession().get("user");
 		user = peopleService.getEntity(People.class, user.getId());
-
 		Set<People> friends = user.getFriends();
-		StringBuffer sql = new StringBuffer();
-		sql.append("(" + user.getId() + ", ");
+
+		List<PageBean> result = new ArrayList<PageBean>();
 		if (friends != null && friends.size() > 0) {
-			for (People f : friends) {
-				sql.append(f.getId() + ", ");
+			for (People p : friends) {
+				result.add(feedService.queryForPage("from Feed f where f.author = " + p.getId() + " order by f.time desc", 5, page));
 			}
 		}
-		sql.delete(sql.lastIndexOf(","), sql.length());
-		sql.append(")");
-		Log.init(getClass()).info(sql);
-		pageBean = feedService.queryForPage("from Feed f where f.author in " + sql + " order by f.time desc", 10, page);
+		pageBean = new PageBean();
+		pageBean.setList(result);
+		Log.init(getClass()).info(result.size());
+
 		if (pageBean.getList().isEmpty()) {
 			pageBean.setList(null);
 		}
@@ -201,25 +202,45 @@ public class FeedAction extends BaseAction {
 
 		return super.list();
 	}
-	
+
 	public String listSchool() {
-		
+
 		People user = (People) this.getSession().get("user");
 		user = peopleService.getEntity(People.class, user.getId());
+		List<People> peoples = peopleService.queryForLimit("from People p where p.school = '" + user.getSchool().getId() + "' order by p.activity desc", 0, 10);
 		
-		pageBean = feedService.queryForPage("from Feed f where f.author.school = '" + user.getSchool().getId() + "' order by f.time desc", 10, page);
+		List<PageBean> result = new ArrayList<PageBean>();
+		if (peoples != null && peoples.size() > 0) {
+			for (People p : peoples) {
+				result.add(feedService.queryForPage("from Feed f where f.author = " + p.getId() + " order by f.time desc", 5, page));
+			}
+		}
+		pageBean = new PageBean();
+		pageBean.setList(result);
+		Log.init(getClass()).info(result.size());
+
 		if (pageBean.getList().isEmpty()) {
 			pageBean.setList(null);
 		}
 		moreAction = "listSchoolFeed";
 		return super.list();
 	}
-	
+
 	public String listClass() {
 		People user = (People) this.getSession().get("user");
 		user = peopleService.getEntity(People.class, user.getId());
-		
-		pageBean = feedService.queryForPage("from Feed f where f.author.classes = '" + user.getClasses().getId() + "' order by f.time desc", 10, page);
+		List<People> peoples = peopleService.queryForLimit("from People p where p.classes = '" + user.getClasses().getId() + "' order by p.activity desc", 0, 10);
+
+		List<PageBean> result = new ArrayList<PageBean>();
+		if (peoples != null && peoples.size() > 0) {
+			for (People p : peoples) {
+				result.add(feedService.queryForPage("from Feed f where f.author = " + p.getId() + " order by f.time desc", 5, page));
+			}
+		}
+		pageBean = new PageBean();
+		pageBean.setList(result);
+		Log.init(getClass()).info(result.size());
+
 		if (pageBean.getList().isEmpty()) {
 			pageBean.setList(null);
 		}

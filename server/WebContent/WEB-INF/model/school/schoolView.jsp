@@ -15,11 +15,11 @@ $(function(){
 <div>
 <ul id="classnav" class="buttons nav">
 	<li><a rel="school_index" onclick="ajaxload(this);return false;" href="<%=path%>/school/viewSchool?id=${id}">学校首页</a></li>
-	<li><a rel="school_other" onclick="ajaxload(this);return false;" rev="#school" href="<%=path%>/school/listSchool">其它学校</a></li>
-	<li><a rel="school_people" onclick="ajaxload(this);return false;" rev="#school" href="<%=path%>/people/schoolPeople?id=${school.id}">学校成员</a></li>
+	<li><a rel="school_other" onclick="ajaxload(this);return false;" rev="#tab" href="<%=path%>/school/listSchool">其它学校</a></li>
+	<li><a rel="school_people" onclick="ajaxload(this);return false;" rev="#tab" href="<%=path%>/people/listSchoolPeople?id=${school.id}">学校成员</a></li>
 </ul>
 <div class="clear"></div>
-<div id="school">
+<div id="tab">
 <div  class="form">
 <div class="school">
 <div class="school_pic">

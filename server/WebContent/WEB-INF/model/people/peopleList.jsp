@@ -8,7 +8,7 @@
 %>
 <script type="text/javascript">
 	$(function() {
-		listMore("#people_more_list", "#class");
+		listMore("#people_more_list", "#tab");
 	});
 </script>
 <c:choose>
@@ -54,7 +54,7 @@
 		<div id="people_more_list"><c:choose>
 			<c:when test="${pageBean.currentPage != pageBean.totalPage}">
 			<div class="buttons">
-			<a class="regular long center" target="list" href="<%=path%>/people/listPeople?page=${pageBean.currentPage+1}" >更多...</a>
+			<a class="regular long center" target="list" href="<%=path%>/people/${moreAction }?page=${pageBean.currentPage+1}&id=${id}" >更多...</a>
 			</div>
 			</c:when>
 			<c:otherwise>

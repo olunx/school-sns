@@ -7,12 +7,13 @@
 <script type="text/javascript" src="<%=path%>/content/js/jquery-1.4.2.min.js"></script>
 <script type="text/javascript" src="<%=path%>/content/js/common.js"></script>
 
-<a onclick="ajaxload(this);return false;" href="<%=path%>/mail/listMail">所有纸条</a>
-<a onclick="ajaxload(this);return false;" href="<%=path%>/mail/listMySendMail">发件箱</a>
-<a onclick="ajaxload(this);return false;" href="<%=path%>/mail/listMyReceMail">收件箱</a>
-<a onclick="ajaxload(this);return false;" href="<%=path%>/mail/goAddMail">传纸条</a>
-
-<br/><br/>
-<div id="content">
-
+<div class="form">
+<ul id="classnav" class="buttons nav">
+	<li><a rev="#box" onclick="ajaxload(this);return false;" href="<%=path%>/mail/listMail">所有纸条</a></li>
+	<li><a rev="#box" onclick="ajaxload(this);return false;" href="<%=path%>/mail/listMySendMail">发件箱</a></li>
+	<li><a rev="#box" onclick="ajaxload(this);return false;" href="<%=path%>/mail/listMyReceMail">收件箱</a></li>
+	<li><a rev="#box" onclick="ajaxload(this);return false;" href="<%=path%>/mail/goAddMail">传纸条</a></li>
+</ul>
 </div>
+<br/>
+<div id="box"></div>

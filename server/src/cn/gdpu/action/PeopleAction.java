@@ -40,6 +40,7 @@ public class PeopleAction extends BaseAction {
 	private ImageService<Image, Integer> imageService;
 	private String oldPassword;
 	private String rePassword;
+	private String moreAction;
 
 	@Override
 	public String add() {
@@ -207,6 +208,39 @@ public class PeopleAction extends BaseAction {
 		if (pageBean.getList().isEmpty())
 			pageBean.setList(null);
 
+		moreAction = "listPeople";
+		
+		return super.list();
+	}
+
+	/**
+	 *查找学校的所有成员
+	 */
+	public String listSchool() {
+		School school = schoolService.getEntity(School.class, id);
+		String hql = "from People p where p.school.id ='" + school.getId() + "' order by p.activity DESC";
+		this.pageBean = this.peopleService.queryForPage(hql, 20, page);
+		if (pageBean.getList().isEmpty())
+			pageBean.setList(null);
+		moreAction = "listSchoolPeople";
+		return super.list();
+	}
+
+	/**
+	 *查找班级的所有成员
+	 */
+	public String listClasses() {
+		People user = (People) this.getSession().get("user");
+		if (user != null) {
+			user = peopleService.getEntity(People.class, user.getId());
+			this.getRequest().put("friends", user.getFriends());
+		}
+		Classes classes = classesService.getEntity(Classes.class, id);
+		String hql = "from People p where p.classes.id ='" + classes.getId() + "' order by p.activity DESC";
+		this.pageBean = this.peopleService.queryForPage(hql, 20, page);
+		if (pageBean.getList().isEmpty())
+			pageBean.setList(null);
+		moreAction = "listClassesPeople";
 		return super.list();
 	}
 
@@ -289,35 +323,6 @@ public class PeopleAction extends BaseAction {
 		}
 		return super.list();
 
-	}
-
-	/**
-	 *查找学校的所有成员
-	 */
-	public String school() {
-		School school = schoolService.getEntity(School.class, id);
-		String hql = "from People p where p.school.id ='" + school.getId() + "' order by p.activity DESC";
-		this.pageBean = this.peopleService.queryForPage(hql, 20, page);
-		if (pageBean.getList().isEmpty())
-			pageBean.setList(null);
-		return super.list();
-	}
-
-	/**
-	 *查找班级的所有成员
-	 */
-	public String classes() {
-		People user = (People) this.getSession().get("user");
-		if (user != null) {
-			user = peopleService.getEntity(People.class, user.getId());
-			this.getRequest().put("friends", user.getFriends());
-		}
-		Classes classes = classesService.getEntity(Classes.class, id);
-		String hql = "from People p where p.classes.id ='" + classes.getId() + "' order by p.activity DESC";
-		this.pageBean = this.peopleService.queryForPage(hql, 20, page);
-		if (pageBean.getList().isEmpty())
-			pageBean.setList(null);
-		return super.list();
 	}
 
 	public String listFriend() {
@@ -506,6 +511,14 @@ public class PeopleAction extends BaseAction {
 
 	public void setRePassword(String rePassword) {
 		this.rePassword = rePassword;
+	}
+
+	public String getMoreAction() {
+		return moreAction;
+	}
+
+	public void setMoreAction(String moreAction) {
+		this.moreAction = moreAction;
 	}
 
 }
