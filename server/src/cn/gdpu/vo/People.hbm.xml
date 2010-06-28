@@ -20,7 +20,7 @@
 		<property name="birthday" />
 		<property name="regTime" />
 		<many-to-one name="school" column="schoolId" lazy="false"/>
-		<many-to-one name="institute" column="instituteId" />
+		<many-to-one name="institute" column="instituteId" lazy="false"/>
 		<many-to-one name="classes" column="classesId" lazy="false"/>
 		<property name="dorm" />
 		<property name="entryYear" />

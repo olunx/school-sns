@@ -6,7 +6,10 @@ import java.util.List;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+//import cn.gdpu.vo.Classes;
 import cn.gdpu.vo.Course;
+import cn.gdpu.vo.Institute;
+import cn.gdpu.vo.School;
 import cn.gdpu.vo.Score;
 import cn.gdpu.vo.Student;
 
@@ -45,10 +48,13 @@ public class StudentExcel extends ReadExcel {
 			// System.out.println("columns  " + columns);
 			// System.out.println("result  " + result);
 
-			int dormOffset = -1;
+			int schoolOffset = -1;
+			int instituteOffset = -1;
+//			int classOffset = -1;
+			int entryOffset = -1;
+			int sexOffset = -1;
 			int nameOffset = -1;
 			int qqOffset = -1;
-			int phoneOffset = -1;
 			int snoOffset = -1;
 
 			// 记录实际获取到的属性列数
@@ -57,17 +63,23 @@ public class StudentExcel extends ReadExcel {
 			for (int index = 0; index < columns; index++) {
 				text = result.get(index).toString();
 				// System.out.println(text);
-				if (text.contains("宿舍")) {
-					dormOffset = index;
+				if (text.contains("学校")) {
+					schoolOffset = index;
+					resultColumn++;
+				} else if (text.contains("学院")) {
+					instituteOffset = index;
+					resultColumn++;
+				} else if (text.contains("年级")) {
+					entryOffset = index;
+					resultColumn++;
+				} else if (text.contains("性别")) {
+					sexOffset = index;
 					resultColumn++;
 				} else if (text.contains("姓名")) {
 					nameOffset = index;
 					resultColumn++;
 				} else if (text.contains("QQ")) {
 					qqOffset = index;
-					resultColumn++;
-				} else if (text.contains("手机")) {
-					phoneOffset = index;
 					resultColumn++;
 				} else if (text.contains("学号")) {
 					snoOffset = index;
@@ -77,22 +89,40 @@ public class StudentExcel extends ReadExcel {
 
 			// 取出数据
 			int lastLoop = resultLength - columns;// 去掉最后一次循环
+			School school;
+			Institute ins;
+//			Classes classes;
 			Student stu;
 			String temp;
 			for (int index = columns; index < lastLoop;) {
+				school = new School();
+				ins = new Institute();
+//				classes = new Classes();
 				stu = new Student();
+
+				if (schoolOffset != -1){
+					school.setName(result.get(index + schoolOffset));
+					stu.setSchool(school);
+				}
+				if (instituteOffset != -1){
+					ins.setName(result.get(index + instituteOffset));
+					stu.setInstitute(ins);
+				}
+//				if (classOffset != -1){
+//					classes.setName(result.get(index + classOffset));
+//					stu.setClasses(classes);
+//				}
+				if (entryOffset != -1)
+					stu.setEntryYear(Integer.parseInt(result.get(index + entryOffset)));
+				if (sexOffset != -1)
+					stu.setSex(Integer.parseInt(result.get(index + sexOffset)));
 				if (nameOffset != -1)
 					stu.setName(result.get(index + nameOffset));
-				if (dormOffset != -1)
-					stu.setDorm(result.get(index + dormOffset));
 				if (qqOffset != -1) {
 					temp = result.get(index + qqOffset);
 					stu.setQq(temp);
 					stu.setEmail(temp + "@qq.com");
 				}
-
-				if (phoneOffset != -1)
-					stu.setPhoneNo(result.get(index + phoneOffset));
 				if (snoOffset != -1) {
 					temp = result.get(index + snoOffset);
 					stu.setSno(temp);
@@ -132,7 +162,6 @@ public class StudentExcel extends ReadExcel {
 			// 获取保存的属性列数
 			int columns = Integer.parseInt(result.get(resultLength - 1).toString());
 
-
 			// 保存属性名称
 			String[] columnName;
 			columnName = new String[columns];
@@ -150,11 +179,11 @@ public class StudentExcel extends ReadExcel {
 			for (int i = columns; i < lastLoop; i++) {
 				Student stu = new Student();
 				for (int j = 0; j < columns; j++) {
-					if (snoColumn == j){
+					if (snoColumn == j) {
 						thisSno = result.get(i);
 						stu.setSno(thisSno);
 					}
-					if(j > 1){							//根据成绩表的格式，第一列是学号，第二列是名字，第三列开始是成绩
+					if (j > 1) { // 根据成绩表的格式，第一列是学号，第二列是名字，第三列开始是成绩
 						Score score = new Score();
 						score.setStudent(stu);
 						score.setSubject(columnName[j]);
@@ -170,8 +199,10 @@ public class StudentExcel extends ReadExcel {
 
 		return null;
 	}
+
 	/**
 	 * 获取课程表
+	 * 
 	 * @param filePath
 	 * @return
 	 */
