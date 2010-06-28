@@ -89,6 +89,9 @@ public class RegisterAction extends BaseAction implements Preparable {
 			
 					Map<String, Map<String, Object>> map = new LinkedHashMap<String, Map<String, Object>>();
 					for(Institute institute: institutes){
+						if(institute.getClasses().size() == 0){         //防止班级为空的学院出错！！！！！！
+							continue;
+						}
 						Map<String, Object> insmap = new LinkedHashMap<String, Object>();
 						Map<String, Integer> clamap = new LinkedHashMap<String, Integer>();
 						insmap.put("key", institute.getId());
@@ -176,6 +179,9 @@ public class RegisterAction extends BaseAction implements Preparable {
 		
 				Map<String, Map<String, Object>> map = new LinkedHashMap<String, Map<String, Object>>();
 				for(Institute institute: institutes){
+					if(institute.getClasses().size() == 0){		//防止班级为空的学院出错！！！！！！
+						continue;
+					}
 					Map<String, Object> insmap = new LinkedHashMap<String, Object>();
 					Map<String, Integer> clamap = new LinkedHashMap<String, Integer>();
 					insmap.put("key", institute.getId());
@@ -195,6 +201,7 @@ public class RegisterAction extends BaseAction implements Preparable {
 	}
 	
 	public String perfectReg() throws Exception{
+		System.out.println("-------------sdfsadf");
 		Object student = this.getSession().get("student");
 		if (student != null) {
 			if (student instanceof Student) {
