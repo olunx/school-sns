@@ -12,7 +12,7 @@ $(function(){
 });
 //-->
 </script>
-<div class="form">
+<div>
 <ul id="classnav" class="buttons nav">
 	<li><a rel="school_index" onclick="ajaxload(this);return false;" href="<%=path%>/school/viewSchool?id=${id}">学校首页</a></li>
 	<li><a rel="school_other" onclick="ajaxload(this);return false;" rev="#school" href="<%=path%>/school/listSchool">其它学校</a></li>
@@ -20,6 +20,7 @@ $(function(){
 </ul>
 <div class="clear"></div>
 <div id="school">
+<div  class="form">
 <div class="school">
 <div class="school_pic">
 <c:if test="${!empty school.avatar.minFileUrl}">
@@ -51,7 +52,7 @@ $(function(){
 	<c:if test="${student.classes == null}"><a class="letterspacing" onclick="ajaxload(this);return false;" href="<%=path %>/goPerfectReg">继续完善资料认识很多同学</a></c:if> 
 	<c:if test="${student.classes != null and student.permission == 1}">你已申请加入“ ${student.classes.name} ”班级,审核中</c:if>
 </div>
-
+</div>
 <!-- 学校的Feed -->
 <script type="text/javascript">
 <!--

@@ -16,7 +16,7 @@ $.getJSON("<%=path%>/twitter/twitterWall",function(data){
 			img= item.author.avatar.minFileUrl;
 		else 
 			img = "";
-		$("#wall").append("<div id='twitter_"+i+"' class='test' style=\"display:none;\"><div class=\"avatar\"><img src=\"<%=path%>"+img+"\" /></div>"+item.author.name+item.content+"</div>");
+		$("#wall").append("<div id='twitter_"+i+"' class='tw_item' style=\"display:block;\"><div class=\"avatar\"><img src=\"<%=path%>"+img+"\" /></div><div class='msg'>"+item.author.name+"<br/>"+item.content+"</div></div>");
 	});
 
 	//alert($(".test").size());
@@ -26,10 +26,8 @@ $.getJSON("<%=path%>/twitter/twitterWall",function(data){
 			$(document).dequeue("myani");
 		});};
 	}
-	$(document).queue("myani",myfun);
-	//alert($(document).queue("myani").length);
-	$(document).dequeue("myani");	
-	//$(".test").fadeIn(1000).delay(500);
+	//$(document).queue("myani",myfun);
+	//$(document).dequeue("myani");	
 }); 
 </script>
 <div id="wall">
