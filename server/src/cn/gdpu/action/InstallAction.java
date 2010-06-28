@@ -45,8 +45,7 @@ public class InstallAction extends BaseAction {
 	@Override
 	public String execute() throws Exception {
 
-		// 添加学生
-		addMany("001.xls");
+
 		// 添加课程表
 		addCourse("kecheng.xls");
 		// 添加交换类型
@@ -55,10 +54,12 @@ public class InstallAction extends BaseAction {
 		addIssueType();
 		//添加学校与对应学院（简单实现先）
 		addProvince();
+		{//这里的顺序不要更改，否则肯定出错。
 		addSchool();
 		addInstitute();
 		addClasses();
-		
+		addMany("contact.xls");
+		}
 		//添加个管理员
 		addAdmin();
 		return super.SUCCESS;
@@ -72,7 +73,12 @@ public class InstallAction extends BaseAction {
 
 		List<Student> peopleList = new ArrayList<Student>();
 		peopleList = StudentExcel.getStudentExcel().getStudentData(filePath);
+		School school = (School) schoolService.getEntity(School.class, "from School where name = '广东药学院'").get(0);
+		Institute ins;
 		for (Student s : peopleList) {
+			s.setSchool(school);
+			ins = (Institute)instituteService.getEntity(Institute.class, "from Institute where name = '"+s.getInstitute().getName()+"'").get(0);
+			s.setInstitute(ins);
 			studentService.addEntity(s);
 		}
 		Log.init(getClass()).info("学生添加完成.......");
@@ -110,6 +116,8 @@ public class InstallAction extends BaseAction {
 		Province province2 = new Province();
 		province2.setName("北京");
 		provinceService.addEntity(province2);
+		
+		Log.init(getClass()).info("地区添加完成.......");
 	}
 	
 	// 添加学校
@@ -133,45 +141,78 @@ public class InstallAction extends BaseAction {
 		school3.setAddress("北京");
 		school3.setProvince(province2);
 		schoolService.addEntity(school3);
+		
+		Log.init(getClass()).info("学校添加完成.......");
 	}
 	// 添加学院
 	private void addInstitute() {
 		//第一个学校
 		School school1 = schoolService.getAllEntity(School.class).get(0); 
 		Institute institute1 = new Institute();
-		institute1.setName("医药信息工程学院");
+		institute1.setName("制药科学学院");
 		institute1.setSchool(school1);
 		instituteService.addEntity(institute1);
 		
 		Institute institute2 = new Institute();
-		institute2.setName("医药商学院");
+		institute2.setName("药科学院");
 		institute2.setSchool(school1);
 		instituteService.addEntity(institute2);
 
 		
 		Institute institute3 = new Institute();
-		institute3.setName("药科学院");
+		institute3.setName("化学化工学院");
 		institute3.setSchool(school1);
 		instituteService.addEntity(institute3);
 		
-		//第二个学校
-		School school2 = schoolService.getAllEntity(School.class).get(1);
 		Institute institute4 = new Institute();
-		institute4.setName("文学院");
-		institute4.setSchool(school2);
+		institute4.setName("生命科学院");
+		institute4.setSchool(school1);
 		instituteService.addEntity(institute4);
 		
 		Institute institute5 = new Institute();
-		institute5.setName("数学学院");
-		institute5.setSchool(school2);
+		institute5.setName("医学信息工程学院");
+		institute5.setSchool(school1);
 		instituteService.addEntity(institute5);
+		
+		Institute institute6 = new Institute();
+		institute6.setName("计算机与医院信息技术学院");
+		institute6.setSchool(school1);
+		instituteService.addEntity(institute6);
+		
+		Institute institute7 = new Institute();
+		institute7.setName("经济管理学院");
+		institute7.setSchool(school1);
+		instituteService.addEntity(institute7);
+		
+		Institute institute8 = new Institute();
+		institute8.setName("医药电子科学学院");
+		institute8.setSchool(school1);
+		instituteService.addEntity(institute8);
+		
+		Institute institute9 = new Institute();
+		institute9.setName("医学信息工程学院");
+		institute9.setSchool(school1);
+		instituteService.addEntity(institute9);
+		//第二个学校
+		School school2 = schoolService.getAllEntity(School.class).get(1);
+		Institute institute11 = new Institute();
+		institute11.setName("文学院");
+		institute11.setSchool(school2);
+		instituteService.addEntity(institute11);
+		
+		Institute institute12 = new Institute();
+		institute12.setName("数学学院");
+		institute12.setSchool(school2);
+		instituteService.addEntity(institute12);
 
 		//第三个学校
 		School school3 = schoolService.getAllEntity(School.class).get(2);
-		Institute institute6 = new Institute();
-		institute6.setName("XX学院");
-		institute6.setSchool(school3);
-		instituteService.addEntity(institute6);
+		Institute institute21 = new Institute();
+		institute21.setName("XX学院");
+		institute21.setSchool(school3);
+		instituteService.addEntity(institute21);
+		
+		Log.init(getClass()).info("学院添加完成.......");
 	}
 	//添加班级
 	public void addClasses() {	
@@ -236,7 +277,8 @@ public class InstallAction extends BaseAction {
 		classes7.setInstitute(institute6);
 		
 		classesService.addEntity(classes7);
-		Log.init(getClass()).info("班级初始化完成.......");
+		
+		Log.init(getClass()).info("班级添加完成.......");
 	}
 
 	private void addGoodType() {
@@ -249,6 +291,7 @@ public class InstallAction extends BaseAction {
 		GoodsType goodsType2 = new GoodsType();
 		goodsType2.setName("体育用品");
 		goodsTypeService.addEntity(goodsType2);
+		
 		Log.init(getClass()).info("交换品类型添加完成.......");
 	}
 
@@ -279,6 +322,7 @@ public class InstallAction extends BaseAction {
 		it4.setChildType(its2);
 		issueTypeService.addEntity(it1);
 		issueTypeService.addEntity(it4);
+		
 		Log.init(getClass()).info("提问类型添加完成.......");
 	}
 
