@@ -90,6 +90,9 @@
 		<dt><a onclick="ajaxload(this);return false;" href="<%=path%>/chat/priChat">匿名聊天室</a></dt>
 		</dl>
 	</li>
+	<c:if test="${admin != null}">
+		<li><a rel="header_admin" onclick="ajaxload(this);return false;" href="<%=path %>/admin/viewAdmin">管理员</a></li>
+	</c:if>
 </ul>
 <div class="nav_account"><c:choose>
 	<c:when test="${isAccess!=null}">

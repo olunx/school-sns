@@ -8,7 +8,7 @@
 <div>
 管理员:
 	<c:forEach items="${admins}" var="admin">
-			<a onclick="ajaxload(this);return false;" href="<%=path%>/student/viewStudent?id=${admin.id }">${admin.name}</a>
+			<a onclick="ajaxload(this);return false;" href="<%=path%>/people/viewPeople?id=${admin.id }">${admin.name}</a>
 	</c:forEach>
 	<br/>
 </div>
