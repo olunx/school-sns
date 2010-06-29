@@ -89,15 +89,18 @@ public class RegisterAction extends BaseAction implements Preparable {
 			
 					Map<String, Map<String, Object>> map = new LinkedHashMap<String, Map<String, Object>>();
 					for(Institute institute: institutes){
-						if(institute.getClasses().size() == 0){         //防止班级为空的学院出错！！！！！！
-							continue;
-						}
 						Map<String, Object> insmap = new LinkedHashMap<String, Object>();
 						Map<String, Integer> clamap = new LinkedHashMap<String, Integer>();
-						insmap.put("key", institute.getId());
-						insmap.put("defaultvalue", institute.getClasses().iterator().next().getId());
-						for(Classes classes: institute.getClasses()){
-							clamap.put(classes.getName(), classes.getId());
+						if(institute.getClasses().size() != 0){
+							insmap.put("key", institute.getId());
+							insmap.put("defaultvalue", institute.getClasses().iterator().next().getId());
+							for(Classes classes: institute.getClasses()){
+								clamap.put(classes.getName(), classes.getId());
+							}
+						}else{
+							insmap.put("key", institute.getId());
+							insmap.put("defaultvalue", -1);
+							clamap.put("暂无班级", -1);
 						}
 						
 						insmap.put("values", clamap);
@@ -179,15 +182,21 @@ public class RegisterAction extends BaseAction implements Preparable {
 		
 				Map<String, Map<String, Object>> map = new LinkedHashMap<String, Map<String, Object>>();
 				for(Institute institute: institutes){
-					if(institute.getClasses().size() == 0){		//防止班级为空的学院出错！！！！！！
+					/*if(institute.getClasses().size() == 0){		//防止班级为空的学院出错！！！！！！
 						continue;
-					}
+					}*/
 					Map<String, Object> insmap = new LinkedHashMap<String, Object>();
 					Map<String, Integer> clamap = new LinkedHashMap<String, Integer>();
-					insmap.put("key", institute.getId());
-					insmap.put("defaultvalue", institute.getClasses().iterator().next().getId());
-					for(Classes classes: institute.getClasses()){
-						clamap.put(classes.getName(), classes.getId());
+					if(institute.getClasses().size() != 0){
+						insmap.put("key", institute.getId());
+						insmap.put("defaultvalue", institute.getClasses().iterator().next().getId());
+						for(Classes classes: institute.getClasses()){
+							clamap.put(classes.getName(), classes.getId());
+						}
+					}else{
+						insmap.put("key", institute.getId());
+						insmap.put("defaultvalue", -1);
+						clamap.put("暂无班级", -1);
 					}
 					
 					insmap.put("values", clamap);
