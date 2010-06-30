@@ -122,7 +122,15 @@ label.error{color:red;}
 #submit{float:right;margin:5px 0;}
 .inputbtn{background:#E7F7F8;border:1px solid #7DD6FB;width:100px;height:30px;-moz-border-radius:5px;-webkit-border-radius:5px;border-radius:5px;font-size:15px;color:#2276BB;font-weight:700;cursor:pointer;}
 /*微博墙*/
-.tw_item .msg{float: right;}
+#twall { position: relative; height: 600px;}
+.tw_item {z-index:0;position: absolute; padding:6px; width: 300px;
+filter:alpha(opacity=95);/* IE */ 
+opacity: 0.95;/* 支持CSS3的浏览器*/ }
+.twitter_on{z-index:999; border:#666 4px solid;}
+.tw_item .avatar{ margin-top:-30px; }
+.tw_item .msg{margin-left:60px; width: 266px;background: url("msg_bottom.png") left bottom no-repeat;padding-bottom: 38px;}
+.tw_item .msg_top{background: url("msg_top.png") no-repeat; padding-top: 11px;}
+.tw_item .msg_center{background:url("msg_center.png") repeat-y;padding:0 11px;}
 /*Feed*/
 .feed .list{ padding:0 0 3px 0px; margin-bottom:5px; border-bottom:1px dashed #ccc;}
 .feed .avatar{ float:left;}
