@@ -13,7 +13,7 @@
 </script>
 <c:choose>
 	<c:when test="${pageBean.list == null}">
-					没有数据�?
+					没有数据。
 	</c:when>
 	<c:otherwise>
 		<c:forEach items="${pageBean.list}" var="beans">
@@ -30,52 +30,63 @@
 			</c:choose>
 			<c:choose>
 				<c:when test="${feed.type ==  'add_twitter'}">
-						叽叽歪歪的说�?{feed.message}�?
-						 -- <a title="${feed.time}">${my:formatDate(feed.time)}</a>
+						叽叽歪歪的说：${feed.message}
+						 -- <a title="${feed.time}">${my:formatDate(feed.time)}</a><br/>
 					</c:when>
 				<c:when test="${feed.type ==  'add_link'}">
 						分享了链接：${feed.link}<br />并叽歪的说：${feed.message}
+						 -- <a title="${feed.time}">${my:formatDate(feed.time)}</a><br/>
 					</c:when>
 				<c:when test="${feed.type ==  'add_video'}">
 						分享了视频：${feed.link}<br />并叽歪的说：${feed.message}
+						 -- <a title="${feed.time}">${my:formatDate(feed.time)}</a><br/>
 					</c:when>
 				<c:when test="${feed.type == 'reply_twitter'}">
-						回复了微?��   ${feed.message}�?
+						回复了微博：${feed.message}
+						 -- <a title="${feed.time}">${my:formatDate(feed.time)}</a><br/>
 					</c:when>
 				<c:when test="${feed.type ==  'add_topic'}">
-						 发表了主题：${feed.message}�?
+						 发表了主题：${feed.message}
+						  -- <a title="${feed.time}">${my:formatDate(feed.time)}</a><br/>
 					</c:when>
 				<c:when test="${feed.type == 'reply_topic'}">
-						回复�?  ${feed.message}  主题�?
+						回复了  ${feed.message}  主题
+						 -- <a title="${feed.time}">${my:formatDate(feed.time)}</a><br/>
 					</c:when>
 				<c:when test="${feed.type == 'add_group'}">
-						创建了小�? 
-						<a onclick="ajaxload(this);return false;" rev="#content" href="<%=path%>/group/viewGroup?id=${feed.msgId}">${feed.message}</a> �?
+						创建了小组 
+						<a onclick="ajaxload(this);return false;" rev="#content" href="<%=path%>/group/viewGroup?id=${feed.msgId}">${feed.message}</a> 。
+						 -- <a title="${feed.time}">${my:formatDate(feed.time)}</a><br/>
 					</c:when>
 				<c:when test="${feed.type == 'join_group'}">
-						�?入了   
-						<a onclick="ajaxload(this);return false;" rev="#content" href="<%=path%>/group/viewGroup?id=${feed.msgId}">${feed.message}</a>   小组�?
+						加入了   
+						<a onclick="ajaxload(this);return false;" rev="#content" href="<%=path%>/group/viewGroup?id=${feed.msgId}">${feed.message}</a>   小组。
+						 -- <a title="${feed.time}">${my:formatDate(feed.time)}</a><br/>
 					</c:when>
 				<c:when test="${feed.type == 'add_friend'}">
-						关注�? 
-						<a onclick="ajaxload(this);return false;" rev="#content" href="<%=path%>/t/${feed.whose.username}">${feed.message}</a> ，并表示希望成为TA的忠实fans�?
+						关注 
+						<a onclick="ajaxload(this);return false;" rev="#content" href="<%=path%>/t/${feed.whose.username}">${feed.message}</a> ，并表示希望成为TA的忠实fans。
 						 -- <a title="${feed.time}">${my:formatDate(feed.time)}</a><br/>
 					</c:when>
 				<c:when test="${feed.type == 'del_friend'}">
-						不想再关�?  
-						<a onclick="ajaxload(this);return false;" rev="#content" href="<%=path%>/t/${feed.whose.username}">${feed.message}</a>了�?
+						不想再关注  
+						<a onclick="ajaxload(this);return false;" rev="#content" href="<%=path%>/t/${feed.whose.username}">${feed.message}</a>了。
+						 -- <a title="${feed.time}">${my:formatDate(feed.time)}</a><br/>
 					</c:when>
 				<c:when test="${feed.type == 'add_goods'}">
-						�? 
-						<a onclick="ajaxload(this);return false;" rev="#content" href="<%=path%>/goods/viewGoods?id=${feed.msgId}">${feed.message}</a>   可以交换�?
+						有  
+						<a onclick="ajaxload(this);return false;" rev="#content" href="<%=path%>/goods/viewGoods?id=${feed.msgId}">${feed.message}</a>  可以交换。
+						 -- <a title="${feed.time}">${my:formatDate(feed.time)}</a><br/>
 					</c:when>
 				<c:when test="${feed.type == 'add_issue'}">
 						发起问题  
-						<a onclick="ajaxload(this);return false;" rev="#content" href="<%=path%>/issue/viewIssue?id=${feed.msgId}">${feed.message}</a>  �?
+						<a onclick="ajaxload(this);return false;" rev="#content" href="<%=path%>/issue/viewIssue?id=${feed.msgId}">${feed.message}</a>  。
+						 -- <a title="${feed.time}">${my:formatDate(feed.time)}</a><br/>
 					</c:when>
 				<c:when test="${feed.type == 'add_vote'}">
 						发起投票  
-						<a onclick="ajaxload(this);return false;" rev="#content" href="<%=path%>/vote/goVotingVote?vid=${feed.msgId}">${feed.message}</a>  �?
+						<a onclick="ajaxload(this);return false;" rev="#content" href="<%=path%>/vote/goVotingVote?vid=${feed.msgId}">${feed.message}</a>  。
+						 -- <a title="${feed.time}">${my:formatDate(feed.time)}</a><br/>
 					</c:when>
 				<c:otherwise>
 						${feed.author.name} ${feed.type} ${feed.message}

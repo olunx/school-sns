@@ -5,6 +5,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class Functions {
+	
 	public static String formatDate(Date date) {
 		Calendar cal = Calendar.getInstance();
 		Calendar nowcal = Calendar.getInstance();
@@ -30,5 +31,5 @@ public class Functions {
 		else
 			return new SimpleDateFormat("yyyy-MM-dd hh:mm").format(date);
 	};
-
+	
 }
