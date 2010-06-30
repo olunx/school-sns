@@ -39,6 +39,9 @@
 
 <script type="text/javascript" src="<%=path%>/content/js/jquery.scrollTo-min.js"></script>
 
+<script type="text/javascript" src="<%=path%>/content/js/jquery.easydrag.js"></script>
+
+
 <!-- dwr -->
 <script type='text/javascript' src='<%=path%>/content/js/jquery.selectboxes.min.js'></script>
 <script type='text/javascript' src='<%=path%>/dwr/engine.js'></script>

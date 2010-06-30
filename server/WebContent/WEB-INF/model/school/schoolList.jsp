@@ -41,7 +41,7 @@
 						${school.province.name}
 					</td>
 					<td>
-						<a onclick="ajaxload(this);return false;" href="<%=path %>/school/viewSchool?id=${school.id}" >${school.name}</a>
+						<a onclick="ajaxload(this);return false;" rev="#content" href="<%=path %>/school/viewSchool?id=${school.id}" >${school.name}</a>
 					</td>
 					<td>
 						${fn:length(school.institute)}
