@@ -251,6 +251,19 @@ font-size:20px;
 .imglist li a { white-space:nowrap;}
 .imglist li img{ width:50px; height:50px; padding:2px; border:1px solid #d2d2d2; background:#fff;}
 
+/*好友头像列表*/
+.friendlist {
+	width:600px;
+}
+.friendlist li{
+ float:left; width:120px;
+ height:60px;
+ text-align:left;
+ overflow:hidden;
+ margin-right:0px;
+}
+.friendlist li a { white-space:nowrap;}
+.friendlist li img{ width:50px; height:50px; padding:2px; border:1px solid #d2d2d2; background:#fff;}
 /*底部*/
 #footer{width:790px; background:#ffffff; clear:both; margin:10px auto; padding:5px; text-align:center;}
 #footer p{font:#FFF;}
