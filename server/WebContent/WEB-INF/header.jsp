@@ -24,6 +24,7 @@
 
 <!-- 常用库，确保这段代码在最下方 -->
 <script type="text/javascript" src="<%=path%>/content/js/common.js"></script>
+
 </head>
 <body>
 

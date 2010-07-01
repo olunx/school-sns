@@ -139,7 +139,7 @@
 		<a onclick="showGoods();" href="javascript:;">交换</a>
 		</div>
 		<div id="submit">
-			<input class="inputbtn" type="submit" value="发表">
+			<input class="btn blue" type="submit" value="发表">
 		</div>
     </div>
 	</form>
