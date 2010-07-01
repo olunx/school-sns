@@ -12,6 +12,7 @@
  <a onclick="ajaxload(this);return false;" rev="#wall" href="<%=path%>/issue/listIssue" class="regular">问答</a>
  <a onclick="ajaxload(this);return false;" rev="#wall" href="<%=path%>/goods/listGoods" class="regular">交换</a>
  <a onclick="ajaxload(this);return false;" rev="#wall" href="<%=path%>/group/listGroup" class="regular">群组</a>
+ <a onclick="ajaxload(this);return false;" rev="#wall" href="<%=path%>/friend/viewFriend" class="regular">好友</a>
 </div>
 
 <div id="wall">
