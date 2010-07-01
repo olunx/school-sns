@@ -80,7 +80,7 @@ img{ border:none;}
 .replybtn{ border:1px solid #d5d6d0; padding:2px; display:block; color:#666;}
 .reply_editor textarea{ width:438px; height:80px;}
 
-/*微博*/
+/*个人微博信息*/
 #LUI{padding:10px 0;overflow:hidden;}
 #LUI ul{margin:0 auto;overflow:hidden;}
 #LUI .pic{float:left;width:130px;}
@@ -110,17 +110,16 @@ img{ border:none;}
 #topic_list .operate{}
 
 .linedot{ background:url(linedot.gif) center repeat-x; padding:0; margin:0;}
-/*微博页面*/
+/*微博发表框*/
 #twitter{display:block;padding:5px;}
 #twitter,#twitter a:link,#twitter a:visited{font-size:13px;font-weight:700;color:#2276BB;text-decoration:none;}
 label.error{color:red;}
 #twitter p{padding:10px 0;}
 #input{background:#E7F7F8;padding:5px;}
-#inputarea{background:#fff;border:1px solid #ccc;margin:5px 0;padding:5px;width:538px;height:80px;outline:0;color:#666;-moz-border-radius:5px;-webkit-border-radius:5px;border-radius:5px;font-size:18px;}
+#inputarea{background:#fff;border:1px solid #ccc;overflow:auto;margin:5px 0;padding:5px;width:538px;height:80px;outline:0;color:#666;border-radius:5px;font-size:18px;}
 #options{height:50px;}
 #text{float:left;line-height:30px;margin:5px 0;}
 #submit{float:right;margin:5px 0;}
-.inputbtn{background:#E7F7F8;border:1px solid #7DD6FB;width:100px;height:30px;-moz-border-radius:5px;-webkit-border-radius:5px;border-radius:5px;font-size:15px;color:#2276BB;font-weight:700;cursor:pointer;}
 /*微博墙*/
 #twall { position: relative; height: 600px;}
 .tw_item {z-index:0;position: absolute; padding:6px; width: 300px;
@@ -278,39 +277,23 @@ font-size:20px;
 .buttons a.long{width:550px;}
 
 /*有图片按钮样式*/
-.btn_normal{
-	display: inline-block;
-	height: 23px;
-	line-height: 23px;
-	font-size: 12px;
-	font-weight: normal;
-	background: url(mblog_btn.gif) no-repeat 0px 0px;
-	padding-left:10px;
-	text-decoration:none;
-	}
-a.btn_normal:hover{
-	background-position-x: 0px;
-	background-position-y: -55px;
-	}
-	
-.btn_normal em{
-	background: url(mblog_btn.gif) no-repeat 100% -28px;
-	color: rgb(51, 51, 51);
-	cursor: pointer;
-	display: inline-block;
-	font-style:normal;
-	height: 23px;
-	line-height: 23px;
-	padding-right: 10px;
-	text-decoration: none;
-}
-a.btn_normal:hover em{
-	background-position-x: 100%;
-	background-position-y: -83px;
-	display: inline-block;
-	height: 23px;
-	text-decoration: none;
-}
+.btn { display: block; position: relative; background: #aaa; padding: 5px; float: left;font-weight:bold; color: #fff; text-decoration: none; cursor: pointer; }
+.btn * { font-style: normal; background-image: url(./btn/btn2.png); background-repeat: no-repeat; display: block; position: relative; }
+
+.btn.blue { background: #2ae; }
+.btn.green { background: #9d4; }
+.btn.pink { background: #e1a; }
+.btn:hover { background-color: #a00; color:#fff;}
+.btn:active { background-color: #444; }
+.btn[class] {  background-image: url(./btn/shade.png); background-position: bottom; }
+
+.btn { border: 3px double #aaa; }
+.btn.blue { border-color: #2ae; }
+.btn.green { border-color: #9d4; }
+.btn.pink { border-color: #e1a; }
+.btn.big {padding:5px 10px;}
+.btn:hover { border-color: #a00;}
+
 
 /*ajaxupload*/
 .button{background:#ccc;width:100px;height:30px;font-size:14px;color:#fff;padding-top:10px;text-align:center;}
