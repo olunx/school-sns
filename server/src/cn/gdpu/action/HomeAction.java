@@ -126,6 +126,9 @@ public class HomeAction extends BaseAction {
 		this.getSession().put("maybeMeet", maybeMeet);
 		
 		List<MutualFriend> mfs = findMutual(people);
+		System.out.println("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx mfs.size = " + mfs.size());
+		if(mfs.size() == 0)
+			mfs=null;
 		this.getSession().put("mutualfriend", mfs);
 		
 		return "home";
@@ -142,12 +145,10 @@ public class HomeAction extends BaseAction {
 		Set<People> myfriends = me.getFriends();
 		for(Iterator<People> mit = myfriends.iterator(); mit.hasNext();){
 			People other = mit.next();
-			System.out.println("other name " + other.getName());
 			if(other.getFriends() != null && other.getFriends().size() != 0){
 				for(Iterator<People> oit = other.getFriends().iterator(); oit.hasNext();){
 					People of = oit.next();
 					if(!myfriends.contains(of) && of.getId() != me.getId()){
-						System.out.println("of name " + of.getName());
 						if(mfs.size() == 0){
 							MutualFriend mf = new MutualFriend();
 							mf.setPeople(of);
