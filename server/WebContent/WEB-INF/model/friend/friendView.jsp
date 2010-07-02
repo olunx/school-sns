@@ -7,7 +7,7 @@
 	String path = request.getContextPath();
 %>
 
-<h2>他们和你有共同好友（${mutualfriend == null? 0 : fn:length(mutualfriend)}）</h2>
+<h2>他们和你有共同好友（${mutualfriend == null? 0 : fn:length(mutualfriend)}）<c:if test="${mutualfriend != null}"><a onclick="ajaxload(this);return false;" href="<%=path%>/friend/mutualFriend">全部</a></c:if></h2>
 <c:choose>
 	<c:when test="${mutualfriend == null}">
 					暂无共同好友！
@@ -61,23 +61,50 @@
 	<c:when test="${schoolmates == null}">
 					暂无同班好友！
 	</c:when>
+	<c:when test="${people.institute == null}">
+					<a onclick="ajaxload(this);return false;" href="<%=path %>/goPerfectReg">继续完善资料,认识更多同学</a>
+	</c:when>
+	<c:when test="${institutemates == null}">
+					暂无同一学院的好友！
+	</c:when>
 	<c:otherwise>
-	${people.school.name }的同学们<br/><br/>
-	<ul class="friendlist">
-		<c:forEach items="${schoolmates}" var="peopler" varStatus="i">
-			<c:if test="${i.count == 6}"><br/><br/><br/><br/><br/><br/></c:if>
-			<li>
-			<div style="float: left"><a onclick="ajaxload(this);return false;" href="<%=path%>/t/${peopler.username }"><img src="<%=path %>/avatar/${peopler.id}" width="50"></img></a></div>
-			<div style="float: left"><a onclick="ajaxload(this);return false;" href="<%=path%>/t/${peopler.username }">${peopler.name}</a><br/>
-			<a onclick="ajaxload(this);return false;" href="<%=path%>/people/followPeople?id=${people.id}&page=${page}">
-				 <c:choose>
-				 	<c:when test="${my:isMyFriend(friends,people)}">删除好友</c:when>
-				 	<c:otherwise>加为好友</c:otherwise>
-				 </c:choose>
-			</a>
-			</div>
-			</li>
-		</c:forEach>
-	</ul>
+		<div>
+			${people.school.name }的同学们<br/><br/>
+			<ul class="friendlist">
+				<c:forEach items="${schoolmates}" var="peopler" varStatus="i">
+					<c:if test="${i.count == 6}"><br/><br/><br/><br/><br/><br/></c:if>
+					<li>
+					<div style="float: left"><a onclick="ajaxload(this);return false;" href="<%=path%>/t/${peopler.username }"><img src="<%=path %>/avatar/${peopler.id}" width="50"></img></a></div>
+					<div style="float: left"><a onclick="ajaxload(this);return false;" href="<%=path%>/t/${peopler.username }">${peopler.name}</a><br/>
+					<a onclick="ajaxload(this);return false;" href="<%=path%>/people/followPeople?id=${people.id}&page=${page}">
+						 <c:choose>
+						 	<c:when test="${my:isMyFriend(friends,people)}">删除好友</c:when>
+						 	<c:otherwise>加为好友</c:otherwise>
+						 </c:choose>
+					</a>
+					</div>
+					</li>
+				</c:forEach>
+			</ul>
+		</div>
+		<div>
+			${people.school.name } - ${people.institute.name }的同学们<br/><br/>
+			<ul class="friendlist">
+				<c:forEach items="${institutemates}" var="peopler" varStatus="i">
+					<c:if test="${i.count == 6}"><br/><br/><br/><br/><br/><br/></c:if>
+					<li>
+					<div style="float: left"><a onclick="ajaxload(this);return false;" href="<%=path%>/t/${peopler.username }"><img src="<%=path %>/avatar/${peopler.id}" width="50"></img></a></div>
+					<div style="float: left"><a onclick="ajaxload(this);return false;" href="<%=path%>/t/${peopler.username }">${peopler.name}</a><br/>
+					<a onclick="ajaxload(this);return false;" href="<%=path%>/people/followPeople?id=${people.id}&page=${page}">
+						 <c:choose>
+						 	<c:when test="${my:isMyFriend(friends,people)}">删除好友</c:when>
+						 	<c:otherwise>加为好友</c:otherwise>
+						 </c:choose>
+					</a>
+					</div>
+					</li>
+				</c:forEach>
+			</ul>
+		</div>
 	</c:otherwise>
 </c:choose>
