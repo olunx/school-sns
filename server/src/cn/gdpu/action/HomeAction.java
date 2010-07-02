@@ -126,7 +126,6 @@ public class HomeAction extends BaseAction {
 		this.getSession().put("maybeMeet", maybeMeet);
 		
 		List<MutualFriend> mfs = findMutual(people);
-		System.out.println("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx mfs.size = " + mfs.size());
 		if(mfs.size() == 0)
 			mfs=null;
 		this.getSession().put("mutualfriend", mfs);

@@ -122,6 +122,7 @@
 	<package name="friend" extends="default" namespace="/friend">
 		<global-results>
 			<result name="viewPage">/WEB-INF/model/friend/friendView.jsp</result>
+			<result name="mutual">/WEB-INF/model/friend/mutualfriendList.jsp</result>
 		</global-results>
 		<action name="*Friend" class="cn.gdpu.action.FriendAction" method="{1}">
 		</action>

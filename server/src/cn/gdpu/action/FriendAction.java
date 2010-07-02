@@ -1,9 +1,12 @@
 package cn.gdpu.action;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import cn.gdpu.service.PeopleService;
+import cn.gdpu.util.MutualFriendComparator;
+import cn.gdpu.vo.MutualFriend;
 import cn.gdpu.vo.People;
 
 @SuppressWarnings("serial")
@@ -15,6 +18,7 @@ public class FriendAction extends BaseAction {
 		People user = (People) this.getSession().get("user");
 		people = peopleService.getEntity(People.class, user.getId());
 		List<People> schoolmates = new ArrayList<People>();
+		List<People> institutemates = new ArrayList<People>();
 		String hql;
 		if (people.getSchool() != null) {
 				// 推荐同一学校
@@ -26,7 +30,28 @@ public class FriendAction extends BaseAction {
 			schoolmates = null;
 		}
 		getRequest().put("schoolmates", schoolmates);
+		
+		if (people.getInstitute() != null) {
+			// 推荐同一学校并同一学院的学生
+			hql = "from People p where p.institute.id ='" + people.getInstitute().getId() + "' and p.id <> '" + people.getId()
+			+ "' order by rand()";
+			institutemates = peopleService.queryForLimit(hql, 0, 10);
+		}
+		if(institutemates.size() == 0){
+			institutemates = null;
+		}
+		getRequest().put("institutemates", institutemates);
+		
 		return VIEW_PAGE;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public String mutual(){
+		List<MutualFriend> mfs = (List<MutualFriend>) getSession().get("mutualfriend");
+		MutualFriendComparator<MutualFriend> mfc = new MutualFriendComparator<MutualFriend>();
+		Collections.sort(mfs, mfc);
+		getSession().put("mutualfriend", mfs);
+		return "mutual";
 	}
 	
 	//getter and setter
