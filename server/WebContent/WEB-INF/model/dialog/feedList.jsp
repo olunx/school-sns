@@ -20,85 +20,65 @@
 			<div class="list clearfix">
 		<c:forEach items="${beans.list}" var="feed" varStatus="status">
 			<c:choose>
-			<c:when test="${status.index == 0}">
-			<div class="iavatar"><img src="<%=path%>/avatar/${feed.author.id}" /></div>
-			<div class="imsg">
-			<p class="icontent">
-			<a onclick="ajaxload(this);return false;" href="<%=path%>/t/${feed.author.username}">${feed.author.name}</a> </p>
-			<p class="desc">
+			<c:when test="${status.index == 0}"><!-- 只显示一次 -->
+			<div class="avatar"><img src="<%=path%>/avatar/${feed.author.id}" /></div>
+			<a class="name" onclick="ajaxload(this);return false;" href="<%=path%>/t/${feed.author.username}">${feed.author.name}</a>
 			</c:when>
 			</c:choose>
+			<div class="msg">
 			<c:choose>
 				<c:when test="${feed.type ==  'add_twitter'}">
 						叽叽歪歪的说：${feed.message}
-						 -- <a title="${feed.time}">${my:formatDate(feed.time)}</a><br/>
-					</c:when>
-				<c:when test="${feed.type ==  'add_link'}">
+						 <span class="time" title="${feed.time}">${my:formatDate(feed.time)}</span>
+				</c:when><c:when test="${feed.type ==  'add_link'}">
 						分享了链接：${feed.link}<br />并叽歪的说：${feed.message}
-						 -- <a title="${feed.time}">${my:formatDate(feed.time)}</a><br/>
-					</c:when>
-				<c:when test="${feed.type ==  'add_video'}">
+						 <span class="time" title="${feed.time}">${my:formatDate(feed.time)}</span>
+				</c:when><c:when test="${feed.type ==  'add_video'}">
 						分享了视频：${feed.link}<br />并叽歪的说：${feed.message}
-						 -- <a title="${feed.time}">${my:formatDate(feed.time)}</a><br/>
-					</c:when>
-				<c:when test="${feed.type == 'reply_twitter'}">
+						 <span class="time" title="${feed.time}">${my:formatDate(feed.time)}</span>
+				</c:when><c:when test="${feed.type == 'reply_twitter'}">
 						回复了微博：${feed.message}
-						 -- <a title="${feed.time}">${my:formatDate(feed.time)}</a><br/>
-					</c:when>
-				<c:when test="${feed.type ==  'add_topic'}">
+						 <span class="time" title="${feed.time}">${my:formatDate(feed.time)}</span>
+				</c:when><c:when test="${feed.type ==  'add_topic'}">
 						 发表了主题：${feed.message}
-						  -- <a title="${feed.time}">${my:formatDate(feed.time)}</a><br/>
-					</c:when>
-				<c:when test="${feed.type == 'reply_topic'}">
+						  <span class="time" title="${feed.time}">${my:formatDate(feed.time)}</span>
+				</c:when><c:when test="${feed.type == 'reply_topic'}">
 						回复了  ${feed.message}  主题
-						 -- <a title="${feed.time}">${my:formatDate(feed.time)}</a><br/>
-					</c:when>
-				<c:when test="${feed.type == 'add_group'}">
+						 <span class="time" title="${feed.time}">${my:formatDate(feed.time)}</span>
+				</c:when><c:when test="${feed.type == 'add_group'}">
 						创建了小组 
 						<a onclick="ajaxload(this);return false;" rev="#content" href="<%=path%>/group/viewGroup?id=${feed.msgId}">${feed.message}</a> 。
-						 -- <a title="${feed.time}">${my:formatDate(feed.time)}</a><br/>
-					</c:when>
-				<c:when test="${feed.type == 'join_group'}">
+						 <span class="time" title="${feed.time}">${my:formatDate(feed.time)}</span>
+				</c:when><c:when test="${feed.type == 'join_group'}">
 						加入了   
 						<a onclick="ajaxload(this);return false;" rev="#content" href="<%=path%>/group/viewGroup?id=${feed.msgId}">${feed.message}</a>   小组。
-						 -- <a title="${feed.time}">${my:formatDate(feed.time)}</a><br/>
-					</c:when>
-				<c:when test="${feed.type == 'add_friend'}">
+						 <span class="time" title="${feed.time}">${my:formatDate(feed.time)}</span>
+				</c:when><c:when test="${feed.type == 'add_friend'}">
 						关注 
 						<a onclick="ajaxload(this);return false;" rev="#content" href="<%=path%>/t/${feed.whose.username}">${feed.message}</a> ，并表示希望成为TA的忠实fans。
-						 -- <a title="${feed.time}">${my:formatDate(feed.time)}</a><br/>
-					</c:when>
-				<c:when test="${feed.type == 'del_friend'}">
+						 <span class="time" title="${feed.time}">${my:formatDate(feed.time)}</span>
+				</c:when><c:when test="${feed.type == 'del_friend'}">
 						不想再关注  
 						<a onclick="ajaxload(this);return false;" rev="#content" href="<%=path%>/t/${feed.whose.username}">${feed.message}</a>了。
-						 -- <a title="${feed.time}">${my:formatDate(feed.time)}</a><br/>
-					</c:when>
-				<c:when test="${feed.type == 'add_goods'}">
+						 <span class="time" title="${feed.time}">${my:formatDate(feed.time)}</span>
+				</c:when><c:when test="${feed.type == 'add_goods'}">
 						有  
 						<a onclick="ajaxload(this);return false;" rev="#content" href="<%=path%>/goods/viewGoods?id=${feed.msgId}">${feed.message}</a>  可以交换。
-						 -- <a title="${feed.time}">${my:formatDate(feed.time)}</a><br/>
-					</c:when>
-				<c:when test="${feed.type == 'add_issue'}">
+						 <span class="time" title="${feed.time}">${my:formatDate(feed.time)}</span>
+				</c:when><c:when test="${feed.type == 'add_issue'}">
 						发起问题  
 						<a onclick="ajaxload(this);return false;" rev="#content" href="<%=path%>/issue/viewIssue?id=${feed.msgId}">${feed.message}</a>  。
-						 -- <a title="${feed.time}">${my:formatDate(feed.time)}</a><br/>
-					</c:when>
-				<c:when test="${feed.type == 'add_vote'}">
+						 <span class="time" title="${feed.time}">${my:formatDate(feed.time)}</span>
+				</c:when><c:when test="${feed.type == 'add_vote'}">
 						发起投票  
 						<a onclick="ajaxload(this);return false;" rev="#content" href="<%=path%>/vote/goVotingVote?vid=${feed.msgId}">${feed.message}</a>  。
-						 -- <a title="${feed.time}">${my:formatDate(feed.time)}</a><br/>
+						 <span class="time" title="${feed.time}">${my:formatDate(feed.time)}</span>
 					</c:when>
 				<c:otherwise>
 						${feed.author.name} ${feed.type} ${feed.message}
 					</c:otherwise>
 			</c:choose>
-			<c:choose>
-			<c:when test="${status.index == 0}">
-			</p>
 			</div>
-			</c:when>
-			</c:choose>
-			
 		</c:forEach>
 			</div>
 		</c:forEach>
