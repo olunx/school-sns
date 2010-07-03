@@ -16,8 +16,8 @@
 	<ul class="friendlist">
 		<c:forEach items="${mutualfriend}" var="mf">
 			<li>
-			<div style="float: left"><a onclick="ajaxload(this);return false;" href="<%=path%>/t/${mf.people.username }"><img src="<%=path %>/avatar/${mf.people.id}" width="50"></img></a></div>
-			<div style="float: left"><a onclick="ajaxload(this);return false;" href="<%=path%>/t/${mf.people.username }">${mf.people.name}</a><br/>
+			<div class="avatar"><a onclick="ajaxload(this);return false;" href="<%=path%>/t/${mf.people.username }"><img src="<%=path %>/avatar/${mf.people.id}"></img></a></div>
+			<div class="info"><a onclick="ajaxload(this);return false;" href="<%=path%>/t/${mf.people.username }">${mf.people.name}</a><br/>
 			共同好友${fn:length(mf.mutual)}<br/>
 			<a onclick="ajaxload(this);return false;" href="<%=path%>/people/followPeople?id=${mf.people.id}&page=${page}">
 					 <c:choose>
@@ -41,8 +41,8 @@
 	<ul class="friendlist">
 		<c:forEach items="${maybeMeet}" var="peopler">
 			<li>
-			<div style="float: left"><a onclick="ajaxload(this);return false;" href="<%=path%>/t/${peopler.username }"><img src="<%=path %>/avatar/${peopler.id}" width="50"></img></a></div>
-			<div style="float: left"><a onclick="ajaxload(this);return false;" href="<%=path%>/t/${peopler.username }">${peopler.name}</a><br/>
+			<div class="avatar"><a onclick="ajaxload(this);return false;" href="<%=path%>/t/${peopler.username }"><img src="<%=path %>/avatar/${peopler.id}" width="50"></img></a></div>
+			<div class="info"><a onclick="ajaxload(this);return false;" href="<%=path%>/t/${peopler.username }">${peopler.name}</a><br/>
 			<a onclick="ajaxload(this);return false;" href="<%=path%>/people/followPeople?id=${people.id}&page=${page}">
 					 <c:choose>
 					 	<c:when test="${my:isMyFriend(friends,people)}">删除好友</c:when>
