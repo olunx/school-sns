@@ -184,20 +184,12 @@ public class FeedAction extends BaseAction {
 		People user = (People) this.getSession().get("user");
 		user = peopleService.getEntity(People.class, user.getId());
 		Set<People> friends = user.getFriends();
-
-		List<PageBean> result = new ArrayList<PageBean>();
-		if (friends != null && friends.size() > 0) {
-			for (People p : friends) {
-				result.add(feedService.queryForPage("from Feed f where f.author = " + p.getId() + " order by f.time desc", 5, page));
-			}
+		friends.add(user);
+		List<People> peoples = new ArrayList<People>();
+		for (People p : friends) {
+			peoples.add(p);
 		}
-		pageBean = new PageBean();
-		pageBean.setList(result);
-		Log.init(getClass()).info(result.size());
-
-		if (pageBean.getList().isEmpty()) {
-			pageBean.setList(null);
-		}
+		pageBean = this.getFeedList(peoples, null);
 		moreAction = "listFeed";
 
 		return super.list();
@@ -207,21 +199,9 @@ public class FeedAction extends BaseAction {
 
 		People user = (People) this.getSession().get("user");
 		user = peopleService.getEntity(People.class, user.getId());
-		List<People> peoples = peopleService.queryForLimit("from People p where p.school = '" + user.getSchool().getId() + "' order by p.activity desc", 0, 10);
-		
-		List<PageBean> result = new ArrayList<PageBean>();
-		if (peoples != null && peoples.size() > 0) {
-			for (People p : peoples) {
-				result.add(feedService.queryForPage("from Feed f where f.author = " + p.getId() + " order by f.time desc", 5, page));
-			}
-		}
-		pageBean = new PageBean();
-		pageBean.setList(result);
-		Log.init(getClass()).info(result.size());
+		String hql = "from People p where p.school = '" + user.getSchool().getId() + "' order by p.activity desc";
 
-		if (pageBean.getList().isEmpty()) {
-			pageBean.setList(null);
-		}
+		pageBean = this.getFeedList(null, hql);
 		moreAction = "listSchoolFeed";
 		return super.list();
 	}
@@ -229,23 +209,53 @@ public class FeedAction extends BaseAction {
 	public String listClass() {
 		People user = (People) this.getSession().get("user");
 		user = peopleService.getEntity(People.class, user.getId());
-		List<People> peoples = peopleService.queryForLimit("from People p where p.classes = '" + user.getClasses().getId() + "' order by p.activity desc", 0, 10);
-
-		List<PageBean> result = new ArrayList<PageBean>();
-		if (peoples != null && peoples.size() > 0) {
-			for (People p : peoples) {
-				result.add(feedService.queryForPage("from Feed f where f.author = " + p.getId() + " order by f.time desc", 5, page));
-			}
-		}
-		pageBean = new PageBean();
-		pageBean.setList(result);
-		Log.init(getClass()).info(result.size());
-
-		if (pageBean.getList().isEmpty()) {
-			pageBean.setList(null);
-		}
+		String hql ="from People p where p.classes = '" + user.getClasses().getId() + "' order by p.activity desc";
+		pageBean = this.getFeedList(null, hql);
 		moreAction = "listClassFeed";
 		return super.list();
+	}
+
+	/**
+	 * 在指定人内，按时间顺序返回Feed
+	 * 可选参数 @peoples：指定人物，可为空 @hqlstr:Hql语句，可为空 
+	 * 优先级：sqlstr > peoples
+	 */
+	public PageBean getFeedList(List<People> peoples, String hqlstr) {
+		List<People> friendList = new ArrayList<People>();
+		StringBuffer sql = new StringBuffer();
+		if (peoples != null && peoples.size() > 0) {
+			for (People f : peoples) {
+				sql.append(f.getId() + ", ");
+			}
+			sql.delete(sql.lastIndexOf(","), sql.length());
+		}
+
+		if (hqlstr != null)
+			sql = sql.delete(0, sql.length()).append(hqlstr);
+
+		// 从feed中找到所有关注好友并按时间排序
+		String hql = "from Feed f where f.author in (" + sql + ") group by f.author order by max(f.time) desc";
+		PageBean friendPage = feedService.queryForPage(hql, 6, page);
+		List<Feed> feedList = friendPage.getList();
+		Log.init(getClass()).info(hql);
+		for (Feed f : feedList) {
+			friendList.add(f.getAuthor());
+		}
+
+		// 每个人中取出5条数据
+		List<PageBean> result = new ArrayList<PageBean>();
+		if (friendList != null && friendList.size() > 0) {
+			for (People p : friendList) {
+				result.add(feedService.queryForPage("from Feed f where f.author = " + p.getId() + " order by f.time desc", 5, 1));
+			}
+		}
+		friendPage.setList(result);
+		Log.init(getClass()).info(result.size());
+
+		if (friendPage.getList().isEmpty()) {
+			friendPage.setList(null);
+		}
+		return friendPage;
 	}
 
 	public FeedService<Feed, Integer> getFeedService() {
