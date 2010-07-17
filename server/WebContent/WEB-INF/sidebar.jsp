@@ -42,7 +42,7 @@
 		<c:if test="${maybeMeet != null}">
 	<div id="recommend" class="mod clearfix">
 	<h2>推荐认识</h2>
-	<p><a onclick="ajaxload(this);return false;" href="<%=path %>/mutualfriend/listMutualFriend">更多</a></p>
+	<p><a onclick="ajaxload(this);return false;" href="<%=path %>/friend/viewFriend">更多</a></p>
 	<ul class="imglist">
 	<c:forEach items="${maybeMeet}" var="peopler" end="3">
 		<li>

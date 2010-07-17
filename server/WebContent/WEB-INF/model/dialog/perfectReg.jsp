@@ -46,6 +46,7 @@ $(document).ready(function(){
 		<label>选择班级：</label>
 		<select id="first" size="1"><option value="-1">--</option></select>
 		<select id="second" name="classesId" size="1"><option value="">--</option></select>
+		<br/>
 		<a onclick="ajaxload(this);return false;" href="<%=path %>/classes/goAddClasses">没有我的班级？去创建一个咯~~</a>
 		<s:fielderror><s:param>classesId</s:param></s:fielderror>
 	</div>
