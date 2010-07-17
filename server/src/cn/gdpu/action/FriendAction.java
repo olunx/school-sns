@@ -49,6 +49,7 @@ public class FriendAction extends BaseAction {
 	public String mutual(){
 		List<MutualFriend> mfs = (List<MutualFriend>) getSession().get("mutualfriend");
 		MutualFriendComparator<MutualFriend> mfc = new MutualFriendComparator<MutualFriend>();
+		if (mfs!=null)
 		Collections.sort(mfs, mfc);
 		getSession().put("mutualfriend", mfs);
 		return "mutual";
