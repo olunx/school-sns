@@ -1,39 +1,59 @@
 @charset "utf-8";
 /* CSS Document */
+#login-main{
+	height:720px;
+	width:800px;
+	padding:100px;
+}
 #mbox {
 	width: 800px;
 	position: relative;
 	margin: 0 0 10px;
 	overflow: hidden;
 }
-#adbox {
-	float: left;
-	margin: 0 10px 0 0;
-	padding: 0;
-	width:558px;
-	height: 200px;
-	border: 1px solid #EEE;
-	overflow: hidden;
+#logintitle {
+	padding: 0 5px;
+	padding-left:15px;
+	height: 32px;
+	line-height: 32px;
+	color: #333;
+	font-weight:bold;
+}
+#avatar{
+	height:80px;
+	width:80px;
+	border: 1px solid #838383;
+	margin-top:-80px;
+	margin-left:170px;
 }
 #loginbox {
-	float: left;
-	width:224px;
+	float:right;
+	width:280px;
 	background: #fff;
-	border: 3px solid #EEE;
+	border: 1px solid #838383;
 }
 #loginbox form {
-	padding: 10px;
+	padding: 15px;
 	height: 145px;
 }
-#loginbox p {
+#loginbox .row {
 	padding: 6px 0;
+	line-height:20px;
 }
-#loginbox p.submitrow {
-	padding: 10px 0 5px 3.5em;
+#loginbox .submitrow {
+	padding: 0 5px;
+	margin-top:10px;
 	line-height: 26px;
 }
 #loginbox .t_input {
-	width: 150px;
+	border: 1px solid #838383;
+	font-size: 14px;
+	font-weight: bold;
+	line-height: 18px;
+	padding: 4px;
+	margin-right: 5px;
+	width: 175px;
+	height: 20px;
 }
 .submit {
 	padding: 0 5px;
@@ -45,10 +65,4 @@
 	letter-spacing: 1px;
 	cursor: pointer;
 }
-#logintitle {
-	padding: 0 10px;
-	height: 32px;
-	line-height: 32px;
-	color: #333;
-	font-weight:bold;
-}
+
