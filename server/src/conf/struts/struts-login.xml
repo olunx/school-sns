@@ -27,7 +27,7 @@
 		<global-results>
 			<result name="success">/login.jsp</result>
 		</global-results>
-		<action name="install" class="cn.gdpu.action.InstallAction"></action>
+		<action name="install" class="cn.gdpu.action.InstallAction" method="install"></action>
 	</package>
 	
 	<!-- 登录 -->

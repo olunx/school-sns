@@ -43,6 +43,7 @@ public class TwitterServiceTest {
 
 	@Test
 	public void add() {
+		
 		try {
 			List<Twitter> list = getQQ("fatkun");
 			addTwitter("0707501112",list);
