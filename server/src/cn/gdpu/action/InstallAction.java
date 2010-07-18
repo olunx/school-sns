@@ -48,23 +48,23 @@ public class InstallAction extends BaseAction {
 	public String install() throws Exception {
 
 		// 添加头像
-//		addImage();
+		addImage();
 
 //		// 添加交换类型
-//		addGoodType();
+		addGoodType();
 //		// 添加提问类型
-//		addIssueType();
+		addIssueType();
 //		// 添加学校与对应学院（简单实现先）
-//		addProvince();
+		addProvince();
 		
 		// 这里的顺序不要更改，否则肯定出错。
-//		addSchool();
-//		addInstitute();
-//		addClasses();
-//		addMany("contact.xls");
+		addSchool();
+		addInstitute();
+		addClasses();
+		addMany("contact.xls");
 
 		// 添加个管理员
-//		addAdmin();
+		addAdmin();
 
 		Log.init(getClass()).info("系统初始化完成。");
 		return super.SUCCESS;
