@@ -85,12 +85,7 @@
 		<li><a rel="header_classes" onclick="ajaxload(this);return false;" href="<%=path %>/classes/viewClasses?id=${user.classes == null? -1: user.classes.id}">班级</a></li>
 	</c:if>
 	<li><a rel="header_square" onclick="ajaxload(this);return false;" href="<%=path%>/wall/listWall">广场</a></li>
-	<li rel="submenu"><a href="javascript:;">聊天馆</a>
-		<dl>
-		<dt><a onclick="ajaxload(this);return false;" href="<%=path%>/chat/pubChat">公共聊天室</a></dt>
-		<dt><a onclick="ajaxload(this);return false;" href="<%=path%>/chat/priChat">匿名聊天室</a></dt>
-		</dl>
-	</li>
+	<li><a onclick="ajaxload(this);return false;" href="<%=path%>/chat/priChat">倾诉</a></li>
 	<c:if test="${admin != null}">
 		<li><a rel="header_admin" onclick="ajaxload(this);return false;" href="<%=path %>/admin/viewAdmin">管理员</a></li>
 	</c:if>

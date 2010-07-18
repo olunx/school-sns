@@ -2,7 +2,7 @@
 
 body{ color:#000000; background:url("bg.jpg") no-repeat fixed center top #181818;}
 /*链接样式*/
-a:link,a:visited{ color:#000000; text-decoration:none;}
+a:link,a:visited{ color:#5D120F; text-decoration:none;}
 a:hover{ text-decoration:underline;}
 
 #main{background:#ffffff url(sidebar.png) right repeat-y;}

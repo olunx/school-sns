@@ -8,6 +8,7 @@
 body{ font-family:Arial, Helvetica, sans-serif,"宋体"; font-size:13px; background:#CCC;}
 a:link,a:visited{ color:#2e8ca0; text-decoration:none;}
 a:hover{ color:#004080;}
+input{padding:3px 5px;}
 table{width:100%;}
 td,th{padding:2px 5px;}
 ul{ list-style:none;}
@@ -214,7 +215,7 @@ opacity: 0.95;/* 支持CSS3的浏览器*/ }
 .mod { padding:0 10px 10px 10px; }
 .mod h2{ clear:both;}
 
-.search #keyword{ width:140px;}
+.search #keyword{ width:130px;}
 .search #searchbtn{ width:40px;}
 .userDetail .avatar img{
 background:none repeat scroll 0 0 #FFFFFF;
@@ -314,3 +315,6 @@ font-size:20px;
 
 /*ajaxupload*/
 .button{background:#ccc;width:100px;height:30px;font-size:14px;color:#fff;padding-top:10px;text-align:center;}
+
+/*匿名聊天*/
+.chat .msg{ width:400px;}
