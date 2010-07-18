@@ -34,57 +34,69 @@ public class TwitterServiceTest {
 			ApplicationContext ctx = new ClassPathXmlApplicationContext("conf/spring/applicationContext.xml");
 			twitterService = (TwitterService<Twitter, Integer>) ctx.getBean("twitterService");
 			studentService = (StudentService<Student, Integer>) ctx.getBean("studentService");
-			
+
 		} catch (RuntimeException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
+	String[] people = { "band", "hengdm", "laowang", "fatkun", "olunxo", "winniele", "journey", "PeterZheng", "lifeweek", "dundee",
+			"xiaxiaocha", "EricaFox", "Ellissa", "juntang", "xiongminghua", "zhyj", "yangjing", "nifangliu", "michaelyu", "zhibin" };
+
 	@Test
 	public void add() {
-		
+		Student s;
+		List<Student> stu;
 		try {
-			List<Twitter> list = getQQ("fatkun");
-			addTwitter("0707501112",list);
+			stu = studentService.getAllEntity(Student.class);
+			int size = stu.size();
+			for (int i = 0, j = 0; i < size; i++, j++) {
+				s = stu.get(i);
+				if (j >= people.length) {
+					j = 0;
+				}
+				addTwitter(s.getUsername(), getQQ(people[j]));
+			}
+//			addTwitter("0707501112", getQQ("fatkun"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
-	
-	public List<Twitter> getQQ(String username) throws IOException{
+
+	public List<Twitter> getQQ(String username) throws IOException {
 		List<Twitter> list = new ArrayList<Twitter>();
-		URL url = new URL("http://q.hzlzh.com/"+username);
+		URL url = new URL("http://q.hzlzh.com/" + username);
 		InputStream is = url.openStream();
 		StringBuilder sb = new StringBuilder();
 		int c = is.read();
-		while (c!=-1){
-			sb.append((char)c);
+		while (c != -1) {
+			sb.append((char) c);
 			c = is.read();
 		}
 		is.close();
 		logger.info(sb);
-		
+
 		JSONArray json = JSONObject.fromObject(sb.toString()).getJSONArray("contents");
-		for (int i=0; i<json.size();i++){
-			JSONObject jitem = (JSONObject)json.get(i);
+		for (int i = 0; i < json.size(); i++) {
+			JSONObject jitem = (JSONObject) json.get(i);
 			String content = jitem.getString("content");
-			String time = jitem.getString("time");
+//			String time = jitem.getString("time");
 			Twitter t = new Twitter();
 			t.setContent(content);
-			t.setTime(new Date(time));
+			t.setTime(new Date());
 			t.setIstopic(true);
 			list.add(t);
 			logger.info(content);
 		}
-		
+
 		return list;
 	}
-	
-	//username:用户名
-	public void addTwitter(String username,List<Twitter> list){
+
+	// username:用户名
+	public void addTwitter(String username, List<Twitter> list) {
 		Student p = studentService.getStudentByUserName(username);
-		for (Twitter t : list){
+		for (Twitter t : list) {
 			t.setAuthor(p);
 			twitterService.addEntity(t);
 			FeedAction.init().add(t, FeedAction.ADD_TWITTER);
