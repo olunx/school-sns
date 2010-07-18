@@ -7,13 +7,13 @@
 	String path = request.getContextPath();
 %>
 
-<div class="buttons">
-<a onclick="ajaxload(this);return false;" rev="#wall" href="<%=path%>/vote/listVote" class="regular">投票</a>
- <a onclick="ajaxload(this);return false;" rev="#wall" href="<%=path%>/issue/listIssue" class="regular">问答</a>
- <a onclick="ajaxload(this);return false;" rev="#wall" href="<%=path%>/goods/listGoods" class="regular">交换</a>
- <a onclick="ajaxload(this);return false;" rev="#wall" href="<%=path%>/group/listGroup" class="regular">群组</a>
- <a onclick="ajaxload(this);return false;" rev="#wall" href="<%=path%>/friend/viewFriend" class="regular">好友</a>
-</div>
+<ul class="buttons nav">
+<li><a onclick="ajaxload(this);return false;" rev="#wall" href="<%=path%>/vote/listVote">投票</a></li>
+<li><a onclick="ajaxload(this);return false;" rev="#wall" href="<%=path%>/issue/listIssue">问答</a></li>
+<li><a onclick="ajaxload(this);return false;" rev="#wall" href="<%=path%>/goods/listGoods">交换</a></li>
+<li><a onclick="ajaxload(this);return false;" rev="#wall" href="<%=path%>/group/listGroup">群组</a></li>
+<li><a onclick="ajaxload(this);return false;" rev="#wall" href="<%=path%>/friend/viewFriend">好友</a></li>
+</ul>
 
 <div id="wall">
 </div>
