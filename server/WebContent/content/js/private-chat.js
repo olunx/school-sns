@@ -33,7 +33,7 @@ function receiveSystemMessage(cmd,msg){
 //接收在线用户数据
 function receiveOnlineUser(data){
     $("#onlineuser").remove();
-    $("#sidebar").prepend("<div id='onlineuser' class='mod'><h2 onclick='PrivateChat.updateUsersList();'>匿名聊天在线人数:"+data+"</h2></div>");
+    $("#sidebar").prepend("<div id='onlineuser' class='mod'><h2 onclick='PrivateChat.updateUsersList();'>在线人数:"+data+"</h2></div>");
 }
 
 //设置button状态

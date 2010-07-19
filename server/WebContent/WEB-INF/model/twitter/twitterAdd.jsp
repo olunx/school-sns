@@ -147,7 +147,7 @@
 	<div id="temp" style="display:none;">
 		<!-- 链接 -->
 		<div id="links">
-			<label>链接地址：</label><input class="required url" id="lk1" type="text" name="twitter.link" />
+			<label>链接地址：</label><input class="required" id="lk1" type="text" name="twitter.link" />
 		</div>
 		<!-- 投票 -->
 		<div id="vote">
