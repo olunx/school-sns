@@ -34,12 +34,25 @@
             </div>
             <div class="submitrow">
               <input class="btn blue" type="submit" value="登录" />
-              <a href="#">注册</a>
+              <a onclick="return hs.htmlExpand(this, { objectType: 'iframe' } )" href="<%=path%>/goRegister">注册</a>
             </div>
           </form>
         </div><!-- end of login -->
       </div><!-- end of loginbox -->
     </div><!-- end fof mbox -->
 </div><!--login-main-->
+<!-- JQuery库 -->
+<!-- <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script> -->
+<script type="text/javascript" src="<%=path%>/content/js/jquery-1.4.2.min.js"></script>
+<!-- highslide -->
+<link type="text/css" rel="stylesheet" href="<%=path%>/content/jq-highslide/highslide.css" />
+<script type="text/javascript" src="<%=path%>/content/jq-highslide/highslide-full.min.js"></script>
+<script type="text/javascript" src="<%=path%>/content/js/highslide-init.js"></script>
+<!--[if IE]> 
+		<script type="text/javascript" src="<%=path%>/content/jq-highcharts/highcharts-ie.js"></script> 
+<![endif]-->
+<script type="text/javascript">
+	initHighslide("<%=path%>", "640", "480");
+</script>
 </body>
 </html>

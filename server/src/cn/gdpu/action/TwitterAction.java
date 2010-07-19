@@ -39,14 +39,19 @@ public class TwitterAction extends BaseAction {
 				Log.init(getClass()).info("add topic image " + image);
 				imageService.addEntity(image);
 				twitter.setImage(image);
+				twitter.setType("image");
 			}
 
 			twitterService.addEntity(twitter);
 
-			FeedAction.init().add(twitter, FeedAction.ADD_TWITTER);
+			if(twitter.getType() != null && twitter.getType().equals("link")) {
+				FeedAction.init().add(twitter, FeedAction.ADD_LINK);
+			}else {
+				FeedAction.init().add(twitter, FeedAction.ADD_TWITTER);
+			}
 		}
 
-		Log.init(getClass()).info("add finish ");
+		Log.init(getClass()).info("add finish " + twitter.getType());
 
 		return super.add();
 	}

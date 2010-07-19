@@ -82,7 +82,6 @@
 		cancel();
 		$("#addition").html($("#links").html());
 		$("#addition").slideDown("normal");
-		$("#links").append("<input id='twittertype' type='hidden' name='twitter.type' value='link' />");
 	}
 	
 	function showVote() {
@@ -148,6 +147,7 @@
 		<!-- 链接 -->
 		<div id="links">
 			<label>链接地址：</label><input class="required" id="lk1" type="text" name="twitter.link" />
+			<input id='twittertype' type='hidden' name='twitter.type' value='link' />
 		</div>
 		<!-- 投票 -->
 		<div id="vote">
