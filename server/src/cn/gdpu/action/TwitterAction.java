@@ -35,7 +35,7 @@ public class TwitterAction extends BaseAction {
 			twitter.setTime(new Date());
 			twitter.setIstopic(true);
 
-			if (image != null) {
+			if (image != null && !image.getOriFileName().equals("")) {
 				Log.init(getClass()).info("add topic image " + image);
 				imageService.addEntity(image);
 				twitter.setImage(image);
