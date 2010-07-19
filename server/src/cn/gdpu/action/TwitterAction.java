@@ -3,6 +3,7 @@ package cn.gdpu.action;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 import cn.gdpu.service.ImageService;
 import cn.gdpu.service.TwitterService;
@@ -153,7 +154,14 @@ public class TwitterAction extends BaseAction {
 	 */
 	public String twitterWall() {
 		List<Twitter> tempList = new ArrayList<Twitter>();
-		twitterList = twitterService.queryForLimit("from Twitter t where t.istopic = '1' order by t.time DESC", 0, 15);
+		twitterList = twitterService.queryForLimit("from Twitter t where t.istopic = '1' order by t.time DESC", 0, 30);
+		Random r = new Random();
+		for(int i=0;i<twitterList.size();i++){
+			int j=r.nextInt(twitterList.size());
+			Twitter t = twitterList.get(i);
+			twitterList.set(i, twitterList.get(j));
+			twitterList.set(j, t);
+		}
 		Log.init(getClass()).info(twitterList);
 		return SUCCESS;
 	}

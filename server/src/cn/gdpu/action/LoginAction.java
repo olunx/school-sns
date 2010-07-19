@@ -105,6 +105,10 @@ public class LoginAction extends BaseAction {
 			}
 		}
 
+		Object access = this.getSession().get("isAccess");
+		if (access!=null &&!access.equals("")){
+			return super.SUCCESS;
+		}
 		// 绕过验证
 		// this.getSession().put("isAccess", "true");
 		// return super.SUCCESS;
