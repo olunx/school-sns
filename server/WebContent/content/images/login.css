@@ -1,50 +1,98 @@
 @charset "utf-8";
+
 /* CSS Document */
-#login-main{
-	height:720px;
-	width:800px;
-	padding:100px;
+body {
+	font-family: Arial, Helvetica, sans-serif, "宋体";
+	font-size: 13px;
+	background: #CCC;
 }
+
+body {
+	color: #000000;
+	background: url("bg.jpg") no-repeat fixed center top;
+}
+
+a:link,a:visited {
+	color: #2e8ca0;
+	text-decoration: none;
+}
+
+a:hover {
+	color: #004080;
+}
+
+/* 头部*/
+#header {
+	position: relative;
+	width: 800px;
+	height: 85px;
+	margin: 0 auto;
+	color: #FFF;
+}
+
+#header .logo {
+	float: left;
+	padding: 15px 0 0 10px;
+	margin: 0;
+}
+
+#header .logo img {
+	margin: 0;
+}
+
+#login-main {
+	width: 800px;
+	margin: 0 auto;
+}
+
 #mbox {
 	width: 800px;
 	position: relative;
 	margin: 0 0 10px;
-	overflow: hidden;
 }
+
 #logintitle {
 	padding: 0 5px;
-	padding-left:15px;
-	height: 32px;
+	padding-left: 15px;
+	height: 20px;
 	line-height: 32px;
 	color: #333;
-	font-weight:bold;
+	font-weight: bold;
+	font-size: 16px;
 }
-#avatar{
-	height:80px;
-	width:80px;
+
+#avatar {
+	height: 64px;
+	width: 64px;
 	border: 1px solid #838383;
-	margin-top:-80px;
-	margin-left:170px;
+	background:#fff;
+	margin-top: -50px;
+	margin-left: 180px;
 }
+
 #loginbox {
-	float:right;
-	width:280px;
+	margin-left:320px;
+	margin-top: 220px;
+	width: 280px;
 	background: #fff;
 	border: 1px solid #838383;
 }
+
 #loginbox form {
 	padding: 15px;
-	height: 145px;
 }
+
 #loginbox .row {
 	padding: 6px 0;
-	line-height:20px;
+	line-height: 20px;
 }
+
 #loginbox .submitrow {
 	padding: 0 5px;
-	margin-top:10px;
+	margin-top: 10px;
 	line-height: 26px;
 }
+
 #loginbox .t_input {
 	border: 1px solid #838383;
 	font-size: 14px;
@@ -55,14 +103,74 @@
 	width: 175px;
 	height: 20px;
 }
-.submit {
-	padding: 0 5px;
-	height: 24px;
-	border: none;
-	background: #E41448;
-	color: #FFF;
-	line-height: 20px;
-	letter-spacing: 1px;
+
+/*有图片按钮样式*/
+.btn {
+	display: block;
+	position: relative;
+	background: #aaa;
+	padding: 5px;
+	float: right;
+	font-weight: bold;
+	color: #fff;
+	text-decoration: none;
 	cursor: pointer;
 }
 
+.btn * {
+	font-style: normal;
+	background-image: url(./btn/btn2.png);
+	background-repeat: no-repeat;
+	display: block;
+	position: relative;
+}
+
+.btn.blue {
+	background: #2ae;
+}
+
+.btn.green {
+	background: #9d4;
+}
+
+.btn.pink {
+	background: #e1a;
+}
+
+.btn:hover {
+	background-color: #a00;
+	color: #fff;
+}
+
+.btn:active {
+	background-color: #444;
+}
+
+.btn[class] {
+	background-image: url(./btn/shade.png);
+	background-position: bottom;
+}
+
+.btn {
+	border: 3px double #aaa;
+}
+
+.btn.blue {
+	border-color: #2ae;
+}
+
+.btn.green {
+	border-color: #9d4;
+}
+
+.btn.pink {
+	border-color: #e1a;
+}
+
+.btn.big {
+	padding: 5px 10px;
+}
+
+.btn:hover {
+	border-color: #a00;
+}

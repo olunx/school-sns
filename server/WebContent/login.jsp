@@ -9,7 +9,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>School Social</title>
-<link type="text/css" rel="stylesheet" href="<%=path%>/content/images/layout.css" />
 <link type="text/css" rel="stylesheet" href="<%=path%>/content/images/login.css" />
 </head>
 <body>
@@ -22,20 +21,20 @@
     <div id="mbox">
       <div id="loginbox">
         <div id="logintitle">请登录：</div>
-        <div id="avatar"><img src="" /></div>
+        <div id="avatar"><img src="<%=path%>/content/images/avatar.jpg" /></div>
         <div id="login">
           <form id="inputform" action="authLogin" method="post">
             <div class="row">
               <label for="username">用户名</label>
-              <input type="text" name="username" id="username" class="t_input" value="admin" />
+              <input type="text" name="username" id="username" class="t_input" value="0707501101" />
             </div>
             <div class="row">
               <label for="password">密　码</label>
-              <input type="password" name="password" id="password" class="t_input" value="admin" />
+              <input type="password" name="password" id="password" class="t_input" value="0707501101" />
             </div>
             <div class="submitrow">
-              <input id="submit" type="submit" name="loginsubmit" class="submit" value="登录" />
-              <a href="#">忘记密码?</a>
+              <input class="btn blue" type="submit" value="登录" />
+              <a href="#">注册</a>
             </div>
           </form>
         </div><!-- end of login -->
