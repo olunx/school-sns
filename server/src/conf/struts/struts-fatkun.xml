@@ -39,6 +39,7 @@
 		<action name="*Chat" class="cn.gdpu.action.ChatAction" method="{1}"></action>
 	</package>
 	
+	<!-- twitter墙 -->
 	<package name="twitterjson" extends="json-default" namespace="/twitter">
 		<action name="twitterWall" class="cn.gdpu.action.TwitterAction" method="twitterWall">
 			<result type="json">
