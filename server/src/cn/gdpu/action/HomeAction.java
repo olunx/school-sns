@@ -89,6 +89,7 @@ public class HomeAction extends BaseAction {
 				hql = "from People p where p.school.id ='" + people.getSchool().getId() + "' and p.classes.id <>'"
 						+ people.getClasses().getId() + "' and p.id <> '" + people.getId() + "' order by rand()";
 				List<People> speos = peopleService.queryForLimit(hql, 0, 5);
+				System.out.println("speos"+speos+" hql:"+hql);
 				for (People peo : speos) {
 					if(!friends.contains(peo)){
 						maybeMeet.add(peo);

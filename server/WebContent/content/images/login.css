@@ -38,6 +38,7 @@ a:hover {
 
 #header .logo img {
 	margin: 0;
+	border:0;
 }
 
 #login-main {

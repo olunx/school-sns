@@ -138,12 +138,14 @@ opacity: 0.95;/* 支持CSS3的浏览器*/ }
 .feed .name {margin-left: 10px;margin-bottom:5px; font-size: 14px;}
 .feed .avatar img{width:50px; height:50px; }
 .feed .msg{ background:#f2f2f2; float:right; width:495px; font-size: 12px; line-height:20px;margin-top: 3px;padding: 5px;}
+.feed .msg img{ vertical-align: top;}
 .feed .time{ color:#999; float:right;}
 .feed .i_twitter{background: url("icon_twitter.gif") no-repeat left 2px; text-indent: 20px;}
 .feed .i_friend{background: url("icon_friend.gif") no-repeat left 2px; text-indent: 20px;}
 .feed .i_goods{background: url("icon_goods.gif") no-repeat left 2px; text-indent: 20px;}
 .feed .i_vote{background: url("icon_vote.gif") no-repeat left 2px; text-indent: 20px;}
 .feed .i_issue{background: url("icon_issue.gif") no-repeat left 2px; text-indent: 20px;}
+.feed .i_link{background: url("icon_link.gif") no-repeat left 2px; text-indent: 20px;}
 /*列表页*/
 .ilist{ padding:0 0 5px 0; margin:5px 0 0 0; border-bottom:#ccc dashed 1px;}
 .iavatar{ background:#FFF; float:left; padding:2px; border:1px solid #CCC;}

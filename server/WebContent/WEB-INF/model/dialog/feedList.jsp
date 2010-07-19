@@ -31,12 +31,15 @@
 						<div class="i_twitter"><span class="time" title="${feed.time}">${my:formatDate(feed.time)}</span>说：“${feed.message}”
 						 </div>
 				</c:when><c:when test="${feed.type ==  'add_image'}">
-						<div><span class="time" title="${feed.time}">${my:formatDate(feed.time)}</span>
-						分享了图片：<img src="<%=path %>/${feed.link}" /><br />并说：${feed.message}
+						<div class="i_twitter"><span class="time" title="${feed.time}">${my:formatDate(feed.time)}</span>
+						说：“${feed.message}”<br />
+						并分享了图片：<img src="<%=path %>/${feed.link}" />
 						 </div>
 				</c:when><c:when test="${feed.type == 'add_link'}">
+						<div class="i_link">
 						<span class="time" title="${feed.time}">${my:formatDate(feed.time)}</span>
 						分享了链接：<a href="${feed.link}" target="_blank">${feed.link}</a><br />并说：${feed.message}
+						</div>
 				</c:when><c:when test="${feed.type == 'reply_twitter'}">
 					<div class="i_twitter">
 						<span class="time" title="${feed.time}">${my:formatDate(feed.time)}</span>
