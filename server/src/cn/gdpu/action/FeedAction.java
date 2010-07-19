@@ -34,7 +34,7 @@ public class FeedAction extends BaseAction {
 
 	public final static String ADD_TWITTER = "add_twitter";
 	public final static String ADD_LINK = "add_link";
-	public final static String ADD_VIDEO = "add_video";
+	public final static String ADD_IMAGE = "add_image";
 	public final static String REPLY_TWITTER = "reply_twitter";
 	public final static String ADD_TOPIC = "add_topic";
 	public final static String REPLY_TOPIC = "reply_topic";
@@ -79,9 +79,9 @@ public class FeedAction extends BaseAction {
 			if (twitter.getType().equalsIgnoreCase("link")) {
 				feed.setType(FeedAction.ADD_LINK);
 				feed.setLink(twitter.getLink());
-			} else if (twitter.getType().equalsIgnoreCase("video")) {
-				feed.setType(FeedAction.ADD_VIDEO);
-				feed.setLink(twitter.getLink());
+			} else if (twitter.getType().equalsIgnoreCase("image")) {
+				feed.setType(FeedAction.ADD_IMAGE);
+				feed.setLink(twitter.getImage().getMinFileUrl());
 			}
 		} else {
 			feed.setType(type);
