@@ -76,10 +76,10 @@ public class InstallAction extends BaseAction {
 		String fileUrl = null;
 		for (int i = 0, j = 0; i < 205; i++, j++) {
 			Log.init(getClass()).info("添加头像 " + i);
-			if (j > 61)
+			if (j > 45)
 				j = 0;
 			image = new Image();
-			fileName = "001 (" + j + ").gif";
+			fileName = "001 (" + j + ").jpg";
 			fileUrl = "/upload/avatar/" + fileName;
 			image.setOriFileName(fileName);
 			image.setBigFileName(fileName);
