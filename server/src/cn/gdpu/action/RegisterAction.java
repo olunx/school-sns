@@ -210,11 +210,12 @@ public class RegisterAction extends BaseAction implements Preparable {
 	}
 	
 	public String perfectReg() throws Exception{
-		System.out.println("-------------sdfsadf");
+		System.out.println("-------------sdfsadf----------------");
 		Object student = this.getSession().get("student");
 		if (student != null) {
 			if (student instanceof Student) {
 				Student user = (Student) student;
+				user = studentService.getEntity(Student.class, user.getId());
 				Classes classes = classesService.getEntity(Classes.class, classesId);
 				List<People> admins = classes.getAdmins();
 				if(admins.size() == 0){       //如果如加入的班级管理员为空，自动成为管理员
@@ -230,7 +231,9 @@ public class RegisterAction extends BaseAction implements Preparable {
 				user.setClasses(classes);
 				user.setSno(sno);
 				user.setEntryYear(entryYear);
-				user.setAvatar(image);
+				if (image!=null && !image.getMinFileUrl().equals("")){
+					user.setAvatar(image);
+				}
 				user.setActivity(user.getActivity() + 5);
 				studentService.updateEntity(user);
 				return "classes";
