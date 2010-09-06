@@ -256,7 +256,7 @@ public class MainWindow {
 
 		final ToolBar toolBar_1 = new ToolBar(composite, SWT.NONE);
 		final FormData fd_toolBar_1 = new FormData();
-		fd_toolBar_1.right = new FormAttachment(0, 315);
+		fd_toolBar_1.right = new FormAttachment(0, 265);
 		fd_toolBar_1.bottom = new FormAttachment(label, 0, SWT.BOTTOM);
 		fd_toolBar_1.top = new FormAttachment(label, 0, SWT.TOP);
 		fd_toolBar_1.left = new FormAttachment(toolBar, 5, SWT.RIGHT);
@@ -270,15 +270,6 @@ public class MainWindow {
 		});
 		indexItem.setImage(SWTResourceManager.getImage(MainWindow.class, "ico/internal_browser.gif"));
 		indexItem.setText("首页");
-
-		final ToolItem twitterItem = new ToolItem(toolBar_1, SWT.PUSH);
-		twitterItem.addSelectionListener(new SelectionAdapter() {
-			public void widgetSelected(final SelectionEvent e) {
-				clickMenu(ACTION_TWITTER);
-			}
-		});
-		twitterItem.setImage(SWTResourceManager.getImage(MainWindow.class, "ico/javadoc.gif"));
-		twitterItem.setText("微博墙");
 
 		final ToolItem squareItem = new ToolItem(toolBar_1, SWT.PUSH);
 		squareItem.addSelectionListener(new SelectionAdapter() {
@@ -309,9 +300,9 @@ public class MainWindow {
 
 		final Label label_1 = new Label(composite, SWT.SEPARATOR);
 		final FormData fd_label_1 = new FormData();
+		fd_label_1.right = new FormAttachment(0, 270);
 		fd_label_1.bottom = new FormAttachment(toolBar_1, 0, SWT.BOTTOM);
 		fd_label_1.left = new FormAttachment(toolBar_1, 0, SWT.RIGHT);
-		fd_label_1.right = new FormAttachment(0, 317);
 		fd_label_1.top = new FormAttachment(toolBar_1, 0, SWT.TOP);
 		label_1.setLayoutData(fd_label_1);
 

@@ -8,11 +8,13 @@
 %>
 
 <ul class="buttons nav">
+<li><a onclick="ajaxload(this);return false;" rev="#wall" href="<%=path%>/twitter/listTwitter">新鲜事</a></li>
+<li><a onclick="ajaxload(this);return false;" rev="#wall" href="<%=path%>/friend/viewFriend">好友</a></li>
+<li><a onclick="ajaxload(this);return false;" rev="#wall" href="<%=path%>/chat/priChat">倾诉</a></li>
 <li><a onclick="ajaxload(this);return false;" rev="#wall" href="<%=path%>/vote/listVote">投票</a></li>
 <li><a onclick="ajaxload(this);return false;" rev="#wall" href="<%=path%>/issue/listIssue">问答</a></li>
 <li><a onclick="ajaxload(this);return false;" rev="#wall" href="<%=path%>/goods/listGoods">交换</a></li>
 <li><a onclick="ajaxload(this);return false;" rev="#wall" href="<%=path%>/group/listGroup">群组</a></li>
-<li><a onclick="ajaxload(this);return false;" rev="#wall" href="<%=path%>/friend/viewFriend">好友</a></li>
 </ul>
 
 <div id="wall">
@@ -36,6 +38,6 @@
 	
 	//diaplayAll();
 	//$('#pvote').slideDown('normal');
-	loadContent("<%=path%>/vote/listVote","#wall");
+	loadContent("<%=path%>/twitter/listTwitter","#wall");
 
 </script>

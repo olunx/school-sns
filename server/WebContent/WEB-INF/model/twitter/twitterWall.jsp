@@ -10,7 +10,7 @@
 function getTwitter(){
 $.getJSON("<%=path%>/twitter/twitterWall",function(data){
 	$("#twall").empty();
-	var points = new Array({x:10,y:20},{x:220,y:80},{x:60,y:170},{x:140,y:270},{x:10,y:370},{x:250,y:470});
+	var points = new Array({x:10,y:20},{x:220,y:80},{x:60,y:170},{x:140,y:270},{x:10,y:370},{x:250,y:430});
 	$.each(data.twitterList,function(i,item){
 		var img;
 		if (item.author.avatar!=null)
